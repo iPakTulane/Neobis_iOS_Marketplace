@@ -13,6 +13,20 @@
 		BAF86FB32B32A62000E0F939 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BAF86FB12B32A62000E0F939 /* Main.storyboard */; };
 		BAF86FB52B32A62200E0F939 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BAF86FB42B32A62200E0F939 /* Assets.xcassets */; };
 		BAF86FB82B32A62200E0F939 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BAF86FB62B32A62200E0F939 /* LaunchScreen.storyboard */; };
+		BAF86FC12B34412E00E0F939 /* test.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF86FC02B34412E00E0F939 /* test.swift */; };
+		BAF86FC42B34416300E0F939 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = BAF86FC32B34416300E0F939 /* SnapKit */; };
+		BAF86FC62B34416300E0F939 /* SnapKit-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = BAF86FC52B34416300E0F939 /* SnapKit-Dynamic */; };
+		BAF86FD12B3600D300E0F939 /* AnimatedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF86FD02B3600D300E0F939 /* AnimatedTextField.swift */; };
+		BAF86FD32B3600F400E0F939 /* BorderedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF86FD22B3600F400E0F939 /* BorderedTextField.swift */; };
+		BAF86FD52B36011200E0F939 /* NumberTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF86FD42B36011200E0F939 /* NumberTextField.swift */; };
+		BAF86FD72B36015900E0F939 /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF86FD62B36015900E0F939 /* CustomTabBarController.swift */; };
+		BAF86FD92B36017C00E0F939 /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF86FD82B36017C00E0F939 /* CustomTabBar.swift */; };
+		BAF86FDB2B3601A800E0F939 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF86FDA2B3601A800E0F939 /* Service.swift */; };
+		BAF86FDD2B3601CA00E0F939 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF86FDC2B3601CA00E0F939 /* Models.swift */; };
+		BAF86FDF2B3601FF00E0F939 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF86FDE2B3601FF00E0F939 /* AuthManager.swift */; };
+		BAF86FE12B36022800E0F939 /* GetUserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF86FE02B36022800E0F939 /* GetUserData.swift */; };
+		BAF86FE32B36025000E0F939 /* Data+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF86FE22B36025000E0F939 /* Data+Ext.swift */; };
+		BAF86FE52B36026400E0F939 /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF86FE42B36026400E0F939 /* String+Ext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +38,18 @@
 		BAF86FB42B32A62200E0F939 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BAF86FB72B32A62200E0F939 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BAF86FB92B32A62200E0F939 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BAF86FC02B34412E00E0F939 /* test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = test.swift; sourceTree = "<group>"; };
+		BAF86FD02B3600D300E0F939 /* AnimatedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedTextField.swift; sourceTree = "<group>"; };
+		BAF86FD22B3600F400E0F939 /* BorderedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderedTextField.swift; sourceTree = "<group>"; };
+		BAF86FD42B36011200E0F939 /* NumberTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberTextField.swift; sourceTree = "<group>"; };
+		BAF86FD62B36015900E0F939 /* CustomTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
+		BAF86FD82B36017C00E0F939 /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
+		BAF86FDA2B3601A800E0F939 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		BAF86FDC2B3601CA00E0F939 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		BAF86FDE2B3601FF00E0F939 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
+		BAF86FE02B36022800E0F939 /* GetUserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUserData.swift; sourceTree = "<group>"; };
+		BAF86FE22B36025000E0F939 /* Data+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Ext.swift"; sourceTree = "<group>"; };
+		BAF86FE42B36026400E0F939 /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +57,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BAF86FC42B34416300E0F939 /* SnapKit in Frameworks */,
+				BAF86FC62B34416300E0F939 /* SnapKit-Dynamic in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,15 +84,219 @@
 		BAF86FAA2B32A62000E0F939 /* Neobis_iOS_Marketplace */ = {
 			isa = PBXGroup;
 			children = (
+				BAF86FC82B35FF3300E0F939 /* Screens */,
+				BAF86FC92B35FF4700E0F939 /* Extensions */,
+				BAF86FCA2B35FF5A00E0F939 /* GetUserData */,
+				BAF86FCB2B35FF6600E0F939 /* AuthManager */,
+				BAF86FCC2B35FF7600E0F939 /* Models */,
+				BAF86FCD2B35FF7E00E0F939 /* Service */,
+				BAF86FCE2B35FF8600E0F939 /* CustomTabBar */,
+				BAF86FCF2B35FF8E00E0F939 /* CustomTextFields */,
+				BAF86FBF2B34412200E0F939 /* TEST */,
+				BAF86FC72B34417500E0F939 /* FILES */,
+				BAF86FB92B32A62200E0F939 /* Info.plist */,
+			);
+			path = Neobis_iOS_Marketplace;
+			sourceTree = "<group>";
+		};
+		BAF86FBF2B34412200E0F939 /* TEST */ = {
+			isa = PBXGroup;
+			children = (
+				BAF86FC02B34412E00E0F939 /* test.swift */,
+			);
+			path = TEST;
+			sourceTree = "<group>";
+		};
+		BAF86FC72B34417500E0F939 /* FILES */ = {
+			isa = PBXGroup;
+			children = (
 				BAF86FAB2B32A62000E0F939 /* AppDelegate.swift */,
 				BAF86FAD2B32A62000E0F939 /* SceneDelegate.swift */,
 				BAF86FAF2B32A62000E0F939 /* ViewController.swift */,
 				BAF86FB12B32A62000E0F939 /* Main.storyboard */,
 				BAF86FB42B32A62200E0F939 /* Assets.xcassets */,
 				BAF86FB62B32A62200E0F939 /* LaunchScreen.storyboard */,
-				BAF86FB92B32A62200E0F939 /* Info.plist */,
 			);
-			path = Neobis_iOS_Marketplace;
+			path = FILES;
+			sourceTree = "<group>";
+		};
+		BAF86FC82B35FF3300E0F939 /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				BAF86FF32B36032500E0F939 /* MainScreen */,
+				BAF86FF22B36031900E0F939 /* SplashScreen */,
+				BAF86FF12B36031200E0F939 /* Login */,
+				BAF86FF02B36030200E0F939 /* Registration */,
+				BAF86FEF2B3602FC00E0F939 /* Password */,
+				BAF86FEE2B3602F200E0F939 /* Profile */,
+				BAF86FED2B3602E600E0F939 /* FinishRegistration */,
+				BAF86FEC2B3602DB00E0F939 /* AddNumber */,
+				BAF86FEB2B3602D300E0F939 /* OTP */,
+				BAF86FEA2B3602C900E0F939 /* LikeScreen */,
+				BAF86FE92B3602C100E0F939 /* Product */,
+				BAF86FE82B3602B700E0F939 /* AddProduct */,
+				BAF86FE72B3602AE00E0F939 /* ChangeProduct */,
+				BAF86FE62B3602A500E0F939 /* Fonts */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		BAF86FC92B35FF4700E0F939 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				BAF86FE22B36025000E0F939 /* Data+Ext.swift */,
+				BAF86FE42B36026400E0F939 /* String+Ext.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		BAF86FCA2B35FF5A00E0F939 /* GetUserData */ = {
+			isa = PBXGroup;
+			children = (
+				BAF86FE02B36022800E0F939 /* GetUserData.swift */,
+			);
+			path = GetUserData;
+			sourceTree = "<group>";
+		};
+		BAF86FCB2B35FF6600E0F939 /* AuthManager */ = {
+			isa = PBXGroup;
+			children = (
+				BAF86FDE2B3601FF00E0F939 /* AuthManager.swift */,
+			);
+			path = AuthManager;
+			sourceTree = "<group>";
+		};
+		BAF86FCC2B35FF7600E0F939 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				BAF86FDC2B3601CA00E0F939 /* Models.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		BAF86FCD2B35FF7E00E0F939 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				BAF86FDA2B3601A800E0F939 /* Service.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		BAF86FCE2B35FF8600E0F939 /* CustomTabBar */ = {
+			isa = PBXGroup;
+			children = (
+				BAF86FD62B36015900E0F939 /* CustomTabBarController.swift */,
+				BAF86FD82B36017C00E0F939 /* CustomTabBar.swift */,
+			);
+			path = CustomTabBar;
+			sourceTree = "<group>";
+		};
+		BAF86FCF2B35FF8E00E0F939 /* CustomTextFields */ = {
+			isa = PBXGroup;
+			children = (
+				BAF86FD02B3600D300E0F939 /* AnimatedTextField.swift */,
+				BAF86FD22B3600F400E0F939 /* BorderedTextField.swift */,
+				BAF86FD42B36011200E0F939 /* NumberTextField.swift */,
+			);
+			path = CustomTextFields;
+			sourceTree = "<group>";
+		};
+		BAF86FE62B3602A500E0F939 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		BAF86FE72B3602AE00E0F939 /* ChangeProduct */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ChangeProduct;
+			sourceTree = "<group>";
+		};
+		BAF86FE82B3602B700E0F939 /* AddProduct */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = AddProduct;
+			sourceTree = "<group>";
+		};
+		BAF86FE92B3602C100E0F939 /* Product */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Product;
+			sourceTree = "<group>";
+		};
+		BAF86FEA2B3602C900E0F939 /* LikeScreen */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = LikeScreen;
+			sourceTree = "<group>";
+		};
+		BAF86FEB2B3602D300E0F939 /* OTP */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = OTP;
+			sourceTree = "<group>";
+		};
+		BAF86FEC2B3602DB00E0F939 /* AddNumber */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = AddNumber;
+			sourceTree = "<group>";
+		};
+		BAF86FED2B3602E600E0F939 /* FinishRegistration */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = FinishRegistration;
+			sourceTree = "<group>";
+		};
+		BAF86FEE2B3602F200E0F939 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		BAF86FEF2B3602FC00E0F939 /* Password */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Password;
+			sourceTree = "<group>";
+		};
+		BAF86FF02B36030200E0F939 /* Registration */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Registration;
+			sourceTree = "<group>";
+		};
+		BAF86FF12B36031200E0F939 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		BAF86FF22B36031900E0F939 /* SplashScreen */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = SplashScreen;
+			sourceTree = "<group>";
+		};
+		BAF86FF32B36032500E0F939 /* MainScreen */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = MainScreen;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -83,6 +315,10 @@
 			dependencies = (
 			);
 			name = Neobis_iOS_Marketplace;
+			packageProductDependencies = (
+				BAF86FC32B34416300E0F939 /* SnapKit */,
+				BAF86FC52B34416300E0F939 /* SnapKit-Dynamic */,
+			);
 			productName = Neobis_iOS_Marketplace;
 			productReference = BAF86FA82B32A62000E0F939 /* Neobis_iOS_Marketplace.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +347,9 @@
 				Base,
 			);
 			mainGroup = BAF86F9F2B32A62000E0F939;
+			packageReferences = (
+				BAF86FC22B34416300E0F939 /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			productRefGroup = BAF86FA92B32A62000E0F939 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -138,9 +377,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BAF86FDD2B3601CA00E0F939 /* Models.swift in Sources */,
+				BAF86FDF2B3601FF00E0F939 /* AuthManager.swift in Sources */,
 				BAF86FB02B32A62000E0F939 /* ViewController.swift in Sources */,
+				BAF86FE52B36026400E0F939 /* String+Ext.swift in Sources */,
+				BAF86FC12B34412E00E0F939 /* test.swift in Sources */,
+				BAF86FD72B36015900E0F939 /* CustomTabBarController.swift in Sources */,
+				BAF86FD52B36011200E0F939 /* NumberTextField.swift in Sources */,
+				BAF86FD92B36017C00E0F939 /* CustomTabBar.swift in Sources */,
+				BAF86FE12B36022800E0F939 /* GetUserData.swift in Sources */,
+				BAF86FD32B3600F400E0F939 /* BorderedTextField.swift in Sources */,
 				BAF86FAC2B32A62000E0F939 /* AppDelegate.swift in Sources */,
+				BAF86FDB2B3601A800E0F939 /* Service.swift in Sources */,
 				BAF86FAE2B32A62000E0F939 /* SceneDelegate.swift in Sources */,
+				BAF86FD12B3600D300E0F939 /* AnimatedTextField.swift in Sources */,
+				BAF86FE32B36025000E0F939 /* Data+Ext.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -307,9 +558,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ipaktulane.Neobis-iOS-Marketplace";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -335,9 +589,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ipaktulane.Neobis-iOS-Marketplace";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -363,6 +620,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		BAF86FC22B34416300E0F939 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.6.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		BAF86FC32B34416300E0F939 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BAF86FC22B34416300E0F939 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+		BAF86FC52B34416300E0F939 /* SnapKit-Dynamic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BAF86FC22B34416300E0F939 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = "SnapKit-Dynamic";
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = BAF86FA02B32A62000E0F939 /* Project object */;
 }

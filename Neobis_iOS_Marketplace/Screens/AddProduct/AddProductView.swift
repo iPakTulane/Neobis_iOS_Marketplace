@@ -60,7 +60,7 @@ class AddProductView: UIView {
     
     let addLabel: UILabel = {
         let label = UILabel()
-        label.text = "Добавить фото"
+        label.text = "Add photo"
         label.textColor = UIColor(red: 0.329, green: 0.345, blue: 0.918, alpha: 1)
         label.font = UIFont(name: "GothamPro-Medium", size: 12)
         label.numberOfLines = 2
@@ -74,7 +74,7 @@ class AddProductView: UIView {
         field.backgroundColor = .white
         field.layer.cornerRadius = 12 * UIScreen.main.bounds.height / 812
         field.font = UIFont(name: "GothamPro", size: 16)
-        field.placeholder = "Цена"
+        field.placeholder = "Price"
         let leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: field.frame.height))
         field.leftView = leftView
         field.leftViewMode = .always
@@ -87,7 +87,7 @@ class AddProductView: UIView {
         field.backgroundColor = .white
         field.layer.cornerRadius = 12 * UIScreen.main.bounds.height / 812
         field.font = UIFont(name: "GothamPro", size: 16)
-        field.placeholder = "Название"
+        field.placeholder = "Title"
         let leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: field.frame.height))
         field.leftView = leftView
         field.leftViewMode = .always

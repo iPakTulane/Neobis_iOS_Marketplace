@@ -40,8 +40,6 @@ struct LoginResponse: Codable {
 }
 
 
-
-
 // MARK: - Marketplace
 struct Marketplace: Codable {
     let swagger: String

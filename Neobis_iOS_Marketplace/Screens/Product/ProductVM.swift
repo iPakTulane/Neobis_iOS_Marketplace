@@ -27,8 +27,9 @@ class ProductViewModel: ProductProtocol {
     init() {
         self.apiService = APIService()
     }
+    
     func fetchProductData(completion: @escaping (Result<[[String: Any]], Error>) -> Void) {
-        guard let accessToken = AuthManager.shared.accessToken else {
+        guard let accessToken = TokenManager.shared.accessToken else {
             let error = NSError(domain: "AuthorizationError", code: 0, userInfo: [NSLocalizedDescriptionKey: "Access token is missing"])
             completion(.failure(error))
             return
@@ -38,7 +39,7 @@ class ProductViewModel: ProductProtocol {
             "Authorization": "Bearer \(accessToken)"
         ]
         
-        apiService.fetchProductData(headers: headers) { result in
+        apiService.getProductData(headers: headers) { result in
             switch result {
             case .success(let dataArray):
                 do {
@@ -56,8 +57,7 @@ class ProductViewModel: ProductProtocol {
     }
     
     func deleteProduct(withID id: Int) {
-        
-        apiService.deleteData(id: id, bearerToken: AuthManager.shared.accessToken ?? "") { [weak self] result in
+        apiService.deleteData(id: id, bearerToken: TokenManager.shared.accessToken ?? "") { [weak self] result in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let data):

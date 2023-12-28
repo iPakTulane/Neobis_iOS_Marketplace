@@ -106,21 +106,23 @@ class ProductViewController: UIViewController {
     func parseProductData(productData: [[String: Any]]) {
         for data in productData {
             if data["user"] as? String == user {
+                
                 if let id = data["id"] as? Int,
-                   let user = data["user"] as? String,
-                   let images = data["images"] as? [String],
-                   let title = data["title"] as? String,
-                   let price = data["price"] as? String,
-                   let likes = data["likes"] as? Int,
-                   let isFan = data["is_fan"] as? Bool {
+                   let name = data["name"] as? String,
+                   let description = data["description"] as? String,
+                   let available = data["available"] as? Bool,
+                   let photo = data["photo"] as? String,
+                   let shortDescription = data["short_description"] as? String,
+                   let price = data["price"] as? String {
+                    
                     let product: [String: Any] = [
                         "id": id,
-                        "user": user,
-                        "images": images,
-                        "title": title,
-                        "price": price,
-                        "likes": likes,
-                        "isFan": isFan
+                        "name": name,
+                        "description": description,
+                        "available": available,
+                        "photo": photo,
+                        "short_description": shortDescription,
+                        "price": price
                     ]
                     products.append(product)
                 }
@@ -128,6 +130,7 @@ class ProductViewController: UIViewController {
         }
         mainView.updateView(with: self.products)
     }
+    
     
     func setupPopUpView() {
         view.addSubview(popUp)

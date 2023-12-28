@@ -42,14 +42,17 @@ class AddProductViewModel: AddProductViewModelProtocol {
             "full_description": fullDescription ?? ""
         ]
         
-        apiService.postImagesWithBearerToken(endpoint: endpoint, parameters: parameters, imageDatas: imageDatas, bearerToken: AuthManager.shared.accessToken ?? "") { [weak self] result in
+        apiService.postImagesWithBearerToken(endpoint: endpoint, parameters: parameters, imageDatas: imageDatas, bearerToken: TokenManager.shared.accessToken ?? "") { [weak self] result in
+            
             DispatchQueue.main.async {
                 switch result {
+                    
                 case .success(let data):
                     let dataString = String(data: data, encoding: .utf8)
                     print("Data received: \(dataString ?? "nil")")
                     self?.isAdded = true
                     self?.addResult?(.success(data))
+                    
                 case .failure(let error):
                     let errorMessage = "Failed to add product: \(error.localizedDescription)"
                     print(errorMessage)
@@ -57,6 +60,7 @@ class AddProductViewModel: AddProductViewModelProtocol {
                     self?.addResult?(.failure(error))
                 }
             }
+            
         }
     }
 

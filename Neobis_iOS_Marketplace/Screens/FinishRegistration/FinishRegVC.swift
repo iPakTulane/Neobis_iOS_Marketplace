@@ -1,8 +1,8 @@
 //
-//  PersonalDataVC.swift
+//  FinishRegVC.swift
 //  Neobis_iOS_Marketplace
 //
-//  Created by iPak Tulane on 24/12/23.
+//  Created by iPak Tulane on 28/12/23.
 //
 
 import Foundation
@@ -10,9 +10,9 @@ import UIKit
 import SnapKit
 import Alamofire
 
-class PersonalDataViewController: UIViewController {
-        
-    let mainView = PersonalDataView()
+class FinishRegViewController: UIViewController {
+    
+    let mainView = FinishRegView()
     var firstName: String = ""
     var nickName: String = ""
     var email: String = ""
@@ -37,18 +37,25 @@ class PersonalDataViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        setupNavigationView()
+        addTargets()
+        getUserData()
+    }
+
+    
+    func setupNavigationView() {
         let cancelButton = UIBarButtonItem(image: UIImage(named: "cancel")?.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(cancelPressed))
         self.navigationItem.leftBarButtonItem = cancelButton
         
         let finishButton = UIBarButtonItem(image: UIImage(named: "finish")?.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(finishPressed))
         self.navigationItem.rightBarButtonItem = finishButton
-        
+    }
+    
+    func addTargets() {
         mainView.setPicButton.addTarget(self, action: #selector(setPic), for: .touchUpInside)
         mainView.numberButton.addTarget(self, action: #selector(numberPressed), for: .touchUpInside)
-        
-        getUserData()
     }
+    
     
     func getUserData() {
         getUserProtocol.fetchUserData() { [weak self] result in
@@ -118,13 +125,11 @@ class PersonalDataViewController: UIViewController {
             DispatchQueue.main.async {
                 self.mainView.numberLabel.text = phoneNumber
                 self.mainView.numberLabel.textColor = .black
-                self.mainView.numberButton.setTitle("Change number", for: .normal)
+                self.mainView.numberButton.setTitle("Update number", for: .normal)
             }
         }
     }
     
-    
-    // MARK: - ACTION BUTTONS
     @objc func numberPressed() {
         guard let first_name = mainView.nameField.text else { return }
         guard let last_name = mainView.lastNameField.text else { return }
@@ -139,13 +144,14 @@ class PersonalDataViewController: UIViewController {
             birthday: birthday,
             photo: imageData
         ))
+        
         navigationController?.pushViewController(vc, animated: true)
     }
 
     
     @objc func setPic() {
         let vc = UIImagePickerController()
-        vc.sourceType = .photoLibrary // .camera to capture a new photo
+        vc.sourceType = .photoLibrary
         vc.delegate = self
         vc.allowsEditing = true
         present(vc, animated: true)
@@ -162,7 +168,7 @@ class PersonalDataViewController: UIViewController {
 }
 
 // MARK: - EXTENSION
-extension PersonalDataViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+extension FinishRegViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         

@@ -49,7 +49,7 @@ class ProfileViewController: UIViewController {
     
     func addTargets() {
         mainView.finishRegButton.addTarget(self, action: #selector(finishRegButtonPressed), for: .touchUpInside)
-        mainView.exitButton.addTarget(self, action: #selector(exitButtonPressed), for: .touchUpInside)
+        mainView.logoutButton.addTarget(self, action: #selector(logoutButtonPressed), for: .touchUpInside)
         mainView.productButton.addTarget(self, action: #selector(productButtonPressed), for: .touchUpInside)
     }
     
@@ -73,7 +73,7 @@ class ProfileViewController: UIViewController {
         }
         
         if let photoURLString = userData["photo"] as? String,
-           let photoURL = URL(string: "http://16.16.200.195/" + photoURLString) {
+           let photoURL = URL(string: "https://aibek-backender.org.kg/" + photoURLString) {
             DispatchQueue.global().async {
                 if let imageData = try? Data(contentsOf: photoURL),
                    let image = UIImage(data: imageData) {
@@ -93,7 +93,7 @@ class ProfileViewController: UIViewController {
     }
     
     func checkFullRegister() {
-        guard let accessToken = AuthManager.shared.accessToken else {
+        guard let accessToken = TokenManager.shared.accessToken else {
             return
         }
         
@@ -103,9 +103,10 @@ class ProfileViewController: UIViewController {
             switch result {
                 
             case .success(let userData):
-                // TODO: -
+                
                 if let phoneNumber = userData["phone_number"] as? String {
 //                    print("Phone number:", phoneNumber)
+                    
                     DispatchQueue.main.async {
                         self?.mainView.finishRegButton.isHidden = true
                     }
@@ -119,9 +120,11 @@ class ProfileViewController: UIViewController {
     
     // MARK: - ACTION BUTTONS
     @objc func productButtonPressed() {
+        
         let vc = ProductViewController(Product: ProductViewModel(), productProtocol: GetUserViewModel())
         
 //        navigationController?.pushViewController(vc, animated: true)
+        
         let navigationController = UINavigationController(rootViewController: vc)
         navigationController.modalPresentationStyle = .fullScreen
         present(navigationController, animated: true)
@@ -139,8 +142,15 @@ class ProfileViewController: UIViewController {
         navigationController?.pushViewController(vc, animated: true)
     }
     
-    @objc func exitButtonPressed() {
+    @objc func logoutButtonPressed() {
 //        let vc = CustomTabBarController()
+        
+        // Clear the refresh token upon user's logout
+        TokenManager.shared.refreshToken = nil
+        
+        // Clear the access token upon user's logout
+        TokenManager.shared.accessToken = nil
+        
         dismiss(animated: true, completion: nil)
     }
     

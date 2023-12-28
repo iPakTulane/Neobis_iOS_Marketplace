@@ -201,13 +201,12 @@ class APIService {
         }
     }
 
-    
-    // MARK: - GET product
-    func fetchProductData(
+    // MARK: - GET product (Product VM)
+    func getProductData(
         headers: HTTPHeaders,
         completion: @escaping (Result<[[String: Any]], Error>) -> Void) {
         
-        AF.request("http://16.16.200.195/api/v1/product/", headers: headers).responseJSON { response in
+        AF.request("https://aibek-backender.org.kg/products/create-update-list/", headers: headers).responseJSON { response in
             switch response.result {
             case .success(let value):
                 if let dataArray = value as? [[String: Any]] {
@@ -221,29 +220,8 @@ class APIService {
             }
         }
     }
-
-    // MARK: - GET with token
-    func getWithBearerToken(
-        endpoint: String,
-        bearerToken: String,
-        completion: @escaping (Result<Data, Error>) -> Void) {
-        
-        let url = URL(string: "http://16.16.200.195/api/v1/" + endpoint)!
-        var request = URLRequest(url: url)
-        request.httpMethod = "GET"
-        request.setValue("Bearer \(bearerToken)", forHTTPHeaderField: "Authorization")
-        
-        AF.request(request).responseData { response in
-            switch response.result {
-            case .success(let data):
-                completion(.success(data))
-            case .failure(let error):
-                completion(.failure(error))
-            }
-        }
-    }
     
-    // MARK: - DELETE
+    // MARK: - DELETE (ProductVM)
     func deleteData(
         id: Int,
         bearerToken: String,

@@ -35,7 +35,7 @@ class OTPView: UIView {
     
     let mainLabel: UILabel = {
         let label = UILabel()
-        label.text = "Введите код из СМС"
+        label.text = "Enter the SMS code"
         label.font = UIFont(name: "GothamPro-Medium", size: 20)
         label.textColor = .black
         label.textAlignment = .center
@@ -45,7 +45,7 @@ class OTPView: UIView {
     
     let descriptionLabel: UILabel = {
         let label = UILabel()
-        label.text = "Мы отправим вам СМС с кодом подтверждения"
+        label.text = "We'll be throwing \na confirmation code via SMS"
         label.font = UIFont(name: "GothamPro", size: 16)
         label.textColor = UIColor(red: 0.754, green: 0.754, blue: 0.754, alpha: 1)
         label.textAlignment = .center
@@ -66,7 +66,7 @@ class OTPView: UIView {
     
     let errorLabel: UILabel = {
         let label = UILabel()
-        label.text = "Данный номер уже зарегистрирован"
+        label.text = "This number was already registered"
         label.textColor = UIColor(red: 0.954, green: 0.27, blue: 0.27, alpha: 1)
         label.font = UIFont(name: "SFProText-Medium", size: 17)
         label.isHidden = true
@@ -81,7 +81,7 @@ class OTPView: UIView {
         //        button.backgroundColor = UIColor(red: 0.329, green: 0.345, blue: 0.918, alpha: 1)
         button.backgroundColor = UIColor(red: 0.754, green: 0.754, blue: 0.754, alpha: 1)
         button.layer.cornerRadius = 23 * UIScreen.main.bounds.height / 812
-        button.setTitle("Далее", for: .normal)
+        button.setTitle("Next", for: .normal)
         button.titleLabel?.font = UIFont(name: "GothamPro-Bold", size: 16)
         
         return button

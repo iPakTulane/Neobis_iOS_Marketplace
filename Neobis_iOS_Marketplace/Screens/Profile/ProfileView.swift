@@ -40,20 +40,27 @@ class ProfileView: UIView {
         view.layer.cornerRadius = 30
         return view
     }()
-
+    
     let likeButton: UIButton = {
         let button = UIButton()
+        
         let containerView = UIView()
+        
         let image = UIImage(named: "like")
         let imageView = UIImageView(image: image)
+        
         containerView.addSubview(imageView)
+        
         let label = UILabel()
         label.text = "Favorites"
         label.textColor = .black
         label.font = UIFont(name: "GothamPro-Medium", size: 16)
+        
         containerView.addSubview(label)
+        
         let arrowImage = UIImage(named: "arrowRight")
         let arrowImageView = UIImageView(image: arrowImage)
+        
         button.addSubview(containerView)
         button.addSubview(arrowImageView)
         
@@ -80,8 +87,10 @@ class ProfileView: UIView {
             make.width.equalTo(24)
             make.height.equalTo(24)
         }
+        
         return button
     }()
+    
     
     let productButton: UIButton = {
         let button = UIButton()
@@ -129,7 +138,7 @@ class ProfileView: UIView {
         return button
     }()
     
-    let exitButton: UIButton = {
+    let logoutButton: UIButton = {
         let button = UIButton()
         
         let containerView = UIView()
@@ -224,7 +233,7 @@ class ProfileView: UIView {
         addSubview(secondSectionView)
         addSubview(likeButton)
         addSubview(productButton)
-        addSubview(exitButton)
+        addSubview(logoutButton)
         addSubview(finishRegButton)
     }
     
@@ -272,7 +281,7 @@ class ProfileView: UIView {
             make.bottom.equalTo(firstSectionView).inset(16 * UIScreen.main.bounds.height / 812)
         }
         
-        exitButton.snp.makeConstraints{ make in
+        logoutButton.snp.makeConstraints{ make in
             make.top.equalTo(secondSectionView).inset(16 * UIScreen.main.bounds.height / 812)
             make.leading.equalTo(secondSectionView).inset(16 * UIScreen.main.bounds.width / 375)
             make.trailing.equalTo(secondSectionView).inset(16 * UIScreen.main.bounds.width / 375)

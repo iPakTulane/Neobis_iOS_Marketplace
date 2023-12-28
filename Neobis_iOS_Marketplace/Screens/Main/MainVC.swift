@@ -1,5 +1,5 @@
 //
-//  MainVC.swift
+//  HomeVC.swift
 //  Neobis_iOS_Marketplace
 //
 //  Created by iPak Tulane on 24/12/23.
@@ -9,10 +9,15 @@ import Foundation
 import UIKit
 import SnapKit
 
-class MainViewController: UIViewController {
+class HomeViewController: UIViewController {
     
-    let contentView = MainView()
+    let mainView = HomeView()
     var getProduct: ProductProtocol!
+    
+    // MARK: - INIT
+    override func loadView() {
+        view = mainView
+    }
     
     init(getProduct: ProductProtocol!) {
         self.getProduct = getProduct
@@ -25,8 +30,6 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        setupView()
         getProductData()
     }
     
@@ -46,33 +49,26 @@ class MainViewController: UIViewController {
         var products: [[String: Any]] = []
         for data in productData {
             if let id = data["id"] as? Int,
-               let user = data["user"] as? String,
-               let images = data["images"] as? [String],
-               let title = data["title"] as? String,
-               let price = data["price"] as? String,
-               let likes = data["likes"] as? Int,
-               let isFan = data["is_fan"] as? Bool {
+               let name = data["name"] as? String,
+               let description = data["description"] as? String,
+               let available = data["available"] as? Bool,
+               let photo = data["photo"] as? String,
+               let shortDescription = data["short_description"] as? String,
+               let price = data["price"] as? String {
+                
                 let product: [String: Any] = [
                     "id": id,
-                    "user": user,
-                    "images": images,
-                    "title": title,
-                    "price": price,
-                    "likes": likes,
-                    "isFan": isFan
+                    "name": name,
+                    "description": description,
+                    "available": available,
+                    "photo": photo,
+                    "short_description": shortDescription,
+                    "price": price
                 ]
                 products.append(product)
             }
         }
-        
-        contentView.updateView(with: products)
+        mainView.updateView(with: products)
     }
     
-    func setupView() {
-        view.addSubview(contentView)
-        
-        contentView.snp.makeConstraints{ make in
-            make.edges.equalToSuperview()
-        }
-    }
 }

@@ -1,5 +1,5 @@
 //
-//  MainView.swift
+//  HomeView.swift
 //  Neobis_iOS_Marketplace
 //
 //  Created by iPak Tulane on 24/12/23.
@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import SnapKit
 
-class MainView: UIView {
+class HomeView: UIView {
     
     var products: [[String: Any]] = []
     
@@ -138,7 +138,7 @@ class MainView: UIView {
     }
 }
 
-extension MainView: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension HomeView: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return products.count
     }

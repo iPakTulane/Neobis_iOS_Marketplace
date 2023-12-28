@@ -46,7 +46,7 @@ class LoginViewModel: LoginProtocol {
                     let decoder = JSONDecoder()
                     
                     if let tokenResponse = try? decoder.decode(LoginResponse.self, from: data) {
-                        AuthManager.shared.accessToken = tokenResponse.tokens.access
+                        TokenManager.shared.accessToken = tokenResponse.tokens.access
                         self?.isLoggedIn = true
                         self?.loginResult?(.success(data))
                     }

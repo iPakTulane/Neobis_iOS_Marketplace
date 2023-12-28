@@ -52,7 +52,7 @@ class NumberViewModel: NumberProtocol {
         apiService.postWithBearerToken(
             endpoint: endpoint,
             parameters: parameters,
-            bearerToken: AuthManager.shared.accessToken ?? "") { [weak self] result in
+            bearerToken: TokenManager.shared.accessToken ?? "") { [weak self] result in
                 
             DispatchQueue.main.async {
                 switch result {

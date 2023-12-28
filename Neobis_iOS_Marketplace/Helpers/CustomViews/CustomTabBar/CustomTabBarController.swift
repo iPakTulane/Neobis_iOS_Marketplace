@@ -26,20 +26,20 @@ class CustomTabBarController: UITabBarController {
         customTabBar.backgroundColor = .white
         self.setValue(customTabBar, forKey: "tabBar")
 
-        let homeVC = UINavigationController(rootViewController: MainViewController(getProduct: ProductViewModel()))
-        homeVC.tabBarItem = UITabBarItem(title: "Главная", image: UIImage(named: "home"), selectedImage: nil)
+        let homeVC = UINavigationController(rootViewController: HomeViewController(getProduct: ProductViewModel()))
+        homeVC.tabBarItem = UITabBarItem(title: "Home", image: UIImage(named: "home"), selectedImage: nil)
 
         let categoriesVC = UIViewController()
         categoriesVC.view.backgroundColor = .white
-        categoriesVC.tabBarItem = UITabBarItem(title: "Кошелек", image: UIImage(named: "wallet"), selectedImage: nil)
+        categoriesVC.tabBarItem = UITabBarItem(title: "Wallet", image: UIImage(named: "wallet"), selectedImage: nil)
 
         let cartVC = UIViewController()
         cartVC.view.backgroundColor = .white
-        cartVC.tabBarItem = UITabBarItem(title: "Чаты", image: UIImage(named: "chat"), selectedImage: nil)
+        cartVC.tabBarItem = UITabBarItem(title: "Chat", image: UIImage(named: "chat"), selectedImage: nil)
 
         let profileVC = UINavigationController(rootViewController: ProfileViewController(getUserProtocol: GetUserViewModel()))
         profileVC.view.backgroundColor = .white
-        profileVC.tabBarItem = UITabBarItem(title: "Профиль", image: UIImage(named: "user"), selectedImage: nil)
+        profileVC.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(named: "user"), selectedImage: nil)
 
         customTabBar.bigButton.addTarget(self, action: #selector(bigButtonPressed), for: .touchUpInside)
 

@@ -42,7 +42,7 @@ class ChangeProductViewModel: ChangeProductViewModelProtocol {
             "full_description": fullDescription ?? ""
         ]
         
-        apiService.putImagesWithBearerToken(endpoint: endpoint, parameters: parameters, imageDatas: imageDatas, bearerToken: AuthManager.shared.accessToken ?? "") { [weak self] result in
+        apiService.putImagesWithBearerToken(endpoint: endpoint, parameters: parameters, imageDatas: imageDatas, bearerToken: TokenManager.shared.accessToken ?? "") { [weak self] result in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let data):

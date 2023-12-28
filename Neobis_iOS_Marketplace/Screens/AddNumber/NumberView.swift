@@ -34,7 +34,7 @@ class NumberView: UIView {
     
     let mainLabel: UILabel = {
         let label = UILabel()
-        label.text = "Введите номер телефона"
+        label.text = "Enter your phone number"
         label.font = UIFont(name: "GothamPro-Medium", size: 20)
         label.textColor = .black
         label.textAlignment = .center
@@ -44,7 +44,7 @@ class NumberView: UIView {
     
     let descriptionLabel: UILabel = {
         let label = UILabel()
-        label.text = "Мы отправим вам СМС с кодом подтверждения"
+        label.text = "We'll be throwing \na confirmation code via SMS"
         label.font = UIFont(name: "GothamPro", size: 16)
         label.textColor = UIColor(red: 0.754, green: 0.754, blue: 0.754, alpha: 1)
         label.textAlignment = .center
@@ -64,7 +64,7 @@ class NumberView: UIView {
     
     let errorLabel: UILabel = {
         let label = UILabel()
-        label.text = "Данный номер уже зарегистрирован"
+        label.text = "This number was already registered"
         label.textColor = UIColor(red: 0.954, green: 0.27, blue: 0.27, alpha: 1)
         label.font = UIFont(name: "SFProText-Medium", size: 17)
         label.isHidden = true

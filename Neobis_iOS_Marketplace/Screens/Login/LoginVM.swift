@@ -7,6 +7,7 @@
 
 import Foundation
 
+// MARK: - PROTOCOL
 protocol LoginProtocol {
     var isLoggedIn: Bool { get }
     var loginResult: ((Result<Data, Error>) -> Void)? { get set }
@@ -14,6 +15,7 @@ protocol LoginProtocol {
     func login(username: String, password: String)
 }
 
+// MARK: - VIEW MODEL
 class LoginViewModel: LoginProtocol {
     
     var isLoggedIn: Bool = false
@@ -26,18 +28,25 @@ class LoginViewModel: LoginProtocol {
     }
     
     func login(username: String, password: String) {
-        let parameters: [String: Any] = ["username": username, "password": password]
         
-        apiService.post(endpoint: "account/login/", parameters: parameters) { [weak self] (result) in
+        let parameters: [String: Any] = [
+            "username": username,
+            "password": password
+        ]
+        
+        apiService.post(
+            endpoint: "auth/login/",
+            parameters: parameters) { [weak self] (result) in
+            
             DispatchQueue.main.async {
                 switch result {
                 case .success(let data):
-//                    let dataString = String(data: data, encoding: .utf8)
-//                    print("Data received: \(dataString ?? "nil")")
+                    //let dataString = String(data: data, encoding: .utf8)
+                    //print("Data received: \(dataString ?? "nil")")
                     let decoder = JSONDecoder()
-                    if let tokenResponse = try? decoder.decode(TokenResponse.self, from: data) {
-                        AuthManager.shared.accessToken = tokenResponse.access
-                        
+                    
+                    if let tokenResponse = try? decoder.decode(LoginResponse.self, from: data) {
+                        AuthManager.shared.accessToken = tokenResponse.tokens.access
                         self?.isLoggedIn = true
                         self?.loginResult?(.success(data))
                     }
@@ -49,4 +58,5 @@ class LoginViewModel: LoginProtocol {
             }
         }
     }
+    
 }

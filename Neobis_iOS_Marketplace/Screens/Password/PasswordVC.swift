@@ -10,34 +10,50 @@ import UIKit
 import SnapKit
 
 class PasswordViewController: UIViewController {
+        
     let mainView = PasswordView()
-    
     var passwordProtocol: PasswordProtocol!
+
     var username: String = ""
     var email: String = ""
+    
+    override func loadView() {
+        view = mainView
+    }
     
     init(registerProtocol: PasswordProtocol) {
         self.passwordProtocol = registerProtocol
         super.init(nibName: nil, bundle: nil)
     }
     
+    // MARK: - INIT
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        setupNavigationView()
+        addTargets()
+        handleResult()
+    }
+    
+    func addTargets() {
+        mainView.finishButton.addTarget(self, action: #selector(finishButtonPressed), for: .touchUpInside)
+    }
+    
+    func setupNavigationView() {
         let backButton = UIBarButtonItem(image: UIImage(named: "backButton")?.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(backPressed))
         self.navigationItem.leftBarButtonItem = backButton
         
         let eyeButton = UIBarButtonItem(image: UIImage(named: "eye-switch")?.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(eyeButtonPressed))
         self.navigationItem.rightBarButtonItem = eyeButton
         
-        title = "Регистрация"
-        
-        mainView.finishButton.addTarget(self, action: #selector(finishButtonPressed), for: .touchUpInside)
-        
+        title = "Registration"
+    }
+    
+    // MARK: - NAVIGATION
+    func handleResult() {
         passwordProtocol.registerResult = { [weak self] result in
             DispatchQueue.main.async {
                 switch result {
@@ -48,8 +64,6 @@ class PasswordViewController: UIViewController {
                 }
             }
         }
-        
-        setupView()
     }
     
     func handleSuccessfulLogin(_ data: Data) {
@@ -68,6 +82,7 @@ class PasswordViewController: UIViewController {
         print("Login failed with error: \(error)")
     }
     
+    // MARK: - ACTION BUTTONS
     @objc func finishButtonPressed() {
         if mainView.passwordField.text == mainView.passwordConfirmField.text{
             passwordProtocol.register( password: mainView.passwordField.text!, password_repeat: mainView.passwordConfirmField.text!)
@@ -83,11 +98,5 @@ class PasswordViewController: UIViewController {
         mainView.passwordConfirmField.isSecureTextEntry = !mainView.passwordConfirmField.isSecureTextEntry
     }
 
-    func setupView() {
-        view.addSubview(mainView)
-        mainView.snp.makeConstraints{ make in
-            make.edges.equalToSuperview()
-        }
-    }
 }
 

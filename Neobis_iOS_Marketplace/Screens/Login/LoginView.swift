@@ -9,12 +9,13 @@ import Foundation
 import UIKit
 import SnapKit
 
-class LoginView: UIView, UITextFieldDelegate{
+class LoginView: UIView, UITextFieldDelegate {
+    
+    // MARK: - UI COMPONENTS
     
     let cartImage: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(named: "shopping-cart 1")
-        
         return image
     }()
     
@@ -23,49 +24,45 @@ class LoginView: UIView, UITextFieldDelegate{
         label.text = "MOBI MARKET"
         label.font = UIFont(name: "Nunito-ExtraBold", size: 18)
         label.textColor = .black
-        
         return label
     }()
     
     let nameField: AnimatedTextField = {
         let field = AnimatedTextField()
-        field.placeholder = "Имя пользователя"
+        field.placeholder = "Username"
 
         let lineView = UIView()
         lineView.backgroundColor = UIColor(red: 0.754, green: 0.754, blue: 0.754, alpha: 1)
-
         return field
     }()
     
     let nameLine: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor(red: 0.754, green: 0.754, blue: 0.754, alpha: 1)
-
         return view
     }()
     
+    
     let passwordField: AnimatedTextField = {
         let field = AnimatedTextField()
-        field.placeholder = "Пароль"
-        
+        field.placeholder = "Password"
         field.isSecureTextEntry = true
-        
+
         let button = UIButton(type: .custom)
-        button.imageEdgeInsets = UIEdgeInsets(top: 0, left: -16, bottom: 0, right: 0)
+        button.configuration = .plain() // Use UIButtonConfiguration
+        button.configuration?.imagePadding = 16 // Adjust image padding
         button.setImage(UIImage(named: "eye-disabled"), for: .normal)
         button.setImage(UIImage(named: "eye"), for: .selected)
-        button.frame = CGRect(x: CGFloat(field.frame.size.width - 25), y: CGFloat(5), width: CGFloat(25), height: CGFloat(25))
-        button.addTarget(self, action: #selector(togglePasswordVisibility), for: .touchUpInside)
+        button.frame = CGRect(x: field.frame.size.width - 25, y: 5, width: 25, height: 25)
+        button.addTarget(LoginView.self, action: #selector(togglePasswordVisibility), for: .touchUpInside)
         field.rightView = button
         field.rightViewMode = .always
-
         return field
     }()
     
     let passwordLine: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor(red: 0.754, green: 0.754, blue: 0.754, alpha: 1)
-        
         return view
     }()
     
@@ -74,18 +71,16 @@ class LoginView: UIView, UITextFieldDelegate{
 //        button.backgroundColor = UIColor(red: 0.329, green: 0.345, blue: 0.918, alpha: 1)
         button.backgroundColor = UIColor(red: 0.754, green: 0.754, blue: 0.754, alpha: 1)
         button.layer.cornerRadius = 23 * UIScreen.main.bounds.height / 812
-        button.setTitle("Войти", for: .normal)
+        button.setTitle("Log in", for: .normal)
         button.titleLabel?.font = UIFont(name: "GothamPro-Bold", size: 16)
-        
         return button
     }()
     
     let registerButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Зарегистрироваться", for: .normal)
+        button.setTitle("Register", for: .normal)
         button.setTitleColor(UIColor(red: 0.329, green: 0.345, blue: 0.918, alpha: 1), for: .normal)
         button.titleLabel?.font = UIFont(name: "GothamPro-Medium", size: 14)
-        
         return button
     }()
     
@@ -93,10 +88,9 @@ class LoginView: UIView, UITextFieldDelegate{
         let view = UIView()
         let label = UILabel()
         let imageView = UIImageView()
-        label.text = "Неверный логин или пароль"
+        label.text = "Wrong username or password!"
         label.font = UIFont(name: "GothamPro-Medium", size: 16)
         label.textColor = .white
-        
         imageView.image = UIImage(named: "warning")
         
         view.addSubview(label)
@@ -105,7 +99,7 @@ class LoginView: UIView, UITextFieldDelegate{
         view.isHidden = true
         view.layer.cornerRadius = 16 * UIScreen.main.bounds.height / 812
         
-        label.snp.makeConstraints{ make in
+        label.snp.makeConstraints { make in
             make.center.equalToSuperview()
         }
         
@@ -115,10 +109,10 @@ class LoginView: UIView, UITextFieldDelegate{
             make.height.equalTo(24 * UIScreen.main.bounds.height / 812)
             make.width.equalTo(24 * UIScreen.main.bounds.width / 375)
         }
-        
         return view
     }()
     
+    // MARK: - INIT
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
@@ -128,18 +122,19 @@ class LoginView: UIView, UITextFieldDelegate{
     }
     
     override func layoutSubviews() {
-        backgroundColor = .white
-        
         setupViews()
         setupConstraints()
-        
+        addDelegates()
+    }
+    
+    // MARK: - UI SETUP
+    func addDelegates() {
         nameField.delegate = self
         passwordField.delegate = self
-        
-        enterButton.addTarget(self, action: #selector(enterButtonPressed), for: .touchUpInside)
     }
     
     func setupViews() {
+        backgroundColor = .white
         addSubview(cartImage)
         addSubview(marketLabel)
         addSubview(nameField)
@@ -215,12 +210,7 @@ class LoginView: UIView, UITextFieldDelegate{
         }
     }
     
-    @objc func enterButtonPressed() {
-        
-        
-        
-    }
-    
+    // MARK: - PASSWORD VISIBILITY
     @objc func togglePasswordVisibility(_ sender: UIButton) {
         sender.isSelected = !sender.isSelected
         passwordField.isSecureTextEntry = !passwordField.isSecureTextEntry
@@ -240,6 +230,7 @@ class LoginView: UIView, UITextFieldDelegate{
         let updatedPassword = textField == passwordField ? (textField.text as NSString?)?.replacingCharacters(in: range, with: string) : passwordField.text
         
         if let name = updatedName, let password = updatedPassword {
+            
             enterButton.isEnabled = name.count >= 3 && password.count >= 8
             
             if enterButton.isEnabled {
@@ -248,8 +239,6 @@ class LoginView: UIView, UITextFieldDelegate{
                 enterButton.backgroundColor = UIColor(red: 0.754, green: 0.754, blue: 0.754, alpha: 1)
             }
         }
-        
-        
         return true
     }
 }

@@ -11,20 +11,19 @@ import SnapKit
 
 class ProfileView: UIView {
     
+    // MARK: - UI COMPONENTS
     let profilePic: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(named: "defaultPic")
         image.layer.cornerRadius = 40 * UIScreen.main.bounds.height / 812
         image.clipsToBounds = true
         image.contentMode = .scaleAspectFill
-        
         return image
     }()
     
     let nickLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont(name: "gothamPro-Medium", size: 18)
-        
         return label
     }()
     
@@ -32,7 +31,6 @@ class ProfileView: UIView {
         let view = UIView()
         view.backgroundColor = .white
         view.layer.cornerRadius = 30
-        
         return view
     }()
     
@@ -40,30 +38,22 @@ class ProfileView: UIView {
         let view = UIView()
         view.backgroundColor = .white
         view.layer.cornerRadius = 30
-        
         return view
     }()
 
     let likeButton: UIButton = {
         let button = UIButton()
-        
         let containerView = UIView()
-        
         let image = UIImage(named: "like")
         let imageView = UIImageView(image: image)
-        
         containerView.addSubview(imageView)
-        
         let label = UILabel()
-        label.text = "Понравившиеся"
+        label.text = "Favorites"
         label.textColor = .black
         label.font = UIFont(name: "GothamPro-Medium", size: 16)
-        
         containerView.addSubview(label)
-        
         let arrowImage = UIImage(named: "arrowRight")
         let arrowImageView = UIImageView(image: arrowImage)
-        
         button.addSubview(containerView)
         button.addSubview(arrowImageView)
         
@@ -90,22 +80,18 @@ class ProfileView: UIView {
             make.width.equalTo(24)
             make.height.equalTo(24)
         }
-        
         return button
     }()
     
     let productButton: UIButton = {
         let button = UIButton()
-        
         let containerView = UIView()
-        
         let image = UIImage(named: "product")
         let imageView = UIImageView(image: image)
-        
         containerView.addSubview(imageView)
         
         let label = UILabel()
-        label.text = "Мои товары"
+        label.text = "My products"
         label.textColor = .black
         label.font = UIFont(name: "GothamPro-Medium", size: 16)
         
@@ -140,7 +126,6 @@ class ProfileView: UIView {
             make.width.equalTo(24)
             make.height.equalTo(24)
         }
-        
         return button
     }()
     
@@ -155,7 +140,7 @@ class ProfileView: UIView {
         containerView.addSubview(imageView)
         
         let label = UILabel()
-        label.text = "Выйти"
+        label.text = "Log out"
         label.textColor = .black
         label.font = UIFont(name: "GothamPro-Medium", size: 16)
         
@@ -190,20 +175,19 @@ class ProfileView: UIView {
             make.width.equalTo(24)
             make.height.equalTo(24)
         }
-        
         return button
     }()
     
-    let finishbutton: UIButton = {
+    let finishRegButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = UIColor(red: 0.329, green: 0.345, blue: 0.918, alpha: 1)
-        button.setTitle("Закончить регистрацию", for: .normal)
+        button.setTitle("Finish registration", for: .normal)
         button.layer.cornerRadius = 23
         button.titleLabel?.font = UIFont(name: "GothamPro-Bold", size: 16)
-        
         return button
     }()
     
+    // MARK: - INIT
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
@@ -214,12 +198,12 @@ class ProfileView: UIView {
     
     override func layoutSubviews() {
         backgroundColor = UIColor(red: 0.969, green: 0.965, blue: 0.976, alpha: 1)
-        
         setupViews()
         setupConstraints()
         addMiddleLine()
     }
     
+    // MARK: - UI SETUP
     func addMiddleLine() {
         let lineView = UIView()
         lineView.backgroundColor = UIColor(red: 0.969, green: 0.965, blue: 0.976, alpha: 1)
@@ -241,7 +225,7 @@ class ProfileView: UIView {
         addSubview(likeButton)
         addSubview(productButton)
         addSubview(exitButton)
-        addSubview(finishbutton)
+        addSubview(finishRegButton)
     }
     
     func setupConstraints() {
@@ -295,7 +279,7 @@ class ProfileView: UIView {
             make.bottom.equalTo(secondSectionView).inset(16 * UIScreen.main.bounds.height / 812)
         }
         
-        finishbutton.snp.makeConstraints{ make in
+        finishRegButton.snp.makeConstraints{ make in
             make.top.equalToSuperview().inset(647 * UIScreen.main.bounds.height / 812)
             make.bottom.equalToSuperview().inset(121 * UIScreen.main.bounds.height / 812)
             make.leading.equalToSuperview().inset(20 * UIScreen.main.bounds.width / 375)

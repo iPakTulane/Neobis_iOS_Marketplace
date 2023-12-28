@@ -9,9 +9,9 @@ import Foundation
 import UIKit
 import SnapKit
 
-class ProductViewController: UIViewController{
+class ProductViewController: UIViewController {
     
-    let containView = ProductView()
+    let mainView = ProductView()
     let animationDuration = 0.3
     let popupAnimationDuration = 0.5
 
@@ -22,6 +22,10 @@ class ProductViewController: UIViewController{
     var blurEffectView: UIVisualEffectView?
     var sendId: Int = 0
 
+    // MARK: - INIT
+    override func loadView() {
+        view = mainView
+    }
     
     let popUp: PopUpView = {
         let view = PopUpView()
@@ -42,25 +46,38 @@ class ProductViewController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Мои товары"
+        setupNavigationView()
+        setUpCollectionView()
+        addTapGesture()
+        addTargets()
+        setupPopUpView()
+        getProductData()
+        getUserData()
+    }
+
+    func setupNavigationView() {
+        title = "My products"
         
         let backButton = UIBarButtonItem(image: UIImage(named: "backButton")?.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(backPressed))
         self.navigationItem.leftBarButtonItem = backButton
-        
-        containView.collectionView.dataSource = self
-        containView.collectionView.delegate = self
-        containView.collectionView.register(ProductCellView.self, forCellWithReuseIdentifier: "ProductCell")
-        
+
+    }
+    
+    func setUpCollectionView() {
+        mainView.collectionView.dataSource = self
+        mainView.collectionView.delegate = self
+        mainView.collectionView.register(ProductCellView.self, forCellWithReuseIdentifier: "ProductCell")
+    }
+    
+    func addTapGesture() {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
         tapGesture.cancelsTouchesInView = false
         view.addGestureRecognizer(tapGesture)
-        
+    }
+    
+    func addTargets() {
         popUp.changeButton.addTarget(self, action: #selector(changePressed), for: .touchUpInside)
         popUp.trashButton.addTarget(self, action: #selector(trashPressed), for: .touchUpInside)
-        
-        setupView()
-        getProductData()
-        getUserData()
     }
     
     func getUserData() {
@@ -109,17 +126,11 @@ class ProductViewController: UIViewController{
                 }
             }
         }
-        
-        containView.updateView(with: self.products)
+        mainView.updateView(with: self.products)
     }
     
-    func setupView() {
-        view.addSubview(containView)
+    func setupPopUpView() {
         view.addSubview(popUp)
-        
-        containView.snp.makeConstraints{ make in
-            make.edges.equalToSuperview()
-        }
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
         tapGesture.cancelsTouchesInView = false
@@ -131,6 +142,7 @@ class ProductViewController: UIViewController{
         }
     }
     
+    // MARK: - ACTION BUTTONS
     @objc func backPressed() {
         dismiss(animated: true)
     }
@@ -139,14 +151,14 @@ class ProductViewController: UIViewController{
         sendId = (products[sender.tag]["id"] as? Int)!
         print(sendId)
         popUp.isHidden = false
-        blurContainView()
+        blurMainView()
     }
     
     @objc func handleTap(_ gesture: UITapGestureRecognizer) {
         let touchPoint = gesture.location(in: view)
         if !popUp.frame.contains(touchPoint) {
             popUp.isHidden = true
-            unblurContainView()
+            unblurMainView()
         }
     }
     
@@ -160,12 +172,13 @@ class ProductViewController: UIViewController{
         ProductViewModelType.deleteProduct(withID: sendId)
     }
 
-    func unblurContainView() {
+    // MARK: - BLURING
+    func unblurMainView() {
         blurEffectView?.removeFromSuperview()
         blurEffectView = nil
     }
     
-    func blurContainView() {
+    func blurMainView() {
         let blurEffect = UIBlurEffect(style: .regular)
         blurEffectView = UIVisualEffectView(effect: blurEffect)
         blurEffectView?.frame = view.bounds
@@ -174,8 +187,9 @@ class ProductViewController: UIViewController{
     }
 }
 
-
+// MARK: - EXTENSION
 extension ProductViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout  {
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return products.count
     }

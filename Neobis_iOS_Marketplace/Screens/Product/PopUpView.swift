@@ -11,6 +11,7 @@ import SnapKit
 
 class PopUpView: UIView {
     
+    // MARK: - UI COMPONENTS
     let changeButton: UIButton = {
         let button = UIButton()
 //        button.backgroundColor = .black
@@ -19,7 +20,7 @@ class PopUpView: UIView {
     
     let changeLabel: UILabel = {
         let label = UILabel()
-        label.text = "Изменить"
+        label.text = "Edit"
         label.font = UIFont(name: "GothamPro-Medium", size: 16)
         label.textColor = .black
         
@@ -43,7 +44,7 @@ class PopUpView: UIView {
     
     let trashLabel: UILabel = {
         let label = UILabel()
-        label.text = "Удалить"
+        label.text = "Delete"
         label.font = UIFont(name: "GothamPro-Medium", size: 16)
         label.textColor = .black
         
@@ -59,6 +60,7 @@ class PopUpView: UIView {
         return image
     }()
     
+    // MARK: - INIT
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
@@ -70,7 +72,6 @@ class PopUpView: UIView {
     override func layoutSubviews() {
         backgroundColor = .white
         layer.cornerRadius = 30 * UIScreen.main.bounds.height / 812
-        
         setupViews()
         setupConstraints()
     }

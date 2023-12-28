@@ -10,6 +10,8 @@ import UIKit
 import SnapKit
 
 class CustomCell: UICollectionViewCell {
+    
+    // MARK: - UI COMPONENTS
     let imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
@@ -18,6 +20,7 @@ class CustomCell: UICollectionViewCell {
         return imageView
     }()
     
+    // MARK: - INIT
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupViews()

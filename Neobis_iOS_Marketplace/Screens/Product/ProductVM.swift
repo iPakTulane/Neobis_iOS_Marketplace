@@ -8,6 +8,7 @@
 import Foundation
 import Alamofire
 
+// MARK: - PROTOCOL
 protocol ProductProtocol {
     func fetchProductData(completion: @escaping (Result<[[String: Any]], Error>) -> Void)
     
@@ -16,6 +17,7 @@ protocol ProductProtocol {
     func deleteProduct(withID: Int)
 }
 
+// MARK: - VIEW MODEL
 class ProductViewModel: ProductProtocol {
     
     var isDeleted: Bool = false

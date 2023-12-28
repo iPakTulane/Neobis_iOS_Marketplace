@@ -9,12 +9,18 @@ import Foundation
 import UIKit
 import SnapKit
 
-class ChangeProductViewController: UIViewController{
-    
-    let containView = ChangeProductView()
+class ChangeProductViewController: UIViewController {
+        
+    let mainView = ChangeProductView()
     var changeProductProtocol: ChangeProductViewModelProtocol!
     var id: Int = 0
     
+    // MARK: - MAIN VIEW SETUP
+    override func loadView() {
+        view = mainView
+    }
+
+    // MARK: - INIT
     init(changeProductProtocol: ChangeProductViewModelProtocol!) {
         self.changeProductProtocol = changeProductProtocol
         super.init(nibName: nil, bundle: nil)
@@ -26,40 +32,33 @@ class ChangeProductViewController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        containView.addButton.addTarget(self, action: #selector(setPic), for: .touchUpInside)
+        addTargets()
+    }
+
+    func addTargets() {
+        mainView.addButton.addTarget(self, action: #selector(setPic), for: .touchUpInside)
+
         let cancelButton = UIBarButtonItem(image: UIImage(named: "cancel")?.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(cancelPressed))
         self.navigationItem.leftBarButtonItem = cancelButton
         
         let finishButton = UIBarButtonItem(image: UIImage(named: "finish")?.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(finishPressed))
         self.navigationItem.rightBarButtonItem = finishButton
-        
-        setupView()
     }
     
+    // MARK: - ACTION BUTTONS
     @objc func cancelPressed() {
-        
         navigationController?.popViewController(animated: true)
     }
     
     @objc func finishPressed() {
-        guard !containView.images.isEmpty else { return }
-        guard let title =  containView.nameField.text else { return }
-        guard let price = containView.priceField.text else { return }
-        guard let shortDescription = containView.descriptionOne.text else { return }
-        guard let longDescription = containView.descriptionTwo.text else { return }
+        guard !mainView.images.isEmpty else { return }
+        guard let title =  mainView.nameField.text else { return }
+        guard let price = mainView.priceField.text else { return }
+        guard let shortDescription = mainView.descriptionOne.text else { return }
+        guard let longDescription = mainView.descriptionTwo.text else { return }
         
-        changeProductProtocol.changeProduct(images: containView.images, title: title, price: price, shortDescription: shortDescription, fullDescription: longDescription)
+        changeProductProtocol.changeProduct(images: mainView.images, title: title, price: price, shortDescription: shortDescription, fullDescription: longDescription)
         navigationController?.popViewController(animated: true)
-    }
-    
-    func setupView() {
-        
-        view.addSubview(containView)
-        
-        containView.snp.makeConstraints{ make in
-            make.edges.equalToSuperview()
-        }
     }
     
     @objc func setPic() {
@@ -71,17 +70,19 @@ class ChangeProductViewController: UIViewController{
     }
 }
 
+// MARK: - EXTENSION
 extension ChangeProductViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let image = info[.editedImage] as? UIImage {
             
-            containView.addImage(image)
+            mainView.addImage(image)
         }
-        
         picker.dismiss(animated: true)
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true)
     }
+    
 }

@@ -13,12 +13,14 @@ class ChangeProductView: UIView {
     
     var textHeightOne: Int = 40
     var textHeightTwo: Int = 40
+    
     var images: [UIImage] = [] {
         didSet {
             collectionView.reloadData()
         }
     }
     
+    // MARK: - UI COMPONENTS
     let addButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = .white
@@ -116,6 +118,7 @@ class ChangeProductView: UIView {
         return textView
     }()
     
+    // MARK: - INIT
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
@@ -125,19 +128,96 @@ class ChangeProductView: UIView {
     }
     
     override func layoutSubviews() {
-        backgroundColor = UIColor(red: 247/255, green: 246/255, blue: 249/255, alpha: 1.0)
+        addDelegates()
+        setupViews()
+        setupConstraints()
+    }
+    
+    func addDelegates() {
         collectionView.delegate = self
         collectionView.dataSource = self
         descriptionOne.delegate = self
         descriptionTwo.delegate = self
-        
-        setupViews()
-        setupConstraints()
     }
     
     func addImage(_ image: UIImage) {
         images.append(image)
     }
+    
+
+    // MARK: - UI SETUP
+    func setupViews() {
+        backgroundColor = UIColor(red: 247/255, green: 246/255, blue: 249/255, alpha: 1.0)
+        addSubview(addButton)
+        addSubview(addImage)
+        addSubview(collectionView)
+        addSubview(addLabel)
+        addSubview(priceField)
+        addSubview(nameField)
+        addSubview(descriptionOne)
+        addSubview(descriptionTwo)
+    }
+    
+    func setupConstraints() {
+        
+        addButton.snp.makeConstraints{ make in
+            make.top.equalToSuperview().inset(112 * UIScreen.main.bounds.height / 812)
+            make.leading.equalToSuperview().inset(20 * UIScreen.main.bounds.width / 375)
+            make.trailing.equalToSuperview().inset(279 * UIScreen.main.bounds.width / 375)
+            make.bottom.equalToSuperview().inset(604 * UIScreen.main.bounds.height / 812)
+        }
+        
+        addImage.snp.makeConstraints{ make in
+            make.top.equalTo(addButton).inset(22 * UIScreen.main.bounds.height / 812)
+            make.leading.equalTo(addButton).inset(26 * UIScreen.main.bounds.width / 375)
+            make.trailing.equalTo(addButton).inset(26 * UIScreen.main.bounds.width / 375)
+            make.bottom.equalTo(addButton).inset(50 * UIScreen.main.bounds.height / 812)
+        }
+        
+        addLabel.snp.makeConstraints{ make in
+            make.top.equalTo(addButton).inset(52 * UIScreen.main.bounds.height / 812)
+            make.leading.equalTo(addButton).inset(4 * UIScreen.main.bounds.width / 375)
+            make.trailing.equalTo(addButton).inset(4 * UIScreen.main.bounds.width / 375)
+            make.bottom.equalTo(addButton).inset(22 * UIScreen.main.bounds.height / 812)
+        }
+        
+        collectionView.snp.makeConstraints { make in
+            make.top.equalToSuperview().inset(112 * UIScreen.main.bounds.height / 812)
+            make.trailing.equalToSuperview()
+            make.bottom.equalToSuperview().inset(604 * UIScreen.main.bounds.height / 812)
+            make.leading.equalTo(102 * UIScreen.main.bounds.width / 375)
+        }
+        
+        priceField.snp.makeConstraints{ make in
+            make.top.equalToSuperview().inset(234 * UIScreen.main.bounds.height / 812)
+            make.leading.equalToSuperview().inset(20 * UIScreen.main.bounds.width / 375)
+            make.trailing.equalToSuperview().inset(20 * UIScreen.main.bounds.width / 375)
+            make.bottom.equalToSuperview().inset(538 * UIScreen.main.bounds.height / 812)
+        }
+        
+        nameField.snp.makeConstraints{ make in
+            make.top.equalToSuperview().inset(282 * UIScreen.main.bounds.height / 812)
+            make.leading.equalToSuperview().inset(20 * UIScreen.main.bounds.width / 375)
+            make.trailing.equalToSuperview().inset(20 * UIScreen.main.bounds.width / 375)
+            make.bottom.equalToSuperview().inset(490 * UIScreen.main.bounds.height / 812)
+        }
+        
+        descriptionOne.snp.updateConstraints { make in
+            make.top.equalToSuperview().inset(330 * UIScreen.main.bounds.height / 812)
+            make.leading.equalToSuperview().inset(20 * UIScreen.main.bounds.width / 375)
+            make.trailing.equalToSuperview().inset(20 * UIScreen.main.bounds.width / 375)
+            make.height.equalTo(textHeightOne)
+        }
+        
+        descriptionTwo.snp.updateConstraints { make in
+            make.top.equalTo(descriptionOne.snp.bottom).offset(8 * UIScreen.main.bounds.height / 812)
+            make.leading.equalToSuperview().inset(20 * UIScreen.main.bounds.width / 375)
+            make.trailing.equalToSuperview().inset(20 * UIScreen.main.bounds.width / 375)
+            make.height.equalTo(textHeightTwo)
+        }    }
+}
+
+extension ChangeProductView: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UITextViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let cellWidth = 76 * UIScreen.main.bounds.width / 375
@@ -220,77 +300,7 @@ class ChangeProductView: UIView {
         return false
     }
 
-    func setupViews() {
-        addSubview(addButton)
-        addSubview(addImage)
-        addSubview(collectionView)
-        addSubview(addLabel)
-        addSubview(priceField)
-        addSubview(nameField)
-        addSubview(descriptionOne)
-        addSubview(descriptionTwo)
-    }
     
-    func setupConstraints() {
-        
-        addButton.snp.makeConstraints{ make in
-            make.top.equalToSuperview().inset(112 * UIScreen.main.bounds.height / 812)
-            make.leading.equalToSuperview().inset(20 * UIScreen.main.bounds.width / 375)
-            make.trailing.equalToSuperview().inset(279 * UIScreen.main.bounds.width / 375)
-            make.bottom.equalToSuperview().inset(604 * UIScreen.main.bounds.height / 812)
-        }
-        
-        addImage.snp.makeConstraints{ make in
-            make.top.equalTo(addButton).inset(22 * UIScreen.main.bounds.height / 812)
-            make.leading.equalTo(addButton).inset(26 * UIScreen.main.bounds.width / 375)
-            make.trailing.equalTo(addButton).inset(26 * UIScreen.main.bounds.width / 375)
-            make.bottom.equalTo(addButton).inset(50 * UIScreen.main.bounds.height / 812)
-        }
-        
-        addLabel.snp.makeConstraints{ make in
-            make.top.equalTo(addButton).inset(52 * UIScreen.main.bounds.height / 812)
-            make.leading.equalTo(addButton).inset(4 * UIScreen.main.bounds.width / 375)
-            make.trailing.equalTo(addButton).inset(4 * UIScreen.main.bounds.width / 375)
-            make.bottom.equalTo(addButton).inset(22 * UIScreen.main.bounds.height / 812)
-        }
-        
-        collectionView.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(112 * UIScreen.main.bounds.height / 812)
-            make.trailing.equalToSuperview()
-            make.bottom.equalToSuperview().inset(604 * UIScreen.main.bounds.height / 812)
-            make.leading.equalTo(102 * UIScreen.main.bounds.width / 375)
-        }
-        
-        priceField.snp.makeConstraints{ make in
-            make.top.equalToSuperview().inset(234 * UIScreen.main.bounds.height / 812)
-            make.leading.equalToSuperview().inset(20 * UIScreen.main.bounds.width / 375)
-            make.trailing.equalToSuperview().inset(20 * UIScreen.main.bounds.width / 375)
-            make.bottom.equalToSuperview().inset(538 * UIScreen.main.bounds.height / 812)
-        }
-        
-        nameField.snp.makeConstraints{ make in
-            make.top.equalToSuperview().inset(282 * UIScreen.main.bounds.height / 812)
-            make.leading.equalToSuperview().inset(20 * UIScreen.main.bounds.width / 375)
-            make.trailing.equalToSuperview().inset(20 * UIScreen.main.bounds.width / 375)
-            make.bottom.equalToSuperview().inset(490 * UIScreen.main.bounds.height / 812)
-        }
-        
-        descriptionOne.snp.updateConstraints { make in
-            make.top.equalToSuperview().inset(330 * UIScreen.main.bounds.height / 812)
-            make.leading.equalToSuperview().inset(20 * UIScreen.main.bounds.width / 375)
-            make.trailing.equalToSuperview().inset(20 * UIScreen.main.bounds.width / 375)
-            make.height.equalTo(textHeightOne)
-        }
-        
-        descriptionTwo.snp.updateConstraints { make in
-            make.top.equalTo(descriptionOne.snp.bottom).offset(8 * UIScreen.main.bounds.height / 812)
-            make.leading.equalToSuperview().inset(20 * UIScreen.main.bounds.width / 375)
-            make.trailing.equalToSuperview().inset(20 * UIScreen.main.bounds.width / 375)
-            make.height.equalTo(textHeightTwo)
-        }    }
-}
-
-extension ChangeProductView: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
         if textView == descriptionOne {
             let fixedWidth = textView.frame.size.width
@@ -306,4 +316,5 @@ extension ChangeProductView: UICollectionViewDelegate, UICollectionViewDataSourc
             updateConstraints()
         }
     }
+    
 }

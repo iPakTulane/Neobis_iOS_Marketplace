@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 
+// MARK: - PROTOCOL
 protocol PasswordProtocol {
     var isRegistered: Bool { get }
     var registerResult: ((Result<Data, Error>) -> Void)? { get set }
@@ -15,6 +16,7 @@ protocol PasswordProtocol {
     func register(password: String, password_repeat: String)
 }
 
+// MARK: - VIEW MODEL
 class PasswordViewModel: PasswordProtocol {
     
     var isRegistered: Bool = false
@@ -32,9 +34,14 @@ class PasswordViewModel: PasswordProtocol {
     }
     
     func register(password: String, password_repeat: String) {
-        let parameters: [String: Any] = ["username": userName, "email": email, "password": password, "password_repeat": password_repeat]
+        let parameters: [String: Any] = [
+            "username": userName,
+            "email": email,
+            "password": password,
+            "password_repeat": password_repeat
+        ]
         
-        apiService.post(endpoint: "account/register/", parameters: parameters) { [weak self] (result) in
+        apiService.post(endpoint: "auth/register/", parameters: parameters) { [weak self] (result) in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let data):

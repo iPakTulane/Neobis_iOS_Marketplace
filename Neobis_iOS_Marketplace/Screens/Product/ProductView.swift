@@ -13,6 +13,7 @@ class ProductView: UIView {
     
     var products: [[String: Any]] = []
     
+    // MARK: - UI COMPONENTS
     let boxImage: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(named: "Artwork")
@@ -22,7 +23,7 @@ class ProductView: UIView {
     
     let emptyLabel: UILabel = {
         let label = UILabel()
-        label.text = "Ой пусто!"
+        label.text = "Oops, it's empty!"
         label.font = UIFont(name: "GothamPro-Bold", size: 18)
         label.textAlignment = .center
         label.isHidden = true
@@ -39,6 +40,7 @@ class ProductView: UIView {
         return view
     }()
     
+    // MARK: - INIT
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
@@ -48,13 +50,12 @@ class ProductView: UIView {
     }
     
     override func layoutSubviews() {
-        
         backgroundColor = UIColor(red: 0.961, green: 0.961, blue: 0.961, alpha: 1)
-        
         setupViews()
         setupConstraints()
     }
     
+    // MARK: - UI SETUP
     func setupViews() {
         addSubview(boxImage)
         addSubview(emptyLabel)

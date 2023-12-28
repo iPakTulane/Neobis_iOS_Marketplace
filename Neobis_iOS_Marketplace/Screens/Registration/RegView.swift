@@ -11,10 +11,10 @@ import SnapKit
 
 class RegistrationView: UIView, UITextFieldDelegate{
     
+    // MARK: - UI COMPONENTS
     let cartImage: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(named: "shopping-cart 1")
-        
         return image
     }()
     
@@ -23,39 +23,32 @@ class RegistrationView: UIView, UITextFieldDelegate{
         label.text = "MOBI MARKET"
         label.font = UIFont(name: "Nunito-ExtraBold", size: 18)
         label.textColor = .black
-        
         return label
     }()
     
     let nameField: AnimatedTextField = {
         let field = AnimatedTextField()
-        field.placeholder = "Имя пользователя"
-
+        field.placeholder = "Username"
         let lineView = UIView()
         lineView.backgroundColor = UIColor(red: 0.754, green: 0.754, blue: 0.754, alpha: 1)
         field.addSubview(lineView)
-
         lineView.snp.makeConstraints { make in
             make.height.equalTo(1)
             make.leading.bottom.trailing.equalToSuperview()
         }
-
         return field
     }()
     
     let mailField: AnimatedTextField = {
         let field = AnimatedTextField()
-        field.placeholder = "Почта"
-
+        field.placeholder = "Email"
         let lineView = UIView()
         lineView.backgroundColor = UIColor(red: 0.754, green: 0.754, blue: 0.754, alpha: 1)
         field.addSubview(lineView)
-
         lineView.snp.makeConstraints { make in
             make.height.equalTo(1)
             make.leading.bottom.trailing.equalToSuperview()
         }
-
         return field
     }()
     
@@ -64,12 +57,12 @@ class RegistrationView: UIView, UITextFieldDelegate{
 //        button.backgroundColor = UIColor(red: 0.329, green: 0.345, blue: 0.918, alpha: 1)
         button.backgroundColor = UIColor(red: 0.754, green: 0.754, blue: 0.754, alpha: 1)
         button.layer.cornerRadius = 23 * UIScreen.main.bounds.height / 812
-        button.setTitle("Войти", for: .normal)
+        button.setTitle("Log in", for: .normal)
         button.titleLabel?.font = UIFont(name: "GothamPro-Bold", size: 16)
-        
         return button
     }()
     
+    // MARK: - INIT
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
@@ -79,16 +72,20 @@ class RegistrationView: UIView, UITextFieldDelegate{
     }
     
     override func layoutSubviews() {
-        backgroundColor = .white
-        
         setupViews()
         setupConstraints()
-        
+        addDelegates()
+    }
+
+    
+    // MARK: - UI SETUP
+    func addDelegates() {
         nameField.delegate = self
         mailField.delegate = self
     }
     
     func setupViews() {
+        backgroundColor = .white
         addSubview(cartImage)
         addSubview(marketLabel)
         addSubview(nameField)
@@ -130,9 +127,9 @@ class RegistrationView: UIView, UITextFieldDelegate{
             make.leading.equalToSuperview().inset(20 * UIScreen.main.bounds.width / 375)
             make.trailing.equalToSuperview().inset(20 * UIScreen.main.bounds.width / 375)
         }
-
     }
     
+    // MARK: - METHODS
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
         self.endEditing(true)
     }
@@ -159,7 +156,6 @@ class RegistrationView: UIView, UITextFieldDelegate{
                 enterButton.backgroundColor = UIColor(red: 0.329, green: 0.345, blue: 0.918, alpha: 1)
             }
         }
-        
         return true
     }
 }

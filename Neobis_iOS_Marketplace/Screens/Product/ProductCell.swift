@@ -29,7 +29,7 @@ class ProductCellView: UICollectionViewCell {
         let label = UILabel()
         label.font = UIFont(name: "GothamPro-Medium", size: 14)
         label.textColor = UIColor(red: 0.365, green: 0.373, blue: 0.937, alpha: 1)
-        label.text = "12000"
+        label.text = "12 000"
         return label
     }()
     

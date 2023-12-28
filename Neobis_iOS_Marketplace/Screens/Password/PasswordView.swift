@@ -11,30 +11,28 @@ import SnapKit
 
 class PasswordView: UIView, UITextFieldDelegate {
     
+    // MARK: - UI COMPONENTS
     let lockImage: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(named: "lock")
-        
         return image
     }()
     
     let passwordLabel: UILabel = {
         let label = UILabel()
-        label.text = "Придумайте пароль"
+        label.text = "Enter password"
         label.font = UIFont(name: "GothamPro-Medium", size: 20)
         label.textColor = .black
-        
         return label
     }()
     
     let passwordReq: UILabel = {
         let label = UILabel()
-        label.text = "Минимальная длина — 8 символов.\n Для надежности пароль должен\n содержать буквы и цифры."
+        label.text = "At least — 8 symbols.\n For security, a password needs to have\n both letters and digits."
         label.font = UIFont(name: "GothamPro", size: 16)
         label.textColor = UIColor(red: 0.754, green: 0.754, blue: 0.754, alpha: 1)
         label.numberOfLines = 3
         label.textAlignment = .center
-        
         return label
     }()
     
@@ -44,10 +42,8 @@ class PasswordView: UIView, UITextFieldDelegate {
         field.isSecureTextEntry = true
         field.borderStyle = .none
         field.textAlignment = .center
-        
         field.autocorrectionType = .no
         field.spellCheckingType = .no
-        
         return field
     }()
     
@@ -57,12 +53,9 @@ class PasswordView: UIView, UITextFieldDelegate {
         field.isSecureTextEntry = true
         field.borderStyle = .none
         field.textAlignment = .center
-        
         field.autocorrectionType = .no
         field.spellCheckingType = .no
-        
         field.isHidden = true
-        
         return field
     }()
     
@@ -71,10 +64,8 @@ class PasswordView: UIView, UITextFieldDelegate {
 //        button.backgroundColor = UIColor(red: 0.329, green: 0.345, blue: 0.918, alpha: 1)
         button.backgroundColor = UIColor(red: 0.754, green: 0.754, blue: 0.754, alpha: 1)
         button.layer.cornerRadius = 23 * UIScreen.main.bounds.height / 812
-        button.setTitle("Далее", for: .normal)
+        button.setTitle("Next", for: .normal)
         button.titleLabel?.font = UIFont(name: "GothamPro-Bold", size: 16)
-        
-        
         return button
     }()
     
@@ -83,24 +74,23 @@ class PasswordView: UIView, UITextFieldDelegate {
 //        button.backgroundColor = UIColor(red: 0.329, green: 0.345, blue: 0.918, alpha: 1)
         button.backgroundColor = UIColor(red: 0.754, green: 0.754, blue: 0.754, alpha: 1)
         button.layer.cornerRadius = 23 * UIScreen.main.bounds.height / 812
-        button.setTitle("Готово", for: .normal)
+        button.setTitle("Finish", for: .normal)
         button.titleLabel?.font = UIFont(name: "GothamPro-Bold", size: 16)
         button.isHidden = true
-        
         return button
     }()
     
     let passwordError: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 15)
-        label.text = "Пароли не совпадают"
+        label.text = "Passwords don't match"
         label.textColor = UIColor(red: 0.954, green: 0.27, blue: 0.27, alpha: 1)
         label.isHidden = true
         label.textAlignment = .center
-        
         return label
     }()
     
+    // MARK: - INIT
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
@@ -113,19 +103,18 @@ class PasswordView: UIView, UITextFieldDelegate {
         backgroundColor = .white
         setupViews()
         setupConstraints()
-        
         passwordField.delegate = self
         passwordConfirmField.delegate = self
-        
         enterButton.addTarget(self, action: #selector(enterButtonPressed), for: .touchUpInside)
     }
     
+    // MARK: - ACTION BUTTONS
     @objc func enterButtonPressed() {
         if enterButton.backgroundColor == UIColor(red: 93/255, green: 95/255, blue: 249/255, alpha: 1.0){
             enterButton.isHidden = true
             finishButton.isHidden = false
             passwordConfirmField.isHidden = false
-            passwordLabel.text = "Повторите пароль"
+            passwordLabel.text = "Repeat password"
         }
     }
     
@@ -133,6 +122,7 @@ class PasswordView: UIView, UITextFieldDelegate {
         self.endEditing(true)
     }
     
+    // MARK: - UI SETUP
     func setupViews() {
         addSubview(lockImage)
         addSubview(passwordLabel)
@@ -198,6 +188,7 @@ class PasswordView: UIView, UITextFieldDelegate {
         }
     }
     
+    // MARK: - TEXTFIELD DELEGATE
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let updatedPassword1 = textField == passwordField ? (textField.text as NSString?)?.replacingCharacters(in: range, with: string) : passwordField.text
         

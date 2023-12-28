@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 
+// MARK: - PROTOCOL
 protocol ChangeProductViewModelProtocol: AnyObject {
     var isChanged: Bool { get }
     var changeResult: ((Result<Data, Error>) -> Void)? { get set }
@@ -15,6 +16,7 @@ protocol ChangeProductViewModelProtocol: AnyObject {
     func changeProduct(images: [UIImage], title: String, price: String, shortDescription: String?, fullDescription: String?)
 }
 
+// MARK: - VIEW MODEL
 class ChangeProductViewModel: ChangeProductViewModelProtocol {
     
     var isChanged: Bool = false

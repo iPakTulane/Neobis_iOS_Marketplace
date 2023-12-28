@@ -9,8 +9,9 @@ import Foundation
 import UIKit
 import SnapKit
 
-class OTPView: UIView, UITextFieldDelegate {
+class OTPView: UIView {
     
+    // MARK: - UI COMPONENTS
     let userView: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor(red: 0.329, green: 0.345, blue: 0.918, alpha: 1)
@@ -74,6 +75,7 @@ class OTPView: UIView, UITextFieldDelegate {
         return label
     }()
     
+    // MARK: - ACTION BUTTONS
     @objc let enterButton: UIButton = {
         let button = UIButton()
         //        button.backgroundColor = UIColor(red: 0.329, green: 0.345, blue: 0.918, alpha: 1)
@@ -82,10 +84,10 @@ class OTPView: UIView, UITextFieldDelegate {
         button.setTitle("Далее", for: .normal)
         button.titleLabel?.font = UIFont(name: "GothamPro-Bold", size: 16)
         
-        
         return button
     }()
     
+    // MARK: - INIT
     override init(frame: CGRect) {
         super.init(frame: frame)
         codeField.delegate = self
@@ -103,18 +105,11 @@ class OTPView: UIView, UITextFieldDelegate {
         setupConstraints()
     }
     
-    @objc private func numberFieldDidChange(_ textField: UITextField) {
-        if let text = textField.text, text.count == 4 {
-            enterButton.backgroundColor = UIColor(red: 0.329, green: 0.345, blue: 0.918, alpha: 1)
-        } else {
-            enterButton.backgroundColor = UIColor(red: 0.754, green: 0.754, blue: 0.754, alpha: 1)
-        }
-    }
-    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
         self.endEditing(true)
     }
     
+    // MARK: - UI SETUP
     func setupViews() {
         addSubview(userView)
         addSubview(userImage)
@@ -172,6 +167,18 @@ class OTPView: UIView, UITextFieldDelegate {
             make.leading.equalToSuperview().inset(34 * UIScreen.main.bounds.width / 375)
             make.trailing.equalToSuperview().inset(34 * UIScreen.main.bounds.width / 375)
             make.bottom.equalToSuperview().inset(406 * UIScreen.main.bounds.height / 812)
+        }
+    }
+}
+
+// MARK: - EXTENSION
+extension OTPView: UITextFieldDelegate {
+    
+    @objc private func numberFieldDidChange(_ textField: UITextField) {
+        if let text = textField.text, text.count == 4 {
+            enterButton.backgroundColor = UIColor(red: 0.329, green: 0.345, blue: 0.918, alpha: 1)
+        } else {
+            enterButton.backgroundColor = UIColor(red: 0.754, green: 0.754, blue: 0.754, alpha: 1)
         }
     }
 }

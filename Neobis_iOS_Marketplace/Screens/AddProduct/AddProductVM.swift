@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 
+// MARK: - PROTOCOL
 protocol AddProductViewModelProtocol: AnyObject {
     var isAdded: Bool { get }
     var addResult: ((Result<Data, Error>) -> Void)? { get set }
@@ -15,6 +16,7 @@ protocol AddProductViewModelProtocol: AnyObject {
     func addProduct(images: [UIImage], title: String, price: String, shortDescription: String?, fullDescription: String?)
 }
 
+// MARK: - VIEW MODEL
 class AddProductViewModel: AddProductViewModelProtocol {
     
     var isAdded: Bool = false
@@ -22,6 +24,7 @@ class AddProductViewModel: AddProductViewModelProtocol {
     
     let apiService: APIService
     
+    // MARK: - INIT
     init() {
         self.apiService = APIService()
     }

@@ -12,11 +12,16 @@ import Alamofire
 import AlamofireImage
 
 class ProfileViewController: UIViewController {
-    
+        
     let mainView = ProfileView()
     var nickName: String = ""
     var image: UIImage?
     var getUserProtocol: GetUserProtocol!
+    
+    // MARK: - INIT
+    override func loadView() {
+        view = mainView
+    }
     
     init(getUserProtocol: GetUserProtocol!) {
         self.getUserProtocol = getUserProtocol
@@ -29,19 +34,23 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        title = "Профиль"
+        setupNavigationView()
+        addTargets()
+        getUserData()
+        checkFullRegister()
+    }
+
+    func setupNavigationView() {
+        title = "Profile"
         
         let changeButton = UIBarButtonItem(image: UIImage(named: "change")?.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(changeButtonPressed))
         self.navigationItem.rightBarButtonItem = changeButton
-        
-        mainView.finishbutton.addTarget(self, action: #selector(finishRegPressed), for: .touchUpInside)
+    }
+    
+    func addTargets() {
+        mainView.finishRegButton.addTarget(self, action: #selector(finishRegButtonPressed), for: .touchUpInside)
         mainView.exitButton.addTarget(self, action: #selector(exitButtonPressed), for: .touchUpInside)
         mainView.productButton.addTarget(self, action: #selector(productButtonPressed), for: .touchUpInside)
-        
-        getUserData()
-        checkFullRegister()
-        setupView()
     }
     
     func getUserData() {
@@ -75,7 +84,6 @@ class ProfileViewController: UIViewController {
                     print("Failed to load image from URL:", photoURL)
                 }
             }
-
         }
     }
 
@@ -93,11 +101,13 @@ class ProfileViewController: UIViewController {
         
         getUserProtocol.fetchUserData() { [weak self] result in
             switch result {
+                
             case .success(let userData):
+                // TODO: -
                 if let phoneNumber = userData["phone_number"] as? String {
 //                    print("Phone number:", phoneNumber)
                     DispatchQueue.main.async {
-                        self?.mainView.finishbutton.isHidden = true
+                        self?.mainView.finishRegButton.isHidden = true
                     }
                 }
             case .failure(let error):
@@ -106,6 +116,8 @@ class ProfileViewController: UIViewController {
         }
     }
     
+    
+    // MARK: - ACTION BUTTONS
     @objc func productButtonPressed() {
         let vc = ProductViewController(Product: ProductViewModel(), productProtocol: GetUserViewModel())
         
@@ -115,28 +127,21 @@ class ProfileViewController: UIViewController {
         present(navigationController, animated: true)
     }
     
-    @objc func finishRegPressed() {
-        let vc = FinishRegViewController(getUserProtocol: GetUserViewModel())
+    @objc func finishRegButtonPressed() {
+        let vc = PersonalDataViewController(getUserProtocol: GetUserViewModel())
         
         navigationController?.pushViewController(vc, animated: true)
     }
     
     @objc func changeButtonPressed() {
-        let vc = FinishRegViewController(getUserProtocol: GetUserViewModel())
+        let vc = PersonalDataViewController(getUserProtocol: GetUserViewModel())
         
         navigationController?.pushViewController(vc, animated: true)
     }
     
     @objc func exitButtonPressed() {
-        let vc = CustomTabBarC()
-        
+//        let vc = CustomTabBarController()
         dismiss(animated: true, completion: nil)
     }
     
-    func setupView() {
-        view.addSubview(mainView)
-        mainView.snp.makeConstraints{ make in
-            make.edges.equalToSuperview()
-        }
-    }
 }

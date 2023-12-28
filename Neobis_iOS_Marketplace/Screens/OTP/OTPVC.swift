@@ -9,21 +9,17 @@ import Foundation
 import UIKit
 import SnapKit
 
-class OTPViewController: UIViewController{
-    
+class OTPViewController: UIViewController {
+        
     let mainView = OTPView()
+    
+    // MARK: - INIT
+    override func loadView() {
+        view = mainView
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
         
-        setupView()
-    }
-    
-    
-    func setupView() {
-        view.addSubview(mainView)
-        mainView.snp.makeConstraints{ make in
-            make.edges.equalToSuperview()
-        }
-    }
 }

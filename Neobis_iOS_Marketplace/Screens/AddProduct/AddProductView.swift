@@ -60,7 +60,7 @@ class AddProductView: UIView {
     
     let addLabel: UILabel = {
         let label = UILabel()
-        label.text = "Add photo"
+        label.text = "Add a picture"
         label.textColor = UIColor(red: 0.329, green: 0.345, blue: 0.918, alpha: 1)
         label.font = UIFont(name: "GothamPro-Medium", size: 12)
         label.numberOfLines = 2

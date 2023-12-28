@@ -15,7 +15,6 @@ class CustomTabBar: UITabBar {
         let button = UIButton()
         button.backgroundColor = UIColor(red: 0.329, green: 0.345, blue: 0.918, alpha: 1)
         button.setImage(UIImage(named: "plus"), for: .normal)
-//        button.addTarget(self, action: #selector(bigButtonTapped), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.layer.cornerRadius = 25
         return button
@@ -62,13 +61,5 @@ class CustomTabBar: UITabBar {
             }
         }
     }
-
-
-
-//    @objc private func bigButtonTapped() {
-//        let vc = ProfileViewController(getUserProtocol: GetUserViewModel())
-//
-//
-//    }
     
 }

@@ -27,7 +27,7 @@ class FinishRegView: UIView, UITextFieldDelegate {
     
     let setPicButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Choose a picture", for: .normal)
+        button.setTitle("Choose a photo", for: .normal)
         button.setTitleColor(UIColor(red: 0.329, green: 0.345, blue: 0.918, alpha: 1), for: .normal)
         button.titleLabel?.font = UIFont(name: "GothamPro-Medium", size: 16)
         

@@ -21,7 +21,7 @@ class BorderedTextField: UITextField {
         let bottomLine = CALayer()
         bottomLine.name = "bottomLine"
         bottomLine.frame = CGRect(x: 0, y: bounds.height - 1, width: bounds.width, height: 1)
-        bottomLine.backgroundColor = UIColor(red: 0.969, green: 0.965, blue: 0.976, alpha: 1).cgColor
+        bottomLine.backgroundColor = UIColor.colorBackground.cgColor
         layer.addSublayer(bottomLine)
     }
     

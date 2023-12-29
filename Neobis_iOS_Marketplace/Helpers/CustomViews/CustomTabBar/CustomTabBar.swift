@@ -13,7 +13,7 @@ class CustomTabBar: UITabBar {
 
     let bigButton: UIButton = {
         let button = UIButton()
-        button.backgroundColor = UIColor(red: 0.329, green: 0.345, blue: 0.918, alpha: 1)
+        button.backgroundColor = UIColor.colorBlue
         button.setImage(UIImage(named: "plus"), for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.layer.cornerRadius = 25

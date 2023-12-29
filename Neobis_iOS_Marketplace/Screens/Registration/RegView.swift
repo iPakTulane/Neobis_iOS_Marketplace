@@ -30,7 +30,7 @@ class RegistrationView: UIView, UITextFieldDelegate{
         let field = AnimatedTextField()
         field.placeholder = "Username"
         let lineView = UIView()
-        lineView.backgroundColor = UIColor(red: 0.754, green: 0.754, blue: 0.754, alpha: 1)
+        lineView.backgroundColor = UIColor.colorGrey
         field.addSubview(lineView)
         lineView.snp.makeConstraints { make in
             make.height.equalTo(1)
@@ -43,7 +43,7 @@ class RegistrationView: UIView, UITextFieldDelegate{
         let field = AnimatedTextField()
         field.placeholder = "Email"
         let lineView = UIView()
-        lineView.backgroundColor = UIColor(red: 0.754, green: 0.754, blue: 0.754, alpha: 1)
+        lineView.backgroundColor = UIColor.colorGrey
         field.addSubview(lineView)
         lineView.snp.makeConstraints { make in
             make.height.equalTo(1)
@@ -54,8 +54,8 @@ class RegistrationView: UIView, UITextFieldDelegate{
     
     let enterButton: UIButton = {
         let button = UIButton()
-//        button.backgroundColor = UIColor(red: 0.329, green: 0.345, blue: 0.918, alpha: 1)
-        button.backgroundColor = UIColor(red: 0.754, green: 0.754, blue: 0.754, alpha: 1)
+//        button.backgroundColor = UIColor.colorBlue
+        button.backgroundColor = UIColor.colorGrey
         button.layer.cornerRadius = 23 * UIScreen.main.bounds.height / 812
         button.setTitle("Log in", for: .normal)
         button.titleLabel?.font = UIFont(name: "GothamPro-Bold", size: 16)
@@ -147,13 +147,13 @@ class RegistrationView: UIView, UITextFieldDelegate{
             enterButton.isEnabled = name.count >= 3 && mail.contains("@")
             
             if enterButton.isEnabled {
-                enterButton.backgroundColor = UIColor(red: 93/255, green: 95/255, blue: 249/255, alpha: 1.0)
+                enterButton.backgroundColor = UIColor.colorBlue
             } else {
-                enterButton.backgroundColor = UIColor(red: 0.754, green: 0.754, blue: 0.754, alpha: 1)
+                enterButton.backgroundColor = UIColor.colorGrey
             }
             
             if mail.contains("@") {
-                enterButton.backgroundColor = UIColor(red: 0.329, green: 0.345, blue: 0.918, alpha: 1)
+                enterButton.backgroundColor = UIColor.colorBlue
             }
         }
         return true

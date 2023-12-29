@@ -28,7 +28,7 @@ class FinishRegView: UIView, UITextFieldDelegate {
     let setPicButton: UIButton = {
         let button = UIButton()
         button.setTitle("Choose a photo", for: .normal)
-        button.setTitleColor(UIColor(red: 0.329, green: 0.345, blue: 0.918, alpha: 1), for: .normal)
+        button.setTitleColor(UIColor.colorBlue, for: .normal)
         button.titleLabel?.font = UIFont(name: "GothamPro-Medium", size: 16)
         
         return button
@@ -78,7 +78,7 @@ class FinishRegView: UIView, UITextFieldDelegate {
         view.layer.cornerRadius = 12 * UIScreen.main.bounds.height / 812
         
         let lineView = UIView()
-        lineView.backgroundColor = UIColor(red: 0.969, green: 0.965, blue: 0.976, alpha: 1)
+        lineView.backgroundColor = UIColor.colorBackground
         view.addSubview(lineView)
         
         lineView.snp.makeConstraints { make in
@@ -94,7 +94,7 @@ class FinishRegView: UIView, UITextFieldDelegate {
     let numberButton: UIButton = {
         let button = UIButton()
         button.setTitle("Add number", for: .normal)
-        button.setTitleColor(UIColor(red: 0.329, green: 0.345, blue: 0.918, alpha: 1), for: .normal)
+        button.setTitleColor(UIColor.colorBlue, for: .normal)
         button.titleLabel?.font = UIFont(name: "GothamPro-Medium", size: 16)
         
         return button
@@ -104,7 +104,7 @@ class FinishRegView: UIView, UITextFieldDelegate {
         let label = UILabel()
         label.font = UIFont(name: "GothamPro-Medium", size: 16)
         label.text = "0(000) 000 000"
-        label.textColor = UIColor(red: 0.754, green: 0.754, blue: 0.754, alpha: 1)
+        label.textColor = UIColor.colorGrey
         
         return label
     }()
@@ -126,7 +126,7 @@ class FinishRegView: UIView, UITextFieldDelegate {
     }
     
     override func layoutSubviews() {
-        backgroundColor = UIColor(red: 0.969, green: 0.965, blue: 0.976, alpha: 1)
+        backgroundColor = UIColor.colorBackground
         
         nameField.delegate = self
         emailField.delegate = self

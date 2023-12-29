@@ -28,9 +28,9 @@ class PasswordView: UIView, UITextFieldDelegate {
     
     let passwordReq: UILabel = {
         let label = UILabel()
-        label.text = "At least — 8 symbols.\n For security, a password needs to have\n both letters and digits."
+        label.text = "At least — 8 symbols.\n For security, a password needs \nto have both letters and digits."
         label.font = UIFont(name: "GothamPro", size: 16)
-        label.textColor = UIColor(red: 0.754, green: 0.754, blue: 0.754, alpha: 1)
+        label.textColor = UIColor.colorGrey
         label.numberOfLines = 3
         label.textAlignment = .center
         return label
@@ -61,8 +61,8 @@ class PasswordView: UIView, UITextFieldDelegate {
     
     let enterButton: UIButton = {
         let button = UIButton()
-//        button.backgroundColor = UIColor(red: 0.329, green: 0.345, blue: 0.918, alpha: 1)
-        button.backgroundColor = UIColor(red: 0.754, green: 0.754, blue: 0.754, alpha: 1)
+//        button.backgroundColor = UIColor.colorBlue
+        button.backgroundColor = UIColor.colorGrey
         button.layer.cornerRadius = 23 * UIScreen.main.bounds.height / 812
         button.setTitle("Next", for: .normal)
         button.titleLabel?.font = UIFont(name: "GothamPro-Bold", size: 16)
@@ -71,8 +71,8 @@ class PasswordView: UIView, UITextFieldDelegate {
     
     let finishButton: UIButton = {
         let button = UIButton()
-//        button.backgroundColor = UIColor(red: 0.329, green: 0.345, blue: 0.918, alpha: 1)
-        button.backgroundColor = UIColor(red: 0.754, green: 0.754, blue: 0.754, alpha: 1)
+//        button.backgroundColor = UIColor.colorBlue
+        button.backgroundColor = UIColor.colorGrey
         button.layer.cornerRadius = 23 * UIScreen.main.bounds.height / 812
         button.setTitle("Finish", for: .normal)
         button.titleLabel?.font = UIFont(name: "GothamPro-Bold", size: 16)
@@ -84,7 +84,7 @@ class PasswordView: UIView, UITextFieldDelegate {
         let label = UILabel()
         label.font = .systemFont(ofSize: 15)
         label.text = "Passwords don't match"
-        label.textColor = UIColor(red: 0.954, green: 0.27, blue: 0.27, alpha: 1)
+        label.textColor = UIColor.сolorRed
         label.isHidden = true
         label.textAlignment = .center
         return label
@@ -110,7 +110,7 @@ class PasswordView: UIView, UITextFieldDelegate {
     
     // MARK: - ACTION BUTTONS
     @objc func enterButtonPressed() {
-        if enterButton.backgroundColor == UIColor(red: 93/255, green: 95/255, blue: 249/255, alpha: 1.0){
+        if enterButton.backgroundColor == UIColor.colorBlue {
             enterButton.isHidden = true
             finishButton.isHidden = false
             passwordConfirmField.isHidden = false
@@ -198,9 +198,9 @@ class PasswordView: UIView, UITextFieldDelegate {
             enterButton.isEnabled = password1.count >= 8
             
             if enterButton.isEnabled {
-                enterButton.backgroundColor = UIColor(red: 93/255, green: 95/255, blue: 249/255, alpha: 1.0)
+                enterButton.backgroundColor = UIColor.colorBlue
             } else {
-                enterButton.backgroundColor = UIColor(red: 0.754, green: 0.754, blue: 0.754, alpha: 1)
+                enterButton.backgroundColor = UIColor.colorGrey
             }
         }
         
@@ -208,9 +208,9 @@ class PasswordView: UIView, UITextFieldDelegate {
             finishButton.isEnabled = password2.count >= 8
             
             if finishButton.isEnabled {
-                finishButton.backgroundColor = UIColor(red: 93/255, green: 95/255, blue: 249/255, alpha: 1.0)
+                finishButton.backgroundColor = UIColor.colorBlue
             } else {
-                finishButton.backgroundColor = UIColor(red: 0.754, green: 0.754, blue: 0.754, alpha: 1)
+                finishButton.backgroundColor = UIColor.colorGrey
             }
         }
         

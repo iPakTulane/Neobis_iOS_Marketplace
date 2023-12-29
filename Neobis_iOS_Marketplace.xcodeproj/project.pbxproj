@@ -188,6 +188,7 @@
 		BAF86FAA2B32A62000E0F939 /* Neobis_iOS_Marketplace */ = {
 			isa = PBXGroup;
 			children = (
+				BAF86FAD2B32A62000E0F939 /* SceneDelegate.swift */,
 				BAF86FC82B35FF3300E0F939 /* Screens */,
 				BAF870842B3D9FF400E0F939 /* NetworkLayer */,
 				BAF870852B3DA03000E0F939 /* Helpers */,
@@ -210,7 +211,6 @@
 			isa = PBXGroup;
 			children = (
 				BAF86FAB2B32A62000E0F939 /* AppDelegate.swift */,
-				BAF86FAD2B32A62000E0F939 /* SceneDelegate.swift */,
 				BAF86FB12B32A62000E0F939 /* Main.storyboard */,
 				BAF86FB42B32A62200E0F939 /* Assets.xcassets */,
 				BAF86FB62B32A62200E0F939 /* LaunchScreen.storyboard */,

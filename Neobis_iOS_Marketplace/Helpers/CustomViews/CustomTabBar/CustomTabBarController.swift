@@ -22,7 +22,7 @@ class CustomTabBarController: UITabBarController {
     private func setupTabBar() {
         
         let customTabBar = CustomTabBar()
-        customTabBar.tintColor = UIColor(red: 0.329, green: 0.345, blue: 0.918, alpha: 1)
+        customTabBar.tintColor = UIColor.colorBlue
         customTabBar.backgroundColor = .white
         self.setValue(customTabBar, forKey: "tabBar")
 

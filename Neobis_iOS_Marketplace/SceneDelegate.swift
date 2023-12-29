@@ -26,8 +26,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 //        let vc = LoginViewController(loginProtocol: LoginViewModel())
 //        let vc = RegistrationViewController()
 //        let vc = OTPViewController()
-//        window?.rootViewController = UINavigationController(rootViewController: vc)
         
+//        window?.rootViewController = UINavigationController(rootViewController: vc)
         window?.makeKeyAndVisible()
     }
 

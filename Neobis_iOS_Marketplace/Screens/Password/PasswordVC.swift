@@ -77,8 +77,8 @@ class PasswordViewController: UIViewController {
     func handleLoginFailure(_ error: Error) {
         
         mainView.passwordError.isHidden = false
-        mainView.passwordField.textColor = UIColor(red: 0.954, green: 0.27, blue: 0.27, alpha: 1)
-        mainView.passwordConfirmField.textColor = UIColor(red: 0.954, green: 0.27, blue: 0.27, alpha: 1)
+        mainView.passwordField.textColor = UIColor.сolorRed
+        mainView.passwordConfirmField.textColor = UIColor.сolorRed
         print("Login failed with error: \(error)")
     }
     

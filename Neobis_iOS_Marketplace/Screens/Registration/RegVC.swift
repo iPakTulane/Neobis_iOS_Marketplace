@@ -35,7 +35,7 @@ class RegistrationViewController: UIViewController {
     // MARK: - ACTION BUTTONS
     @objc func enterButtonPressed() {
         
-        if mainView.enterButton.backgroundColor != UIColor(red: 0.754, green: 0.754, blue: 0.754, alpha: 1) {
+        if mainView.enterButton.backgroundColor != UIColor.colorGrey {
             guard let userName = mainView.nameField.text else { return }
             guard let email = mainView.mailField.text else { return }
             

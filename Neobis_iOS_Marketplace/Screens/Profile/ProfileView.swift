@@ -189,7 +189,7 @@ class ProfileView: UIView {
     
     let finishRegButton: UIButton = {
         let button = UIButton()
-        button.backgroundColor = UIColor(red: 0.329, green: 0.345, blue: 0.918, alpha: 1)
+        button.backgroundColor = UIColor.colorBlue
         button.setTitle("Finish registration", for: .normal)
         button.layer.cornerRadius = 23
         button.titleLabel?.font = UIFont(name: "GothamPro-Bold", size: 16)
@@ -206,7 +206,7 @@ class ProfileView: UIView {
     }
     
     override func layoutSubviews() {
-        backgroundColor = UIColor(red: 0.969, green: 0.965, blue: 0.976, alpha: 1)
+        backgroundColor = UIColor.colorBackground
         setupViews()
         setupConstraints()
         addMiddleLine()
@@ -215,7 +215,7 @@ class ProfileView: UIView {
     // MARK: - UI SETUP
     func addMiddleLine() {
         let lineView = UIView()
-        lineView.backgroundColor = UIColor(red: 0.969, green: 0.965, blue: 0.976, alpha: 1)
+        lineView.backgroundColor = UIColor.colorBackground
         firstSectionView.addSubview(lineView)
         
         lineView.snp.makeConstraints { make in

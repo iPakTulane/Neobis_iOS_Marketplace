@@ -32,13 +32,13 @@ class LoginView: UIView, UITextFieldDelegate {
         field.placeholder = "Username"
 
         let lineView = UIView()
-        lineView.backgroundColor = UIColor(red: 0.754, green: 0.754, blue: 0.754, alpha: 1)
+        lineView.backgroundColor = UIColor.colorGrey
         return field
     }()
     
     let nameLine: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(red: 0.754, green: 0.754, blue: 0.754, alpha: 1)
+        view.backgroundColor = UIColor.colorGrey
         return view
     }()
     
@@ -62,14 +62,14 @@ class LoginView: UIView, UITextFieldDelegate {
     
     let passwordLine: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(red: 0.754, green: 0.754, blue: 0.754, alpha: 1)
+        view.backgroundColor = UIColor.colorGrey
         return view
     }()
     
     let enterButton: UIButton = {
         let button = UIButton()
-//        button.backgroundColor = UIColor(red: 0.329, green: 0.345, blue: 0.918, alpha: 1)
-        button.backgroundColor = UIColor(red: 0.754, green: 0.754, blue: 0.754, alpha: 1)
+//        button.backgroundColor = UIColor.colorBlue
+        button.backgroundColor = UIColor.colorGrey
         button.layer.cornerRadius = 23 * UIScreen.main.bounds.height / 812
         button.setTitle("Log in", for: .normal)
         button.titleLabel?.font = UIFont(name: "GothamPro-Bold", size: 16)
@@ -79,7 +79,7 @@ class LoginView: UIView, UITextFieldDelegate {
     let registerButton: UIButton = {
         let button = UIButton()
         button.setTitle("Register", for: .normal)
-        button.setTitleColor(UIColor(red: 0.329, green: 0.345, blue: 0.918, alpha: 1), for: .normal)
+        button.setTitleColor(UIColor.colorBlue, for: .normal)
         button.titleLabel?.font = UIFont(name: "GothamPro-Medium", size: 14)
         return button
     }()
@@ -95,7 +95,7 @@ class LoginView: UIView, UITextFieldDelegate {
         
         view.addSubview(label)
         view.addSubview(imageView)
-        view.backgroundColor = UIColor(red: 0.954, green: 0.27, blue: 0.27, alpha: 1)
+        view.backgroundColor = UIColor.сolorRed
         view.isHidden = true
         view.layer.cornerRadius = 16 * UIScreen.main.bounds.height / 812
         
@@ -234,9 +234,9 @@ class LoginView: UIView, UITextFieldDelegate {
             enterButton.isEnabled = name.count >= 3 && password.count >= 8
             
             if enterButton.isEnabled {
-                enterButton.backgroundColor = UIColor(red: 93/255, green: 95/255, blue: 249/255, alpha: 1.0)
+                enterButton.backgroundColor = UIColor.colorBlue
             } else {
-                enterButton.backgroundColor = UIColor(red: 0.754, green: 0.754, blue: 0.754, alpha: 1)
+                enterButton.backgroundColor = UIColor.colorGrey
             }
         }
         return true

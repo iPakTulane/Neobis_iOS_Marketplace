@@ -30,7 +30,7 @@ class PopUpView: UIView {
     let changeImage: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(named: "edit")
-        image.backgroundColor = UIColor(red: 0.329, green: 0.345, blue: 0.918, alpha: 1)
+        image.backgroundColor = UIColor.colorBlue
         image.layer.cornerRadius = 6 * UIScreen.main.bounds.height / 812
         
         return image
@@ -54,7 +54,7 @@ class PopUpView: UIView {
     let trashImage: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(named: "trash")
-        image.backgroundColor = UIColor(red: 0.329, green: 0.345, blue: 0.918, alpha: 1)
+        image.backgroundColor = UIColor.colorBlue
         image.layer.cornerRadius = 6 * UIScreen.main.bounds.height / 812
         
         return image

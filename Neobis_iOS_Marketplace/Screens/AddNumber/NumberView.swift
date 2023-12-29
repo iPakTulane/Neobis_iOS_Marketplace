@@ -14,10 +14,10 @@ class NumberView: UIView {
     // MARK: - UI COMPONENTS
     let phoneView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(red: 0.329, green: 0.345, blue: 0.918, alpha: 1)
+        view.backgroundColor = UIColor.colorBlue
         view.layer.cornerRadius = 20 * UIScreen.main.bounds.height / 812
         
-        view.layer.shadowColor = UIColor(red: 0.329, green: 0.345, blue: 0.918, alpha: 1).cgColor
+        view.layer.shadowColor = UIColor.colorBlue
         view.layer.shadowOffset = CGSize(width: 0, height: 5)
         view.layer.shadowOpacity = 0.7
         view.layer.shadowRadius = 4
@@ -46,7 +46,7 @@ class NumberView: UIView {
         let label = UILabel()
         label.text = "We'll be throwing \na confirmation code via SMS"
         label.font = UIFont(name: "GothamPro", size: 16)
-        label.textColor = UIColor(red: 0.754, green: 0.754, blue: 0.754, alpha: 1)
+        label.textColor = UIColor.colorGrey
         label.textAlignment = .center
         label.numberOfLines = 2
         
@@ -65,7 +65,7 @@ class NumberView: UIView {
     let errorLabel: UILabel = {
         let label = UILabel()
         label.text = "This number was already registered"
-        label.textColor = UIColor(red: 0.954, green: 0.27, blue: 0.27, alpha: 1)
+        label.textColor = UIColor.сolorRed
         label.font = UIFont(name: "SFProText-Medium", size: 17)
         label.isHidden = true
         label.numberOfLines = 1
@@ -75,8 +75,8 @@ class NumberView: UIView {
     
     @objc let enterButton: UIButton = {
         let button = UIButton()
-//        button.backgroundColor = UIColor(red: 0.329, green: 0.345, blue: 0.918, alpha: 1)
-        button.backgroundColor = UIColor(red: 0.754, green: 0.754, blue: 0.754, alpha: 1)
+//        button.backgroundColor = UIColor.colorBlue
+        button.backgroundColor = UIColor.colorGrey
         button.layer.cornerRadius = 23 * UIScreen.main.bounds.height / 812
         button.setTitle("Next", for: .normal)
         button.titleLabel?.font = UIFont(name: "GothamPro-Bold", size: 16)
@@ -168,9 +168,9 @@ extension NumberView: UITextFieldDelegate {
     
     @objc private func numberFieldDidChange(_ textField: UITextField) {
         if let text = textField.text, text.count == 14 {
-            enterButton.backgroundColor = UIColor(red: 0.329, green: 0.345, blue: 0.918, alpha: 1)
+            enterButton.backgroundColor = UIColor.colorBlue
         } else {
-            enterButton.backgroundColor = UIColor(red: 0.754, green: 0.754, blue: 0.754, alpha: 1)
+            enterButton.backgroundColor = UIColor.colorGrey
         }
     }
     

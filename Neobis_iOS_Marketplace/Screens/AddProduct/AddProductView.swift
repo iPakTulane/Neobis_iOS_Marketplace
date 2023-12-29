@@ -61,7 +61,7 @@ class AddProductView: UIView {
     let addLabel: UILabel = {
         let label = UILabel()
         label.text = "Add a picture"
-        label.textColor = UIColor(red: 0.329, green: 0.345, blue: 0.918, alpha: 1)
+        label.textColor = UIColor.colorBlue
         label.font = UIFont(name: "GothamPro-Medium", size: 12)
         label.numberOfLines = 2
         label.textAlignment = .center
@@ -146,7 +146,7 @@ class AddProductView: UIView {
     }
     
     func setupViews() {
-        backgroundColor = UIColor(red: 247/255, green: 246/255, blue: 249/255, alpha: 1.0)
+        backgroundColor = UIColor.colorBackground
         addSubview(addButton)
         addSubview(addImage)
         addSubview(collectionView)

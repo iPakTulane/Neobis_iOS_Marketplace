@@ -44,7 +44,7 @@ class LoginViewController: UIViewController {
     }
     
     @objc func enterButtonPressed() {
-        if mainView.enterButton.backgroundColor != UIColor(red: 0.754, green: 0.754, blue: 0.754, alpha: 1) {
+        if mainView.enterButton.backgroundColor != UIColor.colorGrey {
             guard let name = mainView.nameField.text,
                   let password = mainView.passwordField.text
             else {
@@ -86,10 +86,10 @@ class LoginViewController: UIViewController {
             self.mainView.statusLabel.isHidden = true
         }
         
-        mainView.nameField.textColor = UIColor(red: 0.954, green: 0.27, blue: 0.27, alpha: 1)
-        mainView.passwordField.textColor = UIColor(red: 0.954, green: 0.27, blue: 0.27, alpha: 1)
-        mainView.nameLine.backgroundColor = UIColor(red: 0.954, green: 0.27, blue: 0.27, alpha: 1)
-        mainView.passwordLine.backgroundColor = UIColor(red: 0.954, green: 0.27, blue: 0.27, alpha: 1)
+        mainView.nameField.textColor = UIColor.сolorRed
+        mainView.passwordField.textColor = UIColor.сolorRed
+        mainView.nameLine.backgroundColor = UIColor.сolorRed
+        mainView.passwordLine.backgroundColor = UIColor.сolorRed
         print("Login failed with error: \(error)")
     }
     

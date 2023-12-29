@@ -15,15 +15,16 @@ class OTPView: UIView {
     let userView: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor.colorBlue
-        view.layer.cornerRadius = 20 * UIScreen.main.bounds.height / 812
+        view.layer.cornerRadius = Screen.relativeHeight(20)
         
         view.layer.shadowColor = UIColor.colorBlue.cgColor
         view.layer.shadowOffset = CGSize(width: 0, height: 5)
         view.layer.shadowOpacity = 0.7
-        view.layer.shadowRadius = 4
+        view.layer.shadowRadius = Screen.relativeHeight(4)
         
         return view
     }()
+
     
     
     let userImage: UIImageView = {
@@ -80,12 +81,13 @@ class OTPView: UIView {
         let button = UIButton()
         //        button.backgroundColor = UIColor.colorBlue
         button.backgroundColor = UIColor.colorGrey
-        button.layer.cornerRadius = 23 * UIScreen.main.bounds.height / 812
+        button.layer.cornerRadius = Screen.relativeHeight(23)
         button.setTitle("Next", for: .normal)
         button.titleLabel?.font = UIFont(name: "GothamPro-Bold", size: 16)
         
         return button
     }()
+
     
     // MARK: - INIT
     override init(frame: CGRect) {
@@ -121,54 +123,55 @@ class OTPView: UIView {
     }
     
     func setupConstraints() {
-        userView.snp.makeConstraints{ make in
-            make.top.equalToSuperview().inset(120 * UIScreen.main.bounds.height / 812)
-            make.bottom.equalToSuperview().inset(612 * UIScreen.main.bounds.height / 812)
-            make.leading.equalToSuperview().inset(147.5 * UIScreen.main.bounds.width / 375)
-            make.trailing.equalToSuperview().inset(147.5 * UIScreen.main.bounds.width / 375)
+        userView.snp.makeConstraints { make in
+            make.top.equalToSuperview().inset(Screen.relativeHeight(120))
+            make.bottom.equalToSuperview().inset(Screen.relativeHeight(612))
+            make.leading.equalToSuperview().inset(Screen.relativeWidth(147.5))
+            make.trailing.equalToSuperview().inset(Screen.relativeWidth(147.5))
         }
-        
-        userImage.snp.makeConstraints{ make in
+
+        userImage.snp.makeConstraints { make in
             make.center.equalTo(userView.snp.center)
-            make.height.equalTo(48 * UIScreen.main.bounds.height / 812)
-            make.width.equalTo(48 * UIScreen.main.bounds.width / 375)
+            make.height.equalTo(Screen.relativeHeight(48))
+            make.width.equalTo(Screen.relativeWidth(48))
         }
-        
-        mainLabel.snp.makeConstraints{ make in
-            make.top.equalToSuperview().inset(232 * UIScreen.main.bounds.height / 812)
-            make.bottom.equalToSuperview().inset(561 * UIScreen.main.bounds.height / 812)
-            make.leading.equalToSuperview().inset(20 * UIScreen.main.bounds.width / 375)
-            make.trailing.equalToSuperview().inset(20 * UIScreen.main.bounds.width / 375)
+
+        mainLabel.snp.makeConstraints { make in
+            make.top.equalToSuperview().inset(Screen.relativeHeight(232))
+            make.bottom.equalToSuperview().inset(Screen.relativeHeight(561))
+            make.leading.equalToSuperview().inset(Screen.relativeWidth(20))
+            make.trailing.equalToSuperview().inset(Screen.relativeWidth(20))
         }
-        
-        descriptionLabel.snp.makeConstraints{ make in
-            make.top.equalToSuperview().inset(263 * UIScreen.main.bounds.height / 812)
-            make.bottom.equalToSuperview().inset(511 * UIScreen.main.bounds.height / 812)
-            make.leading.equalToSuperview().inset(20 * UIScreen.main.bounds.width / 375)
-            make.trailing.equalToSuperview().inset(20 * UIScreen.main.bounds.width / 375)
+
+        descriptionLabel.snp.makeConstraints { make in
+            make.top.equalToSuperview().inset(Screen.relativeHeight(263))
+            make.bottom.equalToSuperview().inset(Screen.relativeHeight(511))
+            make.leading.equalToSuperview().inset(Screen.relativeWidth(20))
+            make.trailing.equalToSuperview().inset(Screen.relativeWidth(20))
         }
-        
-        codeField.snp.makeConstraints{ make in
-            make.top.equalToSuperview().inset(334 * UIScreen.main.bounds.height / 812)
-            make.bottom.equalToSuperview().inset(444 * UIScreen.main.bounds.height / 812)
-            make.leading.equalToSuperview().inset(62 * UIScreen.main.bounds.width / 375)
-            make.trailing.equalToSuperview().inset(62 * UIScreen.main.bounds.width / 375)
+
+        codeField.snp.makeConstraints { make in
+            make.top.equalToSuperview().inset(Screen.relativeHeight(334))
+            make.bottom.equalToSuperview().inset(Screen.relativeHeight(444))
+            make.leading.equalToSuperview().inset(Screen.relativeWidth(62))
+            make.trailing.equalToSuperview().inset(Screen.relativeWidth(62))
         }
-        
-        enterButton.snp.makeConstraints{ make in
-            make.top.equalToSuperview().inset(497 * UIScreen.main.bounds.height / 812)
-            make.bottom.equalToSuperview().inset(271 * UIScreen.main.bounds.height / 812)
-            make.leading.equalToSuperview().inset(20 * UIScreen.main.bounds.width / 375)
-            make.trailing.equalToSuperview().inset(20 * UIScreen.main.bounds.width / 375)
+
+        enterButton.snp.makeConstraints { make in
+            make.top.equalToSuperview().inset(Screen.relativeHeight(497))
+            make.bottom.equalToSuperview().inset(Screen.relativeHeight(271))
+            make.leading.equalToSuperview().inset(Screen.relativeWidth(20))
+            make.trailing.equalToSuperview().inset(Screen.relativeWidth(20))
         }
-        
-        errorLabel.snp.makeConstraints{ make in
-            make.top.equalToSuperview().inset(384 * UIScreen.main.bounds.height / 812)
-            make.leading.equalToSuperview().inset(34 * UIScreen.main.bounds.width / 375)
-            make.trailing.equalToSuperview().inset(34 * UIScreen.main.bounds.width / 375)
-            make.bottom.equalToSuperview().inset(406 * UIScreen.main.bounds.height / 812)
+
+        errorLabel.snp.makeConstraints { make in
+            make.top.equalToSuperview().inset(Screen.relativeHeight(384))
+            make.leading.equalToSuperview().inset(Screen.relativeWidth(34))
+            make.trailing.equalToSuperview().inset(Screen.relativeWidth(34))
+            make.bottom.equalToSuperview().inset(Screen.relativeHeight(406))
         }
     }
+
 }
 
 // MARK: - EXTENSION

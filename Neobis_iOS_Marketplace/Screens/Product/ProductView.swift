@@ -64,28 +64,28 @@ class ProductView: UIView {
     
     func setupConstraints() {
         
-        boxImage.snp.makeConstraints{ make in
-            make.top.equalToSuperview().inset(184 * UIScreen.main.bounds.height / 812)
-            make.leading.equalToSuperview().inset(96 * UIScreen.main.bounds.width / 375)
-            make.trailing.equalToSuperview().inset(111 * UIScreen.main.bounds.width / 375)
-            make.bottom.equalToSuperview().inset(443 * UIScreen.main.bounds.height / 812)
+        boxImage.snp.makeConstraints { make in
+            make.top.equalToSuperview().inset(Screen.relativeHeight(184))
+            make.leading.equalToSuperview().inset(Screen.relativeWidth(96))
+            make.trailing.equalToSuperview().inset(Screen.relativeWidth(111))
+            make.bottom.equalToSuperview().inset(Screen.relativeHeight(443))
         }
         
-        emptyLabel.snp.makeConstraints{ make in
-            make.top.equalToSuperview().inset(413 * UIScreen.main.bounds.height / 812)
-            make.leading.equalToSuperview().inset(20 * UIScreen.main.bounds.width / 375)
-            make.trailing.equalToSuperview().inset(35 * UIScreen.main.bounds.width / 375)
-            make.bottom.equalToSuperview().inset(382 * UIScreen.main.bounds.height / 812)
+        emptyLabel.snp.makeConstraints { make in
+            make.top.equalToSuperview().inset(Screen.relativeHeight(413))
+            make.leading.equalToSuperview().inset(Screen.relativeWidth(20))
+            make.trailing.equalToSuperview().inset(Screen.relativeWidth(35))
+            make.bottom.equalToSuperview().inset(Screen.relativeHeight(382))
         }
         
-        collectionView.snp.makeConstraints{ make in
-            make.top.equalToSuperview().inset(112 * UIScreen.main.bounds.height / 812)
-            make.leading.equalToSuperview().inset(20 * UIScreen.main.bounds.width / 375)
-            make.trailing.equalToSuperview().inset(20 * UIScreen.main.bounds.width / 375)
+        collectionView.snp.makeConstraints { make in
+            make.top.equalToSuperview().inset(Screen.relativeHeight(112))
+            make.leading.equalToSuperview().inset(Screen.relativeWidth(20))
+            make.trailing.equalToSuperview().inset(Screen.relativeWidth(20))
             make.bottom.equalToSuperview()
         }
-        
     }
+
     
     func updateView(with products: [[String: Any]]) {
         self.products = products

@@ -61,24 +61,26 @@ class PasswordView: UIView, UITextFieldDelegate {
     
     let enterButton: UIButton = {
         let button = UIButton()
-//        button.backgroundColor = UIColor.colorBlue
+        // button.backgroundColor = UIColor.colorBlue
         button.backgroundColor = UIColor.colorGrey
-        button.layer.cornerRadius = 23 * UIScreen.main.bounds.height / 812
+        button.layer.cornerRadius = Screen.relativeHeight(23)
         button.setTitle("Next", for: .normal)
-        button.titleLabel?.font = UIFont(name: "GothamPro-Bold", size: 16)
+        button.titleLabel?.font = UIFont(name: "GothamPro-Bold", size: Screen.relativeHeight(16))
         return button
     }()
+
     
     let finishButton: UIButton = {
         let button = UIButton()
-//        button.backgroundColor = UIColor.colorBlue
+        // button.backgroundColor = UIColor.colorBlue
         button.backgroundColor = UIColor.colorGrey
-        button.layer.cornerRadius = 23 * UIScreen.main.bounds.height / 812
+        button.layer.cornerRadius = Screen.relativeHeight(23)
         button.setTitle("Finish", for: .normal)
-        button.titleLabel?.font = UIFont(name: "GothamPro-Bold", size: 16)
+        button.titleLabel?.font = UIFont(name: "GothamPro-Bold", size: Screen.relativeHeight(16))
         button.isHidden = true
         return button
     }()
+
     
     let passwordError: UILabel = {
         let label = UILabel()
@@ -135,58 +137,59 @@ class PasswordView: UIView, UITextFieldDelegate {
     }
     
     func setupConstraints() {
-        lockImage.snp.makeConstraints{ make in
-            make.top.equalToSuperview().inset(120 * UIScreen.main.bounds.height / 812)
+        lockImage.snp.makeConstraints { make in
+            make.top.equalToSuperview().inset(Screen.relativeHeight(120))
             make.centerX.equalToSuperview()
         }
-        
-        passwordLabel.snp.makeConstraints{ make in
-            make.top.equalToSuperview().inset(228 * UIScreen.main.bounds.height / 812)
-            make.bottom.equalToSuperview().inset(565 * UIScreen.main.bounds.height / 812)
+
+        passwordLabel.snp.makeConstraints { make in
+            make.top.equalToSuperview().inset(Screen.relativeHeight(228))
+            make.bottom.equalToSuperview().inset(Screen.relativeHeight(565))
             make.centerX.equalToSuperview()
         }
-        
-        passwordReq.snp.makeConstraints{ make in
-            make.top.equalToSuperview().inset(255 * UIScreen.main.bounds.height / 812)
-            make.bottom.equalToSuperview().inset(500 * UIScreen.main.bounds.height / 812)
+
+        passwordReq.snp.makeConstraints { make in
+            make.top.equalToSuperview().inset(Screen.relativeHeight(255))
+            make.bottom.equalToSuperview().inset(Screen.relativeHeight(500))
             make.centerX.equalToSuperview()
         }
-        
-        enterButton.snp.makeConstraints{ make in
-            make.top.equalToSuperview().inset(497 * UIScreen.main.bounds.height / 812)
-            make.bottom.equalToSuperview().inset(271 * UIScreen.main.bounds.height / 812)
-            make.leading.equalToSuperview().inset(20 * UIScreen.main.bounds.width / 375)
-            make.trailing.equalToSuperview().inset(20 * UIScreen.main.bounds.width / 375)
+
+        enterButton.snp.makeConstraints { make in
+            make.top.equalToSuperview().inset(Screen.relativeHeight(497))
+            make.bottom.equalToSuperview().inset(Screen.relativeHeight(271))
+            make.leading.equalToSuperview().inset(Screen.relativeWidth(20))
+            make.trailing.equalToSuperview().inset(Screen.relativeWidth(20))
         }
-        
-        finishButton.snp.makeConstraints{ make in
-            make.top.equalToSuperview().inset(497 * UIScreen.main.bounds.height / 812)
-            make.bottom.equalToSuperview().inset(271 * UIScreen.main.bounds.height / 812)
-            make.leading.equalToSuperview().inset(20 * UIScreen.main.bounds.width / 375)
-            make.trailing.equalToSuperview().inset(20 * UIScreen.main.bounds.width / 375)
+
+        finishButton.snp.makeConstraints { make in
+            make.top.equalToSuperview().inset(Screen.relativeHeight(497))
+            make.bottom.equalToSuperview().inset(Screen.relativeHeight(271))
+            make.leading.equalToSuperview().inset(Screen.relativeWidth(20))
+            make.trailing.equalToSuperview().inset(Screen.relativeWidth(20))
         }
-        
-        passwordField.snp.makeConstraints{ make in
-            make.top.equalToSuperview().inset(340 * UIScreen.main.bounds.height / 812)
-            make.bottom.equalToSuperview().inset(438 * UIScreen.main.bounds.height / 812)
-            make.leading.equalToSuperview().inset(95.5 * UIScreen.main.bounds.width / 375)
-            make.trailing.equalToSuperview().inset(95.5 * UIScreen.main.bounds.width / 375)
+
+        passwordField.snp.makeConstraints { make in
+            make.top.equalToSuperview().inset(Screen.relativeHeight(340))
+            make.bottom.equalToSuperview().inset(Screen.relativeHeight(438))
+            make.leading.equalToSuperview().inset(Screen.relativeWidth(95.5))
+            make.trailing.equalToSuperview().inset(Screen.relativeWidth(95.5))
         }
-        
-        passwordConfirmField.snp.makeConstraints{ make in
-            make.top.equalToSuperview().inset(382 * UIScreen.main.bounds.height / 812)
-            make.bottom.equalToSuperview().inset(396 * UIScreen.main.bounds.height / 812)
-            make.leading.equalToSuperview().inset(95.5 * UIScreen.main.bounds.width / 375)
-            make.trailing.equalToSuperview().inset(95.5 * UIScreen.main.bounds.width / 375)
+
+        passwordConfirmField.snp.makeConstraints { make in
+            make.top.equalToSuperview().inset(Screen.relativeHeight(382))
+            make.bottom.equalToSuperview().inset(Screen.relativeHeight(396))
+            make.leading.equalToSuperview().inset(Screen.relativeWidth(95.5))
+            make.trailing.equalToSuperview().inset(Screen.relativeWidth(95.5))
         }
-        
-        passwordError.snp.makeConstraints{ make in
-            make.top.equalToSuperview().inset(424 * UIScreen.main.bounds.height / 812)
-            make.bottom.equalToSuperview().inset(368 * UIScreen.main.bounds.height / 812)
-            make.leading.equalToSuperview().inset(16 * UIScreen.main.bounds.width / 375)
-            make.trailing.equalToSuperview().inset(16 * UIScreen.main.bounds.width / 375)
+
+        passwordError.snp.makeConstraints { make in
+            make.top.equalToSuperview().inset(Screen.relativeHeight(424))
+            make.bottom.equalToSuperview().inset(Screen.relativeHeight(368))
+            make.leading.equalToSuperview().inset(Screen.relativeWidth(16))
+            make.trailing.equalToSuperview().inset(Screen.relativeWidth(16))
         }
     }
+
     
     // MARK: - TEXTFIELD DELEGATE
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {

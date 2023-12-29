@@ -132,13 +132,11 @@ class ProfileViewController: UIViewController {
     
     @objc func finishRegButtonPressed() {
         let vc = PersonalDataViewController(getUserProtocol: GetUserViewModel())
-        
         navigationController?.pushViewController(vc, animated: true)
     }
     
     @objc func changeButtonPressed() {
         let vc = PersonalDataViewController(getUserProtocol: GetUserViewModel())
-        
         navigationController?.pushViewController(vc, animated: true)
     }
     

@@ -17,12 +17,13 @@ class PersonalDataView: UIView, UITextFieldDelegate {
     let profilePic: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(named: "defaultPic")
-        image.layer.cornerRadius = 40 * UIScreen.main.bounds.height / 812
+        image.layer.cornerRadius = Screen.relativeHeight(40)
         image.clipsToBounds = true
         image.contentMode = .scaleAspectFill
         
         return image
     }()
+
     
     let setPicButton: UIButton = {
         let button = UIButton()
@@ -36,10 +37,11 @@ class PersonalDataView: UIView, UITextFieldDelegate {
     let firstSectionView: UIView = {
         let view = UIView()
         view.backgroundColor = .white
-        view.layer.cornerRadius = 12 * UIScreen.main.bounds.height / 812
+        view.layer.cornerRadius = Screen.relativeHeight(12)
         
         return view
     }()
+
     
     let nameField: BorderedTextField = {
         let field = BorderedTextField()
@@ -74,21 +76,22 @@ class PersonalDataView: UIView, UITextFieldDelegate {
     let secondSectionView: UIView = {
         let view = UIView()
         view.backgroundColor = .white
-        view.layer.cornerRadius = 12 * UIScreen.main.bounds.height / 812
+        view.layer.cornerRadius = Screen.relativeHeight(12)
         
         let lineView = UIView()
         lineView.backgroundColor = UIColor.colorBackground
         view.addSubview(lineView)
         
         lineView.snp.makeConstraints { make in
-            make.leading.equalToSuperview().inset(16 * UIScreen.main.bounds.width / 375)
-            make.trailing.equalToSuperview().inset(16 * UIScreen.main.bounds.width / 375)
+            make.leading.equalToSuperview().inset(Screen.relativeWidth(16))
+            make.trailing.equalToSuperview().inset(Screen.relativeWidth(16))
             make.centerY.equalToSuperview()
             make.height.equalTo(1)
         }
         
         return view
     }()
+
     
     let numberButton: UIButton = {
         let button = UIButton()
@@ -157,82 +160,82 @@ class PersonalDataView: UIView, UITextFieldDelegate {
     }
     
     func setupConstraints() {
-        profilePic.snp.makeConstraints{ make in
-            make.top.equalToSuperview().inset(112 * UIScreen.main.bounds.height / 812)
-            make.bottom.equalToSuperview().inset(620 * UIScreen.main.bounds.height / 812)
-//            make.centerX.equalToSuperview()
-            make.leading.equalToSuperview().inset(148 * UIScreen.main.bounds.width / 375)
-            make.trailing.equalToSuperview().inset(148 * UIScreen.main.bounds.width / 375)
+        profilePic.snp.makeConstraints { make in
+            make.top.equalToSuperview().inset(Screen.relativeHeight(112))
+            make.bottom.equalToSuperview().inset(Screen.relativeHeight(620))
+            make.leading.equalToSuperview().inset(Screen.relativeWidth(148))
+            make.trailing.equalToSuperview().inset(Screen.relativeWidth(148))
         }
-        
-        setPicButton.snp.makeConstraints{ make in
-            make.top.equalToSuperview().inset(204 * UIScreen.main.bounds.height / 812)
-            make.bottom.equalToSuperview().inset(584 * UIScreen.main.bounds.height / 812)
-            make.leading.equalToSuperview().inset(98 * UIScreen.main.bounds.width / 375)
-            make.trailing.equalToSuperview().inset(98 * UIScreen.main.bounds.width / 375)
+
+        setPicButton.snp.makeConstraints { make in
+            make.top.equalToSuperview().inset(Screen.relativeHeight(204))
+            make.bottom.equalToSuperview().inset(Screen.relativeHeight(584))
+            make.leading.equalToSuperview().inset(Screen.relativeWidth(98))
+            make.trailing.equalToSuperview().inset(Screen.relativeWidth(98))
         }
-        
-        firstSectionView.snp.makeConstraints{ make in
-            make.top.equalToSuperview().inset(252 * UIScreen.main.bounds.height / 812)
-            make.bottom.equalToSuperview().inset(381 * UIScreen.main.bounds.height / 812)
-            make.leading.equalToSuperview().inset(20 * UIScreen.main.bounds.width / 375)
-            make.trailing.equalToSuperview().inset(20 * UIScreen.main.bounds.width / 375)
+
+        firstSectionView.snp.makeConstraints { make in
+            make.top.equalToSuperview().inset(Screen.relativeHeight(252))
+            make.bottom.equalToSuperview().inset(Screen.relativeHeight(381))
+            make.leading.equalToSuperview().inset(Screen.relativeWidth(20))
+            make.trailing.equalToSuperview().inset(Screen.relativeWidth(20))
         }
-        
-        secondSectionView.snp.makeConstraints{ make in
-            make.top.equalToSuperview().inset(443 * UIScreen.main.bounds.height / 812)
-            make.bottom.equalToSuperview().inset(280 * UIScreen.main.bounds.height / 812)
-            make.leading.equalToSuperview().inset(20 * UIScreen.main.bounds.width / 375)
-            make.trailing.equalToSuperview().inset(20 * UIScreen.main.bounds.width / 375)
+
+        secondSectionView.snp.makeConstraints { make in
+            make.top.equalToSuperview().inset(Screen.relativeHeight(443))
+            make.bottom.equalToSuperview().inset(Screen.relativeHeight(280))
+            make.leading.equalToSuperview().inset(Screen.relativeWidth(20))
+            make.trailing.equalToSuperview().inset(Screen.relativeWidth(20))
         }
-        
-        nameField.snp.makeConstraints{ make in
-            make.top.equalTo(firstSectionView.snp.top).inset(6 * UIScreen.main.bounds.height / 812)
-            make.leading.equalTo(firstSectionView.snp.leading).inset(16 * UIScreen.main.bounds.width / 375)
-            make.trailing.equalTo(firstSectionView.snp.trailing).inset(16 * UIScreen.main.bounds.width / 375)
-            make.bottom.equalTo(firstSectionView.snp.bottom).inset(141 * UIScreen.main.bounds.height / 812)
+
+        nameField.snp.makeConstraints { make in
+            make.top.equalTo(firstSectionView.snp.top).inset(Screen.relativeHeight(6))
+            make.leading.equalTo(firstSectionView.snp.leading).inset(Screen.relativeWidth(16))
+            make.trailing.equalTo(firstSectionView.snp.trailing).inset(Screen.relativeWidth(16))
+            make.bottom.equalTo(firstSectionView.snp.bottom).inset(Screen.relativeHeight(141))
         }
-        
-        lastNameField.snp.makeConstraints{ make in
-            make.top.equalTo(firstSectionView.snp.top).inset(51 * UIScreen.main.bounds.height / 812)
-            make.leading.equalTo(firstSectionView.snp.leading).inset(16 * UIScreen.main.bounds.width / 375)
-            make.trailing.equalTo(firstSectionView.snp.trailing).inset(16 * UIScreen.main.bounds.width / 375)
-            make.bottom.equalTo(firstSectionView.snp.bottom).inset(96 * UIScreen.main.bounds.height / 812)
+
+        lastNameField.snp.makeConstraints { make in
+            make.top.equalTo(firstSectionView.snp.top).inset(Screen.relativeHeight(51))
+            make.leading.equalTo(firstSectionView.snp.leading).inset(Screen.relativeWidth(16))
+            make.trailing.equalTo(firstSectionView.snp.trailing).inset(Screen.relativeWidth(16))
+            make.bottom.equalTo(firstSectionView.snp.bottom).inset(Screen.relativeHeight(96))
         }
-        
-        nickNameField.snp.makeConstraints{ make in
-            make.top.equalTo(firstSectionView.snp.top).inset(96 * UIScreen.main.bounds.height / 812)
-            make.leading.equalTo(firstSectionView.snp.leading).inset(16 * UIScreen.main.bounds.width / 375)
-            make.trailing.equalTo(firstSectionView.snp.trailing).inset(16 * UIScreen.main.bounds.width / 375)
-            make.bottom.equalTo(firstSectionView.snp.bottom).inset(51 * UIScreen.main.bounds.height / 812)
+
+        nickNameField.snp.makeConstraints { make in
+            make.top.equalTo(firstSectionView.snp.top).inset(Screen.relativeHeight(96))
+            make.leading.equalTo(firstSectionView.snp.leading).inset(Screen.relativeWidth(16))
+            make.trailing.equalTo(firstSectionView.snp.trailing).inset(Screen.relativeWidth(16))
+            make.bottom.equalTo(firstSectionView.snp.bottom).inset(Screen.relativeHeight(51))
         }
-        
-        birthdayField.snp.makeConstraints{ make in
-            make.top.equalTo(firstSectionView.snp.top).inset(141 * UIScreen.main.bounds.height / 812)
-            make.leading.equalTo(firstSectionView.snp.leading).inset(16 * UIScreen.main.bounds.width / 375)
-            make.trailing.equalTo(firstSectionView.snp.trailing).inset(16 * UIScreen.main.bounds.width / 375)
-            make.bottom.equalTo(firstSectionView.snp.bottom).inset(6 * UIScreen.main.bounds.height / 812)
+
+        birthdayField.snp.makeConstraints { make in
+            make.top.equalTo(firstSectionView.snp.top).inset(Screen.relativeHeight(141))
+            make.leading.equalTo(firstSectionView.snp.leading).inset(Screen.relativeWidth(16))
+            make.trailing.equalTo(firstSectionView.snp.trailing).inset(Screen.relativeWidth(16))
+            make.bottom.equalTo(firstSectionView.snp.bottom).inset(Screen.relativeHeight(6))
         }
-        
-        numberButton.snp.makeConstraints{ make in
-            make.top.equalTo(secondSectionView.snp.top).inset(10 * UIScreen.main.bounds.height / 812)
-            make.leading.equalTo(secondSectionView.snp.leading).inset(16 * UIScreen.main.bounds.width / 375)
-            make.trailing.equalTo(secondSectionView.snp.trailing).inset(187 * UIScreen.main.bounds.width / 375)
-            make.bottom.equalTo(secondSectionView.snp.bottom).inset(55 * UIScreen.main.bounds.height / 812)
+
+        numberButton.snp.makeConstraints { make in
+            make.top.equalTo(secondSectionView.snp.top).inset(Screen.relativeHeight(10))
+            make.leading.equalTo(secondSectionView.snp.leading).inset(Screen.relativeWidth(16))
+            make.trailing.equalTo(secondSectionView.snp.trailing).inset(Screen.relativeWidth(187))
+            make.bottom.equalTo(secondSectionView.snp.bottom).inset(Screen.relativeHeight(55))
         }
-        
-        numberLabel.snp.makeConstraints{ make in
-            make.top.equalTo(secondSectionView.snp.top).inset(10 * UIScreen.main.bounds.height / 812)
-            make.leading.equalTo(secondSectionView.snp.leading).inset(184 * UIScreen.main.bounds.width / 375)
-            make.trailing.equalTo(secondSectionView.snp.trailing).inset(16 * UIScreen.main.bounds.width / 375)
-            make.bottom.equalTo(secondSectionView.snp.bottom).inset(55 * UIScreen.main.bounds.height / 812)
+
+        numberLabel.snp.makeConstraints { make in
+            make.top.equalTo(secondSectionView.snp.top).inset(Screen.relativeHeight(10))
+            make.leading.equalTo(secondSectionView.snp.leading).inset(Screen.relativeWidth(184))
+            make.trailing.equalTo(secondSectionView.snp.trailing).inset(Screen.relativeWidth(16))
+            make.bottom.equalTo(secondSectionView.snp.bottom).inset(Screen.relativeHeight(55))
         }
-        
-        emailField.snp.makeConstraints{ make in
-            make.top.equalTo(secondSectionView.snp.top).inset(55 * UIScreen.main.bounds.height / 812)
-            make.leading.equalTo(secondSectionView.snp.leading).inset(16 * UIScreen.main.bounds.width / 375)
-            make.trailing.equalTo(secondSectionView.snp.trailing).inset(16 * UIScreen.main.bounds.width / 375)
-            make.bottom.equalTo(secondSectionView.snp.bottom).inset(10 * UIScreen.main.bounds.height / 812)
+
+        emailField.snp.makeConstraints { make in
+            make.top.equalTo(secondSectionView.snp.top).inset(Screen.relativeHeight(55))
+            make.leading.equalTo(secondSectionView.snp.leading).inset(Screen.relativeWidth(16))
+            make.trailing.equalTo(secondSectionView.snp.trailing).inset(Screen.relativeWidth(16))
+            make.bottom.equalTo(secondSectionView.snp.bottom).inset(Screen.relativeHeight(10))
         }
     }
+
 }

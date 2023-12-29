@@ -61,10 +61,11 @@ class ProductCellView: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .white
-        layer.cornerRadius = 12 * UIScreen.main.bounds.height / 812
+        layer.cornerRadius = 12 * Screen.relativeHeight(1)
         setupViews()
         setupConstraints()
     }
+
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -80,44 +81,44 @@ class ProductCellView: UICollectionViewCell {
     }
     
     func setupConstraints() {
+        
         productImageView.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(6 * UIScreen.main.bounds.height / 812)
-            make.leading.equalToSuperview().inset(6 * UIScreen.main.bounds.width / 375)
-            make.trailing.equalToSuperview().inset(6 * UIScreen.main.bounds.width / 375)
-            make.bottom.equalToSuperview().inset(93 * UIScreen.main.bounds.height / 812)
+            make.top.equalToSuperview().inset(Screen.relativeHeight(6))
+            make.leading.equalToSuperview().inset(Screen.relativeWidth(6))
+            make.trailing.equalToSuperview().inset(Screen.relativeWidth(6))
+            make.bottom.equalToSuperview().inset(Screen.relativeHeight(93))
         }
         
         productNameLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(95 * UIScreen.main.bounds.height / 812)
-            make.leading.equalToSuperview().inset(6 * UIScreen.main.bounds.width / 375)
-            make.trailing.equalToSuperview().inset(6 * UIScreen.main.bounds.width / 375)
-            make.bottom.equalToSuperview().inset(55 * UIScreen.main.bounds.height / 812)
+            make.top.equalToSuperview().inset(Screen.relativeHeight(95))
+            make.leading.equalToSuperview().inset(Screen.relativeWidth(6))
+            make.trailing.equalToSuperview().inset(Screen.relativeWidth(6))
+            make.bottom.equalToSuperview().inset(Screen.relativeHeight(55))
         }
         
         priceLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(133 * UIScreen.main.bounds.height / 812)
-            make.leading.equalToSuperview().inset(6 * UIScreen.main.bounds.width / 375)
-            make.trailing.equalToSuperview().inset(13 * UIScreen.main.bounds.width / 375)
-            make.bottom.equalToSuperview().inset(34 * UIScreen.main.bounds.height / 812)
+            make.top.equalToSuperview().inset(Screen.relativeHeight(133))
+            make.leading.equalToSuperview().inset(Screen.relativeWidth(6))
+            make.trailing.equalToSuperview().inset(Screen.relativeWidth(13))
+            make.bottom.equalToSuperview().inset(Screen.relativeHeight(34))
         }
         
         likeImage.snp.makeConstraints{ make in
-            make.top.equalToSuperview().inset(157.41 * UIScreen.main.bounds.height / 812)
-            make.leading.equalToSuperview().inset(8 * UIScreen.main.bounds.width / 375)
-//            make.trailing.equalToSuperview().inset(133 * UIScreen.main.bounds.width / 375)
-//            make.bottom.equalToSuperview().inset(9.41 * UIScreen.main.bounds.height / 812)
-            make.width.equalTo(20 * UIScreen.main.bounds.width / 375)
-            make.height.equalTo(20 * UIScreen.main.bounds.height / 812)
+            make.top.equalToSuperview().inset(Screen.relativeHeight(157.41))
+            make.leading.equalToSuperview().inset(Screen.relativeWidth(8))
+            make.width.equalTo(Screen.relativeWidth(20))
+            make.height.equalTo(Screen.relativeHeight(20))
         }
         
         likeLabel.snp.makeConstraints{ make in
             make.centerY.equalTo(likeImage)
-            make.leading.equalTo(likeImage.snp.trailing).offset(7 * UIScreen.main.bounds.width / 375)
+            make.leading.equalTo(likeImage.snp.trailing).offset(Screen.relativeWidth(7))
         }
         
         infoButton.snp.makeConstraints{ make in
             make.centerY.equalTo(likeImage)
-            make.trailing.equalToSuperview().inset(6 * UIScreen.main.bounds.width / 375)
+            make.trailing.equalToSuperview().inset(Screen.relativeWidth(6))
         }
     }
+
 }

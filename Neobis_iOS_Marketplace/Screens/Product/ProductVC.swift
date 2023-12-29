@@ -139,11 +139,14 @@ class ProductViewController: UIViewController {
         tapGesture.cancelsTouchesInView = false
         view.addGestureRecognizer(tapGesture)
         
-        popUp.snp.makeConstraints{ make in
-            make.top.equalToSuperview().inset(644 * UIScreen.main.bounds.height / 812)
+        popUp.snp.makeConstraints { make in
+            make.top.equalToSuperview().inset(Screen.relativeHeight(644))
             make.leading.trailing.bottom.equalToSuperview()
         }
     }
+
+
+
     
     // MARK: - ACTION BUTTONS
     @objc func backPressed() {
@@ -231,8 +234,8 @@ extension ProductViewController: UICollectionViewDataSource, UICollectionViewDel
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let cellWidth = 161 * UIScreen.main.bounds.width / 375
-        let cellHeight = 184 * UIScreen.main.bounds.height / 812
+        let cellWidth = Screen.relativeWidth(161)
+        let cellHeight = Screen.relativeHeight(184)
         return CGSize(width: cellWidth, height: cellHeight)
     }
     

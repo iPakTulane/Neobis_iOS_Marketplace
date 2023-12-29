@@ -24,10 +24,11 @@ class AddProductView: UIView {
     let addButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = .white
-        button.layer.cornerRadius = 12 * UIScreen.main.bounds.height / 812
+        button.layer.cornerRadius = 12 * Screen.relativeHeight(1) // Assuming 1 is the original height value
         
         return button
     }()
+
     
     let addImage: UIImageView = {
         let image = UIImageView()
@@ -72,7 +73,7 @@ class AddProductView: UIView {
     let priceField: UITextField = {
         let field = UITextField()
         field.backgroundColor = .white
-        field.layer.cornerRadius = 12 * UIScreen.main.bounds.height / 812
+        field.layer.cornerRadius = 12 * Screen.relativeHeight(1) // Assuming 1 is the original height value
         field.font = UIFont(name: "GothamPro", size: 16)
         field.placeholder = "Price"
         let leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: field.frame.height))
@@ -81,11 +82,12 @@ class AddProductView: UIView {
         
         return field
     }()
+
     
     let nameField: UITextField = {
         let field = UITextField()
         field.backgroundColor = .white
-        field.layer.cornerRadius = 12 * UIScreen.main.bounds.height / 812
+        field.layer.cornerRadius = 12 * Screen.relativeHeight(1) // Assuming 1 is the original height value
         field.font = UIFont(name: "GothamPro", size: 16)
         field.placeholder = "Title"
         let leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: field.frame.height))
@@ -94,6 +96,7 @@ class AddProductView: UIView {
         
         return field
     }()
+
     
     let descriptionOne: UITextView = {
         let textView = UITextView()
@@ -158,73 +161,74 @@ class AddProductView: UIView {
     }
     
     func setupConstraints() {
-        
-        addButton.snp.makeConstraints{ make in
-            make.top.equalToSuperview().inset(112 * UIScreen.main.bounds.height / 812)
-            make.leading.equalToSuperview().inset(20 * UIScreen.main.bounds.width / 375)
-            make.trailing.equalToSuperview().inset(279 * UIScreen.main.bounds.width / 375)
-            make.bottom.equalToSuperview().inset(604 * UIScreen.main.bounds.height / 812)
+        addButton.snp.makeConstraints { make in
+            make.top.equalToSuperview().inset(Screen.relativeHeight(112))
+            make.leading.equalToSuperview().inset(Screen.relativeWidth(20))
+            make.trailing.equalToSuperview().inset(Screen.relativeWidth(279))
+            make.bottom.equalToSuperview().inset(Screen.relativeHeight(604))
         }
         
-        addImage.snp.makeConstraints{ make in
-            make.top.equalTo(addButton).inset(22 * UIScreen.main.bounds.height / 812)
-            make.leading.equalTo(addButton).inset(26 * UIScreen.main.bounds.width / 375)
-            make.trailing.equalTo(addButton).inset(26 * UIScreen.main.bounds.width / 375)
-            make.bottom.equalTo(addButton).inset(50 * UIScreen.main.bounds.height / 812)
+        addImage.snp.makeConstraints { make in
+            make.top.equalTo(addButton).inset(Screen.relativeHeight(22))
+            make.leading.equalTo(addButton).inset(Screen.relativeWidth(26))
+            make.trailing.equalTo(addButton).inset(Screen.relativeWidth(26))
+            make.bottom.equalTo(addButton).inset(Screen.relativeHeight(50))
         }
         
-        addLabel.snp.makeConstraints{ make in
-            make.top.equalTo(addButton).inset(52 * UIScreen.main.bounds.height / 812)
-            make.leading.equalTo(addButton).inset(4 * UIScreen.main.bounds.width / 375)
-            make.trailing.equalTo(addButton).inset(4 * UIScreen.main.bounds.width / 375)
-            make.bottom.equalTo(addButton).inset(22 * UIScreen.main.bounds.height / 812)
+        addLabel.snp.makeConstraints { make in
+            make.top.equalTo(addButton).inset(Screen.relativeHeight(52))
+            make.leading.equalTo(addButton).inset(Screen.relativeWidth(4))
+            make.trailing.equalTo(addButton).inset(Screen.relativeWidth(4))
+            make.bottom.equalTo(addButton).inset(Screen.relativeHeight(22))
         }
         
         collectionView.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(112 * UIScreen.main.bounds.height / 812)
+            make.top.equalToSuperview().inset(Screen.relativeHeight(112))
             make.trailing.equalToSuperview()
-            make.bottom.equalToSuperview().inset(604 * UIScreen.main.bounds.height / 812)
-            make.leading.equalTo(102 * UIScreen.main.bounds.width / 375)
+            make.bottom.equalToSuperview().inset(Screen.relativeHeight(604))
+            make.leading.equalTo(Screen.relativeWidth(102))
         }
         
-        priceField.snp.makeConstraints{ make in
-            make.top.equalToSuperview().inset(234 * UIScreen.main.bounds.height / 812)
-            make.leading.equalToSuperview().inset(20 * UIScreen.main.bounds.width / 375)
-            make.trailing.equalToSuperview().inset(20 * UIScreen.main.bounds.width / 375)
-            make.bottom.equalToSuperview().inset(538 * UIScreen.main.bounds.height / 812)
+        priceField.snp.makeConstraints { make in
+            make.top.equalToSuperview().inset(Screen.relativeHeight(234))
+            make.leading.equalToSuperview().inset(Screen.relativeWidth(20))
+            make.trailing.equalToSuperview().inset(Screen.relativeWidth(20))
+            make.bottom.equalToSuperview().inset(Screen.relativeHeight(538))
         }
         
-        nameField.snp.makeConstraints{ make in
-            make.top.equalToSuperview().inset(282 * UIScreen.main.bounds.height / 812)
-            make.leading.equalToSuperview().inset(20 * UIScreen.main.bounds.width / 375)
-            make.trailing.equalToSuperview().inset(20 * UIScreen.main.bounds.width / 375)
-            make.bottom.equalToSuperview().inset(490 * UIScreen.main.bounds.height / 812)
+        nameField.snp.makeConstraints { make in
+            make.top.equalToSuperview().inset(Screen.relativeHeight(282))
+            make.leading.equalToSuperview().inset(Screen.relativeWidth(20))
+            make.trailing.equalToSuperview().inset(Screen.relativeWidth(20))
+            make.bottom.equalToSuperview().inset(Screen.relativeHeight(490))
         }
         
         descriptionOne.snp.updateConstraints { make in
-            make.top.equalToSuperview().inset(330 * UIScreen.main.bounds.height / 812)
-            make.leading.equalToSuperview().inset(20 * UIScreen.main.bounds.width / 375)
-            make.trailing.equalToSuperview().inset(20 * UIScreen.main.bounds.width / 375)
+            make.top.equalToSuperview().inset(Screen.relativeHeight(330))
+            make.leading.equalToSuperview().inset(Screen.relativeWidth(20))
+            make.trailing.equalToSuperview().inset(Screen.relativeWidth(20))
             make.height.equalTo(textHeightOne)
         }
         
         descriptionTwo.snp.updateConstraints { make in
-            make.top.equalTo(descriptionOne.snp.bottom).offset(8 * UIScreen.main.bounds.height / 812)
-            make.leading.equalToSuperview().inset(20 * UIScreen.main.bounds.width / 375)
-            make.trailing.equalToSuperview().inset(20 * UIScreen.main.bounds.width / 375)
+            make.top.equalTo(descriptionOne.snp.bottom).offset(Screen.relativeHeight(8))
+            make.leading.equalToSuperview().inset(Screen.relativeWidth(20))
+            make.trailing.equalToSuperview().inset(Screen.relativeWidth(20))
             make.height.equalTo(textHeightTwo)
         }
     }
+
 }
 
 // MARK: - EXTENSION
 extension AddProductView: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UITextViewDelegate {
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let cellWidth = 76 * UIScreen.main.bounds.width / 375
+        let cellWidth = Screen.relativeWidth(76)
         let cellHeight = collectionView.bounds.height
         return CGSize(width: cellWidth, height: cellHeight)
     }
+
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let pickedImage = info[.originalImage] as? UIImage {

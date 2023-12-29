@@ -85,42 +85,42 @@ class HomeView: UIView {
     }
     
     func setupConstraints() {
-        
-        boxImage.snp.makeConstraints{ make in
-            make.top.equalToSuperview().inset(184 * UIScreen.main.bounds.height / 812)
-            make.leading.equalToSuperview().inset(96 * UIScreen.main.bounds.width / 375)
-            make.trailing.equalToSuperview().inset(111 * UIScreen.main.bounds.width / 375)
-            make.bottom.equalToSuperview().inset(443 * UIScreen.main.bounds.height / 812)
+        boxImage.snp.makeConstraints { make in
+            make.top.equalToSuperview().inset(Screen.relativeHeight(184))
+            make.leading.equalToSuperview().inset(Screen.relativeWidth(96))
+            make.trailing.equalToSuperview().inset(Screen.relativeWidth(111))
+            make.bottom.equalToSuperview().inset(Screen.relativeHeight(443))
         }
-        
-        emptyLabel.snp.makeConstraints{ make in
-            make.top.equalToSuperview().inset(413 * UIScreen.main.bounds.height / 812)
-            make.leading.equalToSuperview().inset(20 * UIScreen.main.bounds.width / 375)
-            make.trailing.equalToSuperview().inset(35 * UIScreen.main.bounds.width / 375)
-            make.bottom.equalToSuperview().inset(382 * UIScreen.main.bounds.height / 812)
+
+        emptyLabel.snp.makeConstraints { make in
+            make.top.equalToSuperview().inset(Screen.relativeHeight(413))
+            make.leading.equalToSuperview().inset(Screen.relativeWidth(20))
+            make.trailing.equalToSuperview().inset(Screen.relativeWidth(35))
+            make.bottom.equalToSuperview().inset(Screen.relativeHeight(382))
         }
-        
-        collectionView.snp.makeConstraints{ make in
-            make.top.equalToSuperview().inset(112 * UIScreen.main.bounds.height / 812)
-            make.leading.equalToSuperview().inset(20 * UIScreen.main.bounds.width / 375)
-            make.trailing.equalToSuperview().inset(20 * UIScreen.main.bounds.width / 375)
+
+        collectionView.snp.makeConstraints { make in
+            make.top.equalToSuperview().inset(Screen.relativeHeight(112))
+            make.leading.equalToSuperview().inset(Screen.relativeWidth(20))
+            make.trailing.equalToSuperview().inset(Screen.relativeWidth(20))
             make.bottom.equalToSuperview()
         }
-        
-        cartImage.snp.makeConstraints{ make in
-            make.top.equalToSuperview().inset(52 * UIScreen.main.bounds.height / 812)
-            make.leading.equalToSuperview().inset(20 * UIScreen.main.bounds.width / 375)
-            make.trailing.equalToSuperview().inset(311 * UIScreen.main.bounds.width / 375)
-            make.bottom.equalToSuperview().inset(716 * UIScreen.main.bounds.height / 812)
+
+        cartImage.snp.makeConstraints { make in
+            make.top.equalToSuperview().inset(Screen.relativeHeight(52))
+            make.leading.equalToSuperview().inset(Screen.relativeWidth(20))
+            make.trailing.equalToSuperview().inset(Screen.relativeWidth(311))
+            make.bottom.equalToSuperview().inset(Screen.relativeHeight(716))
         }
-        
-        marketLabel.snp.makeConstraints{ make in
-            make.top.equalToSuperview().inset(69 * UIScreen.main.bounds.height / 812)
-            make.leading.equalToSuperview().inset(72 * UIScreen.main.bounds.width / 375)
-            make.trailing.equalToSuperview().inset(159 * UIScreen.main.bounds.width / 375)
-            make.bottom.equalToSuperview().inset(729 * UIScreen.main.bounds.height / 812)
+
+        marketLabel.snp.makeConstraints { make in
+            make.top.equalToSuperview().inset(Screen.relativeHeight(69))
+            make.leading.equalToSuperview().inset(Screen.relativeWidth(72))
+            make.trailing.equalToSuperview().inset(Screen.relativeWidth(159))
+            make.bottom.equalToSuperview().inset(Screen.relativeHeight(729))
         }
     }
+
     
     func updateView(with products: [[String: Any]]) {
         self.products = products
@@ -175,8 +175,8 @@ extension HomeView: UICollectionViewDataSource, UICollectionViewDelegateFlowLayo
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let cellWidth = 161 * UIScreen.main.bounds.width / 375
-        let cellHeight = 184 * UIScreen.main.bounds.height / 812
+        let cellWidth = Screen.relativeWidth(161)
+        let cellHeight = Screen.relativeHeight(184)
         return CGSize(width: cellWidth, height: cellHeight)
     }
     

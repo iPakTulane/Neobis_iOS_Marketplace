@@ -54,13 +54,14 @@ class RegistrationView: UIView, UITextFieldDelegate{
     
     let enterButton: UIButton = {
         let button = UIButton()
-//        button.backgroundColor = UIColor.colorBlue
+        // button.backgroundColor = UIColor.colorBlue
         button.backgroundColor = UIColor.colorGrey
-        button.layer.cornerRadius = 23 * UIScreen.main.bounds.height / 812
+        button.layer.cornerRadius = Screen.relativeHeight(23)
         button.setTitle("Log in", for: .normal)
-        button.titleLabel?.font = UIFont(name: "GothamPro-Bold", size: 16)
+        button.titleLabel?.font = UIFont(name: "GothamPro-Bold", size: Screen.relativeHeight(16))
         return button
     }()
+
     
     // MARK: - INIT
     override init(frame: CGRect) {
@@ -94,40 +95,41 @@ class RegistrationView: UIView, UITextFieldDelegate{
     }
     
     func setupConstraints() {
-        cartImage.snp.makeConstraints{ make in
-            make.top.equalToSuperview().inset(112 * UIScreen.main.bounds.height / 812)
-            make.bottom.equalToSuperview().inset(620 * UIScreen.main.bounds.height / 812)
-            make.leading.equalToSuperview().inset(133 * UIScreen.main.bounds.width / 375)
-            make.trailing.equalToSuperview().inset(162 * UIScreen.main.bounds.width / 375)
+        cartImage.snp.makeConstraints { make in
+            make.top.equalToSuperview().inset(Screen.relativeHeight(112))
+            make.bottom.equalToSuperview().inset(Screen.relativeHeight(620))
+            make.leading.equalToSuperview().inset(Screen.relativeWidth(133))
+            make.trailing.equalToSuperview().inset(Screen.relativeWidth(162))
         }
-        
-        marketLabel.snp.makeConstraints{ make in
-            make.top.equalToSuperview().inset(200 * UIScreen.main.bounds.height / 812)
-            make.bottom.equalToSuperview().inset(587 * UIScreen.main.bounds.height / 812)
+
+        marketLabel.snp.makeConstraints { make in
+            make.top.equalToSuperview().inset(Screen.relativeHeight(200))
+            make.bottom.equalToSuperview().inset(Screen.relativeHeight(587))
             make.centerX.equalToSuperview()
         }
-        
-        nameField.snp.makeConstraints{ make in
-            make.top.equalToSuperview().inset(293 * UIScreen.main.bounds.height / 812)
-            make.bottom.equalToSuperview().inset(484 * UIScreen.main.bounds.height / 812)
-            make.leading.equalToSuperview().inset(20 * UIScreen.main.bounds.width / 375)
-            make.trailing.equalToSuperview().inset(20 * UIScreen.main.bounds.width / 375)
+
+        nameField.snp.makeConstraints { make in
+            make.top.equalToSuperview().inset(Screen.relativeHeight(293))
+            make.bottom.equalToSuperview().inset(Screen.relativeHeight(484))
+            make.leading.equalToSuperview().inset(Screen.relativeWidth(20))
+            make.trailing.equalToSuperview().inset(Screen.relativeWidth(20))
         }
-        
-        mailField.snp.makeConstraints{ make in
-            make.top.equalToSuperview().inset(379 * UIScreen.main.bounds.height / 812)
-            make.bottom.equalToSuperview().inset(397 * UIScreen.main.bounds.height / 812)
-            make.leading.equalToSuperview().inset(20 * UIScreen.main.bounds.width / 375)
-            make.trailing.equalToSuperview().inset(20 * UIScreen.main.bounds.width / 375)
+
+        mailField.snp.makeConstraints { make in
+            make.top.equalToSuperview().inset(Screen.relativeHeight(379))
+            make.bottom.equalToSuperview().inset(Screen.relativeHeight(397))
+            make.leading.equalToSuperview().inset(Screen.relativeWidth(20))
+            make.trailing.equalToSuperview().inset(Screen.relativeWidth(20))
         }
-        
-        enterButton.snp.makeConstraints{ make in
-            make.top.equalToSuperview().inset(497 * UIScreen.main.bounds.height / 812)
-            make.bottom.equalToSuperview().inset(271 * UIScreen.main.bounds.height / 812)
-            make.leading.equalToSuperview().inset(20 * UIScreen.main.bounds.width / 375)
-            make.trailing.equalToSuperview().inset(20 * UIScreen.main.bounds.width / 375)
+
+        enterButton.snp.makeConstraints { make in
+            make.top.equalToSuperview().inset(Screen.relativeHeight(497))
+            make.bottom.equalToSuperview().inset(Screen.relativeHeight(271))
+            make.leading.equalToSuperview().inset(Screen.relativeWidth(20))
+            make.trailing.equalToSuperview().inset(Screen.relativeWidth(20))
         }
     }
+
     
     // MARK: - METHODS
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){

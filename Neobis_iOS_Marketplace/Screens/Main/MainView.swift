@@ -85,38 +85,38 @@ class HomeView: UIView {
     
     func setupConstraints() {
         boxImage.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(Screen.relativeHeight(184))
-            make.leading.equalToSuperview().inset(Screen.relativeWidth(96))
-            make.trailing.equalToSuperview().inset(Screen.relativeWidth(111))
-            make.bottom.equalToSuperview().inset(Screen.relativeHeight(443))
+            make.top.equalToSuperview().inset(184)
+            make.leading.equalToSuperview().inset(96)
+            make.trailing.equalToSuperview().inset(111)
+            make.bottom.equalToSuperview().inset(443)
         }
 
         emptyLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(Screen.relativeHeight(413))
-            make.leading.equalToSuperview().inset(Screen.relativeWidth(20))
-            make.trailing.equalToSuperview().inset(Screen.relativeWidth(35))
-            make.bottom.equalToSuperview().inset(Screen.relativeHeight(382))
+            make.top.equalToSuperview().inset(413)
+            make.leading.equalToSuperview().inset(20)
+            make.trailing.equalToSuperview().inset(35)
+            make.bottom.equalToSuperview().inset(382)
         }
 
         collectionView.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(Screen.relativeHeight(112))
-            make.leading.equalToSuperview().inset(Screen.relativeWidth(20))
-            make.trailing.equalToSuperview().inset(Screen.relativeWidth(20))
+            make.top.equalToSuperview().inset(112)
+            make.leading.equalToSuperview().inset(20)
+            make.trailing.equalToSuperview().inset(20)
             make.bottom.equalToSuperview()
         }
 
         cartImage.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(Screen.relativeHeight(52))
-            make.leading.equalToSuperview().inset(Screen.relativeWidth(20))
-            make.trailing.equalToSuperview().inset(Screen.relativeWidth(311))
-            make.bottom.equalToSuperview().inset(Screen.relativeHeight(716))
+            make.top.equalToSuperview().inset(52)
+            make.leading.equalToSuperview().inset(20)
+            make.trailing.equalToSuperview().inset(311)
+            make.bottom.equalToSuperview().inset(716)
         }
 
         marketLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(Screen.relativeHeight(69))
-            make.leading.equalToSuperview().inset(Screen.relativeWidth(72))
-            make.trailing.equalToSuperview().inset(Screen.relativeWidth(159))
-            make.bottom.equalToSuperview().inset(Screen.relativeHeight(729))
+            make.top.equalToSuperview().inset(69)
+            make.leading.equalToSuperview().inset(72)
+            make.trailing.equalToSuperview().inset(159)
+            make.bottom.equalToSuperview().inset(729)
         }
     }
 
@@ -174,8 +174,8 @@ extension HomeView: UICollectionViewDataSource, UICollectionViewDelegateFlowLayo
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let cellWidth = Screen.relativeWidth(161)
-        let cellHeight = Screen.relativeHeight(184)
+        let cellWidth = 161
+        let cellHeight = 184
         return CGSize(width: cellWidth, height: cellHeight)
     }
     

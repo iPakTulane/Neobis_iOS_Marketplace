@@ -61,7 +61,7 @@ class ProductCellView: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .white
-        layer.cornerRadius = 12 * Screen.relativeHeight(1)
+        layer.cornerRadius = 12 //* 1
         setupViews()
         setupConstraints()
     }
@@ -83,41 +83,41 @@ class ProductCellView: UICollectionViewCell {
     func setupConstraints() {
         
         productImageView.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(Screen.relativeHeight(6))
-            make.leading.equalToSuperview().inset(Screen.relativeWidth(6))
-            make.trailing.equalToSuperview().inset(Screen.relativeWidth(6))
-            make.bottom.equalToSuperview().inset(Screen.relativeHeight(93))
+            make.top.equalToSuperview().inset(6)
+            make.leading.equalToSuperview().inset(6)
+            make.trailing.equalToSuperview().inset(6)
+            make.bottom.equalToSuperview().inset(93)
         }
         
         productNameLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(Screen.relativeHeight(95))
-            make.leading.equalToSuperview().inset(Screen.relativeWidth(6))
-            make.trailing.equalToSuperview().inset(Screen.relativeWidth(6))
-            make.bottom.equalToSuperview().inset(Screen.relativeHeight(55))
+            make.top.equalToSuperview().inset(95)
+            make.leading.equalToSuperview().inset(6)
+            make.trailing.equalToSuperview().inset(6)
+            make.bottom.equalToSuperview().inset(55)
         }
         
         priceLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(Screen.relativeHeight(133))
-            make.leading.equalToSuperview().inset(Screen.relativeWidth(6))
-            make.trailing.equalToSuperview().inset(Screen.relativeWidth(13))
-            make.bottom.equalToSuperview().inset(Screen.relativeHeight(34))
+            make.top.equalToSuperview().inset(133)
+            make.leading.equalToSuperview().inset(6)
+            make.trailing.equalToSuperview().inset(13)
+            make.bottom.equalToSuperview().inset(34)
         }
         
         likeImage.snp.makeConstraints{ make in
-            make.top.equalToSuperview().inset(Screen.relativeHeight(157.41))
-            make.leading.equalToSuperview().inset(Screen.relativeWidth(8))
-            make.width.equalTo(Screen.relativeWidth(20))
-            make.height.equalTo(Screen.relativeHeight(20))
+            make.top.equalToSuperview().inset(157.41)
+            make.leading.equalToSuperview().inset(8)
+            make.width.equalTo(20)
+            make.height.equalTo(20)
         }
         
         likeLabel.snp.makeConstraints{ make in
             make.centerY.equalTo(likeImage)
-            make.leading.equalTo(likeImage.snp.trailing).offset(Screen.relativeWidth(7))
+            make.leading.equalTo(likeImage.snp.trailing).offset(7)
         }
         
         infoButton.snp.makeConstraints{ make in
             make.centerY.equalTo(likeImage)
-            make.trailing.equalToSuperview().inset(Screen.relativeWidth(6))
+            make.trailing.equalToSuperview().inset(6)
         }
     }
 

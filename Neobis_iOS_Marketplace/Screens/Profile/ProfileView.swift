@@ -15,7 +15,7 @@ class ProfileView: UIView {
     let profilePic: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(named: "defaultPic")
-        image.layer.cornerRadius = Screen.relativeHeight(40)
+        image.layer.cornerRadius = 40
         image.clipsToBounds = true
         image.contentMode = .scaleAspectFill
         return image
@@ -219,8 +219,8 @@ class ProfileView: UIView {
         firstSectionView.addSubview(lineView)
         
         lineView.snp.makeConstraints { make in
-            make.leading.equalToSuperview().offset(Screen.relativeWidth(62))
-            make.trailing.equalToSuperview().offset(-Screen.relativeWidth(30))
+            make.leading.equalToSuperview().offset(62)
+            make.trailing.equalToSuperview().offset(-30)
             make.centerY.equalToSuperview()
             make.height.equalTo(1)
         }
@@ -239,58 +239,58 @@ class ProfileView: UIView {
     
     func setupConstraints() {
         profilePic.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(Screen.relativeHeight(112))
-            make.bottom.equalToSuperview().inset(Screen.relativeHeight(620))
-            make.leading.equalToSuperview().inset(Screen.relativeWidth(148))
-            make.trailing.equalToSuperview().inset(Screen.relativeWidth(148))
+            make.top.equalToSuperview().inset(112)
+            make.bottom.equalToSuperview().inset(620)
+            make.leading.equalToSuperview().inset(148)
+            make.trailing.equalToSuperview().inset(148)
         }
 
         nickLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(Screen.relativeHeight(204))
-            make.bottom.equalToSuperview().inset(Screen.relativeHeight(584))
+            make.top.equalToSuperview().inset(204)
+            make.bottom.equalToSuperview().inset(584)
             make.centerX.equalToSuperview()
         }
 
         firstSectionView.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(Screen.relativeHeight(252))
-            make.bottom.equalToSuperview().inset(Screen.relativeHeight(439))
-            make.leading.equalToSuperview().inset(Screen.relativeWidth(20))
-            make.trailing.equalToSuperview().inset(Screen.relativeWidth(20))
+            make.top.equalToSuperview().inset(252)
+            make.bottom.equalToSuperview().inset(439)
+            make.leading.equalToSuperview().inset(20)
+            make.trailing.equalToSuperview().inset(20)
         }
 
         secondSectionView.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(Screen.relativeHeight(389))
-            make.bottom.equalToSuperview().inset(Screen.relativeHeight(353))
-            make.leading.equalToSuperview().inset(Screen.relativeWidth(20))
-            make.trailing.equalToSuperview().inset(Screen.relativeWidth(20))
+            make.top.equalToSuperview().inset(389)
+            make.bottom.equalToSuperview().inset(353)
+            make.leading.equalToSuperview().inset(20)
+            make.trailing.equalToSuperview().inset(20)
         }
 
         likeButton.snp.makeConstraints { make in
-            make.top.equalTo(firstSectionView).inset(Screen.relativeHeight(16))
-            make.leading.equalTo(firstSectionView).inset(Screen.relativeWidth(16))
-            make.trailing.equalTo(firstSectionView).inset(Screen.relativeWidth(16))
-            make.bottom.equalTo(firstSectionView).inset(Screen.relativeHeight(67))
+            make.top.equalTo(firstSectionView).inset(16)
+            make.leading.equalTo(firstSectionView).inset(16)
+            make.trailing.equalTo(firstSectionView).inset(16)
+            make.bottom.equalTo(firstSectionView).inset(67)
         }
 
         productButton.snp.makeConstraints { make in
-            make.top.equalTo(firstSectionView).inset(Screen.relativeHeight(67))
-            make.leading.equalTo(firstSectionView).inset(Screen.relativeWidth(16))
-            make.trailing.equalTo(firstSectionView).inset(Screen.relativeWidth(16))
-            make.bottom.equalTo(firstSectionView).inset(Screen.relativeHeight(16))
+            make.top.equalTo(firstSectionView).inset(67)
+            make.leading.equalTo(firstSectionView).inset(16)
+            make.trailing.equalTo(firstSectionView).inset(16)
+            make.bottom.equalTo(firstSectionView).inset(16)
         }
 
         logoutButton.snp.makeConstraints { make in
-            make.top.equalTo(secondSectionView).inset(Screen.relativeHeight(16))
-            make.leading.equalTo(secondSectionView).inset(Screen.relativeWidth(16))
-            make.trailing.equalTo(secondSectionView).inset(Screen.relativeWidth(16))
-            make.bottom.equalTo(secondSectionView).inset(Screen.relativeHeight(16))
+            make.top.equalTo(secondSectionView).inset(16)
+            make.leading.equalTo(secondSectionView).inset(16)
+            make.trailing.equalTo(secondSectionView).inset(16)
+            make.bottom.equalTo(secondSectionView).inset(16)
         }
 
         finishRegButton.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(Screen.relativeHeight(647))
-            make.bottom.equalToSuperview().inset(Screen.relativeHeight(121))
-            make.leading.equalToSuperview().inset(Screen.relativeWidth(20))
-            make.trailing.equalToSuperview().inset(Screen.relativeWidth(20))
+            make.top.equalToSuperview().inset(647)
+            make.bottom.equalToSuperview().inset(121)
+            make.leading.equalToSuperview().inset(20)
+            make.trailing.equalToSuperview().inset(20)
         }
     }
 

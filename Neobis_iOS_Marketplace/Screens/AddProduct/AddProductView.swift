@@ -24,7 +24,7 @@ class AddProductView: UIView {
     let addButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = .white
-        button.layer.cornerRadius = 12 * Screen.relativeHeight(1) // Assuming 1 is the original height value
+        button.layer.cornerRadius = 12 //*1 - Assuming 1 is the original height value
         
         return button
     }()
@@ -73,7 +73,7 @@ class AddProductView: UIView {
     let priceField: UITextField = {
         let field = UITextField()
         field.backgroundColor = .white
-        field.layer.cornerRadius = 12 * Screen.relativeHeight(1) // Assuming 1 is the original height value
+        field.layer.cornerRadius = 12 //*1 - Assuming 1 is the original height value
         field.font = UIFont(name: "GothamPro", size: 16)
         field.placeholder = "Price"
         let leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: field.frame.height))
@@ -87,7 +87,7 @@ class AddProductView: UIView {
     let nameField: UITextField = {
         let field = UITextField()
         field.backgroundColor = .white
-        field.layer.cornerRadius = 12 * Screen.relativeHeight(1) // Assuming 1 is the original height value
+        field.layer.cornerRadius = 12 //*1 - Assuming 1 is the original height value
         field.font = UIFont(name: "GothamPro", size: 16)
         field.placeholder = "Title"
         let leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: field.frame.height))
@@ -162,58 +162,58 @@ class AddProductView: UIView {
     
     func setupConstraints() {
         addButton.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(Screen.relativeHeight(112))
-            make.leading.equalToSuperview().inset(Screen.relativeWidth(20))
-            make.trailing.equalToSuperview().inset(Screen.relativeWidth(279))
-            make.bottom.equalToSuperview().inset(Screen.relativeHeight(604))
+            make.top.equalToSuperview().inset(112)
+            make.leading.equalToSuperview().inset(20)
+            make.trailing.equalToSuperview().inset(279)
+            make.bottom.equalToSuperview().inset(604)
         }
         
         addImage.snp.makeConstraints { make in
-            make.top.equalTo(addButton).inset(Screen.relativeHeight(22))
-            make.leading.equalTo(addButton).inset(Screen.relativeWidth(26))
-            make.trailing.equalTo(addButton).inset(Screen.relativeWidth(26))
-            make.bottom.equalTo(addButton).inset(Screen.relativeHeight(50))
+            make.top.equalTo(addButton).inset(22)
+            make.leading.equalTo(addButton).inset(26)
+            make.trailing.equalTo(addButton).inset(26)
+            make.bottom.equalTo(addButton).inset(50)
         }
         
         addLabel.snp.makeConstraints { make in
-            make.top.equalTo(addButton).inset(Screen.relativeHeight(52))
-            make.leading.equalTo(addButton).inset(Screen.relativeWidth(4))
-            make.trailing.equalTo(addButton).inset(Screen.relativeWidth(4))
-            make.bottom.equalTo(addButton).inset(Screen.relativeHeight(22))
+            make.top.equalTo(addButton).inset(52)
+            make.leading.equalTo(addButton).inset(4)
+            make.trailing.equalTo(addButton).inset(4)
+            make.bottom.equalTo(addButton).inset(22)
         }
         
         collectionView.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(Screen.relativeHeight(112))
+            make.top.equalToSuperview().inset(112)
             make.trailing.equalToSuperview()
-            make.bottom.equalToSuperview().inset(Screen.relativeHeight(604))
-            make.leading.equalTo(Screen.relativeWidth(102))
+            make.bottom.equalToSuperview().inset(604)
+            make.leading.equalTo(102)
         }
         
         priceField.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(Screen.relativeHeight(234))
-            make.leading.equalToSuperview().inset(Screen.relativeWidth(20))
-            make.trailing.equalToSuperview().inset(Screen.relativeWidth(20))
-            make.bottom.equalToSuperview().inset(Screen.relativeHeight(538))
+            make.top.equalToSuperview().inset(234)
+            make.leading.equalToSuperview().inset(20)
+            make.trailing.equalToSuperview().inset(20)
+            make.bottom.equalToSuperview().inset(538)
         }
         
         nameField.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(Screen.relativeHeight(282))
-            make.leading.equalToSuperview().inset(Screen.relativeWidth(20))
-            make.trailing.equalToSuperview().inset(Screen.relativeWidth(20))
-            make.bottom.equalToSuperview().inset(Screen.relativeHeight(490))
+            make.top.equalToSuperview().inset(282)
+            make.leading.equalToSuperview().inset(20)
+            make.trailing.equalToSuperview().inset(20)
+            make.bottom.equalToSuperview().inset(490)
         }
         
         descriptionOne.snp.updateConstraints { make in
-            make.top.equalToSuperview().inset(Screen.relativeHeight(330))
-            make.leading.equalToSuperview().inset(Screen.relativeWidth(20))
-            make.trailing.equalToSuperview().inset(Screen.relativeWidth(20))
+            make.top.equalToSuperview().inset(330)
+            make.leading.equalToSuperview().inset(20)
+            make.trailing.equalToSuperview().inset(20)
             make.height.equalTo(textHeightOne)
         }
         
         descriptionTwo.snp.updateConstraints { make in
-            make.top.equalTo(descriptionOne.snp.bottom).offset(Screen.relativeHeight(8))
-            make.leading.equalToSuperview().inset(Screen.relativeWidth(20))
-            make.trailing.equalToSuperview().inset(Screen.relativeWidth(20))
+            make.top.equalTo(descriptionOne.snp.bottom).offset(8)
+            make.leading.equalToSuperview().inset(20)
+            make.trailing.equalToSuperview().inset(20)
             make.height.equalTo(textHeightTwo)
         }
     }
@@ -224,7 +224,7 @@ class AddProductView: UIView {
 extension AddProductView: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UITextViewDelegate {
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let cellWidth = Screen.relativeWidth(76)
+        let cellWidth = 76
         let cellHeight = collectionView.bounds.height
         return CGSize(width: cellWidth, height: cellHeight)
     }

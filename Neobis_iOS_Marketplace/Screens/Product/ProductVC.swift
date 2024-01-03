@@ -140,7 +140,7 @@ class ProductViewController: UIViewController {
         view.addGestureRecognizer(tapGesture)
         
         popUp.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(Screen.relativeHeight(644))
+            make.top.equalToSuperview().inset(644)
             make.leading.trailing.bottom.equalToSuperview()
         }
     }
@@ -234,8 +234,8 @@ extension ProductViewController: UICollectionViewDataSource, UICollectionViewDel
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let cellWidth = Screen.relativeWidth(161)
-        let cellHeight = Screen.relativeHeight(184)
+        let cellWidth = 161
+        let cellHeight = 184
         return CGSize(width: cellWidth, height: cellHeight)
     }
     

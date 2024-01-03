@@ -18,7 +18,7 @@ class FinishRegView: UIView, UITextFieldDelegate {
     let profilePic: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(named: "defaultPic")
-        image.layer.cornerRadius = Screen.relativeHeight(40)
+        image.layer.cornerRadius = 40
         image.clipsToBounds = true
         image.contentMode = .scaleAspectFill
         
@@ -38,7 +38,7 @@ class FinishRegView: UIView, UITextFieldDelegate {
     let firstSectionView: UIView = {
         let view = UIView()
         view.backgroundColor = .white
-        view.layer.cornerRadius = Screen.relativeHeight(12)
+        view.layer.cornerRadius = 12
         
         return view
     }()
@@ -77,15 +77,15 @@ class FinishRegView: UIView, UITextFieldDelegate {
     let secondSectionView: UIView = {
         let view = UIView()
         view.backgroundColor = .white
-        view.layer.cornerRadius = Screen.relativeHeight(12)
+        view.layer.cornerRadius = 12
         
         let lineView = UIView()
         lineView.backgroundColor = UIColor.colorBackground
         view.addSubview(lineView)
         
         lineView.snp.makeConstraints { make in
-            make.leading.equalToSuperview().inset(Screen.relativeWidth(16))
-            make.trailing.equalToSuperview().inset(Screen.relativeWidth(16))
+            make.leading.equalToSuperview().inset(16)
+            make.trailing.equalToSuperview().inset(16)
             make.centerY.equalToSuperview()
             make.height.equalTo(1)
         }
@@ -162,80 +162,80 @@ class FinishRegView: UIView, UITextFieldDelegate {
     
     func setupConstraints() {
         profilePic.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(Screen.relativeHeight(112))
-            make.bottom.equalToSuperview().inset(Screen.relativeHeight(620))
-            make.leading.equalToSuperview().inset(Screen.relativeWidth(148))
-            make.trailing.equalToSuperview().inset(Screen.relativeWidth(148))
+            make.top.equalToSuperview().inset(112)
+            make.bottom.equalToSuperview().inset(620)
+            make.leading.equalToSuperview().inset(148)
+            make.trailing.equalToSuperview().inset(148)
         }
 
         setPicButton.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(Screen.relativeHeight(204))
-            make.bottom.equalToSuperview().inset(Screen.relativeHeight(584))
-            make.leading.equalToSuperview().inset(Screen.relativeWidth(98))
-            make.trailing.equalToSuperview().inset(Screen.relativeWidth(98))
+            make.top.equalToSuperview().inset(204)
+            make.bottom.equalToSuperview().inset(584)
+            make.leading.equalToSuperview().inset(98)
+            make.trailing.equalToSuperview().inset(98)
         }
 
         firstSectionView.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(Screen.relativeHeight(252))
-            make.bottom.equalToSuperview().inset(Screen.relativeHeight(381))
-            make.leading.equalToSuperview().inset(Screen.relativeWidth(20))
-            make.trailing.equalToSuperview().inset(Screen.relativeWidth(20))
+            make.top.equalToSuperview().inset(252)
+            make.bottom.equalToSuperview().inset(381)
+            make.leading.equalToSuperview().inset(20)
+            make.trailing.equalToSuperview().inset(20)
         }
 
         secondSectionView.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(Screen.relativeHeight(443))
-            make.bottom.equalToSuperview().inset(Screen.relativeHeight(280))
-            make.leading.equalToSuperview().inset(Screen.relativeWidth(20))
-            make.trailing.equalToSuperview().inset(Screen.relativeWidth(20))
+            make.top.equalToSuperview().inset(443)
+            make.bottom.equalToSuperview().inset(280)
+            make.leading.equalToSuperview().inset(20)
+            make.trailing.equalToSuperview().inset(20)
         }
 
         nameField.snp.makeConstraints { make in
-            make.top.equalTo(firstSectionView.snp.top).inset(Screen.relativeHeight(6))
-            make.leading.equalTo(firstSectionView.snp.leading).inset(Screen.relativeWidth(16))
-            make.trailing.equalTo(firstSectionView.snp.trailing).inset(Screen.relativeWidth(16))
-            make.bottom.equalTo(firstSectionView.snp.bottom).inset(Screen.relativeHeight(141))
+            make.top.equalTo(firstSectionView.snp.top).inset(6)
+            make.leading.equalTo(firstSectionView.snp.leading).inset(16)
+            make.trailing.equalTo(firstSectionView.snp.trailing).inset(16)
+            make.bottom.equalTo(firstSectionView.snp.bottom).inset(141)
         }
 
         lastNameField.snp.makeConstraints { make in
-            make.top.equalTo(firstSectionView.snp.top).inset(Screen.relativeHeight(51))
-            make.leading.equalTo(firstSectionView.snp.leading).inset(Screen.relativeWidth(16))
-            make.trailing.equalTo(firstSectionView.snp.trailing).inset(Screen.relativeWidth(16))
-            make.bottom.equalTo(firstSectionView.snp.bottom).inset(Screen.relativeHeight(96))
+            make.top.equalTo(firstSectionView.snp.top).inset(51)
+            make.leading.equalTo(firstSectionView.snp.leading).inset(16)
+            make.trailing.equalTo(firstSectionView.snp.trailing).inset(16)
+            make.bottom.equalTo(firstSectionView.snp.bottom).inset(96)
         }
 
         nickNameField.snp.makeConstraints { make in
-            make.top.equalTo(firstSectionView.snp.top).inset(Screen.relativeHeight(96))
-            make.leading.equalTo(firstSectionView.snp.leading).inset(Screen.relativeWidth(16))
-            make.trailing.equalTo(firstSectionView.snp.trailing).inset(Screen.relativeWidth(16))
-            make.bottom.equalTo(firstSectionView.snp.bottom).inset(Screen.relativeHeight(51))
+            make.top.equalTo(firstSectionView.snp.top).inset(96)
+            make.leading.equalTo(firstSectionView.snp.leading).inset(16)
+            make.trailing.equalTo(firstSectionView.snp.trailing).inset(16)
+            make.bottom.equalTo(firstSectionView.snp.bottom).inset(51)
         }
 
         birthdayField.snp.makeConstraints { make in
-            make.top.equalTo(firstSectionView.snp.top).inset(Screen.relativeHeight(141))
-            make.leading.equalTo(firstSectionView.snp.leading).inset(Screen.relativeWidth(16))
-            make.trailing.equalTo(firstSectionView.snp.trailing).inset(Screen.relativeWidth(16))
-            make.bottom.equalTo(firstSectionView.snp.bottom).inset(Screen.relativeHeight(6))
+            make.top.equalTo(firstSectionView.snp.top).inset(141)
+            make.leading.equalTo(firstSectionView.snp.leading).inset(16)
+            make.trailing.equalTo(firstSectionView.snp.trailing).inset(16)
+            make.bottom.equalTo(firstSectionView.snp.bottom).inset(6)
         }
 
         numberButton.snp.makeConstraints { make in
-            make.top.equalTo(secondSectionView.snp.top).inset(Screen.relativeHeight(10))
-            make.leading.equalTo(secondSectionView.snp.leading).inset(Screen.relativeWidth(16))
-            make.trailing.equalTo(secondSectionView.snp.trailing).inset(Screen.relativeWidth(187))
-            make.bottom.equalTo(secondSectionView.snp.bottom).inset(Screen.relativeHeight(55))
+            make.top.equalTo(secondSectionView.snp.top).inset(10)
+            make.leading.equalTo(secondSectionView.snp.leading).inset(16)
+            make.trailing.equalTo(secondSectionView.snp.trailing).inset(187)
+            make.bottom.equalTo(secondSectionView.snp.bottom).inset(55)
         }
 
         numberLabel.snp.makeConstraints { make in
-            make.top.equalTo(secondSectionView.snp.top).inset(Screen.relativeHeight(10))
-            make.leading.equalTo(secondSectionView.snp.leading).inset(Screen.relativeWidth(184))
-            make.trailing.equalTo(secondSectionView.snp.trailing).inset(Screen.relativeWidth(16))
-            make.bottom.equalTo(secondSectionView.snp.bottom).inset(Screen.relativeHeight(55))
+            make.top.equalTo(secondSectionView.snp.top).inset(10)
+            make.leading.equalTo(secondSectionView.snp.leading).inset(184)
+            make.trailing.equalTo(secondSectionView.snp.trailing).inset(16)
+            make.bottom.equalTo(secondSectionView.snp.bottom).inset(55)
         }
 
         emailField.snp.makeConstraints { make in
-            make.top.equalTo(secondSectionView.snp.top).inset(Screen.relativeHeight(55))
-            make.leading.equalTo(secondSectionView.snp.leading).inset(Screen.relativeWidth(16))
-            make.trailing.equalTo(secondSectionView.snp.trailing).inset(Screen.relativeWidth(16))
-            make.bottom.equalTo(secondSectionView.snp.bottom).inset(Screen.relativeHeight(10))
+            make.top.equalTo(secondSectionView.snp.top).inset(55)
+            make.leading.equalTo(secondSectionView.snp.leading).inset(16)
+            make.trailing.equalTo(secondSectionView.snp.trailing).inset(16)
+            make.bottom.equalTo(secondSectionView.snp.bottom).inset(10)
         }
     }
 

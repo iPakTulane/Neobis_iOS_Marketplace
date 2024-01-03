@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		BAEEA5BF2B3EE8B300DCD042 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAEEA5BE2B3EE8B300DCD042 /* Constants.swift */; };
 		BAEEA5F82B456BEA00DCD042 /* PasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAEEA5F72B456BEA00DCD042 /* PasswordVC.swift */; };
 		BAEEA5FA2B45760700DCD042 /* PasswordVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAEEA5F92B45760700DCD042 /* PasswordVM.swift */; };
 		BAEEA5FC2B457D5100DCD042 /* LoginVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAEEA5FB2B457D5100DCD042 /* LoginVM.swift */; };
@@ -64,7 +63,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		BAEEA5BE2B3EE8B300DCD042 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		BAEEA5F72B456BEA00DCD042 /* PasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordVC.swift; sourceTree = "<group>"; };
 		BAEEA5F92B45760700DCD042 /* PasswordVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordVM.swift; sourceTree = "<group>"; };
 		BAEEA5FB2B457D5100DCD042 /* LoginVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVM.swift; sourceTree = "<group>"; };
@@ -434,7 +432,6 @@
 		BAF870852B3DA03000E0F939 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				BAEEA5BE2B3EE8B300DCD042 /* Constants.swift */,
 				BAF86FBF2B34412200E0F939 /* CustomViews */,
 				BAF86FC92B35FF4700E0F939 /* Extensions */,
 				BAF86FE62B3602A500E0F939 /* Fonts */,
@@ -557,7 +554,6 @@
 				BAF86FE12B36022800E0F939 /* GetUserData.swift in Sources */,
 				BAF8701A2B387EFF00E0F939 /* OTPView.swift in Sources */,
 				BAF870282B387FEE00E0F939 /* ProductVC.swift in Sources */,
-				BAEEA5BF2B3EE8B300DCD042 /* Constants.swift in Sources */,
 				BAF86FF62B387CBB00E0F939 /* MainView.swift in Sources */,
 				BAEEA5FC2B457D5100DCD042 /* LoginVM.swift in Sources */,
 				BAF870A82B3DD86400E0F939 /* FinishRegVC.swift in Sources */,

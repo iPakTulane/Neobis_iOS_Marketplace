@@ -65,23 +65,23 @@ class ProductView: UIView {
     func setupConstraints() {
         
         boxImage.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(Screen.relativeHeight(184))
-            make.leading.equalToSuperview().inset(Screen.relativeWidth(96))
-            make.trailing.equalToSuperview().inset(Screen.relativeWidth(111))
-            make.bottom.equalToSuperview().inset(Screen.relativeHeight(443))
+            make.top.equalToSuperview().inset(184)
+            make.leading.equalToSuperview().inset(96)
+            make.trailing.equalToSuperview().inset(111)
+            make.bottom.equalToSuperview().inset(443)
         }
         
         emptyLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(Screen.relativeHeight(413))
-            make.leading.equalToSuperview().inset(Screen.relativeWidth(20))
-            make.trailing.equalToSuperview().inset(Screen.relativeWidth(35))
-            make.bottom.equalToSuperview().inset(Screen.relativeHeight(382))
+            make.top.equalToSuperview().inset(413)
+            make.leading.equalToSuperview().inset(20)
+            make.trailing.equalToSuperview().inset(35)
+            make.bottom.equalToSuperview().inset(382)
         }
         
         collectionView.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(Screen.relativeHeight(112))
-            make.leading.equalToSuperview().inset(Screen.relativeWidth(20))
-            make.trailing.equalToSuperview().inset(Screen.relativeWidth(20))
+            make.top.equalToSuperview().inset(112)
+            make.leading.equalToSuperview().inset(20)
+            make.trailing.equalToSuperview().inset(20)
             make.bottom.equalToSuperview()
         }
     }

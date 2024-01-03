@@ -9,19 +9,22 @@ import Foundation
 import UIKit
 import SnapKit
 
+
+// MARK: - VIEW CONTROLLER
 class NumberViewController: UIViewController {
-        
+    
     let mainView = NumberView()
-    var numberProtocol: NumberProtocol!
+    var mainViewModel: NumberProtocol!
     
     // MARK: - INIT
     override func loadView() {
         view = mainView
     }
     
-    init(numberProtocol: NumberProtocol!) {
-        self.numberProtocol = numberProtocol
+    init(numberProtocol: NumberProtocol) {
+        self.mainViewModel = numberProtocol
         super.init(nibName: nil, bundle: nil)
+        self.mainViewModel.delegate = self
     }
     
     required init?(coder: NSCoder) {
@@ -30,22 +33,18 @@ class NumberViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        mainView.enterButton.addTarget(self, action: #selector(enterPressed), for: .touchUpInside)
-        
+        addTargets()
+        setupNavigationView()
+    }
+    
+    // MARK: - UI SETUP
+    func setupNavigationView() {
         let backButton = UIBarButtonItem(image: UIImage(named: "backButton")?.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(backPressed))
         self.navigationItem.leftBarButtonItem = backButton
-        
-        numberProtocol.registerResult = { [weak self] result in
-            DispatchQueue.main.async {
-                switch result {
-                case .success(let data):
-                    self?.handleSuccessfulRegister(data)
-                case .failure(let error):
-                    self?.handleLoginFailure(error)
-                }
-            }
-        }
+    }
+    
+    func addTargets() {
+        mainView.enterButton.addTarget(self, action: #selector(enterPressed), for: .touchUpInside)
     }
     
     // MARK: - ACTION BUTTONS
@@ -61,30 +60,40 @@ class NumberViewController: UIViewController {
                 digits.removeFirst()
             }
             
-            digits = "+996" + digits
+            digits = "+998" + digits
             
-            numberProtocol.fullRegister(phone_number: digits)
+            mainViewModel.fullRegister(phone_number: digits)
         }
     }
     
     // MARK: - NAVIGATION
-    func handleSuccessfulRegister(_ data: Data) {
+    func handleFullRegistrationSuccess(_ data: Data) {
 
         let vc = CustomTabBarController()
         vc.modalPresentationStyle = .fullScreen
-        
+
         if let viewControllers = vc.viewControllers {
             let lastIndex = viewControllers.count - 1
             vc.selectedIndex = lastIndex
         }
-        
+
         present(vc, animated: true, completion: nil)
     }
     
-    func handleLoginFailure(_ error: Error) {
-        
+    func handleFullRegistrationFailure(_ error: Error) {
         mainView.errorLabel.isHidden = false
-        print("Login failed with error: \(error)")
+        print("Full registration failed with error: \(error)")
     }
-        
+}
+
+// MARK: - EXTENSION
+extension NumberViewController: NumberDelegate {
+    // MARK: - NUMBER DELEGATE METHODS
+    func registrationDidSucceed(withData data: Data) {
+        handleFullRegistrationSuccess(data)
+    }
+    
+    func registrationDidFail(withError error: Error) {
+        handleFullRegistrationFailure(error)
+    }
 }

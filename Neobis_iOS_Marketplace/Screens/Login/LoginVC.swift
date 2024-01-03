@@ -11,7 +11,7 @@ import SnapKit
 class LoginViewController: UIViewController {
         
     lazy var mainView = LoginView()
-    var loginProtocol: LoginProtocol!
+    var mainViewModel: LoginProtocol!
     
     // MARK: - INIT
     override func loadView() {
@@ -19,8 +19,9 @@ class LoginViewController: UIViewController {
     }
     
     init(loginProtocol: LoginProtocol) {
-        self.loginProtocol = loginProtocol
+        self.mainViewModel = loginProtocol
         super.init(nibName: nil, bundle: nil)
+        self.mainViewModel.delegate = self
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -30,8 +31,16 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         addTargets()
-        handleResult()
+        addDelegates()
     }
+    
+
+    // MARK: - UI SETUP
+    func addDelegates() {
+        mainView.nameField.delegate = self
+        mainView.passwordField.delegate = self
+    }
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -41,6 +50,7 @@ class LoginViewController: UIViewController {
     func addTargets() {
         mainView.registerButton.addTarget(self, action: #selector(registerButtonPressed), for: .touchUpInside)
         mainView.enterButton.addTarget(self, action: #selector(enterButtonPressed), for: .touchUpInside)
+        mainView.passwordField.addTarget(self, action: #selector(togglePasswordVisibility), for: .touchUpInside)
     }
     
     @objc func enterButtonPressed() {
@@ -51,7 +61,7 @@ class LoginViewController: UIViewController {
                 print("Email or password is empty.")
                 return
             }
-            loginProtocol.login(username: name, password: password)
+            mainViewModel.login(username: name, password: password)
         }
     }
     
@@ -59,28 +69,56 @@ class LoginViewController: UIViewController {
         let vc = RegistrationViewController()
         navigationController?.pushViewController(vc, animated: true)
     }
+        
+}
+
+// MARK: - UITextFieldDelegate
+extension LoginViewController: UITextFieldDelegate {
     
-    // MARK: - NAVIGATION
-    func handleResult() {
-        loginProtocol.loginResult = { [weak self] result in
-            DispatchQueue.main.async {
-                switch result {
-                case .success(let data):
-                    self?.handleSuccessfulLogin(data)
-                case .failure(let error):
-                    self?.handleLoginFailure(error)
-                }
-            }
-        }
+    // Password visibility
+    @objc func togglePasswordVisibility(_ sender: UIButton) {
+        sender.isSelected = !sender.isSelected
+        mainView.passwordField.isSecureTextEntry = !mainView.passwordField.isSecureTextEntry
     }
     
-    func handleSuccessfulLogin(_ data: Data) {
+    func textFieldShouldReturn(_ LoginTextField: UITextField) -> Bool {
+        LoginTextField.resignFirstResponder()
+        return true
+    }
+    
+    func textField(
+        _ textField: UITextField,
+        shouldChangeCharactersIn range: NSRange,
+        replacementString string: String) -> Bool {
+
+            let updatedName = textField == mainView.nameField ? (textField.text as NSString?)?.replacingCharacters(in: range, with: string) : mainView.nameField.text
+            let updatedPassword = textField == mainView.passwordField ? (textField.text as NSString?)?.replacingCharacters(in: range, with: string) : mainView.passwordField.text
+        
+        if let name = updatedName, let password = updatedPassword {
+            
+            mainView.enterButton.isEnabled = name.count >= 3 && password.count >= 8
+            
+            if mainView.enterButton.isEnabled {
+                mainView.enterButton.backgroundColor = UIColor.colorBlue
+            } else {
+                mainView.enterButton.backgroundColor = UIColor.colorGrey
+            }
+        }
+        return true
+    }
+    
+}
+
+// MARK: - LOGIN DELEGATE
+extension LoginViewController: LoginDelegate {
+    
+    func loginDidSucceed(withData data: Data) {
         let vc = CustomTabBarController()
         vc.modalPresentationStyle = .fullScreen
         present(vc, animated: true, completion: nil)
     }
     
-    func handleLoginFailure(_ error: Error) {
+    func loginDidFail(withError error: Error) {
         mainView.statusLabel.isHidden = false
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
             self.mainView.statusLabel.isHidden = true

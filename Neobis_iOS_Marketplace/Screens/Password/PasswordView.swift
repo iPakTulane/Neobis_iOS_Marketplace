@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import SnapKit
 
-class PasswordView: UIView, UITextFieldDelegate {
+class PasswordView: UIView {
     
     // MARK: - UI COMPONENTS
     let lockImage: UIImageView = {
@@ -21,35 +21,36 @@ class PasswordView: UIView, UITextFieldDelegate {
     let passwordLabel: UILabel = {
         let label = UILabel()
         label.text = "Enter password"
-        label.font = UIFont(name: "GothamPro-Medium", size: 20)
+        label.font = UIFont(name: "GothamPro-Medium", size: 25)
         label.textColor = .black
         return label
     }()
     
     let passwordReq: UILabel = {
         let label = UILabel()
-        label.text = "At least — 8 symbols.\n For security, a password needs \nto have both letters and digits."
+        label.text = "At least - 8 symbols.\n To ensure security, a password \nneeds to have both letters and digits."
         label.font = UIFont(name: "GothamPro", size: 16)
         label.textColor = UIColor.colorGrey
-        label.numberOfLines = 3
+        label.numberOfLines = 0
         label.textAlignment = .center
         return label
     }()
     
     let passwordField: UITextField = {
         let field = UITextField()
-        field.font = UIFont(name: "GothamPro-Bold", size: 24)
+        field.font = UIFont.boldSystemFont(ofSize: 30)
         field.isSecureTextEntry = true
         field.borderStyle = .none
         field.textAlignment = .center
         field.autocorrectionType = .no
         field.spellCheckingType = .no
+        field.becomeFirstResponder()
         return field
     }()
     
     let passwordConfirmField: UITextField = {
         let field = UITextField()
-        field.font = UIFont(name: "GothamPro-Bold", size: 24)
+        field.font = UIFont.boldSystemFont(ofSize: 30)
         field.isSecureTextEntry = true
         field.borderStyle = .none
         field.textAlignment = .center
@@ -59,24 +60,21 @@ class PasswordView: UIView, UITextFieldDelegate {
         return field
     }()
     
-    let enterButton: UIButton = {
+    let nextButton: UIButton = {
         let button = UIButton()
-        // button.backgroundColor = UIColor.colorBlue
         button.backgroundColor = UIColor.colorGrey
-        button.layer.cornerRadius = Screen.relativeHeight(23)
+        button.layer.cornerRadius = 23
         button.setTitle("Next", for: .normal)
-        button.titleLabel?.font = UIFont(name: "GothamPro-Bold", size: Screen.relativeHeight(16))
+        button.titleLabel?.font = UIFont(name: "GothamPro-Bold", size: 16)
         return button
     }()
-
     
     let finishButton: UIButton = {
         let button = UIButton()
-        // button.backgroundColor = UIColor.colorBlue
         button.backgroundColor = UIColor.colorGrey
-        button.layer.cornerRadius = Screen.relativeHeight(23)
+        button.layer.cornerRadius = 23
         button.setTitle("Finish", for: .normal)
-        button.titleLabel?.font = UIFont(name: "GothamPro-Bold", size: Screen.relativeHeight(16))
+        button.titleLabel?.font = UIFont(name: "GothamPro-Bold", size: 16)
         button.isHidden = true
         return button
     }()
@@ -102,34 +100,21 @@ class PasswordView: UIView, UITextFieldDelegate {
     }
     
     override func layoutSubviews() {
-        backgroundColor = .white
         setupViews()
         setupConstraints()
-        passwordField.delegate = self
-        passwordConfirmField.delegate = self
-        enterButton.addTarget(self, action: #selector(enterButtonPressed), for: .touchUpInside)
     }
     
-    // MARK: - ACTION BUTTONS
-    @objc func enterButtonPressed() {
-        if enterButton.backgroundColor == UIColor.colorBlue {
-            enterButton.isHidden = true
-            finishButton.isHidden = false
-            passwordConfirmField.isHidden = false
-            passwordLabel.text = "Repeat password"
-        }
-    }
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.endEditing(true)
     }
     
     // MARK: - UI SETUP
     func setupViews() {
+        backgroundColor = .white
         addSubview(lockImage)
         addSubview(passwordLabel)
         addSubview(passwordReq)
-        addSubview(enterButton)
+        addSubview(nextButton)
         addSubview(finishButton)
         addSubview(passwordField)
         addSubview(passwordConfirmField)
@@ -138,85 +123,54 @@ class PasswordView: UIView, UITextFieldDelegate {
     
     func setupConstraints() {
         lockImage.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(Screen.relativeHeight(120))
+            make.top.equalToSuperview().inset(120)
             make.centerX.equalToSuperview()
         }
 
         passwordLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(Screen.relativeHeight(228))
-            make.bottom.equalToSuperview().inset(Screen.relativeHeight(565))
+            make.top.equalToSuperview().inset(228)
+            make.bottom.equalToSuperview().inset(565)
             make.centerX.equalToSuperview()
         }
 
         passwordReq.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(Screen.relativeHeight(255))
-            make.bottom.equalToSuperview().inset(Screen.relativeHeight(500))
             make.centerX.equalToSuperview()
+            make.top.equalTo(passwordLabel.snp.bottom).inset(5)
+            make.leading.trailing.equalToSuperview().inset(20)
         }
 
-        enterButton.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(Screen.relativeHeight(497))
-            make.bottom.equalToSuperview().inset(Screen.relativeHeight(271))
-            make.leading.equalToSuperview().inset(Screen.relativeWidth(20))
-            make.trailing.equalToSuperview().inset(Screen.relativeWidth(20))
+        nextButton.snp.makeConstraints { make in
+            make.top.equalToSuperview().inset(497)
+            make.leading.equalToSuperview().inset(20)
+            make.trailing.equalToSuperview().inset(20)
+            make.height.equalTo(45)
         }
 
         finishButton.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(Screen.relativeHeight(497))
-            make.bottom.equalToSuperview().inset(Screen.relativeHeight(271))
-            make.leading.equalToSuperview().inset(Screen.relativeWidth(20))
-            make.trailing.equalToSuperview().inset(Screen.relativeWidth(20))
+            make.top.equalToSuperview().inset(497)
+            make.leading.equalToSuperview().inset(20)
+            make.trailing.equalToSuperview().inset(20)
+            make.height.equalTo(45)
         }
 
         passwordField.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(Screen.relativeHeight(340))
-            make.bottom.equalToSuperview().inset(Screen.relativeHeight(438))
-            make.leading.equalToSuperview().inset(Screen.relativeWidth(95.5))
-            make.trailing.equalToSuperview().inset(Screen.relativeWidth(95.5))
+            make.top.equalTo(passwordReq.snp.bottom).offset(20)
+            make.leading.equalToSuperview().inset(95.5)
+            make.trailing.equalToSuperview().inset(95.5)
+            make.height.equalTo(25)
         }
 
         passwordConfirmField.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(Screen.relativeHeight(382))
-            make.bottom.equalToSuperview().inset(Screen.relativeHeight(396))
-            make.leading.equalToSuperview().inset(Screen.relativeWidth(95.5))
-            make.trailing.equalToSuperview().inset(Screen.relativeWidth(95.5))
+            make.top.equalTo(passwordField.snp.bottom).offset(20)
+            make.leading.equalToSuperview().inset(95.5)
+            make.trailing.equalToSuperview().inset(95.5)
+            make.height.equalTo(25)
         }
 
         passwordError.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(Screen.relativeHeight(424))
-            make.bottom.equalToSuperview().inset(Screen.relativeHeight(368))
-            make.leading.equalToSuperview().inset(Screen.relativeWidth(16))
-            make.trailing.equalToSuperview().inset(Screen.relativeWidth(16))
+            make.top.equalTo(passwordConfirmField.snp.bottom).offset(20)
+            make.leading.equalToSuperview().inset(16)
+            make.trailing.equalToSuperview().inset(16)
         }
-    }
-
-    
-    // MARK: - TEXTFIELD DELEGATE
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        let updatedPassword1 = textField == passwordField ? (textField.text as NSString?)?.replacingCharacters(in: range, with: string) : passwordField.text
-        
-        let updatedPassword2 = textField == passwordConfirmField ? (textField.text as NSString?)?.replacingCharacters(in: range, with: string) : passwordConfirmField.text
-        
-        if let password1 = updatedPassword1 {
-            enterButton.isEnabled = password1.count >= 8
-            
-            if enterButton.isEnabled {
-                enterButton.backgroundColor = UIColor.colorBlue
-            } else {
-                enterButton.backgroundColor = UIColor.colorGrey
-            }
-        }
-        
-        if let password2 = updatedPassword2 {
-            finishButton.isEnabled = password2.count >= 8
-            
-            if finishButton.isEnabled {
-                finishButton.backgroundColor = UIColor.colorBlue
-            } else {
-                finishButton.backgroundColor = UIColor.colorGrey
-            }
-        }
-        
-        return true
     }
 }

@@ -8,19 +8,27 @@
 import Foundation
 import UIKit
 
+// MARK: - DELEGATE
+protocol PasswordDelegate: AnyObject {
+    func registrationDidSucceed(withData data: Data)
+    func registrationDidFail(withError error: Error)
+}
+
 // MARK: - PROTOCOL
 protocol PasswordProtocol {
     var isRegistered: Bool { get }
-    var registerResult: ((Result<Data, Error>) -> Void)? { get set }
     
-    func register(password: String, password_repeat: String)
+    var delegate: PasswordDelegate? { get set }
+    
+    func register(password: String, password_confirm: String)
 }
 
 // MARK: - VIEW MODEL
 class PasswordViewModel: PasswordProtocol {
     
     var isRegistered: Bool = false
-    var registerResult: ((Result<Data, Error>) -> Void)?
+    
+    weak var delegate: PasswordDelegate?
     
     let apiService: APIService
     
@@ -33,31 +41,33 @@ class PasswordViewModel: PasswordProtocol {
         self.email = email
     }
     
-    func register(password: String, password_repeat: String) {
+    func register(password: String, password_confirm: String) {
         let parameters: [String: Any] = [
             "username": userName,
             "email": email,
             "password": password,
-            "password_repeat": password_repeat
+            "password_confirm": password_confirm
         ]
         
-        apiService.post(endpoint: "auth/register/", parameters: parameters) { [weak self] (result) in
-            DispatchQueue.main.async {
+        apiService.post(
+            endpoint: "auth/register/",
+            parameters: parameters) { [weak self] (result) in
+            
+                DispatchQueue.main.async {
                 switch result {
                 case .success(let data):
                     let dataString = String(data: data, encoding: .utf8)
                     print("Data received: \(dataString ?? "nil")")
                     self?.isRegistered = true
-                    self?.registerResult?(.success(data))
+                    self?.delegate?.registrationDidSucceed(withData: data)
                 case .failure(let error):
                     let errorMessage = "Failed register number: \(error.localizedDescription)"
                     print(errorMessage)
-//                    print("Failed register number")
                     self?.isRegistered = false
-                    self?.registerResult?(.failure(error))
+                    self?.delegate?.registrationDidFail(withError: error)
                 }
             }
         }
     }
-
+    
 }

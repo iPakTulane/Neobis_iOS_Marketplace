@@ -15,12 +15,12 @@ class NumberView: UIView {
     let phoneView: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor.colorBlue
-        view.layer.cornerRadius = Screen.relativeHeight(20)
+        view.layer.cornerRadius = 20
         
         view.layer.shadowColor = UIColor.colorBlue.cgColor
-        view.layer.shadowOffset = CGSize(width: 0, height: Screen.relativeHeight(5))
+        view.layer.shadowOffset = CGSize(width: 0, height: 5)
         view.layer.shadowOpacity = 0.7
-        view.layer.shadowRadius = Screen.relativeHeight(4)
+        view.layer.shadowRadius = 4
         
         return view
     }()
@@ -74,13 +74,13 @@ class NumberView: UIView {
         return label
     }()
     
-    @objc let enterButton: UIButton = {
+    let enterButton: UIButton = {
         let button = UIButton()
     //    button.backgroundColor = UIColor.colorBlue
         button.backgroundColor = UIColor.colorGrey
-        button.layer.cornerRadius = Screen.relativeHeight(23)
+        button.layer.cornerRadius = 23
         button.setTitle("Next", for: .normal)
-        button.titleLabel?.font = UIFont(name: "GothamPro-Bold", size: Screen.relativeHeight(16))
+        button.titleLabel?.font = UIFont(name: "GothamPro-Bold", size: 16)
         
         return button
     }()
@@ -116,51 +116,51 @@ class NumberView: UIView {
     
     func setupConstraints() {
         phoneView.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(Screen.relativeHeight(120))
-            make.bottom.equalToSuperview().inset(Screen.relativeHeight(612))
-            make.leading.equalToSuperview().inset(Screen.relativeWidth(147.5))
-            make.trailing.equalToSuperview().inset(Screen.relativeWidth(147.5))
+            make.top.equalToSuperview().inset(120)
+            make.bottom.equalToSuperview().inset(612)
+            make.leading.equalToSuperview().inset(147.5)
+            make.trailing.equalToSuperview().inset(147.5)
         }
 
         phoneImage.snp.makeConstraints { make in
             make.center.equalTo(phoneView.snp.center)
-            make.height.equalTo(Screen.relativeHeight(36))
-            make.width.equalTo(Screen.relativeWidth(36))
+            make.height.equalTo(36)
+            make.width.equalTo(36)
         }
 
         mainLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(Screen.relativeHeight(232))
-            make.bottom.equalToSuperview().inset(Screen.relativeHeight(561))
-            make.leading.equalToSuperview().inset(Screen.relativeWidth(20))
-            make.trailing.equalToSuperview().inset(Screen.relativeWidth(20))
+            make.top.equalToSuperview().inset(232)
+            make.bottom.equalToSuperview().inset(561)
+            make.leading.equalToSuperview().inset(20)
+            make.trailing.equalToSuperview().inset(20)
         }
 
         descriptionLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(Screen.relativeHeight(263))
-            make.bottom.equalToSuperview().inset(Screen.relativeHeight(511))
-            make.leading.equalToSuperview().inset(Screen.relativeWidth(20))
-            make.trailing.equalToSuperview().inset(Screen.relativeWidth(20))
+            make.top.equalToSuperview().inset(263)
+            make.bottom.equalToSuperview().inset(511)
+            make.leading.equalToSuperview().inset(20)
+            make.trailing.equalToSuperview().inset(20)
         }
 
         numberField.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(Screen.relativeHeight(334))
-            make.bottom.equalToSuperview().inset(Screen.relativeHeight(444))
-            make.leading.equalToSuperview().inset(Screen.relativeWidth(62))
-            make.trailing.equalToSuperview().inset(Screen.relativeWidth(62))
+            make.top.equalToSuperview().inset(334)
+            make.bottom.equalToSuperview().inset(444)
+            make.leading.equalToSuperview().inset(62)
+            make.trailing.equalToSuperview().inset(62)
         }
 
         enterButton.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(Screen.relativeHeight(497))
-            make.bottom.equalToSuperview().inset(Screen.relativeHeight(271))
-            make.leading.equalToSuperview().inset(Screen.relativeWidth(20))
-            make.trailing.equalToSuperview().inset(Screen.relativeWidth(20))
+            make.top.equalToSuperview().inset(497)
+            make.bottom.equalToSuperview().inset(271)
+            make.leading.equalToSuperview().inset(20)
+            make.trailing.equalToSuperview().inset(20)
         }
 
         errorLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(Screen.relativeHeight(384))
-            make.leading.equalToSuperview().inset(Screen.relativeWidth(34))
-            make.trailing.equalToSuperview().inset(Screen.relativeWidth(34))
-            make.bottom.equalToSuperview().inset(Screen.relativeHeight(406))
+            make.top.equalToSuperview().inset(384)
+            make.leading.equalToSuperview().inset(34)
+            make.trailing.equalToSuperview().inset(34)
+            make.bottom.equalToSuperview().inset(406)
         }
     }
 

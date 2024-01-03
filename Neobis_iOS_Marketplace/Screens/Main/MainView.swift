@@ -23,8 +23,7 @@ class HomeView: UIView {
     let marketLabel: UILabel = {
         let label = UILabel()
         label.text = "MOBI MARKET"
-        label.font = UIFont(name: "Nunito-ExtraBold", size: 20)
-        
+        label.font = .boldSystemFont(ofSize: 20)
         return label
     }()
     

@@ -77,7 +77,7 @@ class OTPView: UIView {
     }()
     
     // MARK: - ACTION BUTTONS
-    @objc let enterButton: UIButton = {
+    let enterButton: UIButton = {
         let button = UIButton()
         //        button.backgroundColor = UIColor.colorBlue
         button.backgroundColor = UIColor.colorGrey

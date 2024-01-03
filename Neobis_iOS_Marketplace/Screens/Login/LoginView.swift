@@ -2,32 +2,33 @@
 //  LoginView.swift
 //  Neobis_iOS_Marketplace
 //
-//  Created by iPak Tulane on 24/12/23.
+//  Created by iPak Tulane on 02/01/24.
 //
 
 import Foundation
 import UIKit
 import SnapKit
 
-class LoginView: UIView, UITextFieldDelegate {
+class LoginView: UIView {
     
     // MARK: - UI COMPONENTS
     
-    let cartImage: UIImageView = {
+    lazy var cartImage: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(named: "shopping-cart 1")
         return image
     }()
     
-    let marketLabel : UILabel = {
+    lazy var marketLabel : UILabel = {
         let label = UILabel()
         label.text = "MOBI MARKET"
-        label.font = UIFont(name: "Nunito-ExtraBold", size: 18)
+        label.font = .boldSystemFont(ofSize: 18)
         label.textColor = .black
+        label.textAlignment = .center
         return label
     }()
     
-    let nameField: AnimatedTextField = {
+    lazy var nameField: AnimatedTextField = {
         let field = AnimatedTextField()
         field.placeholder = "Username"
 
@@ -36,12 +37,11 @@ class LoginView: UIView, UITextFieldDelegate {
         return field
     }()
     
-    let nameLine: UIView = {
+    lazy var nameLine: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor.colorGrey
         return view
     }()
-    
     
     let passwordField: AnimatedTextField = {
         let field = AnimatedTextField()
@@ -54,29 +54,28 @@ class LoginView: UIView, UITextFieldDelegate {
         button.setImage(UIImage(named: "eye-disabled"), for: .normal)
         button.setImage(UIImage(named: "eye"), for: .selected)
         button.frame = CGRect(x: field.frame.size.width - 25, y: 5, width: 25, height: 25)
-        button.addTarget(LoginView.self, action: #selector(togglePasswordVisibility), for: .touchUpInside)
+//        button.addTarget(LoginView.self, action: #selector(togglePasswordVisibility), for: .touchUpInside)
         field.rightView = button
         field.rightViewMode = .always
         return field
     }()
     
-    let passwordLine: UIView = {
+    lazy var passwordLine: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor.colorGrey
         return view
     }()
     
-    let enterButton: UIButton = {
+    lazy var enterButton: UIButton = {
         let button = UIButton()
-        // button.backgroundColor = UIColor.colorBlue
         button.backgroundColor = UIColor.colorGrey
-        button.layer.cornerRadius = Screen.relativeHeight(23)
+        button.layer.cornerRadius = 23
         button.setTitle("Log in", for: .normal)
-        button.titleLabel?.font = UIFont(name: "GothamPro-Bold", size: Screen.relativeHeight(16))
+        button.titleLabel?.font = UIFont(name: "GothamPro-Bold", size: 16)
         return button
     }()
     
-    let registerButton: UIButton = {
+    lazy var registerButton: UIButton = {
         let button = UIButton()
         button.setTitle("Register", for: .normal)
         button.setTitleColor(UIColor.colorBlue, for: .normal)
@@ -84,12 +83,12 @@ class LoginView: UIView, UITextFieldDelegate {
         return button
     }()
     
-    let statusLabel: UIView = {
+    lazy var statusLabel: UIView = {
         let view = UIView()
         let label = UILabel()
         let imageView = UIImageView()
         label.text = "Wrong username or password!"
-        label.font = UIFont(name: "GothamPro-Medium", size: Screen.relativeHeight(16))
+        label.font = UIFont(name: "GothamPro-Medium", size: 16)
         label.textColor = .white
         imageView.image = UIImage(named: "warning")
         
@@ -97,17 +96,17 @@ class LoginView: UIView, UITextFieldDelegate {
         view.addSubview(imageView)
         view.backgroundColor = UIColor.сolorRed
         view.isHidden = true
-        view.layer.cornerRadius = Screen.relativeHeight(16)
+        view.layer.cornerRadius = 16
         
         label.snp.makeConstraints { make in
             make.center.equalToSuperview()
         }
         
         imageView.snp.makeConstraints { make in
-            make.trailing.equalTo(label.snp.leading).inset(-Screen.relativeWidth(6))
+            make.trailing.equalTo(label.snp.leading).inset(-6)
             make.centerY.equalToSuperview()
-            make.height.equalTo(Screen.relativeHeight(24))
-            make.width.equalTo(Screen.relativeWidth(24))
+            make.height.equalTo(24)
+            make.width.equalTo(24)
         }
         return view
     }()
@@ -125,14 +124,14 @@ class LoginView: UIView, UITextFieldDelegate {
     override func layoutSubviews() {
         setupViews()
         setupConstraints()
-        addDelegates()
+    }
+    
+    // This allows the user to dismiss the keyboard by tapping outside of text input fields
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
+        self.endEditing(true)
     }
     
     // MARK: - UI SETUP
-    func addDelegates() {
-        nameField.delegate = self
-        passwordField.delegate = self
-    }
     
     func setupViews() {
         backgroundColor = .white
@@ -149,99 +148,63 @@ class LoginView: UIView, UITextFieldDelegate {
     
     func setupConstraints() {
         cartImage.snp.makeConstraints{ make in
-            make.top.equalToSuperview().inset(Screen.relativeHeight(60))
-            make.bottom.equalToSuperview().inset(Screen.relativeHeight(672))
-            make.leading.equalToSuperview().inset(Screen.relativeWidth(133))
-            make.trailing.equalToSuperview().inset(Screen.relativeWidth(162))
+            make.centerX.equalToSuperview()
+            make.top.equalToSuperview().inset(60)
+            make.height.width.equalTo(80)
         }
         
         marketLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(Screen.relativeHeight(148))
-            make.bottom.equalToSuperview().inset(Screen.relativeHeight(639))
             make.centerX.equalToSuperview()
+            make.top.equalToSuperview().inset(148)
         }
         
         nameField.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(Screen.relativeHeight(293))
-            make.bottom.equalToSuperview().inset(Screen.relativeHeight(484))
-            make.leading.equalToSuperview().inset(Screen.relativeWidth(20))
-            make.trailing.equalToSuperview().inset(Screen.relativeWidth(20))
+            make.top.equalToSuperview().inset(293)
+            make.leading.equalToSuperview().inset(20)
+            make.trailing.equalToSuperview().inset(20)
+            make.height.equalTo(35)
         }
         
         nameLine.snp.makeConstraints { make in
             make.height.equalTo(1)
-            make.bottom.equalTo(nameField.snp.bottom)
             make.leading.equalTo(nameField.snp.leading)
             make.trailing.equalTo(nameField.snp.trailing)
+            make.bottom.equalTo(nameField.snp.bottom)
         }
         
         passwordField.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(Screen.relativeHeight(379))
-            make.bottom.equalToSuperview().inset(Screen.relativeHeight(397))
-            make.leading.equalToSuperview().inset(Screen.relativeWidth(20))
-            make.trailing.equalToSuperview().inset(Screen.relativeWidth(20))
+            make.top.equalToSuperview().inset(379)
+            make.leading.equalToSuperview().inset(20)
+            make.trailing.equalToSuperview().inset(20)
+            make.height.equalTo(35)
         }
 
         passwordLine.snp.makeConstraints { make in
             make.height.equalTo(1)
-            make.bottom.equalTo(passwordField.snp.bottom)
             make.leading.equalTo(passwordField.snp.leading)
             make.trailing.equalTo(passwordField.snp.trailing)
+            make.bottom.equalTo(passwordField.snp.bottom)
         }
 
         enterButton.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(Screen.relativeHeight(497))
-            make.bottom.equalToSuperview().inset(Screen.relativeHeight(271))
-            make.leading.equalToSuperview().inset(Screen.relativeWidth(20))
-            make.trailing.equalToSuperview().inset(Screen.relativeWidth(20))
+            make.centerX.equalToSuperview()
+            make.top.equalToSuperview().inset(497)
+            make.leading.equalToSuperview().inset(20)
+            make.trailing.equalToSuperview().inset(20)
+            make.height.equalTo(45)
         }
 
         registerButton.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(Screen.relativeHeight(737.5))
-            make.bottom.equalToSuperview().inset(Screen.relativeHeight(57.5))
-            make.leading.equalToSuperview().inset(Screen.relativeWidth(112.5))
-            make.trailing.equalToSuperview().inset(Screen.relativeWidth(112.5))
+            make.top.equalToSuperview().inset(737.5)
+            make.leading.equalToSuperview().inset(112.5)
+            make.trailing.equalToSuperview().inset(112.5)
         }
 
         statusLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(Screen.relativeHeight(44))
-            make.bottom.equalToSuperview().inset(Screen.relativeHeight(708))
-            make.leading.equalToSuperview().inset(Screen.relativeWidth(28))
-            make.trailing.equalToSuperview().inset(Screen.relativeWidth(28))
+            make.top.equalToSuperview().inset(44)
+            make.leading.equalToSuperview().inset(28)
+            make.trailing.equalToSuperview().inset(28)
         }
+    }
 
-        
-    }
-    
-    // MARK: - PASSWORD VISIBILITY
-    @objc func togglePasswordVisibility(_ sender: UIButton) {
-        sender.isSelected = !sender.isSelected
-        passwordField.isSecureTextEntry = !passwordField.isSecureTextEntry
-    }
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
-        self.endEditing(true)
-    }
-    
-    func textFieldShouldReturn(_ LoginTextField: UITextField) -> Bool {
-        LoginTextField.resignFirstResponder()
-        return true
-    }
-    
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        let updatedName = textField == nameField ? (textField.text as NSString?)?.replacingCharacters(in: range, with: string) : nameField.text
-        let updatedPassword = textField == passwordField ? (textField.text as NSString?)?.replacingCharacters(in: range, with: string) : passwordField.text
-        
-        if let name = updatedName, let password = updatedPassword {
-            
-            enterButton.isEnabled = name.count >= 3 && password.count >= 8
-            
-            if enterButton.isEnabled {
-                enterButton.backgroundColor = UIColor.colorBlue
-            } else {
-                enterButton.backgroundColor = UIColor.colorGrey
-            }
-        }
-        return true
-    }
 }

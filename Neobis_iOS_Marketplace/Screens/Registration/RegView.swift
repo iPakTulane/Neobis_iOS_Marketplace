@@ -9,24 +9,25 @@ import Foundation
 import UIKit
 import SnapKit
 
-class RegistrationView: UIView, UITextFieldDelegate{
-    
+//class RegistrationView: UIView, UITextFieldDelegate {
+class RegistrationView: UIView {
+
     // MARK: - UI COMPONENTS
-    let cartImage: UIImageView = {
+    lazy var cartImage: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(named: "shopping-cart 1")
         return image
     }()
     
-    let marketLabel : UILabel = {
+    lazy var marketLabel : UILabel = {
         let label = UILabel()
         label.text = "MOBI MARKET"
-        label.font = UIFont(name: "Nunito-ExtraBold", size: 18)
+        label.font = .boldSystemFont(ofSize: 18)
         label.textColor = .black
         return label
     }()
     
-    let nameField: AnimatedTextField = {
+    lazy var nameField: AnimatedTextField = {
         let field = AnimatedTextField()
         field.placeholder = "Username"
         let lineView = UIView()
@@ -39,7 +40,7 @@ class RegistrationView: UIView, UITextFieldDelegate{
         return field
     }()
     
-    let mailField: AnimatedTextField = {
+    lazy var mailField: AnimatedTextField = {
         let field = AnimatedTextField()
         field.placeholder = "Email"
         let lineView = UIView()
@@ -52,16 +53,15 @@ class RegistrationView: UIView, UITextFieldDelegate{
         return field
     }()
     
-    let enterButton: UIButton = {
+    lazy var enterButton: UIButton = {
         let button = UIButton()
-        // button.backgroundColor = UIColor.colorBlue
         button.backgroundColor = UIColor.colorGrey
-        button.layer.cornerRadius = Screen.relativeHeight(23)
+        button.layer.cornerRadius = 23
         button.setTitle("Log in", for: .normal)
-        button.titleLabel?.font = UIFont(name: "GothamPro-Bold", size: Screen.relativeHeight(16))
+        button.titleLabel?.font = UIFont(name: "GothamPro-Bold", size: 16)
         return button
     }()
-
+    
     
     // MARK: - INIT
     override init(frame: CGRect) {
@@ -75,15 +75,13 @@ class RegistrationView: UIView, UITextFieldDelegate{
     override func layoutSubviews() {
         setupViews()
         setupConstraints()
-        addDelegates()
     }
-
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
+        self.endEditing(true)
+    }
     
     // MARK: - UI SETUP
-    func addDelegates() {
-        nameField.delegate = self
-        mailField.delegate = self
-    }
     
     func setupViews() {
         backgroundColor = .white
@@ -95,70 +93,38 @@ class RegistrationView: UIView, UITextFieldDelegate{
     }
     
     func setupConstraints() {
-        cartImage.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(Screen.relativeHeight(112))
-            make.bottom.equalToSuperview().inset(Screen.relativeHeight(620))
-            make.leading.equalToSuperview().inset(Screen.relativeWidth(133))
-            make.trailing.equalToSuperview().inset(Screen.relativeWidth(162))
-        }
-
-        marketLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(Screen.relativeHeight(200))
-            make.bottom.equalToSuperview().inset(Screen.relativeHeight(587))
+        cartImage.snp.makeConstraints{ make in
             make.centerX.equalToSuperview()
+            make.top.equalToSuperview().inset(112)
+            make.height.width.equalTo(80)
         }
-
-        nameField.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(Screen.relativeHeight(293))
-            make.bottom.equalToSuperview().inset(Screen.relativeHeight(484))
-            make.leading.equalToSuperview().inset(Screen.relativeWidth(20))
-            make.trailing.equalToSuperview().inset(Screen.relativeWidth(20))
-        }
-
-        mailField.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(Screen.relativeHeight(379))
-            make.bottom.equalToSuperview().inset(Screen.relativeHeight(397))
-            make.leading.equalToSuperview().inset(Screen.relativeWidth(20))
-            make.trailing.equalToSuperview().inset(Screen.relativeWidth(20))
-        }
-
-        enterButton.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(Screen.relativeHeight(497))
-            make.bottom.equalToSuperview().inset(Screen.relativeHeight(271))
-            make.leading.equalToSuperview().inset(Screen.relativeWidth(20))
-            make.trailing.equalToSuperview().inset(Screen.relativeWidth(20))
-        }
-    }
-
-    
-    // MARK: - METHODS
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
-        self.endEditing(true)
-    }
-    
-    func textFieldShouldReturn(_ LoginTextField: UITextField) -> Bool {
-        LoginTextField.resignFirstResponder()
-        return true
-    }
-    
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        let updatedName = textField == nameField ? (textField.text as NSString?)?.replacingCharacters(in: range, with: string) : nameField.text
-        let updatedMail = textField == mailField ? (textField.text as NSString?)?.replacingCharacters(in: range, with: string) : mailField.text
         
-        if let name = updatedName, let mail = updatedMail {
-            enterButton.isEnabled = name.count >= 3 && mail.contains("@")
-            
-            if enterButton.isEnabled {
-                enterButton.backgroundColor = UIColor.colorBlue
-            } else {
-                enterButton.backgroundColor = UIColor.colorGrey
-            }
-            
-            if mail.contains("@") {
-                enterButton.backgroundColor = UIColor.colorBlue
-            }
+        marketLabel.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalToSuperview().inset(200)
         }
-        return true
+        
+        nameField.snp.makeConstraints { make in
+            make.top.equalToSuperview().inset(293)
+            make.leading.equalToSuperview().inset(20)
+            make.trailing.equalToSuperview().inset(20)
+            make.height.equalTo(35)
+        }
+        
+        mailField.snp.makeConstraints { make in
+            make.top.equalToSuperview().inset(379)
+            make.leading.equalToSuperview().inset(20)
+            make.trailing.equalToSuperview().inset(20)
+            make.height.equalTo(35)
+        }
+        
+        enterButton.snp.makeConstraints { make in
+            make.top.equalToSuperview().inset(497)
+            make.leading.equalToSuperview().inset(20)
+            make.trailing.equalToSuperview().inset(20)
+            make.height.equalTo(45)
+        }
     }
+    
 }
 

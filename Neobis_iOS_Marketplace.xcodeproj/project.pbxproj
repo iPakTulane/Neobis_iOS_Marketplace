@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		BAEEA5BF2B3EE8B300DCD042 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAEEA5BE2B3EE8B300DCD042 /* Constants.swift */; };
+		BAEEA5F82B456BEA00DCD042 /* PasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAEEA5F72B456BEA00DCD042 /* PasswordVC.swift */; };
+		BAEEA5FA2B45760700DCD042 /* PasswordVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAEEA5F92B45760700DCD042 /* PasswordVM.swift */; };
+		BAEEA5FC2B457D5100DCD042 /* LoginVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAEEA5FB2B457D5100DCD042 /* LoginVM.swift */; };
+		BAEEA5FE2B457D5F00DCD042 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAEEA5FD2B457D5F00DCD042 /* LoginVC.swift */; };
+		BAEEA6002B4584E000DCD042 /* NumberVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAEEA5FF2B4584E000DCD042 /* NumberVC.swift */; };
+		BAEEA6022B4584E800DCD042 /* NumberVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAEEA6012B4584E800DCD042 /* NumberVM.swift */; };
 		BAF86FAC2B32A62000E0F939 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF86FAB2B32A62000E0F939 /* AppDelegate.swift */; };
 		BAF86FAE2B32A62000E0F939 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF86FAD2B32A62000E0F939 /* SceneDelegate.swift */; };
 		BAF86FB32B32A62000E0F939 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BAF86FB12B32A62000E0F939 /* Main.storyboard */; };
@@ -28,20 +34,14 @@
 		BAF86FF62B387CBB00E0F939 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF86FF52B387CBB00E0F939 /* MainView.swift */; };
 		BAF86FF82B387CCA00E0F939 /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF86FF72B387CCA00E0F939 /* MainVC.swift */; };
 		BAF86FFC2B387D1900E0F939 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF86FFB2B387D1900E0F939 /* LoginView.swift */; };
-		BAF86FFE2B387D2D00E0F939 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF86FFD2B387D2D00E0F939 /* LoginVC.swift */; };
-		BAF870002B387D4300E0F939 /* LoginVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF86FFF2B387D4300E0F939 /* LoginVM.swift */; };
 		BAF870022B387D6600E0F939 /* RegView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF870012B387D6600E0F939 /* RegView.swift */; };
 		BAF870042B387D7A00E0F939 /* RegVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF870032B387D7A00E0F939 /* RegVC.swift */; };
 		BAF870062B387D9700E0F939 /* PasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF870052B387D9700E0F939 /* PasswordView.swift */; };
-		BAF870082B387DB000E0F939 /* PasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF870072B387DB000E0F939 /* PasswordVC.swift */; };
-		BAF8700A2B387DC100E0F939 /* PasswordVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF870092B387DC100E0F939 /* PasswordVM.swift */; };
 		BAF8700C2B387DE400E0F939 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF8700B2B387DE400E0F939 /* ProfileView.swift */; };
 		BAF8700E2B387DFA00E0F939 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF8700D2B387DFA00E0F939 /* ProfileVC.swift */; };
 		BAF870102B387E1C00E0F939 /* PersonalDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF8700F2B387E1C00E0F939 /* PersonalDataView.swift */; };
 		BAF870122B387E3400E0F939 /* PersonalDataVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF870112B387E3400E0F939 /* PersonalDataVC.swift */; };
 		BAF870142B387EB400E0F939 /* NumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF870132B387EB400E0F939 /* NumberView.swift */; };
-		BAF870162B387ECD00E0F939 /* NumberVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF870152B387ECD00E0F939 /* NumberVC.swift */; };
-		BAF870182B387EE200E0F939 /* NumberVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF870172B387EE200E0F939 /* NumberVM.swift */; };
 		BAF8701A2B387EFF00E0F939 /* OTPView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF870192B387EFF00E0F939 /* OTPView.swift */; };
 		BAF8701C2B387F1D00E0F939 /* OTPVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF8701B2B387F1D00E0F939 /* OTPVC.swift */; };
 		BAF870222B387F7500E0F939 /* ProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF870212B387F7500E0F939 /* ProductView.swift */; };
@@ -65,6 +65,12 @@
 
 /* Begin PBXFileReference section */
 		BAEEA5BE2B3EE8B300DCD042 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		BAEEA5F72B456BEA00DCD042 /* PasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordVC.swift; sourceTree = "<group>"; };
+		BAEEA5F92B45760700DCD042 /* PasswordVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordVM.swift; sourceTree = "<group>"; };
+		BAEEA5FB2B457D5100DCD042 /* LoginVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVM.swift; sourceTree = "<group>"; };
+		BAEEA5FD2B457D5F00DCD042 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
+		BAEEA5FF2B4584E000DCD042 /* NumberVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberVC.swift; sourceTree = "<group>"; };
+		BAEEA6012B4584E800DCD042 /* NumberVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberVM.swift; sourceTree = "<group>"; };
 		BAF86FA82B32A62000E0F939 /* Neobis_iOS_Marketplace.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Neobis_iOS_Marketplace.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAF86FAB2B32A62000E0F939 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BAF86FAD2B32A62000E0F939 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -85,20 +91,14 @@
 		BAF86FF52B387CBB00E0F939 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		BAF86FF72B387CCA00E0F939 /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
 		BAF86FFB2B387D1900E0F939 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
-		BAF86FFD2B387D2D00E0F939 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
-		BAF86FFF2B387D4300E0F939 /* LoginVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVM.swift; sourceTree = "<group>"; };
 		BAF870012B387D6600E0F939 /* RegView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegView.swift; sourceTree = "<group>"; };
 		BAF870032B387D7A00E0F939 /* RegVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegVC.swift; sourceTree = "<group>"; };
 		BAF870052B387D9700E0F939 /* PasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordView.swift; sourceTree = "<group>"; };
-		BAF870072B387DB000E0F939 /* PasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordVC.swift; sourceTree = "<group>"; };
-		BAF870092B387DC100E0F939 /* PasswordVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordVM.swift; sourceTree = "<group>"; };
 		BAF8700B2B387DE400E0F939 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		BAF8700D2B387DFA00E0F939 /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		BAF8700F2B387E1C00E0F939 /* PersonalDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalDataView.swift; sourceTree = "<group>"; };
 		BAF870112B387E3400E0F939 /* PersonalDataVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalDataVC.swift; sourceTree = "<group>"; };
 		BAF870132B387EB400E0F939 /* NumberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberView.swift; sourceTree = "<group>"; };
-		BAF870152B387ECD00E0F939 /* NumberVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberVC.swift; sourceTree = "<group>"; };
-		BAF870172B387EE200E0F939 /* NumberVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberVM.swift; sourceTree = "<group>"; };
 		BAF870192B387EFF00E0F939 /* OTPView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPView.swift; sourceTree = "<group>"; };
 		BAF8701B2B387F1D00E0F939 /* OTPVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPVC.swift; sourceTree = "<group>"; };
 		BAF870212B387F7500E0F939 /* ProductView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductView.swift; sourceTree = "<group>"; };
@@ -358,8 +358,8 @@
 			isa = PBXGroup;
 			children = (
 				BAF870132B387EB400E0F939 /* NumberView.swift */,
-				BAF870152B387ECD00E0F939 /* NumberVC.swift */,
-				BAF870172B387EE200E0F939 /* NumberVM.swift */,
+				BAEEA5FF2B4584E000DCD042 /* NumberVC.swift */,
+				BAEEA6012B4584E800DCD042 /* NumberVM.swift */,
 			);
 			path = AddNumber;
 			sourceTree = "<group>";
@@ -386,8 +386,8 @@
 			isa = PBXGroup;
 			children = (
 				BAF870052B387D9700E0F939 /* PasswordView.swift */,
-				BAF870072B387DB000E0F939 /* PasswordVC.swift */,
-				BAF870092B387DC100E0F939 /* PasswordVM.swift */,
+				BAEEA5F72B456BEA00DCD042 /* PasswordVC.swift */,
+				BAEEA5F92B45760700DCD042 /* PasswordVM.swift */,
 			);
 			path = Password;
 			sourceTree = "<group>";
@@ -405,8 +405,8 @@
 			isa = PBXGroup;
 			children = (
 				BAF86FFB2B387D1900E0F939 /* LoginView.swift */,
-				BAF86FFD2B387D2D00E0F939 /* LoginVC.swift */,
-				BAF86FFF2B387D4300E0F939 /* LoginVM.swift */,
+				BAEEA5FD2B457D5F00DCD042 /* LoginVC.swift */,
+				BAEEA5FB2B457D5100DCD042 /* LoginVM.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -537,16 +537,16 @@
 				BAF8700C2B387DE400E0F939 /* ProfileView.swift in Sources */,
 				BAF8702E2B38806300E0F939 /* CustomCell.swift in Sources */,
 				BAF86FF82B387CCA00E0F939 /* MainVC.swift in Sources */,
-				BAF870182B387EE200E0F939 /* NumberVM.swift in Sources */,
 				BAF8702A2B38801300E0F939 /* ProductVM.swift in Sources */,
 				BAF86FDF2B3601FF00E0F939 /* TokenManager.swift in Sources */,
+				BAEEA5FE2B457D5F00DCD042 /* LoginVC.swift in Sources */,
+				BAEEA6022B4584E800DCD042 /* NumberVM.swift in Sources */,
 				BAF870102B387E1C00E0F939 /* PersonalDataView.swift in Sources */,
+				BAEEA5FA2B45760700DCD042 /* PasswordVM.swift in Sources */,
 				BAF86FE52B36026400E0F939 /* String+Ext.swift in Sources */,
-				BAF870082B387DB000E0F939 /* PasswordVC.swift in Sources */,
 				BAF8701C2B387F1D00E0F939 /* OTPVC.swift in Sources */,
 				BAF86FD72B36015900E0F939 /* CustomTabBarController.swift in Sources */,
 				BAF870142B387EB400E0F939 /* NumberView.swift in Sources */,
-				BAF870162B387ECD00E0F939 /* NumberVC.swift in Sources */,
 				BAF870222B387F7500E0F939 /* ProductView.swift in Sources */,
 				BAF870122B387E3400E0F939 /* PersonalDataVC.swift in Sources */,
 				BAF870322B38809C00E0F939 /* AddProductVM.swift in Sources */,
@@ -559,19 +559,19 @@
 				BAF870282B387FEE00E0F939 /* ProductVC.swift in Sources */,
 				BAEEA5BF2B3EE8B300DCD042 /* Constants.swift in Sources */,
 				BAF86FF62B387CBB00E0F939 /* MainView.swift in Sources */,
+				BAEEA5FC2B457D5100DCD042 /* LoginVM.swift in Sources */,
 				BAF870A82B3DD86400E0F939 /* FinishRegVC.swift in Sources */,
 				BAF86FD32B3600F400E0F939 /* BorderedTextField.swift in Sources */,
 				BAF870262B387FD500E0F939 /* PopUpView.swift in Sources */,
 				BAF86FAC2B32A62000E0F939 /* AppDelegate.swift in Sources */,
+				BAEEA6002B4584E000DCD042 /* NumberVC.swift in Sources */,
 				BAF8700E2B387DFA00E0F939 /* ProfileVC.swift in Sources */,
 				BAF86FDB2B3601A800E0F939 /* APIService.swift in Sources */,
-				BAF870002B387D4300E0F939 /* LoginVM.swift in Sources */,
 				BAF8702C2B38804700E0F939 /* AddProductView.swift in Sources */,
-				BAF8700A2B387DC100E0F939 /* PasswordVM.swift in Sources */,
 				BAF870302B38807800E0F939 /* AddProductVC.swift in Sources */,
 				BAF870242B387FA900E0F939 /* ProductCell.swift in Sources */,
+				BAEEA5F82B456BEA00DCD042 /* PasswordVC.swift in Sources */,
 				BAF870AA2B3DD87000E0F939 /* FinishRegView.swift in Sources */,
-				BAF86FFE2B387D2D00E0F939 /* LoginVC.swift in Sources */,
 				BAF86FAE2B32A62000E0F939 /* SceneDelegate.swift in Sources */,
 				BAF870022B387D6600E0F939 /* RegView.swift in Sources */,
 				BAF870062B387D9700E0F939 /* PasswordView.swift in Sources */,
@@ -734,11 +734,13 @@
 				DEVELOPMENT_TEAM = L3L56Q665Z;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Neobis_iOS_Marketplace/Info.plist;
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Please allow access to library";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -765,11 +767,13 @@
 				DEVELOPMENT_TEAM = L3L56Q665Z;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Neobis_iOS_Marketplace/Info.plist;
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Please allow access to library";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

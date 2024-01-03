@@ -9,9 +9,13 @@ import UIKit
 import SnapKit
 
 class RegistrationViewController: UIViewController {
-        
+    
+    var username = ""
+    var email = ""
+    
     let mainView = RegistrationView()
-
+    
+    // MARK: - UI SETUP
     override func loadView() {
         view = mainView
     }
@@ -20,8 +24,14 @@ class RegistrationViewController: UIViewController {
         super.viewDidLoad()
         setupNavigationView()
         addTargets()
+        addDelegates()
     }
-
+    
+    func addDelegates() {
+        mainView.nameField.delegate = self
+        mainView.mailField.delegate = self
+    }
+    
     func addTargets() {
         mainView.enterButton.addTarget(self, action: #selector(enterButtonPressed), for: .touchUpInside)
     }
@@ -49,6 +59,37 @@ class RegistrationViewController: UIViewController {
     @objc func backPressed() {
         navigationController?.popViewController(animated: true)
     }
-
+    
 }
 
+// MARK: - EXTENSION
+extension RegistrationViewController: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ LoginTextField: UITextField) -> Bool {
+        LoginTextField.resignFirstResponder()
+        return true
+    }
+    
+    func textField(
+        _ textField: UITextField,
+        shouldChangeCharactersIn range: NSRange,
+        replacementString string: String) -> Bool {
+            
+            let updatedName = textField == mainView.nameField ? (textField.text as NSString?)?.replacingCharacters(in: range, with: string) : mainView.nameField.text
+            
+            let updatedMail = textField == mainView.mailField ? (textField.text as NSString?)?.replacingCharacters(in: range, with: string) : mainView.mailField.text
+            
+            if let name = updatedName,
+               let mail = updatedMail {
+                
+                mainView.enterButton.isEnabled = name.count >= 3 && mail.contains("@") && mail.contains(".com")
+                
+                if mainView.enterButton.isEnabled {
+                    mainView.enterButton.backgroundColor = UIColor.colorBlue
+                } else {
+                    mainView.enterButton.backgroundColor = UIColor.colorGrey
+                }
+            }
+            return true
+        }
+}

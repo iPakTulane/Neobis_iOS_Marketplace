@@ -7,11 +7,18 @@
 
 import Foundation
 
+// MARK: - DELEGATE PROTOCOL
+protocol LoginDelegate: AnyObject {
+    func loginDidSucceed(withData data: Data)
+    func loginDidFail(withError error: Error)
+}
+
 // MARK: - PROTOCOL
 protocol LoginProtocol {
     var isLoggedIn: Bool { get }
-    var loginResult: ((Result<Data, Error>) -> Void)? { get set }
-    
+
+    var delegate: LoginDelegate? { get set }
+
     func login(username: String, password: String)
 }
 
@@ -19,7 +26,8 @@ protocol LoginProtocol {
 class LoginViewModel: LoginProtocol {
     
     var isLoggedIn: Bool = false
-    var loginResult: ((Result<Data, Error>) -> Void)?
+    
+    weak var delegate: LoginDelegate?
     
     let apiService: APIService
     
@@ -41,22 +49,18 @@ class LoginViewModel: LoginProtocol {
             DispatchQueue.main.async {
                 switch result {
                 case .success(let data):
-                    //let dataString = String(data: data, encoding: .utf8)
-                    //print("Data received: \(dataString ?? "nil")")
                     let decoder = JSONDecoder()
                     
                     if let tokenResponse = try? decoder.decode(LoginResponse.self, from: data) {
                         TokenManager.shared.accessToken = tokenResponse.tokens.access
                         self?.isLoggedIn = true
-                        self?.loginResult?(.success(data))
+                        self?.delegate?.loginDidSucceed(withData: data)
                     }
                 case .failure(let error):
-                    print("fail")
                     self?.isLoggedIn = false
-                    self?.loginResult?(.failure(error))
+                    self?.delegate?.loginDidFail(withError: error)
                 }
             }
         }
     }
-    
 }

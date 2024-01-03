@@ -9,10 +9,17 @@
 import Foundation
 import Alamofire
 
+
+// MARK: - DELEGATE PROTOCOL
+protocol NumberDelegate: AnyObject {
+    func registrationDidSucceed(withData data: Data)
+    func registrationDidFail(withError error: Error)
+}
+
 // MARK: - PROTOCOL
 protocol NumberProtocol {
-    var isRegistered: Bool { get }
-    var registerResult: ((Result<Data, Error>) -> Void)? { get set }
+    var isFullyRegistered: Bool { get }
+    var delegate: NumberDelegate? { get set }
     
     func fullRegister(phone_number: String)
 }
@@ -20,8 +27,9 @@ protocol NumberProtocol {
 // MARK: - VIEW MODEL
 class NumberViewModel: NumberProtocol {
     
-    var isRegistered: Bool = false
-    var registerResult: ((Result<Data, Error>) -> Void)?
+    var isFullyRegistered: Bool = false
+    
+    weak var delegate: NumberDelegate?
     
     let apiService: APIService
     
@@ -54,21 +62,17 @@ class NumberViewModel: NumberProtocol {
             parameters: parameters,
             bearerToken: TokenManager.shared.accessToken ?? "") { [weak self] result in
                 
-            DispatchQueue.main.async {
-                switch result {
-                case .success(let data):
-                    let dataString = String(data: data, encoding: .utf8)
-                    print("Data received: \(dataString ?? "nil")")
-                    self?.isRegistered = true
-                    self?.registerResult?(.success(data))
-                case .failure(let error):
-                    let errorMessage = "Failed to register number: \(error.localizedDescription)"
-                    print(errorMessage)
-                    self?.isRegistered = false
-                    self?.registerResult?(.failure(error))
+                DispatchQueue.main.async {
+                    switch result {
+                    case .success(let data):
+                        self?.isFullyRegistered = true
+                        self?.delegate?.registrationDidSucceed(withData: data)
+                    case .failure(let error):
+                        self?.isFullyRegistered = false
+                        self?.delegate?.registrationDidFail(withError: error)
+                    }
                 }
             }
-        }
     }
     
 }

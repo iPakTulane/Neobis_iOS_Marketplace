@@ -15,7 +15,7 @@ class ProfileView: UIView {
     let profilePic: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(named: "defaultPic")
-        image.layer.cornerRadius = 40
+//        image.layer.cornerRadius = 40
         image.clipsToBounds = true
         image.contentMode = .scaleAspectFill
         return image
@@ -30,14 +30,14 @@ class ProfileView: UIView {
     let firstSectionView: UIView = {
         let view = UIView()
         view.backgroundColor = .white
-        view.layer.cornerRadius = 30
+//        view.layer.cornerRadius = 30
         return view
     }()
     
     let secondSectionView: UIView = {
         let view = UIView()
         view.backgroundColor = .white
-        view.layer.cornerRadius = 30
+//        view.layer.cornerRadius = 30
         return view
     }()
     
@@ -191,7 +191,7 @@ class ProfileView: UIView {
         let button = UIButton()
         button.backgroundColor = UIColor.colorBlue
         button.setTitle("Finish registration", for: .normal)
-        button.layer.cornerRadius = 23
+//        button.layer.cornerRadius = 23
         button.titleLabel?.font = UIFont(name: "GothamPro-Bold", size: 16)
         return button
     }()

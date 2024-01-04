@@ -45,7 +45,7 @@ class ProductViewModel: ProductProtocol {
                 do {
                     let jsonData = try JSONSerialization.data(withJSONObject: dataArray, options: .prettyPrinted)
                     let jsonString = String(data: jsonData, encoding: .utf8)
-//                    print(jsonString ?? "")
+                    print(jsonString ?? "")
                     completion(.success(dataArray))
                 } catch {
                     completion(.failure(error))

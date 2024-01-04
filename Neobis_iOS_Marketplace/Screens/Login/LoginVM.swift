@@ -35,6 +35,7 @@ class LoginViewModel: LoginProtocol {
         self.apiService = APIService()
     }
     
+    
     func login(username: String, password: String) {
         
         let parameters: [String: Any] = [
@@ -45,22 +46,26 @@ class LoginViewModel: LoginProtocol {
         apiService.post(
             endpoint: "auth/login/",
             parameters: parameters) { [weak self] (result) in
-            
-            DispatchQueue.main.async {
-                switch result {
-                case .success(let data):
-                    let decoder = JSONDecoder()
-                    
-                    if let tokenResponse = try? decoder.decode(LoginResponse.self, from: data) {
-                        TokenManager.shared.accessToken = tokenResponse.tokens.access
-                        self?.isLoggedIn = true
-                        self?.delegate?.loginDidSucceed(withData: data)
+                
+                DispatchQueue.main.async {
+                    switch result {
+                    case .success(let data):
+                        let decoder = JSONDecoder()
+                        
+                        if let tokenResponse = try? decoder.decode(LoginResponse.self, from: data) {
+                            TokenManager.shared.accessToken = tokenResponse.tokens.access
+                            TokenManager.shared.refreshToken = tokenResponse.tokens.refresh
+                            self?.isLoggedIn = true
+                            self?.delegate?.loginDidSucceed(withData: data)
+                        }
+                    case .failure(let error):
+                        self?.isLoggedIn = false
+                        self?.delegate?.loginDidFail(withError: error)
                     }
-                case .failure(let error):
-                    self?.isLoggedIn = false
-                    self?.delegate?.loginDidFail(withError: error)
                 }
             }
-        }
     }
+
+    
+    
 }

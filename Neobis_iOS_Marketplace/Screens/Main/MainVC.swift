@@ -12,7 +12,7 @@ import SnapKit
 class HomeViewController: UIViewController {
     
     let mainView = HomeView()
-    var getProduct: ProductProtocol!
+    var mainViewModel: ProductProtocol!
     
     // MARK: - INIT
     override func loadView() {
@@ -20,7 +20,7 @@ class HomeViewController: UIViewController {
     }
     
     init(getProduct: ProductProtocol!) {
-        self.getProduct = getProduct
+        self.mainViewModel = getProduct
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -34,7 +34,7 @@ class HomeViewController: UIViewController {
     }
     
     func getProductData() {
-        getProduct.fetchProductData() { [weak self] result in
+        mainViewModel.fetchProductData() { [weak self] result in
             switch result {
             case .success(let productData):
 //                print(productData)

@@ -61,7 +61,8 @@ class ProductCellView: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .white
-        layer.cornerRadius = 12 //* 1
+        // TODO:
+//        layer.cornerRadius = 12 //* 1
         setupViews()
         setupConstraints()
     }

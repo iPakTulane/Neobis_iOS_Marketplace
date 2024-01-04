@@ -41,6 +41,7 @@ class PasswordViewModel: PasswordProtocol {
         self.email = email
     }
     
+    
     func register(password: String, password_confirm: String) {
         let parameters: [String: Any] = [
             "username": userName,
@@ -52,22 +53,22 @@ class PasswordViewModel: PasswordProtocol {
         apiService.post(
             endpoint: "auth/register/",
             parameters: parameters) { [weak self] (result) in
-            
+                
                 DispatchQueue.main.async {
-                switch result {
-                case .success(let data):
-                    let dataString = String(data: data, encoding: .utf8)
-                    print("Data received: \(dataString ?? "nil")")
-                    self?.isRegistered = true
-                    self?.delegate?.registrationDidSucceed(withData: data)
-                case .failure(let error):
-                    let errorMessage = "Failed register number: \(error.localizedDescription)"
-                    print(errorMessage)
-                    self?.isRegistered = false
-                    self?.delegate?.registrationDidFail(withError: error)
+                    switch result {
+                    case .success(let data):
+                        let dataString = String(data: data, encoding: .utf8)
+                        print("Data received: \(dataString ?? "nil")")
+                        self?.isRegistered = true
+                        self?.delegate?.registrationDidSucceed(withData: data)
+                    case .failure(let error):
+                        let errorMessage = "Failed register number: \(error.localizedDescription)"
+                        print(errorMessage)
+                        self?.isRegistered = false
+                        self?.delegate?.registrationDidFail(withError: error)
+                    }
                 }
             }
-        }
     }
     
 }

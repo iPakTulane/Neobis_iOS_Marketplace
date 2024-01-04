@@ -15,11 +15,12 @@ class NumberView: UIView {
     let phoneView: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor.colorBlue
-        view.layer.cornerRadius = 20
+//        view.layer.cornerRadius = 20
         
         view.layer.shadowColor = UIColor.colorBlue.cgColor
         view.layer.shadowOffset = CGSize(width: 0, height: 5)
         view.layer.shadowOpacity = 0.7
+        // TODO:
         view.layer.shadowRadius = 4
         
         return view
@@ -78,7 +79,7 @@ class NumberView: UIView {
         let button = UIButton()
     //    button.backgroundColor = UIColor.colorBlue
         button.backgroundColor = UIColor.colorGrey
-        button.layer.cornerRadius = 23
+//        button.layer.cornerRadius = 23
         button.setTitle("Next", for: .normal)
         button.titleLabel?.font = UIFont(name: "GothamPro-Bold", size: 16)
         

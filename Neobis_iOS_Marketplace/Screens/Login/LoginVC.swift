@@ -32,6 +32,7 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         addTargets()
         addDelegates()
+        
     }
     
 

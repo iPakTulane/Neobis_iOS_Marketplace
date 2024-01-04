@@ -34,8 +34,8 @@ class ProductViewController: UIViewController {
         return view
     }()
     
-    init(Product: ProductProtocol!, productProtocol: GetUserProtocol!) {
-        self.ProductViewModelType = Product
+    init(product: ProductProtocol!, productProtocol: GetUserProtocol!) {
+        self.ProductViewModelType = product
         self.getUserProtocol = productProtocol
         super.init(nibName: nil, bundle: nil)
     }
@@ -48,7 +48,7 @@ class ProductViewController: UIViewController {
         super.viewDidLoad()
         setupNavigationView()
         setUpCollectionView()
-        addTapGesture()
+//        addTapGesture()
         addTargets()
         setupPopUpView()
         getProductData()
@@ -69,11 +69,11 @@ class ProductViewController: UIViewController {
         mainView.collectionView.register(ProductCellView.self, forCellWithReuseIdentifier: "ProductCell")
     }
     
-    func addTapGesture() {
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
-        tapGesture.cancelsTouchesInView = false
-        view.addGestureRecognizer(tapGesture)
-    }
+//    func addTapGesture() {
+//        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
+//        tapGesture.cancelsTouchesInView = false
+//        view.addGestureRecognizer(tapGesture)
+//    }
     
     func addTargets() {
         popUp.changeButton.addTarget(self, action: #selector(changePressed), for: .touchUpInside)

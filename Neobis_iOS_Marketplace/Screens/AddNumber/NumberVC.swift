@@ -58,6 +58,7 @@ class NumberViewController: UIViewController {
             
             if let firstDigit = digits.first {
                 digits.removeFirst()
+                print(firstDigit)
             }
             
             digits = "+998" + digits

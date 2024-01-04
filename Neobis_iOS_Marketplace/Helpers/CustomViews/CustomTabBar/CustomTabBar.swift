@@ -16,7 +16,7 @@ class CustomTabBar: UITabBar {
         button.backgroundColor = UIColor.colorBlue
         button.setImage(UIImage(named: "plus"), for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.layer.cornerRadius = 25
+//        button.layer.cornerRadius = 25
         return button
     }()
 

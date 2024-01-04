@@ -16,7 +16,7 @@ class CustomCell: UICollectionViewCell {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
-        imageView.layer.cornerRadius = 12
+//        imageView.layer.cornerRadius = 12
         return imageView
     }()
     

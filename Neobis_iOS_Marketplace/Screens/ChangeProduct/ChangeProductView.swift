@@ -24,7 +24,7 @@ class ChangeProductView: UIView {
     let addButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = .white
-        button.layer.cornerRadius = 12 //*1 - Assuming 1 is the original height value
+//        button.layer.cornerRadius = 12 //*1 - Assuming 1 is the original height value
         
         return button
     }()
@@ -32,7 +32,7 @@ class ChangeProductView: UIView {
     
     let addImage: UIImageView = {
         let image = UIImageView()
-        image.image = UIImage(named: "add")
+        image.image = UIImage(named: "addProduct")
         
         return image
     }()
@@ -73,7 +73,7 @@ class ChangeProductView: UIView {
     let priceField: UITextField = {
         let field = UITextField()
         field.backgroundColor = .white
-        field.layer.cornerRadius = 12 //*1 - Assuming 1 is the original height value
+//        field.layer.cornerRadius = 12 //*1 - Assuming 1 is the original height value
         field.font = UIFont(name: "GothamPro", size: 16)
         field.placeholder = "Price"
         let leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 1)) // Assuming 1 is the original height value
@@ -87,7 +87,7 @@ class ChangeProductView: UIView {
     let nameField: UITextField = {
         let field = UITextField()
         field.backgroundColor = .white
-        field.layer.cornerRadius = 12 //*1 - Assuming 1 is the original height value
+//        field.layer.cornerRadius = 12 //*1 - Assuming 1 is the original height value
         field.font = UIFont(name: "GothamPro", size: 16)
         field.placeholder = "Title"
         let leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 1)) // Assuming 1 is the original height value
@@ -101,9 +101,11 @@ class ChangeProductView: UIView {
     let descriptionOne: UITextView = {
         let textView = UITextView()
         textView.backgroundColor = .white
-        textView.layer.cornerRadius = 12
+        // TODO:
+//        textView.layer.cornerRadius = 12
         textView.font = UIFont(name: "GothamPro", size: 16)
-        textView.textContainerInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        // TODO:
+//        textView.textContainerInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         textView.isScrollEnabled = false
         textView.textContainer.maximumNumberOfLines = 10
         
@@ -113,9 +115,11 @@ class ChangeProductView: UIView {
     let descriptionTwo: UITextView = {
         let textView = UITextView()
         textView.backgroundColor = .white
-        textView.layer.cornerRadius = 12
+        // TODO:
+//        textView.layer.cornerRadius = 12
         textView.font = UIFont(name: "GothamPro", size: 16)
-        textView.textContainerInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        // TODO:
+//        textView.textContainerInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         textView.isScrollEnabled = false
         
         return textView
@@ -225,7 +229,7 @@ class ChangeProductView: UIView {
 extension ChangeProductView: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UITextViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let cellWidth = 76
+        let cellWidth: CGFloat = 76
         let cellHeight = collectionView.bounds.height
         return CGSize(width: cellWidth, height: cellHeight)
     }
@@ -305,7 +309,6 @@ extension ChangeProductView: UICollectionViewDelegate, UICollectionViewDataSourc
         
         return false
     }
-
     
     func textViewDidChange(_ textView: UITextView) {
         if textView == descriptionOne {
@@ -322,5 +325,6 @@ extension ChangeProductView: UICollectionViewDelegate, UICollectionViewDataSourc
             updateConstraints()
         }
     }
+
     
 }

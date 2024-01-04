@@ -24,7 +24,8 @@ class AddProductView: UIView {
     let addButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = .white
-        button.layer.cornerRadius = 12 //*1 - Assuming 1 is the original height value
+        // TODO:
+//        button.layer.cornerRadius = 12 //*1 - Assuming 1 is the original height value
         
         return button
     }()
@@ -32,7 +33,7 @@ class AddProductView: UIView {
     
     let addImage: UIImageView = {
         let image = UIImageView()
-        image.image = UIImage(named: "add")
+        image.image = UIImage(named: "addProduct")
         
         return image
     }()
@@ -73,7 +74,8 @@ class AddProductView: UIView {
     let priceField: UITextField = {
         let field = UITextField()
         field.backgroundColor = .white
-        field.layer.cornerRadius = 12 //*1 - Assuming 1 is the original height value
+        // TODO:
+//        field.layer.cornerRadius = 12 //*1 - Assuming 1 is the original height value
         field.font = UIFont(name: "GothamPro", size: 16)
         field.placeholder = "Price"
         let leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: field.frame.height))
@@ -87,7 +89,8 @@ class AddProductView: UIView {
     let nameField: UITextField = {
         let field = UITextField()
         field.backgroundColor = .white
-        field.layer.cornerRadius = 12 //*1 - Assuming 1 is the original height value
+        // TODO:
+//        field.layer.cornerRadius = 12 //*1 - Assuming 1 is the original height value
         field.font = UIFont(name: "GothamPro", size: 16)
         field.placeholder = "Title"
         let leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: field.frame.height))
@@ -101,9 +104,11 @@ class AddProductView: UIView {
     let descriptionOne: UITextView = {
         let textView = UITextView()
         textView.backgroundColor = .white
-        textView.layer.cornerRadius = 12
+        // TODO:
+//        textView.layer.cornerRadius = 12
         textView.font = UIFont(name: "GothamPro", size: 16)
-        textView.textContainerInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        // TODO:
+//        textView.textContainerInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         textView.isScrollEnabled = false
         textView.textContainer.maximumNumberOfLines = 10
         
@@ -113,9 +118,11 @@ class AddProductView: UIView {
     let descriptionTwo: UITextView = {
         let textView = UITextView()
         textView.backgroundColor = .white
-        textView.layer.cornerRadius = 12
+        // TODO:
+//        textView.layer.cornerRadius = 12
         textView.font = UIFont(name: "GothamPro", size: 16)
-        textView.textContainerInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        // TODO:
+//        textView.textContainerInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         textView.isScrollEnabled = false
         
         return textView
@@ -222,9 +229,9 @@ class AddProductView: UIView {
 
 // MARK: - EXTENSION
 extension AddProductView: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UITextViewDelegate {
-
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let cellWidth = 76
+        let cellWidth: CGFloat = 76
         let cellHeight = collectionView.bounds.height
         return CGSize(width: cellWidth, height: cellHeight)
     }

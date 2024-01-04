@@ -17,7 +17,8 @@ class PersonalDataView: UIView, UITextFieldDelegate {
     let profilePic: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(named: "defaultPic")
-        image.layer.cornerRadius = 40
+        // TODO:
+//        image.layer.cornerRadius = 40
         image.clipsToBounds = true
         image.contentMode = .scaleAspectFill
         
@@ -37,7 +38,7 @@ class PersonalDataView: UIView, UITextFieldDelegate {
     let firstSectionView: UIView = {
         let view = UIView()
         view.backgroundColor = .white
-        view.layer.cornerRadius = 12
+//        view.layer.cornerRadius = 12
         
         return view
     }()
@@ -76,7 +77,7 @@ class PersonalDataView: UIView, UITextFieldDelegate {
     let secondSectionView: UIView = {
         let view = UIView()
         view.backgroundColor = .white
-        view.layer.cornerRadius = 12
+//        view.layer.cornerRadius = 12
         
         let lineView = UIView()
         lineView.backgroundColor = UIColor.colorBackground
@@ -140,9 +141,9 @@ class PersonalDataView: UIView, UITextFieldDelegate {
         setupConstraints()
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
-        self.endEditing(true)
-    }
+//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
+//        self.endEditing(true)
+//    }
     
     // MARK: - UI SETUP 
     func setupViews() {

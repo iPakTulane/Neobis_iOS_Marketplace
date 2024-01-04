@@ -16,7 +16,7 @@ class ProfileViewController: UIViewController {
     let mainView = ProfileView()
     var nickName: String = ""
     var image: UIImage?
-    var getUserProtocol: GetUserProtocol!
+    var mainViewModel: GetUserProtocol!
     
     // MARK: - INIT
     override func loadView() {
@@ -24,7 +24,7 @@ class ProfileViewController: UIViewController {
     }
     
     init(getUserProtocol: GetUserProtocol!) {
-        self.getUserProtocol = getUserProtocol
+        self.mainViewModel = getUserProtocol
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -54,7 +54,7 @@ class ProfileViewController: UIViewController {
     }
     
     func getUserData() {
-        getUserProtocol.fetchUserData() { [weak self] result in
+        mainViewModel.fetchUserData() { [weak self] result in
             switch result {
             case .success(let userData):
                 self?.parseUserData(userData)
@@ -99,13 +99,13 @@ class ProfileViewController: UIViewController {
         
         print(accessToken)
         
-        getUserProtocol.fetchUserData() { [weak self] result in
+        mainViewModel.fetchUserData() { [weak self] result in
             switch result {
                 
             case .success(let userData):
                 
                 if let phoneNumber = userData["phone_number"] as? String {
-//                    print("Phone number:", phoneNumber)
+                    print("Phone number:", phoneNumber)
                     
                     DispatchQueue.main.async {
                         self?.mainView.finishRegButton.isHidden = true
@@ -121,7 +121,7 @@ class ProfileViewController: UIViewController {
     // MARK: - ACTION BUTTONS
     @objc func productButtonPressed() {
         
-        let vc = ProductViewController(Product: ProductViewModel(), productProtocol: GetUserViewModel())
+        let vc = ProductViewController(product: ProductViewModel(), productProtocol: GetUserViewModel())
         
 //        navigationController?.pushViewController(vc, animated: true)
         

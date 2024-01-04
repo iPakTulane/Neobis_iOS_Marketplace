@@ -63,7 +63,7 @@ class PasswordView: UIView {
     let nextButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = UIColor.colorGrey
-        button.layer.cornerRadius = 23
+//        button.layer.cornerRadius = 23
         button.setTitle("Next", for: .normal)
         button.titleLabel?.font = UIFont(name: "GothamPro-Bold", size: 16)
         return button
@@ -72,7 +72,7 @@ class PasswordView: UIView {
     let finishButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = UIColor.colorGrey
-        button.layer.cornerRadius = 23
+//        button.layer.cornerRadius = 23
         button.setTitle("Finish", for: .normal)
         button.titleLabel?.font = UIFont(name: "GothamPro-Bold", size: 16)
         button.isHidden = true
@@ -104,9 +104,9 @@ class PasswordView: UIView {
         setupConstraints()
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.endEditing(true)
-    }
+//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+//        self.endEditing(true)
+//    }
     
     // MARK: - UI SETUP
     func setupViews() {

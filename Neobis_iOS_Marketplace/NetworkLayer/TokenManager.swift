@@ -10,6 +10,8 @@ import Foundation
 
 class TokenManager {
     
+//    var storage: UserDefaults
+    
     static let shared = TokenManager()
     
     private let accessTokenKey = "AccessToken"
@@ -24,8 +26,18 @@ class TokenManager {
         get { UserDefaults.standard.string(forKey: refreshTokenKey) }
         set { UserDefaults.standard.set(newValue, forKey: refreshTokenKey) }
     }
+
+    func saveAccessToken(name: String?) {
+        UserDefaults.setValue(name, forKey: accessTokenKey)
+    }
+    
+    func saveRefreshToken(name: String?) {
+        UserDefaults.setValue(name, forKey: refreshTokenKey)
+    }
     
     private init() {}
+    
+    
 }
 
 

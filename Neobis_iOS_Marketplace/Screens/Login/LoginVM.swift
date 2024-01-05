@@ -50,15 +50,36 @@ class LoginViewModel: LoginProtocol {
                 DispatchQueue.main.async {
                     switch result {
                     case .success(let data):
-                        let decoder = JSONDecoder()
                         
-                        if let tokenResponse = try? decoder.decode(LoginResponse.self, from: data) {
-                            TokenManager.shared.accessToken = tokenResponse.tokens.access
-                            TokenManager.shared.refreshToken = tokenResponse.tokens.refresh
+                        print(data.count)
+                        
+                        let decoder = JSONDecoder()
+                        print("success")
+                        if let tokenResponse = try? decoder.decode(MarketplaceBase.self, from: data) {
+                            
+                            print(data.count)
+
+                            TokenManager.shared.accessToken = tokenResponse.tokens?.access
+                            print(String(describing: tokenResponse.tokens?.access))
+                            
+                            TokenManager.shared.refreshToken = tokenResponse.tokens?.refresh
+                            print(String(describing: tokenResponse.tokens?.refresh))
+                            
+//                            TokenManager.shared.saveAccessToken(name: tokenResponse.tokens?.access)
+//                            TokenManager.shared.saveRefreshToken(name: tokenResponse.tokens?.refresh)
+
+//                            TokenManager.shared.accessToken = tokenResponse.tokens.access
+//                            TokenManager.shared.refreshToken = tokenResponse.tokens.refresh
+
+//                            print(UserDefaults.standard.string(forKey: "AccessToken") ?? "")
+//                            print(UserDefaults.standard.string(forKey: "RefreshToken") ?? "")
+                                                        
+                            
                             self?.isLoggedIn = true
                             self?.delegate?.loginDidSucceed(withData: data)
                         }
                     case .failure(let error):
+                        print("fail")
                         self?.isLoggedIn = false
                         self?.delegate?.loginDidFail(withError: error)
                     }

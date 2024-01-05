@@ -17,7 +17,7 @@ class ProductView: UIView {
     let boxImage: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(named: "Artwork")
-        image.isHidden = true
+        image.isHidden = false
         return image
     }()
     
@@ -65,18 +65,15 @@ class ProductView: UIView {
     func setupConstraints() {
         
         boxImage.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(184)
-            make.leading.equalToSuperview().inset(96)
-            make.trailing.equalToSuperview().inset(111)
-            make.bottom.equalToSuperview().inset(443)
+            make.centerX.equalToSuperview()
+            make.top.equalToSuperview().inset(300)
         }
         
         emptyLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(413)
-            make.leading.equalToSuperview().inset(20)
-            make.trailing.equalToSuperview().inset(35)
-            make.bottom.equalToSuperview().inset(382)
+            make.centerX.equalToSuperview()
+            make.top.equalTo(boxImage.snp.bottom).offset(20)
         }
+        
         
         collectionView.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(112)
@@ -85,10 +82,12 @@ class ProductView: UIView {
             make.bottom.equalToSuperview()
         }
     }
-
+    
     
     func updateView(with products: [[String: Any]]) {
+        
         self.products = products
+        
         DispatchQueue.main.async {
             if products.isEmpty {
                 self.emptyLabel.isHidden = false
@@ -103,4 +102,5 @@ class ProductView: UIView {
             }
         }
     }
+    
 }

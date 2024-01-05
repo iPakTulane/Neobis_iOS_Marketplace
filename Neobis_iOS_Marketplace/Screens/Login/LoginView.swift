@@ -70,7 +70,7 @@ class LoginView: UIView {
     lazy var enterButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = UIColor.colorGrey
-//        button.layer.cornerRadius = 23
+        button.layer.cornerRadius = 23
         button.setTitle("Log in", for: .normal)
         button.titleLabel?.font = UIFont(name: "GothamPro-Bold", size: 16)
         return button
@@ -97,7 +97,7 @@ class LoginView: UIView {
         view.addSubview(imageView)
         view.backgroundColor = UIColor.сolorRed
         view.isHidden = true
-//        view.layer.cornerRadius = 16
+        view.layer.cornerRadius = 16
         
         label.snp.makeConstraints { make in
             make.center.equalToSuperview()
@@ -128,9 +128,9 @@ class LoginView: UIView {
     }
     
     // This allows the user to dismiss the keyboard by tapping outside of text input fields
-//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
-//        self.endEditing(true)
-//    }
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
+        self.endEditing(true)
+    }
     
     // MARK: - UI SETUP
     

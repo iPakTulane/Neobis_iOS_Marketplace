@@ -24,7 +24,7 @@ class ChangeProductView: UIView {
     let addButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = .white
-//        button.layer.cornerRadius = 12 //*1 - Assuming 1 is the original height value
+        button.layer.cornerRadius = 12 //*1 - Assuming 1 is the original height value
         
         return button
     }()
@@ -61,19 +61,20 @@ class ChangeProductView: UIView {
     
     let addLabel: UILabel = {
         let label = UILabel()
-        label.text = "Add a picture"
+        label.text = "Add \npicture"
         label.textColor = UIColor.colorBlue
         label.font = UIFont(name: "GothamPro-Medium", size: 12)
-        label.numberOfLines = 2
+        label.numberOfLines = 0
         label.textAlignment = .center
-        
+        label.adjustsFontSizeToFitWidth = true
+        label.minimumScaleFactor = 0.5
         return label
     }()
     
     let priceField: UITextField = {
         let field = UITextField()
         field.backgroundColor = .white
-//        field.layer.cornerRadius = 12 //*1 - Assuming 1 is the original height value
+        field.layer.cornerRadius = 12 //*1 - Assuming 1 is the original height value
         field.font = UIFont(name: "GothamPro", size: 16)
         field.placeholder = "Price"
         let leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 1)) // Assuming 1 is the original height value
@@ -87,7 +88,7 @@ class ChangeProductView: UIView {
     let nameField: UITextField = {
         let field = UITextField()
         field.backgroundColor = .white
-//        field.layer.cornerRadius = 12 //*1 - Assuming 1 is the original height value
+        field.layer.cornerRadius = 12 //*1 - Assuming 1 is the original height value
         field.font = UIFont(name: "GothamPro", size: 16)
         field.placeholder = "Title"
         let leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 1)) // Assuming 1 is the original height value
@@ -102,10 +103,10 @@ class ChangeProductView: UIView {
         let textView = UITextView()
         textView.backgroundColor = .white
         // TODO:
-//        textView.layer.cornerRadius = 12
+        textView.layer.cornerRadius = 12
         textView.font = UIFont(name: "GothamPro", size: 16)
         // TODO:
-//        textView.textContainerInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        textView.textContainerInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         textView.isScrollEnabled = false
         textView.textContainer.maximumNumberOfLines = 10
         
@@ -116,10 +117,10 @@ class ChangeProductView: UIView {
         let textView = UITextView()
         textView.backgroundColor = .white
         // TODO:
-//        textView.layer.cornerRadius = 12
+        textView.layer.cornerRadius = 12
         textView.font = UIFont(name: "GothamPro", size: 16)
         // TODO:
-//        textView.textContainerInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        textView.textContainerInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         textView.isScrollEnabled = false
         
         return textView
@@ -166,19 +167,18 @@ class ChangeProductView: UIView {
     }
     
     func setupConstraints() {
-            
+        
         addButton.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(112)
             make.leading.equalToSuperview().inset(20)
-            make.trailing.equalToSuperview().inset(279)
-            make.bottom.equalToSuperview().inset(604)
+            make.height.equalTo(96)
+            make.width.equalTo(76)
         }
         
         addImage.snp.makeConstraints { make in
             make.top.equalTo(addButton).inset(22)
-            make.leading.equalTo(addButton).inset(26)
-            make.trailing.equalTo(addButton).inset(26)
-            make.bottom.equalTo(addButton).inset(50)
+            make.centerX.equalTo(addButton.snp.centerX)
+            make.width.height.equalTo(27)
         }
         
         addLabel.snp.makeConstraints { make in
@@ -189,38 +189,42 @@ class ChangeProductView: UIView {
         }
         
         collectionView.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(112)
-            make.trailing.equalToSuperview()
-            make.bottom.equalToSuperview().inset(604)
-            make.leading.equalTo(102)
+            make.top.equalTo(addButton.snp.top)
+            make.bottom.equalTo(addButton.snp.bottom)
+            make.leading.equalTo(addButton.snp.trailing).offset(6)
+            make.trailing.equalToSuperview().inset(20)
         }
         
         priceField.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(234)
+            make.centerX.equalToSuperview()
+            make.top.equalToSuperview().inset(250)
             make.leading.equalToSuperview().inset(20)
             make.trailing.equalToSuperview().inset(20)
-            make.bottom.equalToSuperview().inset(538)
+            make.height.equalTo(40)
         }
         
         nameField.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(282)
+            make.centerX.equalToSuperview()
+            make.top.equalTo(priceField.snp.bottom).offset(8)
             make.leading.equalToSuperview().inset(20)
             make.trailing.equalToSuperview().inset(20)
-            make.bottom.equalToSuperview().inset(490)
+            make.height.equalTo(40)
         }
         
         descriptionOne.snp.updateConstraints { make in
-            make.top.equalToSuperview().inset(330)
+            make.centerX.equalToSuperview()
+            make.top.equalTo(nameField.snp.bottom).offset(8)
             make.leading.equalToSuperview().inset(20)
             make.trailing.equalToSuperview().inset(20)
-            make.height.equalTo(textHeightOne)
+            make.height.equalTo(40)
         }
         
         descriptionTwo.snp.updateConstraints { make in
+            make.centerX.equalToSuperview()
             make.top.equalTo(descriptionOne.snp.bottom).offset(8)
             make.leading.equalToSuperview().inset(20)
             make.trailing.equalToSuperview().inset(20)
-            make.height.equalTo(textHeightTwo)
+            make.height.equalTo(40)
         }
     }
 

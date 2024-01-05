@@ -55,7 +55,7 @@ class LoginViewModel: LoginProtocol {
                         
                         let decoder = JSONDecoder()
                         print("success")
-                        if let tokenResponse = try? decoder.decode(MarketplaceBase.self, from: data) {
+                        if let tokenResponse = try? decoder.decode(LoginModel.self, from: data) {
                             
                             print(data.count)
 

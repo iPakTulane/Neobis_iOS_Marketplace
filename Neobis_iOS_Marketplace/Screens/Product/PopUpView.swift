@@ -32,7 +32,7 @@ class PopUpView: UIView {
         image.image = UIImage(named: "edit")
         image.backgroundColor = UIColor.colorBlue
         // TODO:
-//        image.layer.cornerRadius = 6 //*1 - Assuming 1 is the original height value
+        image.layer.cornerRadius = 6 //*1 - Assuming 1 is the original height value
         
         return image
     }()
@@ -59,7 +59,7 @@ class PopUpView: UIView {
         image.image = UIImage(named: "trash")
         image.backgroundColor = UIColor.colorBlue
         // TODO:
-//        image.layer.cornerRadius = 6 //*1 - Assuming 1 is the original height value
+        image.layer.cornerRadius = 6 //*1 - Assuming 1 is the original height value
         
         return image
     }()
@@ -78,7 +78,7 @@ class PopUpView: UIView {
     override func layoutSubviews() {
         backgroundColor = .white
         // TODO:
-//        layer.cornerRadius = 30 // *1 - Assuming 1 is the original height value
+        layer.cornerRadius = 30 // *1 - Assuming 1 is the original height value
         setupViews()
         setupConstraints()
     }

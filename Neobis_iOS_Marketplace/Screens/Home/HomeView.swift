@@ -16,7 +16,6 @@ class HomeView: UIView {
     let cartImage: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(named: "shopping-cart 1-2")
-        
         return image
     }()
     
@@ -30,7 +29,7 @@ class HomeView: UIView {
     let boxImage: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(named: "Artwork")
-        image.isHidden = true
+        image.isHidden = false
         return image
     }()
     
@@ -40,7 +39,6 @@ class HomeView: UIView {
         label.font = UIFont(name: "GothamPro-Bold", size: 18)
         label.textAlignment = .center
         label.isHidden = true
-        
         return label
     }()
     
@@ -52,7 +50,7 @@ class HomeView: UIView {
         
         return view
     }()
-
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -85,41 +83,43 @@ class HomeView: UIView {
     
     func setupConstraints() {
         boxImage.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(184)
-            make.leading.equalToSuperview().inset(96)
-            make.trailing.equalToSuperview().inset(111)
-            make.bottom.equalToSuperview().inset(443)
+            make.centerX.equalToSuperview()
+            make.top.equalToSuperview().inset(300)
         }
-
+        
         emptyLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(413)
-            make.leading.equalToSuperview().inset(20)
-            make.trailing.equalToSuperview().inset(35)
-            make.bottom.equalToSuperview().inset(382)
+            make.centerX.equalToSuperview()
+            make.top.equalTo(boxImage.snp.bottom).offset(20)
         }
-
+        
         collectionView.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(112)
             make.leading.equalToSuperview().inset(20)
             make.trailing.equalToSuperview().inset(20)
             make.bottom.equalToSuperview()
         }
-
+        
         cartImage.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(52)
+//            make.top.equalToSuperview().inset(52)
+//            make.leading.equalToSuperview().inset(20)
+//            make.trailing.equalToSuperview().inset(311)
+//            make.bottom.equalToSuperview().inset(716)
+            make.top.equalToSuperview().inset(50)
             make.leading.equalToSuperview().inset(20)
-            make.trailing.equalToSuperview().inset(311)
-            make.bottom.equalToSuperview().inset(716)
+            make.width.height.equalTo(45)
+            
         }
-
+        
         marketLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(69)
-            make.leading.equalToSuperview().inset(72)
-            make.trailing.equalToSuperview().inset(159)
-            make.bottom.equalToSuperview().inset(729)
+//            make.top.equalToSuperview().inset(69)
+//            make.leading.equalToSuperview().inset(72)
+//            make.trailing.equalToSuperview().inset(159)
+//            make.bottom.equalToSuperview().inset(729)
+            make.centerY.equalTo(cartImage.snp.centerY)
+            make.leading.equalTo(cartImage.snp.trailing).offset(10)
         }
     }
-
+    
     
     func updateView(with products: [[String: Any]]) {
         self.products = products
@@ -168,7 +168,7 @@ extension HomeView: UICollectionViewDataSource, UICollectionViewDelegateFlowLayo
                 }
             }.resume()
         }
-
+        
         
         return cell
     }

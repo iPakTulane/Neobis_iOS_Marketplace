@@ -56,7 +56,7 @@ class RegistrationView: UIView {
     lazy var enterButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = UIColor.colorGrey
-//        button.layer.cornerRadius = 23
+        button.layer.cornerRadius = 23
         button.setTitle("Log in", for: .normal)
         button.titleLabel?.font = UIFont(name: "GothamPro-Bold", size: 16)
         return button
@@ -77,9 +77,9 @@ class RegistrationView: UIView {
         setupConstraints()
     }
     
-//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
-//        self.endEditing(true)
-//    }
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
+        self.endEditing(true)
+    }
     
     // MARK: - UI SETUP
     

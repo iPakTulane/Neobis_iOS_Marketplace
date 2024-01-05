@@ -15,7 +15,7 @@ class ProfileView: UIView {
     let profilePic: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(named: "defaultPic")
-//        image.layer.cornerRadius = 40
+        image.layer.cornerRadius = 40
         image.clipsToBounds = true
         image.contentMode = .scaleAspectFill
         return image
@@ -30,14 +30,14 @@ class ProfileView: UIView {
     let firstSectionView: UIView = {
         let view = UIView()
         view.backgroundColor = .white
-//        view.layer.cornerRadius = 30
+        view.layer.cornerRadius = 16
         return view
     }()
     
     let secondSectionView: UIView = {
         let view = UIView()
         view.backgroundColor = .white
-//        view.layer.cornerRadius = 30
+        view.layer.cornerRadius = 16
         return view
     }()
     
@@ -191,7 +191,7 @@ class ProfileView: UIView {
         let button = UIButton()
         button.backgroundColor = UIColor.colorBlue
         button.setTitle("Finish registration", for: .normal)
-//        button.layer.cornerRadius = 23
+        button.layer.cornerRadius = 23
         button.titleLabel?.font = UIFont(name: "GothamPro-Bold", size: 16)
         return button
     }()
@@ -239,16 +239,19 @@ class ProfileView: UIView {
     
     func setupConstraints() {
         profilePic.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
             make.top.equalToSuperview().inset(112)
-            make.bottom.equalToSuperview().inset(620)
-            make.leading.equalToSuperview().inset(148)
-            make.trailing.equalToSuperview().inset(148)
+//            make.bottom.equalToSuperview().inset(620)
+//            make.leading.equalToSuperview().inset(148)
+//            make.trailing.equalToSuperview().inset(148)
+            make.width.height.equalTo(80)
         }
 
         nickLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(204)
-            make.bottom.equalToSuperview().inset(584)
+//            make.top.equalToSuperview().inset(204)
+//            make.bottom.equalToSuperview().inset(584)
             make.centerX.equalToSuperview()
+            make.top.equalTo(profilePic.snp.bottom).offset(12)
         }
 
         firstSectionView.snp.makeConstraints { make in
@@ -259,24 +262,31 @@ class ProfileView: UIView {
         }
 
         secondSectionView.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(389)
-            make.bottom.equalToSuperview().inset(353)
+//            make.top.equalToSuperview().inset(389)
+//            make.bottom.equalToSuperview().inset(353)
+//            make.leading.equalToSuperview().inset(20)
+//            make.trailing.equalToSuperview().inset(20)
+            make.centerX.equalToSuperview()
+            make.top.equalTo(firstSectionView.snp.bottom).offset(15)
             make.leading.equalToSuperview().inset(20)
             make.trailing.equalToSuperview().inset(20)
+            make.height.equalTo(70)
         }
 
         likeButton.snp.makeConstraints { make in
-            make.top.equalTo(firstSectionView).inset(16)
+            make.top.equalTo(firstSectionView).inset(20)
             make.leading.equalTo(firstSectionView).inset(16)
             make.trailing.equalTo(firstSectionView).inset(16)
-            make.bottom.equalTo(firstSectionView).inset(67)
+//            make.bottom.equalTo(firstSectionView).inset(67)
+            make.height.equalTo(38)
         }
 
         productButton.snp.makeConstraints { make in
-            make.top.equalTo(firstSectionView).inset(67)
+//            make.top.equalTo(firstSectionView).inset(67)
             make.leading.equalTo(firstSectionView).inset(16)
             make.trailing.equalTo(firstSectionView).inset(16)
-            make.bottom.equalTo(firstSectionView).inset(16)
+            make.bottom.equalTo(firstSectionView.snp.bottom).inset(20)
+            make.height.equalTo(38)
         }
 
         logoutButton.snp.makeConstraints { make in
@@ -288,9 +298,10 @@ class ProfileView: UIView {
 
         finishRegButton.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(647)
-            make.bottom.equalToSuperview().inset(121)
+//            make.bottom.equalToSuperview().inset(121)
             make.leading.equalToSuperview().inset(20)
             make.trailing.equalToSuperview().inset(20)
+            make.height.equalTo(45)
         }
     }
 

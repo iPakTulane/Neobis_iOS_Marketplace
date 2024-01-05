@@ -24,10 +24,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         // To start with Login screen
         let vc = LoginViewController(loginProtocol: LoginViewModel())
+        
 //        let vc = RegistrationViewController()
 //        let vc = OTPViewController()
 //        let vc = PasswordViewController(registerProtocol: PasswordViewModel(userName: "mama", email: "mama@gmail.com"))
 //        let vc = NumberViewController(numberProtocol: NumberViewModel(first_name: "kaka", last_name: "kaka", birthday: "01.01.2000", photo: <#T##Data#>))
+        
+//        let vc = FinishRegViewController(getUserProtocol: GetUserViewModel())
         
         window?.rootViewController = UINavigationController(rootViewController: vc)
         

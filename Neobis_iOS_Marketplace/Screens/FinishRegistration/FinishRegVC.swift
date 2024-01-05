@@ -58,6 +58,7 @@ class FinishRegViewController: UIViewController {
     
     
     func getUserData() {
+        
         getUserProtocol.fetchUserData() { [weak self] result in
             switch result {
             case .success(let userData):
@@ -70,7 +71,7 @@ class FinishRegViewController: UIViewController {
 
     func parseUserData(_ userData: [String: Any]) {
         
-        if let photoURLString = userData["photo"] as? String,
+        if let photoURLString = userData["avatar"] as? String,
            let photoURL = URL(string: "https://aibek-backender.org.kg/" + photoURLString) {
             DispatchQueue.global().async {
                 if let imageData = try? Data(contentsOf: photoURL),

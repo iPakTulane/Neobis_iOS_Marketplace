@@ -8,34 +8,22 @@ The Neobis_iOS_Marketplace project is a comprehensive solution that combines bot
 
 ## Design
 
-<img width="800" height="400" align="center" alt="1" src="[https:...](https://github.com/iPakTulane/Neobis_iOS_Marketplace/assets/117035210/b55a84db-d9a5-4680-9dcd-dcc4d935a39c)"/>
+<img width="800" height="400" align="center" alt="1" src="(https://github.com/iPakTulane/Neobis_iOS_Marketplace/assets/117035210/b55a84db-d9a5-4680-9dcd-dcc4d935a39c)"/>
 
+![13](https://github.com/iPakTulane/Neobis_iOS_Marketplace/assets/117035210/16821f57-9bed-4fd7-91ef-418c134f3ce3)
+![12](https://github.com/iPakTulane/Neobis_iOS_Marketplace/assets/117035210/0fde9bc2-106a-4c5a-846a-abb5b7ec8049)
+![11](https://github.com/iPakTulane/Neobis_iOS_Marketplace/assets/117035210/45e6cc98-78d5-4460-9e72-b60ffd641dee)
+![10](https://github.com/iPakTulane/Neobis_iOS_Marketplace/assets/117035210/d8d93c70-ff61-4ac4-930c-64d467a68b4c)
+![9](https://github.com/iPakTulane/Neobis_iOS_Marketplace/assets/117035210/8e43847d-d045-400b-a19a-e95a50391243)
+![8](https://github.com/iPakTulane/Neobis_iOS_Marketplace/assets/117035210/d89e96c3-a53c-40ac-a6ae-1aa88d2bca9e)
+![7](https://github.com/iPakTulane/Neobis_iOS_Marketplace/assets/117035210/ef6d5cba-0fe3-469b-9dc8-4b35dca2e745)
+![6](https://github.com/iPakTulane/Neobis_iOS_Marketplace/assets/117035210/d15c26ac-f3c5-407a-9aba-6537f29e8fce)
+![5](https://github.com/iPakTulane/Neobis_iOS_Marketplace/assets/117035210/27180a37-8793-4442-afdd-7512190e8106)
+![4](https://github.com/iPakTulane/Neobis_iOS_Marketplace/assets/117035210/9378b1b8-ddfd-42da-87eb-03bc04330c1b)
+![3](https://github.com/iPakTulane/Neobis_iOS_Marketplace/assets/117035210/8be9f8fb-7e1d-40cd-898a-a914a45fe3ac)
+![2](https://github.com/iPakTulane/Neobis_iOS_Marketplace/assets/117035210/cf8aa1de-57a3-47d2-88a2-344afe627edc)
+![1](https://github.com/iPakTulane/Neobis_iOS_Marketplace/assets/117035210/c2e4550f-ed38-46cf-9973-90726dc1712a)
 
-![1](https://github.com/iPakTulane/Neobis_iOS_Marketplace/assets/117035210/b55a84db-d9a5-4680-9dcd-dcc4d935a39c)
-
-![2](https://github.com/iPakTulane/Neobis_iOS_Marketplace/assets/117035210/45006597-4775-4c7c-bbb7-ea6c661d69f2)
-
-![3](https://github.com/iPakTulane/Neobis_iOS_Marketplace/assets/117035210/edb10db2-c5c4-4d88-8efe-299b31ed64d2)
-
-![4](https://github.com/iPakTulane/Neobis_iOS_Marketplace/assets/117035210/0ce6265c-79ff-41ea-baee-1e7c0dd33983)
-
-![5](https://github.com/iPakTulane/Neobis_iOS_Marketplace/assets/117035210/722a23e1-0e42-4c25-90cb-8954e6e69055)
-
-![6](https://github.com/iPakTulane/Neobis_iOS_Marketplace/assets/117035210/01a9cddb-e0d5-46fd-ad00-6ac661f87b85)
-
-![7](https://github.com/iPakTulane/Neobis_iOS_Marketplace/assets/117035210/b332131c-51db-4320-9fb2-dff360bd5437)
-
-![8](https://github.com/iPakTulane/Neobis_iOS_Marketplace/assets/117035210/b6e41a1e-3007-414e-8657-bedc54847c23)
-
-![9](https://github.com/iPakTulane/Neobis_iOS_Marketplace/assets/117035210/14c8f274-1995-435f-8aae-c34167f934db)
-
-![10](https://github.com/iPakTulane/Neobis_iOS_Marketplace/assets/117035210/cd3302f0-55f1-432a-bb9e-26127bbf2b9a)
-
-![11](https://github.com/iPakTulane/Neobis_iOS_Marketplace/assets/117035210/bd841034-bafe-40e4-b15b-d4b31aeff0b7)
-
-![12](https://github.com/iPakTulane/Neobis_iOS_Marketplace/assets/117035210/d3f1c937-a351-4ce7-a5f2-187e7e4610b2)
-
-![13](https://github.com/iPakTulane/Neobis_iOS_Marketplace/assets/117035210/7d127e42-892e-463d-8ca7-f8f6241de680)
 
 ## Architectural Pattern
 

@@ -7,7 +7,35 @@ An iOS app and website project focused on creating a seamless and intuitive mark
 The Neobis_iOS_Marketplace project is a comprehensive solution that combines both a website and a mobile application to offer users a convenient and enjoyable shopping experience. The key features include user registration and authorization with phone number verification, a visually appealing home page ribbon of products, detailed product pages, the ability to add new products, and a user profile system with additional functionality such as managing favorite products.
 
 ## Design
-[to be inserted]
+
+<img width="800" height="400" align="center" alt="1" src="[https:...](https://github.com/iPakTulane/Neobis_iOS_Marketplace/assets/117035210/b55a84db-d9a5-4680-9dcd-dcc4d935a39c)"/>
+
+
+![1](https://github.com/iPakTulane/Neobis_iOS_Marketplace/assets/117035210/b55a84db-d9a5-4680-9dcd-dcc4d935a39c)
+
+![2](https://github.com/iPakTulane/Neobis_iOS_Marketplace/assets/117035210/45006597-4775-4c7c-bbb7-ea6c661d69f2)
+
+![3](https://github.com/iPakTulane/Neobis_iOS_Marketplace/assets/117035210/edb10db2-c5c4-4d88-8efe-299b31ed64d2)
+
+![4](https://github.com/iPakTulane/Neobis_iOS_Marketplace/assets/117035210/0ce6265c-79ff-41ea-baee-1e7c0dd33983)
+
+![5](https://github.com/iPakTulane/Neobis_iOS_Marketplace/assets/117035210/722a23e1-0e42-4c25-90cb-8954e6e69055)
+
+![6](https://github.com/iPakTulane/Neobis_iOS_Marketplace/assets/117035210/01a9cddb-e0d5-46fd-ad00-6ac661f87b85)
+
+![7](https://github.com/iPakTulane/Neobis_iOS_Marketplace/assets/117035210/b332131c-51db-4320-9fb2-dff360bd5437)
+
+![8](https://github.com/iPakTulane/Neobis_iOS_Marketplace/assets/117035210/b6e41a1e-3007-414e-8657-bedc54847c23)
+
+![9](https://github.com/iPakTulane/Neobis_iOS_Marketplace/assets/117035210/14c8f274-1995-435f-8aae-c34167f934db)
+
+![10](https://github.com/iPakTulane/Neobis_iOS_Marketplace/assets/117035210/cd3302f0-55f1-432a-bb9e-26127bbf2b9a)
+
+![11](https://github.com/iPakTulane/Neobis_iOS_Marketplace/assets/117035210/bd841034-bafe-40e4-b15b-d4b31aeff0b7)
+
+![12](https://github.com/iPakTulane/Neobis_iOS_Marketplace/assets/117035210/d3f1c937-a351-4ce7-a5f2-187e7e4610b2)
+
+![13](https://github.com/iPakTulane/Neobis_iOS_Marketplace/assets/117035210/7d127e42-892e-463d-8ca7-f8f6241de680)
 
 ## Architectural Pattern
 

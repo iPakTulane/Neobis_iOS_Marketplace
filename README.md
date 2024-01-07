@@ -8,7 +8,7 @@ The Neobis_iOS_Marketplace project is a comprehensive solution that combines bot
 
 ## Design
 
-<img width="800" height="400" align="center" alt="1" src="(https://github.com/iPakTulane/Neobis_iOS_Marketplace/assets/117035210/b55a84db-d9a5-4680-9dcd-dcc4d935a39c)"/>
+<img width="800" height="400" align="center" alt="1" src="https://github.com/iPakTulane/Neobis_iOS_Marketplace/assets/117035210/b55a84db-d9a5-4680-9dcd-dcc4d935a39c"/>
 
 ![13](https://github.com/iPakTulane/Neobis_iOS_Marketplace/assets/117035210/16821f57-9bed-4fd7-91ef-418c134f3ce3)
 ![12](https://github.com/iPakTulane/Neobis_iOS_Marketplace/assets/117035210/0fde9bc2-106a-4c5a-846a-abb5b7ec8049)

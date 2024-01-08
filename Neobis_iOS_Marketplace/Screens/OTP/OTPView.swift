@@ -77,12 +77,12 @@ class OTPView: UIView {
     }()
     
     // MARK: - ACTION BUTTONS
-    let enterButton: UIButton = {
+    let newCodeButton: UIButton = {
         let button = UIButton()
         //        button.backgroundColor = UIColor.colorBlue
         button.backgroundColor = UIColor.colorGrey
         button.layer.cornerRadius = 23
-        button.setTitle("Next", for: .normal)
+        button.setTitle("Send a new code", for: .normal)
         button.titleLabel?.font = UIFont(name: "GothamPro-Bold", size: 16)
         
         return button
@@ -118,7 +118,7 @@ class OTPView: UIView {
         addSubview(mainLabel)
         addSubview(descriptionLabel)
         addSubview(codeField)
-        addSubview(enterButton)
+        addSubview(newCodeButton)
         addSubview(errorLabel)
     }
     
@@ -157,7 +157,7 @@ class OTPView: UIView {
             make.trailing.equalToSuperview().inset(62)
         }
 
-        enterButton.snp.makeConstraints { make in
+        newCodeButton.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(497)
             make.bottom.equalToSuperview().inset(271)
             make.leading.equalToSuperview().inset(20)
@@ -179,9 +179,9 @@ extension OTPView: UITextFieldDelegate {
     
     @objc private func numberFieldDidChange(_ textField: UITextField) {
         if let text = textField.text, text.count == 4 {
-            enterButton.backgroundColor = UIColor.colorBlue
+            newCodeButton.backgroundColor = UIColor.colorBlue
         } else {
-            enterButton.backgroundColor = UIColor.colorGrey
+            newCodeButton.backgroundColor = UIColor.colorGrey
         }
     }
 }

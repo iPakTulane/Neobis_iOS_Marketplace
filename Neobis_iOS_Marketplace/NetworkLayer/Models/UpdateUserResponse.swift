@@ -1,21 +1,22 @@
 //
-//  UserResponse.swift
+//  UpdateUserResponse.swift
 //  Neobis_iOS_Marketplace
 //
-//  Created by iPak Tulane on 05/01/24.
+//  Created by iPak Tulane on 08/01/24.
 //
+
 
 import Foundation
 
+// Update User profile
 
-struct UserResponse : Codable {
+struct UpdateUserResponse : Codable {
     let avatar : String?
     let username : String?
     let email : String?
     let first_name : String?
     let last_name : String?
     let date_of_birth : String?
-    let phone_number : String?
 
     enum CodingKeys: String, CodingKey {
 
@@ -25,7 +26,6 @@ struct UserResponse : Codable {
         case first_name = "first_name"
         case last_name = "last_name"
         case date_of_birth = "date_of_birth"
-        case phone_number = "phone_number"
     }
 
     init(from decoder: Decoder) throws {
@@ -36,10 +36,6 @@ struct UserResponse : Codable {
         first_name = try values.decodeIfPresent(String.self, forKey: .first_name)
         last_name = try values.decodeIfPresent(String.self, forKey: .last_name)
         date_of_birth = try values.decodeIfPresent(String.self, forKey: .date_of_birth)
-        phone_number = try values.decodeIfPresent(String.self, forKey: .phone_number)
     }
 
 }
-
-
-

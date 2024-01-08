@@ -14,13 +14,15 @@
 		BAEEA6002B4584E000DCD042 /* NumberVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAEEA5FF2B4584E000DCD042 /* NumberVC.swift */; };
 		BAEEA6022B4584E800DCD042 /* NumberVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAEEA6012B4584E800DCD042 /* NumberVM.swift */; };
 		BAEEA7B72B46B8C400DCD042 /* Ext+NSMutableData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAEEA7B62B46B8C400DCD042 /* Ext+NSMutableData.swift */; };
-		BAEEA7EC2B4825B000DCD042 /* UserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAEEA7EB2B4825B000DCD042 /* UserResponse.swift */; };
+		BAEEA7EC2B4825B000DCD042 /* GetUserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAEEA7EB2B4825B000DCD042 /* GetUserResponse.swift */; };
 		BAEEA7EE2B48261B00DCD042 /* LoginResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAEEA7ED2B48261B00DCD042 /* LoginResponse.swift */; };
 		BAEEA7F82B4851EC00DCD042 /* ProductResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAEEA7F72B4851EC00DCD042 /* ProductResponse.swift */; };
 		BAEEA7FA2B48661600DCD042 /* Ext+UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAEEA7F92B48661600DCD042 /* Ext+UIImage.swift */; };
 		BAEEA7FC2B48741B00DCD042 /* RegisterResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAEEA7FB2B48741B00DCD042 /* RegisterResponse.swift */; };
 		BAEEA80D2B4C2A5800DCD042 /* APIEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAEEA80C2B4C2A5800DCD042 /* APIEndpoint.swift */; };
-		BAEEA8112B4C3DAC00DCD042 /* PutAuthProfileUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAEEA8102B4C3DAC00DCD042 /* PutAuthProfileUpdate.swift */; };
+		BAEEA8112B4C3DAC00DCD042 /* UpdateUserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAEEA8102B4C3DAC00DCD042 /* UpdateUserResponse.swift */; };
+		BAEEA8152B4C4B4F00DCD042 /* OTPResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAEEA8142B4C4B4F00DCD042 /* OTPResponse.swift */; };
+		BAEEA8172B4C4BCE00DCD042 /* OTPVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAEEA8162B4C4BCE00DCD042 /* OTPVM.swift */; };
 		BAF86FAC2B32A62000E0F939 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF86FAB2B32A62000E0F939 /* AppDelegate.swift */; };
 		BAF86FAE2B32A62000E0F939 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF86FAD2B32A62000E0F939 /* SceneDelegate.swift */; };
 		BAF86FB32B32A62000E0F939 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BAF86FB12B32A62000E0F939 /* Main.storyboard */; };
@@ -77,13 +79,15 @@
 		BAEEA5FF2B4584E000DCD042 /* NumberVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberVC.swift; sourceTree = "<group>"; };
 		BAEEA6012B4584E800DCD042 /* NumberVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberVM.swift; sourceTree = "<group>"; };
 		BAEEA7B62B46B8C400DCD042 /* Ext+NSMutableData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext+NSMutableData.swift"; sourceTree = "<group>"; };
-		BAEEA7EB2B4825B000DCD042 /* UserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserResponse.swift; sourceTree = "<group>"; };
+		BAEEA7EB2B4825B000DCD042 /* GetUserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUserResponse.swift; sourceTree = "<group>"; };
 		BAEEA7ED2B48261B00DCD042 /* LoginResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResponse.swift; sourceTree = "<group>"; };
 		BAEEA7F72B4851EC00DCD042 /* ProductResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductResponse.swift; sourceTree = "<group>"; };
 		BAEEA7F92B48661600DCD042 /* Ext+UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext+UIImage.swift"; sourceTree = "<group>"; };
 		BAEEA7FB2B48741B00DCD042 /* RegisterResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterResponse.swift; sourceTree = "<group>"; };
 		BAEEA80C2B4C2A5800DCD042 /* APIEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEndpoint.swift; sourceTree = "<group>"; };
-		BAEEA8102B4C3DAC00DCD042 /* PutAuthProfileUpdate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PutAuthProfileUpdate.swift; sourceTree = "<group>"; };
+		BAEEA8102B4C3DAC00DCD042 /* UpdateUserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserResponse.swift; sourceTree = "<group>"; };
+		BAEEA8142B4C4B4F00DCD042 /* OTPResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OTPResponse.swift; sourceTree = "<group>"; };
+		BAEEA8162B4C4BCE00DCD042 /* OTPVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPVM.swift; sourceTree = "<group>"; };
 		BAF86FA82B32A62000E0F939 /* Neobis_iOS_Marketplace.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Neobis_iOS_Marketplace.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAF86FAB2B32A62000E0F939 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BAF86FAD2B32A62000E0F939 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -186,11 +190,12 @@
 		BAEEA7FD2B49663300DCD042 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				BAEEA8142B4C4B4F00DCD042 /* OTPResponse.swift */,
 				BAEEA7FB2B48741B00DCD042 /* RegisterResponse.swift */,
 				BAEEA7ED2B48261B00DCD042 /* LoginResponse.swift */,
-				BAEEA7EB2B4825B000DCD042 /* UserResponse.swift */,
+				BAEEA7EB2B4825B000DCD042 /* GetUserResponse.swift */,
 				BAEEA7F72B4851EC00DCD042 /* ProductResponse.swift */,
-				BAEEA8102B4C3DAC00DCD042 /* PutAuthProfileUpdate.swift */,
+				BAEEA8102B4C3DAC00DCD042 /* UpdateUserResponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -376,6 +381,7 @@
 			children = (
 				BAF870192B387EFF00E0F939 /* OTPView.swift */,
 				BAF8701B2B387F1D00E0F939 /* OTPVC.swift */,
+				BAEEA8162B4C4BCE00DCD042 /* OTPVM.swift */,
 			);
 			path = OTP;
 			sourceTree = "<group>";
@@ -586,6 +592,7 @@
 				BAF8701A2B387EFF00E0F939 /* OTPView.swift in Sources */,
 				BAF870282B387FEE00E0F939 /* ProductVC.swift in Sources */,
 				BAF86FF62B387CBB00E0F939 /* HomeView.swift in Sources */,
+				BAEEA8152B4C4B4F00DCD042 /* OTPResponse.swift in Sources */,
 				BAEEA5FC2B457D5100DCD042 /* LoginVM.swift in Sources */,
 				BAF870A82B3DD86400E0F939 /* FinishRegVC.swift in Sources */,
 				BAF86FD32B3600F400E0F939 /* BorderedTextField.swift in Sources */,
@@ -594,14 +601,15 @@
 				BAEEA80D2B4C2A5800DCD042 /* APIEndpoint.swift in Sources */,
 				BAF86FAC2B32A62000E0F939 /* AppDelegate.swift in Sources */,
 				BAEEA6002B4584E000DCD042 /* NumberVC.swift in Sources */,
+				BAEEA8172B4C4BCE00DCD042 /* OTPVM.swift in Sources */,
 				BAF8700E2B387DFA00E0F939 /* ProfileVC.swift in Sources */,
 				BAF86FDB2B3601A800E0F939 /* APIService.swift in Sources */,
 				BAEEA7B72B46B8C400DCD042 /* Ext+NSMutableData.swift in Sources */,
-				BAEEA8112B4C3DAC00DCD042 /* PutAuthProfileUpdate.swift in Sources */,
+				BAEEA8112B4C3DAC00DCD042 /* UpdateUserResponse.swift in Sources */,
 				BAF8702C2B38804700E0F939 /* AddProductView.swift in Sources */,
 				BAF870302B38807800E0F939 /* AddProductVC.swift in Sources */,
 				BAF870242B387FA900E0F939 /* ProductCell.swift in Sources */,
-				BAEEA7EC2B4825B000DCD042 /* UserResponse.swift in Sources */,
+				BAEEA7EC2B4825B000DCD042 /* GetUserResponse.swift in Sources */,
 				BAEEA5F82B456BEA00DCD042 /* PasswordVC.swift in Sources */,
 				BAF870AA2B3DD87000E0F939 /* FinishRegView.swift in Sources */,
 				BAF86FAE2B32A62000E0F939 /* SceneDelegate.swift in Sources */,

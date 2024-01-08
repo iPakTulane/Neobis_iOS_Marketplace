@@ -11,7 +11,7 @@ import Alamofire
 
 // MARK: - PROTOCOL
 protocol GetUserProtocol {
-    func fetchUserData(completion: @escaping (Result<UserResponse, Error>) -> Void)
+    func fetchUserData(completion: @escaping (Result<GetUserResponse, Error>) -> Void)
 }
 
 // MARK: - VIEW MODEL
@@ -24,19 +24,19 @@ class GetUserViewModel: GetUserProtocol {
     }
     
     
-    func fetchUserData(completion: @escaping (Result<UserResponse, Error>) -> Void) {
+    func fetchUserData(completion: @escaping (Result<GetUserResponse, Error>) -> Void) {
         
         guard let accessToken = TokenManager.shared.accessToken else {
             return
         }
         
-        let url = "https://aibek-backender.org.kg/auth/profile-view/"
+        let url = apiService.baseURL + APIEndpoint.userData.rawValue
         
         let headers: HTTPHeaders = [
             "Authorization": "Bearer \(accessToken)"
         ]
         
-        AF.request(url, headers: headers).responseDecodable(of: UserResponse.self) { response in
+        AF.request(url, headers: headers).responseDecodable(of: GetUserResponse.self) { response in
             switch response.result {
                 
             case .success(let userResponse):

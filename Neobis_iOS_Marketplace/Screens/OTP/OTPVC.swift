@@ -5,22 +5,73 @@
 //  Created by iPak Tulane on 24/12/23.
 //
 
-import Foundation
+
 import UIKit
 import SnapKit
 
-// TODO:
 class OTPViewController: UIViewController {
         
-    let mainView = OTPView()
+    lazy var mainView = OTPView()
+    var mainViewModel: OTPProtocol!
     
     // MARK: - INIT
     override func loadView() {
         view = mainView
     }
     
+    init(viewModel: OTPProtocol) {
+        self.mainViewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+        self.mainViewModel.delegate = self
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        addTargets()
+        addDelegates()
     }
-        
+    
+
+    // MARK: - UI SETUP
+    func addDelegates() {
+        mainView.codeField.delegate = self
+    }
+    
+    func addTargets() {
+        mainView.newCodeButton.addTarget(self, action: #selector(newCodeButtonPressed), for: .touchUpInside)
+    }
+    
+    @objc func newCodeButtonPressed() {
+        // TODO:
+        mainViewModel.verify(code: "1234")
+    }
+    
+}
+
+// MARK: - UITextFieldDelegate
+extension OTPViewController: UITextFieldDelegate {
+    
+}
+
+// MARK: - LOGIN DELEGATE
+extension OTPViewController: OTPDelegate {
+
+    func otpDidSucceed(withData data: OTPResponse) {
+        let vc = CustomTabBarController()
+        vc.modalPresentationStyle = .fullScreen
+        present(vc, animated: true, completion: nil)
+    }
+    
+    func otpDidFail(withError error: Error) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            self.mainView.errorLabel.isHidden = true
+        }
+        mainView.errorLabel.textColor = UIColor.сolorRed
+        print("OTP failed with error: \(error)")
+    }
+    
 }

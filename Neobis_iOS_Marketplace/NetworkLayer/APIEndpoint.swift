@@ -13,5 +13,5 @@ enum APIEndpoint: String {
     case fullRegister = "account/full_register/"
     case userData = "auth/profile-view/"
     case otp = "auth/code-check/"
-    case getProduct = "products/create-update-list/"
+    case product = "products/create-update-list/"
 }

@@ -54,10 +54,10 @@ class ChangeProductViewController: UIViewController {
         guard !mainView.images.isEmpty else { return }
         guard let title =  mainView.nameField.text else { return }
         guard let price = mainView.priceField.text else { return }
-        guard let shortDescription = mainView.descriptionOne.text else { return }
-        guard let longDescription = mainView.descriptionTwo.text else { return }
+        guard let short_description = mainView.descriptionOne.text else { return }
+        guard let description = mainView.descriptionTwo.text else { return }
         
-        changeProductProtocol.changeProduct(images: mainView.images, title: title, price: price, shortDescription: shortDescription, fullDescription: longDescription)
+        changeProductProtocol.changeProduct(images: mainView.images, title: title, price: price, short_description: short_description, description: description)
         navigationController?.popViewController(animated: true)
     }
     

@@ -276,7 +276,7 @@ class APIService {
                 headers: HTTPHeaders,
                 completion: @escaping (Result<[ProductResponse], Error>) -> Void) {
                     
-                    let url = baseURL + APIEndpoint.getProduct.rawValue
+                    let url = baseURL + APIEndpoint.product.rawValue
                     
                     AF.request(url, headers: headers).responseDecodable(of: [ProductResponse].self) { response in
                         switch response.result {

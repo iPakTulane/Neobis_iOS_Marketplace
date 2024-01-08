@@ -14,7 +14,7 @@ protocol ChangeProductViewModelProtocol: AnyObject {
     var isChanged: Bool { get }
     var changeResult: ((Result<ProductResponse, Error>) -> Void)? { get set }
     
-    func changeProduct(images: [UIImage], title: String, price: String, shortDescription: String?, fullDescription: String?)
+    func changeProduct(images: [UIImage], title: String, price: String, short_description: String?, description: String?)
 }
 
 // MARK: - VIEW MODEL
@@ -31,7 +31,7 @@ class ChangeProductViewModel: ChangeProductViewModelProtocol {
         self.id = id
     }
     
-    func changeProduct(images: [UIImage], title: String, price: String, shortDescription: String?, fullDescription: String?) {
+    func changeProduct(images: [UIImage], title: String, price: String, short_description: String?, description: String?) {
         let imageDatas = images.compactMap { $0.jpegData(compressionQuality: 1.0) }
         
         let endpoint = "product/\(id)/"
@@ -39,8 +39,8 @@ class ChangeProductViewModel: ChangeProductViewModelProtocol {
         let parameters: [String: Any] = [
             "title": title,
             "price": price,
-            "short_description": shortDescription ?? "",
-            "full_description": fullDescription ?? ""
+            "short_description": short_description ?? "",
+            "description": description ?? ""
         ]
         
         apiService.putImagesWithBearerToken(endpoint: endpoint, parameters: parameters, imageDatas: imageDatas, bearerToken: TokenManager.shared.accessToken ?? "") { [weak self] result in

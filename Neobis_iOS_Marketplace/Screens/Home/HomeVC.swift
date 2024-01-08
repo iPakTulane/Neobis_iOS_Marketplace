@@ -53,7 +53,7 @@ class HomeViewController: UIViewController {
                let description = data["description"] as? String,
                let available = data["available"] as? Bool,
                let photo = data["photo"] as? String,
-               let shortDescription = data["short_description"] as? String,
+               let short_description = data["short_description"] as? String,
                let price = data["price"] as? String {
                 
                 let product: [String: Any] = [
@@ -62,7 +62,7 @@ class HomeViewController: UIViewController {
                     "description": description,
                     "available": available,
                     "photo": photo,
-                    "short_description": shortDescription,
+                    "short_description": short_description,
                     "price": price
                 ]
                 products.append(product)

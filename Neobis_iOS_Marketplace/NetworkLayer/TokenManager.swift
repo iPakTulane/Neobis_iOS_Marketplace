@@ -10,8 +10,6 @@ import Foundation
 
 class TokenManager {
     
-//    var storage: UserDefaults
-    
     static let shared = TokenManager()
     
     private let accessTokenKey = "AccessToken"
@@ -41,3 +39,36 @@ class TokenManager {
 }
 
 
+//
+//import KeychainSwift
+//
+//class TokenManager {
+//    static let shared = TokenManager()
+//    private let keychain = KeychainSwift()
+//
+//    var accessToken: String? {
+//        get {
+//            return keychain.get("accessToken")
+//        }
+//        set {
+//            if let newValue = newValue {
+//                keychain.set(newValue, forKey: "accessToken")
+//            } else {
+//                keychain.delete("accessToken")
+//            }
+//        }
+//    }
+//
+//    var refreshToken: String? {
+//        get {
+//            return keychain.get("refreshToken")
+//        }
+//        set {
+//            if let newValue = newValue {
+//                keychain.set(newValue, forKey: "refreshToken")
+//            } else {
+//                keychain.delete("refreshToken")
+//            }
+//        }
+//    }
+//}

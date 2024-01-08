@@ -63,7 +63,24 @@ class AddProductViewController: UIViewController {
 //            }
 //        }
         
-        addProductProtocol.addProduct(images: mainView.images, title: title, price: price, shortDescription: shortDescription, fullDescription: longDescription)
+//        // Your existing code with modifications for resizing and compression
+//        var imageDatas: [Data] = []
+//        for image in mainView.images {
+//            // Resize the image to 50% of its original size
+//            if let resizedImage = image.resizedImage(withPercentage: 0.5) {
+//                // Compress the resized image to medium quality
+//                if let imageData = resizedImage.compressedImage(withQuality: .lowest) {
+//                    imageDatas.append(imageData)
+//                }
+//            }
+//        }
+        
+        addProductProtocol.addProduct(
+            images: mainView.images,
+            title: title,
+            price: price,
+            shortDescription: shortDescription,
+            fullDescription: longDescription)
         dismiss(animated: true, completion: nil)
     }
     

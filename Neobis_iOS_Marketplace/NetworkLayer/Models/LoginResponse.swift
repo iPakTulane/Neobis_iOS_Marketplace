@@ -1,5 +1,5 @@
 //
-//  LoginModel.swift
+//  LoginResponse.swift
 //  Neobis_iOS_Marketplace
 //
 //  Created by iPak Tulane on 05/01/24.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct LoginModel: Codable {
+struct LoginResponse: Codable {
     let username : String?
     let tokens : Tokens?
 

@@ -38,7 +38,7 @@ class NumberViewModel: NumberProtocol {
     private let birthday: String
     private let photo: Data
     
-    init(first_name: String ,last_name: String, birthday: String, photo: Data) {
+    init(first_name: String, last_name: String, birthday: String, photo: Data) {
         self.apiService = APIService()
         self.first_name = first_name
         self.last_name = last_name
@@ -47,7 +47,6 @@ class NumberViewModel: NumberProtocol {
     }
     
     func fullRegister(phone_number: String) {
-        let endpoint = "account/full_register/"
         
         let parameters: [String: Any] = [
             "first_name": first_name,
@@ -58,7 +57,7 @@ class NumberViewModel: NumberProtocol {
         ]
         
         apiService.postWithBearerToken(
-            endpoint: endpoint,
+            endpoint: APIEndpoint.fullRegister.rawValue,
             parameters: parameters,
             bearerToken: TokenManager.shared.accessToken ?? "") { [weak self] result in
                 

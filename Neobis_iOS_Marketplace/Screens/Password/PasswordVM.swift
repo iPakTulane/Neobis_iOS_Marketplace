@@ -10,7 +10,7 @@ import UIKit
 
 // MARK: - DELEGATE
 protocol PasswordDelegate: AnyObject {
-    func registrationDidSucceed(withData data: Data)
+    func registrationDidSucceed(withData data: RegisterResponse)
     func registrationDidFail(withError error: Error)
 }
 
@@ -51,24 +51,35 @@ class PasswordViewModel: PasswordProtocol {
         ]
         
         apiService.post(
-            endpoint: "auth/register/",
-            parameters: parameters) { [weak self] (result) in
+            endpoint: APIEndpoint.register.rawValue,
+            parameters: parameters,
+            responseType: RegisterResponse.self) { [weak self] (result) in
                 
                 DispatchQueue.main.async {
                     switch result {
+                        
                     case .success(let data):
-                        let dataString = String(data: data, encoding: .utf8)
-                        print("Data received: \(dataString ?? "nil")")
+                        print("Data received: \(data)")
+                        
                         self?.isRegistered = true
                         self?.delegate?.registrationDidSucceed(withData: data)
+                        
                     case .failure(let error):
                         let errorMessage = "Failed register number: \(error.localizedDescription)"
                         print(errorMessage)
+                        
                         self?.isRegistered = false
                         self?.delegate?.registrationDidFail(withError: error)
                     }
                 }
             }
     }
-    
 }
+
+
+
+
+
+
+
+

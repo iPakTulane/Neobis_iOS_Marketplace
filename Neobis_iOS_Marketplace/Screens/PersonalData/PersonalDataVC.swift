@@ -50,10 +50,31 @@ class PersonalDataViewController: UIViewController {
         getUserData()
     }
     
+//    func getUserData() {
+//        getUserProtocol.fetchUserData() { [weak self] result in
+//            switch result {
+//            case .success(let userData):
+//                self?.parseUserData(userData)
+//            case .failure(let error):
+//                print("Failed to fetch user data:", error)
+//            }
+//        }
+//    }
+    
     func getUserData() {
         getUserProtocol.fetchUserData() { [weak self] result in
             switch result {
-            case .success(let userData):
+            case .success(let userResponse):
+                // Convert UserResponse to [String: Any]
+                let userData = [
+                    "avatar": userResponse.avatar,
+                    "username": userResponse.username,
+                    "email": userResponse.email,
+                    "first_name": userResponse.first_name,
+                    "last_name": userResponse.last_name,
+                    "date_of_birth": userResponse.date_of_birth,
+                    "phone_number": userResponse.phone_number
+                ].compactMapValues { $0 }
                 self?.parseUserData(userData)
             case .failure(let error):
                 print("Failed to fetch user data:", error)

@@ -7,11 +7,11 @@
 
 import Foundation
 import UIKit
-
+    
 // MARK: - PROTOCOL
 protocol AddProductViewModelProtocol: AnyObject {
     var isAdded: Bool { get }
-    var addResult: ((Result<Data, Error>) -> Void)? { get set }
+    var addResult: ((Result<ProductResponse, Error>) -> Void)? { get set }
     
     func addProduct(images: [UIImage], title: String, price: String, shortDescription: String?, fullDescription: String?)
 }
@@ -20,7 +20,7 @@ protocol AddProductViewModelProtocol: AnyObject {
 class AddProductViewModel: AddProductViewModelProtocol {
     
     var isAdded: Bool = false
-    var addResult: ((Result<Data, Error>) -> Void)?
+    var addResult: ((Result<ProductResponse, Error>) -> Void)?
     
     let apiService: APIService
     
@@ -28,40 +28,51 @@ class AddProductViewModel: AddProductViewModelProtocol {
     init() {
         self.apiService = APIService()
     }
-    
-    func addProduct(images: [UIImage], title: String, price: String, shortDescription: String?, fullDescription: String?) {
-        let imageDatas = images.compactMap { $0.jpegData(compressionQuality: 1.0) }
-        
-        let endpoint = "product/"
-        
-        let parameters: [String: Any] = [
-//            "images": images,
-            "title": title,
-            "price": price,
-            "short_description": shortDescription ?? "",
-            "full_description": fullDescription ?? ""
-        ]
-        
-        apiService.postImagesWithBearerToken(endpoint: endpoint, parameters: parameters, imageDatas: imageDatas, bearerToken: TokenManager.shared.accessToken ?? "") { [weak self] result in
+
+    func addProduct(
+        images: [UIImage],
+        title: String,
+        price: String,
+        shortDescription: String?,
+        fullDescription: String?) {
             
-            DispatchQueue.main.async {
-                switch result {
+            let imageDatas = images.compactMap { $0.jpegData(compressionQuality: 1.0) }
+            
+            let endpoint = "products/create-update-list/"
+            
+            let parameters: [String: Any] = [
+                "title": title,
+                "price": price,
+                "short_description": shortDescription ?? "",
+                "full_description": fullDescription ?? ""
+            ]
+
+            apiService.postImagesWithBearerToken(
+                endpoint: endpoint,
+                parameters: parameters,
+                imageDatas: imageDatas,
+                bearerToken: TokenManager.shared.accessToken ?? "") { [weak self] result in
+                
+                DispatchQueue.main.async {
+                    switch result {
                     
-                case .success(let data):
-                    let dataString = String(data: data, encoding: .utf8)
-                    print("Data received: \(dataString ?? "nil")")
-                    self?.isAdded = true
-                    self?.addResult?(.success(data))
-                    
-                case .failure(let error):
-                    let errorMessage = "Failed to add product: \(error.localizedDescription)"
-                    print(errorMessage)
-                    self?.isAdded = false
-                    self?.addResult?(.failure(error))
+                    case .success(let productResponse):
+                        // Call the addResult closure with the ProductResponse object
+                        self?.addResult?(.success(productResponse))
+                        
+                        // Additional handling specific to ProductResponse if needed
+                        print("Product added with ID: \(productResponse.id ?? 0)")
+                        self?.isAdded = true
+                        
+                    case .failure(let error):
+                        // Call the addResult closure with the failure
+                        self?.addResult?(.failure(error))
+                        
+                        let errorMessage = "Failed to add product: \(error.localizedDescription)"
+                        print(errorMessage)
+                        self?.isAdded = false
+                    }
                 }
             }
-            
-        }
     }
-
 }

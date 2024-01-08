@@ -9,7 +9,7 @@ import Foundation
 
 // MARK: - DELEGATE PROTOCOL
 protocol LoginDelegate: AnyObject {
-    func loginDidSucceed(withData data: Data)
+    func loginDidSucceed(withData data: LoginResponse)
     func loginDidFail(withError error: Error)
 }
 
@@ -34,8 +34,7 @@ class LoginViewModel: LoginProtocol {
     init() {
         self.apiService = APIService()
     }
-    
-    
+
     func login(username: String, password: String) {
         
         let parameters: [String: Any] = [
@@ -43,50 +42,32 @@ class LoginViewModel: LoginProtocol {
             "password": password
         ]
         
-        apiService.post(
-            endpoint: "auth/login/",
-            parameters: parameters) { [weak self] (result) in
-                
-                DispatchQueue.main.async {
-                    switch result {
-                    case .success(let data):
-                        
-                        print(data.count)
-                        
-                        let decoder = JSONDecoder()
-                        print("success")
-                        if let tokenResponse = try? decoder.decode(LoginModel.self, from: data) {
-                            
-                            print(data.count)
+        apiService.post(endpoint: APIEndpoint.login.rawValue, parameters: parameters, responseType: LoginResponse.self) { result in
+            
+            DispatchQueue.main.async {
+                switch result {
+                    
+                case .success(let data):
 
-                            TokenManager.shared.accessToken = tokenResponse.tokens?.access
-                            print(String(describing: tokenResponse.tokens?.access))
-                            
-                            TokenManager.shared.refreshToken = tokenResponse.tokens?.refresh
-                            print(String(describing: tokenResponse.tokens?.refresh))
-                            
-//                            TokenManager.shared.saveAccessToken(name: tokenResponse.tokens?.access)
-//                            TokenManager.shared.saveRefreshToken(name: tokenResponse.tokens?.refresh)
-
-//                            TokenManager.shared.accessToken = tokenResponse.tokens.access
-//                            TokenManager.shared.refreshToken = tokenResponse.tokens.refresh
-
-//                            print(UserDefaults.standard.string(forKey: "AccessToken") ?? "")
-//                            print(UserDefaults.standard.string(forKey: "RefreshToken") ?? "")
-                                                        
-                            
-                            self?.isLoggedIn = true
-                            self?.delegate?.loginDidSucceed(withData: data)
-                        }
-                    case .failure(let error):
-                        print("fail")
-                        self?.isLoggedIn = false
-                        self?.delegate?.loginDidFail(withError: error)
+                    if let accessToken = data.tokens?.access {
+                        TokenManager.shared.accessToken = accessToken
                     }
+
+                    if let refreshToken = data.tokens?.refresh {
+                        TokenManager.shared.refreshToken = refreshToken
+                    }
+                    
+                    self.isLoggedIn = true
+                    self.delegate?.loginDidSucceed(withData: data)
+
+                case .failure(let error):
+                    print("Login fail: \(error)")
+                    self.isLoggedIn = false
+                    self.delegate?.loginDidFail(withError: error)
                 }
             }
+        }
     }
-
     
     
 }

@@ -125,27 +125,16 @@ extension PasswordViewController: UITextFieldDelegate {
 
 // MARK: - PASSWORD DELEGATE
 extension PasswordViewController: PasswordDelegate {
-    
-    func registrationDidSucceed(withData data: Data) {
-        handleSuccessfulLogin(data)
-    }
-    
-    func registrationDidFail(withError error: Error) {
-        handleLoginFailure(error)
-    }
-    
-    // MARK: - RESULT HANDLING
-    func handleSuccessfulLogin(_ data: Data) {
+    func registrationDidSucceed(withData data: RegisterResponse) {
         print("Registration successful")
         let vc = LoginViewController(loginProtocol: LoginViewModel())
         navigationController?.pushViewController(vc, animated: true)
     }
     
-    func handleLoginFailure(_ error: Error) {
+    func registrationDidFail(withError error: Error) {
         mainView.passwordError.isHidden = false
         mainView.passwordField.textColor = UIColor.сolorRed
         mainView.passwordConfirmField.textColor = UIColor.сolorRed
         print("Registration failed with error: \(error)")
     }
-    
 }

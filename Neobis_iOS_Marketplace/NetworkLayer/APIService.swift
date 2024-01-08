@@ -8,146 +8,200 @@
 import Foundation
 import UIKit
 import Alamofire
+import AlamofireImage
 
 class APIService {
     
     // MARK: - BASE URL
     let baseURL = "https://aibek-backender.org.kg/"
-    
+        
     // MARK: - POST
-    func post(
+    func post<T: Decodable>(
         endpoint: String,
         parameters: [String: Any],
-        completion: @escaping (Result<Data, Error>) -> Void) {
-        
-        guard let url = URL(string: baseURL + endpoint) else { return }
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        
-        do {
-            request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: [])
-        } catch {
-            completion(.failure(error))
-            return
-        }
-        
-        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
-            if let error = error {
-                completion(.failure(error))
-                return
-            }
+        responseType: T.Type,
+        completion: @escaping (Result<T, Error>) -> Void) {
             
-            guard let httpResponse = response as? HTTPURLResponse else {
-                let error = NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: "Invalid response"])
-                completion(.failure(error))
-                return
-            }
+            let url = baseURL + APIEndpoint.login.rawValue
             
-            let statusCode = httpResponse.statusCode
-            if 200...299 ~= statusCode {
-                if let data = data {
-                    completion(.success(data))
-                } else {
-                    let error = NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: "Empty response data"])
-                    completion(.failure(error))
+            let headers: HTTPHeaders = [
+                "Content-Type": "application/json"
+            ]
+            
+            AF.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers)
+                .validate()
+                .responseDecodable(of: T.self) { response in
+                    
+                    switch response.result {
+                    case .success(let decodedObject):
+                        completion(.success(decodedObject))
+                        
+                    case .failure(let error):
+                        completion(.failure(error))
+                    }
                 }
-            } else {
-                let error = NSError(domain: "", code: statusCode, userInfo: [NSLocalizedDescriptionKey: "Request failed with status code: \(statusCode)"])
-                completion(.failure(error))
-            }
         }
-        task.resume()
-    }
     
-    // MARK: - POST with token
+    // MARK: - POST with token (FULL REGISTER) - NUMBER VM
     func postWithBearerToken(
         endpoint: String,
         parameters: [String: Any],
         bearerToken: String,
         completion: @escaping (Result<Data, Error>) -> Void) {
-        
-        guard let url = URL(string: baseURL + endpoint) else { return }
-        
-        let headers: HTTPHeaders = [
-            "Authorization": "Bearer \(bearerToken)"
-        ]
-        
-        AF.upload(
-            multipartFormData: { multipartFormData in
-                for (key, value) in parameters {
-                    if let data = (value as? String)?.data(using: .utf8) {
-                        multipartFormData.append(data, withName: key)
+            
+            guard let url = URL(string: baseURL + endpoint) else { return }
+            
+            let headers: HTTPHeaders = [
+                "Authorization": "Bearer \(bearerToken)"
+            ]
+            
+            
+            
+            /////////////////////
+            //            AF.upload(
+            //                multipartFormData: { multipartFormData in
+            //                    for (key, value) in parameters {
+            //                        if let data = (value as? String)?.data(using: .utf8) {
+            //                            multipartFormData.append(data, withName: key)
+            //                        }
+            //                    }
+            //                    
+            //                    if let photoData = parameters["photo"] as? Data {
+            //                        multipartFormData.append(photoData, withName: "photo", fileName: "photo.jpg", mimeType: "image/jpeg")
+            //                    }
+            //                },
+            //                to: url,
+            //                method: .post,
+            //                headers: headers
+            //            ).responseData { response in
+            //                switch response.result {
+            //                case .success(let data):
+            //                    completion(.success(data))
+            //                case .failure(let error):
+            //                    completion(.failure(error))
+            //                }
+            //            }
+            ////////////////////
+            
+            //            AF.upload(
+            //                multipartFormData: { multipartFormData in
+            //                    for (key, value) in parameters {
+            //                        if key != "photo", let data = (value as? String)?.data(using: .utf8) {
+            //                            multipartFormData.append(data, withName: key)
+            //                        }
+            //                    }
+            //                    
+            //                    if let photoData = parameters["photo"] as? Data {
+            //                        multipartFormData.append(photoData, withName: "photo", fileName: "photo.jpg", mimeType: "image/jpeg")
+            //                    }
+            //                },
+            //                to: url,
+            //                method: .post,
+            //                headers: headers
+            //            ).responseData { response in
+            //                switch response.result {
+            //                case .success(let data):
+            //                    completion(.success(data))
+            //                case .failure(let error):
+            //                    completion(.failure(error))
+            //                }
+            //            }
+            
+            ////////////////
+            
+            AF.upload(
+                multipartFormData: { multipartFormData in
+                    for (key, value) in parameters {
+                        if key != "photo", let data = (value as? String)?.data(using: .utf8) {
+                            multipartFormData.append(data, withName: key)
+                        }
                     }
+                    
+                    if let photoData = parameters["photo"] as? Data {
+                        let photoString = photoData.base64EncodedString()
+                        if let photoStringData = photoString.data(using: .utf8) {
+                            multipartFormData.append(photoStringData, withName: "photo")
+                        }
+                    }
+                },
+                to: url,
+                method: .post,
+                headers: headers
+            ).responseData { response in
+                switch response.result {
+                case .success(let data):
+                    completion(.success(data))
+                case .failure(let error):
+                    completion(.failure(error))
                 }
-                
-                if let photoData = parameters["photo"] as? Data {
-                    multipartFormData.append(photoData, withName: "photo", fileName: "photo.jpg", mimeType: "image/jpeg")
-                }
-            },
-            to: url,
-            method: .post,
-            headers: headers
-        ).responseData { response in
-            switch response.result {
-            case .success(let data):
-                completion(.success(data))
-            case .failure(let error):
-                completion(.failure(error))
             }
+            
+            
         }
-    }
     
     // MARK: - POST images with token
+    
     func postImagesWithBearerToken(
         endpoint: String,
         parameters: [String: Any],
         imageDatas: [Data],
         bearerToken: String,
-        completion: @escaping (Result<Data, Error>) -> Void) {
-        
-        let url = baseURL + endpoint
-        let boundary = "Boundary-\(UUID().uuidString)"
-        let mimeType = "image/*"
-        
-        let headers: HTTPHeaders = [
-            "Authorization": "Bearer \(bearerToken)",
-            "Content-Type": "multipart/form-data; boundary=\(boundary)"
-        ]
-        
-        AF.upload(
-            multipartFormData: { multipartFormData in
-                for (key, value) in parameters {
-                    if let stringValue = "\(value)".data(using: .utf8) {
-                        multipartFormData.append(stringValue, withName: key)
+        completion: @escaping (Result<ProductResponse, Error>) -> Void) {
+            
+            let url = baseURL + endpoint
+            let boundary = "Boundary-\(UUID().uuidString)"
+            let mimeType = "image/*"
+            
+            let headers: HTTPHeaders = [
+                "Authorization": "Bearer \(bearerToken)",
+                "Content-Type": "multipart/form-data; boundary=\(boundary)"
+            ]
+            
+            AF.upload(
+                multipartFormData: { multipartFormData in
+                    for (key, value) in parameters {
+                        if let stringValue = "\(value)".data(using: .utf8) {
+                            multipartFormData.append(stringValue, withName: key)
+                        }
                     }
-                }
-                
-                for (index, imageData) in imageDatas.enumerated() {
-                    let fileName = "image\(index).jpeg"
-                    let fieldName = "images"
                     
-                    multipartFormData.append(imageData, withName: fieldName, fileName: fileName, mimeType: mimeType)
-                }
-            },
-            to: url,
-            method: .post,
-            headers: headers
-        )
-        .response { response in
-            switch response.result {
-            case .success(let data):
-                if let data = data {
-                    completion(.success(data))
-                } else {
-                    let error = NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: "Empty response data"])
+                    for (index, imageData) in imageDatas.enumerated() {
+                        let fileName = "image\(index).jpeg"
+                        let fieldName = "images"
+                        
+                        multipartFormData.append(imageData, withName: fieldName, fileName: fileName, mimeType: mimeType)
+                    }
+                },
+                to: url,
+                method: .post,
+                headers: headers
+            )
+            .response { response in
+                switch response.result {
+                case .success(let data):
+                    if let data = data {
+                        do {
+                            // Decode the JSON response into a ProductResponse object
+                            let productResponse = try JSONDecoder().decode(ProductResponse.self, from: data)
+                            completion(.success(productResponse))
+                        } catch {
+                            // Handle decoding error
+                            completion(.failure(error))
+                        }
+                    } else {
+                        let error = NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: "Empty response data"])
+                        completion(.failure(error))
+                    }
+                case .failure(let error):
                     completion(.failure(error))
                 }
-            case .failure(let error):
-                completion(.failure(error))
             }
         }
-    }
+    
+    
+    
+    
+    
     
     // MARK: - PUT images with token
     
@@ -156,101 +210,113 @@ class APIService {
         parameters: [String: Any],
         imageDatas: [Data],
         bearerToken: String,
-        completion: @escaping (Result<Data, Error>) -> Void) {
-        
-        let url = baseURL + endpoint
-        let boundary = "Boundary-\(UUID().uuidString)"
-        let mimeType = "image/*"
-
-        let headers: HTTPHeaders = [
-            "Authorization": "Bearer \(bearerToken)",
-            "Content-Type": "multipart/form-data; boundary=\(boundary)"
-        ]
-
-        AF.upload(
-            multipartFormData: { multipartFormData in
-                for (key, value) in parameters {
-                    if let stringValue = "\(value)".data(using: .utf8) {
-                        multipartFormData.append(stringValue, withName: key)
+        //        completion: @escaping (Result<Data, Error>) -> Void) {
+        completion: @escaping (Result<ProductResponse, Error>) -> Void) {
+            
+            let url = baseURL + endpoint
+            let boundary = "Boundary-\(UUID().uuidString)"
+            let mimeType = "image/*"
+            
+            let headers: HTTPHeaders = [
+                "Authorization": "Bearer \(bearerToken)",
+                "Content-Type": "multipart/form-data; boundary=\(boundary)"
+            ]
+            
+            AF.upload(
+                multipartFormData: { multipartFormData in
+                    for (key, value) in parameters {
+                        if let stringValue = "\(value)".data(using: .utf8) {
+                            multipartFormData.append(stringValue, withName: key)
+                        }
                     }
-                }
+                    
+                    for (index, imageData) in imageDatas.enumerated() {
+                        let fileName = "image\(index).jpeg"
+                        let fieldName = "images"
+                        
+                        multipartFormData.append(imageData, withName: fieldName, fileName: fileName, mimeType: mimeType)
+                    }
+                },
+                to: url,
+                method: .put,
+                headers: headers
+            )
 
-                for (index, imageData) in imageDatas.enumerated() {
-                    let fileName = "image\(index).jpeg"
-                    let fieldName = "images"
-
-                    multipartFormData.append(imageData, withName: fieldName, fileName: fileName, mimeType: mimeType)
-                }
-            },
-            to: url,
-            method: .put,
-            headers: headers
-        )
-        .response { response in
-            switch response.result {
-            case .success(let data):
-                if let data = data {
-                    completion(.success(data))
-                } else {
-                    let error = NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: "Empty response data"])
+            
+            .response { response in
+                switch response.result {
+                case .success(let data):
+                    if let data = data {
+                        do {
+                            // Decode the JSON response into a ProductResponse object
+                            let productResponse = try JSONDecoder().decode(ProductResponse.self, from: data)
+                            completion(.success(productResponse))
+                        } catch {
+                            // Handle decoding error
+                            completion(.failure(error))
+                        }
+                    } else {
+                        let error = NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: "Empty response data"])
+                        completion(.failure(error))
+                    }
+                case .failure(let error):
                     completion(.failure(error))
                 }
-            case .failure(let error):
-                completion(.failure(error))
             }
+            
         }
-    }
-
+    
     // MARK: - GET product (Product VM)
+    
     func getProductData(
         headers: HTTPHeaders,
-        completion: @escaping (Result<[[String: Any]], Error>) -> Void) {
-        
-        AF.request("https://aibek-backender.org.kg/products/create-update-list/", headers: headers).responseJSON { response in
-            switch response.result {
-            case .success(let value):
-                if let dataArray = value as? [[String: Any]] {
-                    completion(.success(dataArray))
-                } else {
-                    let error = NSError(domain: "ProductDataParsingError", code: 0, userInfo: [NSLocalizedDescriptionKey: "Failed to parse product data"])
-                    completion(.failure(error))
+        completion: @escaping (Result<[ProductResponse], Error>) -> Void) {
+            
+            func getProductData(
+                headers: HTTPHeaders,
+                completion: @escaping (Result<[ProductResponse], Error>) -> Void) {
+                    
+                    AF.request("https://aibek-backender.org.kg/products/create-update-list/", headers: headers).responseDecodable(of: [ProductResponse].self) { response in
+                        switch response.result {
+                        case .success(let productArray):
+                            completion(.success(productArray))
+                        case .failure(let error):
+                            completion(.failure(error))
+                        }
+                    }
                 }
-            case .failure(let error):
-                completion(.failure(error))
-            }
         }
-    }
+    
     
     // MARK: - DELETE (ProductVM)
     func deleteData(
         id: Int,
         bearerToken: String,
         completion: @escaping (Result<Data, Error>) -> Void) {
-        
-        let endpoint = "product/\(id)/"
-        let url = baseURL + endpoint
-        
-        let headers: HTTPHeaders = [
-            "Authorization": "Bearer \(bearerToken)"
-        ]
-        
-        AF.request(url, method: .delete, headers: headers)
-            .validate(statusCode: 200..<400)
-            .response { response in
-                switch response.result {
-                case .success(let data):
-                    if let data = data {
-                        completion(.success(data))
-                        print("Delete success")
-                    } else {
-                        print("Delete successfull")
+            
+            let endpoint = "product/\(id)/"
+            let url = baseURL + endpoint
+            
+            let headers: HTTPHeaders = [
+                "Authorization": "Bearer \(bearerToken)"
+            ]
+            
+            AF.request(url, method: .delete, headers: headers)
+                .validate(statusCode: 200..<400)
+                .response { response in
+                    switch response.result {
+                    case .success(let data):
+                        if let data = data {
+                            completion(.success(data))
+                            print("Delete success")
+                        } else {
+                            print("Delete successfull")
+                        }
+                    case .failure(let error):
+                        completion(.failure(error))
                     }
-                case .failure(let error):
-                    completion(.failure(error))
                 }
-            }
-    }
-
+        }
 }
 
 

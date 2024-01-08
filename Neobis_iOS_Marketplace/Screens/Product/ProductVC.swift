@@ -80,11 +80,23 @@ class ProductViewController: UIViewController {
         popUp.trashButton.addTarget(self, action: #selector(trashPressed), for: .touchUpInside)
     }
     
+//    func getUserData() {
+//        getUserProtocol.fetchUserData() { [weak self] result in
+//            switch result {
+//            case .success(let userData):
+//                self!.user = userData["email"] as! String
+//            case .failure(let error):
+//                print("Failed to fetch user data:", error)
+//            }
+//        }
+//    }
+    
     func getUserData() {
         getUserProtocol.fetchUserData() { [weak self] result in
             switch result {
-            case .success(let userData):
-                self!.user = userData["email"] as! String
+            case .success(let userResponse):
+                // Access the 'email' property directly from the 'UserResponse' instance
+                self?.user = userResponse.email ?? ""
             case .failure(let error):
                 print("Failed to fetch user data:", error)
             }

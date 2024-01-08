@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  UserResponse.swift
 //  Neobis_iOS_Marketplace
 //
 //  Created by iPak Tulane on 05/01/24.
@@ -8,7 +8,7 @@
 import Foundation
 
 
-struct UserModel : Codable {
+struct UserResponse : Codable {
     let avatar : String?
     let username : String?
     let email : String?
@@ -40,3 +40,6 @@ struct UserModel : Codable {
     }
 
 }
+
+
+

@@ -13,10 +13,14 @@
 		BAEEA5FE2B457D5F00DCD042 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAEEA5FD2B457D5F00DCD042 /* LoginVC.swift */; };
 		BAEEA6002B4584E000DCD042 /* NumberVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAEEA5FF2B4584E000DCD042 /* NumberVC.swift */; };
 		BAEEA6022B4584E800DCD042 /* NumberVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAEEA6012B4584E800DCD042 /* NumberVM.swift */; };
-		BAEEA7B12B469DD400DCD042 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = BAEEA7B02B469DD400DCD042 /* IQKeyboardManagerSwift */; };
 		BAEEA7B72B46B8C400DCD042 /* Ext+NSMutableData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAEEA7B62B46B8C400DCD042 /* Ext+NSMutableData.swift */; };
-		BAEEA7EC2B4825B000DCD042 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAEEA7EB2B4825B000DCD042 /* UserModel.swift */; };
-		BAEEA7EE2B48261B00DCD042 /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAEEA7ED2B48261B00DCD042 /* LoginModel.swift */; };
+		BAEEA7EC2B4825B000DCD042 /* UserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAEEA7EB2B4825B000DCD042 /* UserResponse.swift */; };
+		BAEEA7EE2B48261B00DCD042 /* LoginResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAEEA7ED2B48261B00DCD042 /* LoginResponse.swift */; };
+		BAEEA7F82B4851EC00DCD042 /* ProductResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAEEA7F72B4851EC00DCD042 /* ProductResponse.swift */; };
+		BAEEA7FA2B48661600DCD042 /* Ext+UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAEEA7F92B48661600DCD042 /* Ext+UIImage.swift */; };
+		BAEEA7FC2B48741B00DCD042 /* RegisterResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAEEA7FB2B48741B00DCD042 /* RegisterResponse.swift */; };
+		BAEEA80D2B4C2A5800DCD042 /* APIEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAEEA80C2B4C2A5800DCD042 /* APIEndpoint.swift */; };
+		BAEEA8112B4C3DAC00DCD042 /* PutAuthProfileUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAEEA8102B4C3DAC00DCD042 /* PutAuthProfileUpdate.swift */; };
 		BAF86FAC2B32A62000E0F939 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF86FAB2B32A62000E0F939 /* AppDelegate.swift */; };
 		BAF86FAE2B32A62000E0F939 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF86FAD2B32A62000E0F939 /* SceneDelegate.swift */; };
 		BAF86FB32B32A62000E0F939 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BAF86FB12B32A62000E0F939 /* Main.storyboard */; };
@@ -61,7 +65,6 @@
 		BAF870382B3880E500E0F939 /* ChangeProductVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF870372B3880E500E0F939 /* ChangeProductVM.swift */; };
 		BAF8703B2B38827800E0F939 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = BAF8703A2B38827800E0F939 /* Alamofire */; };
 		BAF8703E2B3883AE00E0F939 /* AlamofireImage in Frameworks */ = {isa = PBXBuildFile; productRef = BAF8703D2B3883AE00E0F939 /* AlamofireImage */; };
-		BAF870662B396D8300E0F939 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF870652B396D8300E0F939 /* Models.swift */; };
 		BAF870A82B3DD86400E0F939 /* FinishRegVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF870A72B3DD86400E0F939 /* FinishRegVC.swift */; };
 		BAF870AA2B3DD87000E0F939 /* FinishRegView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF870A92B3DD87000E0F939 /* FinishRegView.swift */; };
 /* End PBXBuildFile section */
@@ -74,8 +77,13 @@
 		BAEEA5FF2B4584E000DCD042 /* NumberVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberVC.swift; sourceTree = "<group>"; };
 		BAEEA6012B4584E800DCD042 /* NumberVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberVM.swift; sourceTree = "<group>"; };
 		BAEEA7B62B46B8C400DCD042 /* Ext+NSMutableData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext+NSMutableData.swift"; sourceTree = "<group>"; };
-		BAEEA7EB2B4825B000DCD042 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
-		BAEEA7ED2B48261B00DCD042 /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
+		BAEEA7EB2B4825B000DCD042 /* UserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserResponse.swift; sourceTree = "<group>"; };
+		BAEEA7ED2B48261B00DCD042 /* LoginResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResponse.swift; sourceTree = "<group>"; };
+		BAEEA7F72B4851EC00DCD042 /* ProductResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductResponse.swift; sourceTree = "<group>"; };
+		BAEEA7F92B48661600DCD042 /* Ext+UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext+UIImage.swift"; sourceTree = "<group>"; };
+		BAEEA7FB2B48741B00DCD042 /* RegisterResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterResponse.swift; sourceTree = "<group>"; };
+		BAEEA80C2B4C2A5800DCD042 /* APIEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEndpoint.swift; sourceTree = "<group>"; };
+		BAEEA8102B4C3DAC00DCD042 /* PutAuthProfileUpdate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PutAuthProfileUpdate.swift; sourceTree = "<group>"; };
 		BAF86FA82B32A62000E0F939 /* Neobis_iOS_Marketplace.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Neobis_iOS_Marketplace.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAF86FAB2B32A62000E0F939 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BAF86FAD2B32A62000E0F939 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -156,7 +164,6 @@
 		BAF870622B389B7D00E0F939 /* Nunito-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-MediumItalic.ttf"; sourceTree = "<group>"; };
 		BAF870632B389B7D00E0F939 /* Nunito-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-LightItalic.ttf"; sourceTree = "<group>"; };
 		BAF870642B389B7D00E0F939 /* Nunito-ExtraLightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-ExtraLightItalic.ttf"; sourceTree = "<group>"; };
-		BAF870652B396D8300E0F939 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		BAF870A72B3DD86400E0F939 /* FinishRegVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishRegVC.swift; sourceTree = "<group>"; };
 		BAF870A92B3DD87000E0F939 /* FinishRegView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishRegView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -166,7 +173,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BAEEA7B12B469DD400DCD042 /* IQKeyboardManagerSwift in Frameworks */,
 				BAF8703B2B38827800E0F939 /* Alamofire in Frameworks */,
 				BAF8703E2B3883AE00E0F939 /* AlamofireImage in Frameworks */,
 				BAF86FC42B34416300E0F939 /* SnapKit in Frameworks */,
@@ -177,6 +183,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BAEEA7FD2B49663300DCD042 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				BAEEA7FB2B48741B00DCD042 /* RegisterResponse.swift */,
+				BAEEA7ED2B48261B00DCD042 /* LoginResponse.swift */,
+				BAEEA7EB2B4825B000DCD042 /* UserResponse.swift */,
+				BAEEA7F72B4851EC00DCD042 /* ProductResponse.swift */,
+				BAEEA8102B4C3DAC00DCD042 /* PutAuthProfileUpdate.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		BAF86F9F2B32A62000E0F939 = {
 			isa = PBXGroup;
 			children = (
@@ -251,6 +269,7 @@
 				BAF86FE22B36025000E0F939 /* Ext+Data.swift */,
 				BAF86FE42B36026400E0F939 /* Ext+String.swift */,
 				BAEEA7B62B46B8C400DCD042 /* Ext+NSMutableData.swift */,
+				BAEEA7F92B48661600DCD042 /* Ext+UIImage.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -430,12 +449,11 @@
 		BAF870842B3D9FF400E0F939 /* NetworkLayer */ = {
 			isa = PBXGroup;
 			children = (
-				BAEEA7EB2B4825B000DCD042 /* UserModel.swift */,
-				BAEEA7ED2B48261B00DCD042 /* LoginModel.swift */,
-				BAF870652B396D8300E0F939 /* Models.swift */,
+				BAEEA7FD2B49663300DCD042 /* Models */,
 				BAF86FDA2B3601A800E0F939 /* APIService.swift */,
 				BAF86FE02B36022800E0F939 /* GetUserData.swift */,
 				BAF86FDE2B3601FF00E0F939 /* TokenManager.swift */,
+				BAEEA80C2B4C2A5800DCD042 /* APIEndpoint.swift */,
 			);
 			path = NetworkLayer;
 			sourceTree = "<group>";
@@ -480,7 +498,6 @@
 				BAF86FC52B34416300E0F939 /* SnapKit-Dynamic */,
 				BAF8703A2B38827800E0F939 /* Alamofire */,
 				BAF8703D2B3883AE00E0F939 /* AlamofireImage */,
-				BAEEA7B02B469DD400DCD042 /* IQKeyboardManagerSwift */,
 			);
 			productName = Neobis_iOS_Marketplace;
 			productReference = BAF86FA82B32A62000E0F939 /* Neobis_iOS_Marketplace.app */;
@@ -552,6 +569,7 @@
 				BAEEA5FE2B457D5F00DCD042 /* LoginVC.swift in Sources */,
 				BAEEA6022B4584E800DCD042 /* NumberVM.swift in Sources */,
 				BAF870102B387E1C00E0F939 /* PersonalDataView.swift in Sources */,
+				BAEEA7FC2B48741B00DCD042 /* RegisterResponse.swift in Sources */,
 				BAEEA5FA2B45760700DCD042 /* PasswordVM.swift in Sources */,
 				BAF86FE52B36026400E0F939 /* Ext+String.swift in Sources */,
 				BAF8701C2B387F1D00E0F939 /* OTPVC.swift in Sources */,
@@ -559,11 +577,11 @@
 				BAF870142B387EB400E0F939 /* NumberView.swift in Sources */,
 				BAF870222B387F7500E0F939 /* ProductView.swift in Sources */,
 				BAF870122B387E3400E0F939 /* PersonalDataVC.swift in Sources */,
+				BAEEA7F82B4851EC00DCD042 /* ProductResponse.swift in Sources */,
 				BAF870322B38809C00E0F939 /* AddProductVM.swift in Sources */,
 				BAF86FD52B36011200E0F939 /* NumberTextField.swift in Sources */,
 				BAF86FD92B36017C00E0F939 /* CustomTabBar.swift in Sources */,
 				BAF870042B387D7A00E0F939 /* RegVC.swift in Sources */,
-				BAF870662B396D8300E0F939 /* Models.swift in Sources */,
 				BAF86FE12B36022800E0F939 /* GetUserData.swift in Sources */,
 				BAF8701A2B387EFF00E0F939 /* OTPView.swift in Sources */,
 				BAF870282B387FEE00E0F939 /* ProductVC.swift in Sources */,
@@ -572,16 +590,18 @@
 				BAF870A82B3DD86400E0F939 /* FinishRegVC.swift in Sources */,
 				BAF86FD32B3600F400E0F939 /* BorderedTextField.swift in Sources */,
 				BAF870262B387FD500E0F939 /* PopUpView.swift in Sources */,
-				BAEEA7EE2B48261B00DCD042 /* LoginModel.swift in Sources */,
+				BAEEA7EE2B48261B00DCD042 /* LoginResponse.swift in Sources */,
+				BAEEA80D2B4C2A5800DCD042 /* APIEndpoint.swift in Sources */,
 				BAF86FAC2B32A62000E0F939 /* AppDelegate.swift in Sources */,
 				BAEEA6002B4584E000DCD042 /* NumberVC.swift in Sources */,
 				BAF8700E2B387DFA00E0F939 /* ProfileVC.swift in Sources */,
 				BAF86FDB2B3601A800E0F939 /* APIService.swift in Sources */,
 				BAEEA7B72B46B8C400DCD042 /* Ext+NSMutableData.swift in Sources */,
+				BAEEA8112B4C3DAC00DCD042 /* PutAuthProfileUpdate.swift in Sources */,
 				BAF8702C2B38804700E0F939 /* AddProductView.swift in Sources */,
 				BAF870302B38807800E0F939 /* AddProductVC.swift in Sources */,
 				BAF870242B387FA900E0F939 /* ProductCell.swift in Sources */,
-				BAEEA7EC2B4825B000DCD042 /* UserModel.swift in Sources */,
+				BAEEA7EC2B4825B000DCD042 /* UserResponse.swift in Sources */,
 				BAEEA5F82B456BEA00DCD042 /* PasswordVC.swift in Sources */,
 				BAF870AA2B3DD87000E0F939 /* FinishRegView.swift in Sources */,
 				BAF86FAE2B32A62000E0F939 /* SceneDelegate.swift in Sources */,
@@ -589,6 +609,7 @@
 				BAF870062B387D9700E0F939 /* PasswordView.swift in Sources */,
 				BAF870342B3880C000E0F939 /* ChangeProductView.swift in Sources */,
 				BAF86FD12B3600D300E0F939 /* AnimatedTextField.swift in Sources */,
+				BAEEA7FA2B48661600DCD042 /* Ext+UIImage.swift in Sources */,
 				BAF870382B3880E500E0F939 /* ChangeProductVM.swift in Sources */,
 				BAF86FFC2B387D1900E0F939 /* LoginView.swift in Sources */,
 				BAF86FE32B36025000E0F939 /* Ext+Data.swift in Sources */,
@@ -861,11 +882,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		BAEEA7B02B469DD400DCD042 /* IQKeyboardManagerSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = BAEEA7AF2B469DD400DCD042 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
-			productName = IQKeyboardManagerSwift;
-		};
 		BAF86FC32B34416300E0F939 /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = BAF86FC22B34416300E0F939 /* XCRemoteSwiftPackageReference "SnapKit" */;

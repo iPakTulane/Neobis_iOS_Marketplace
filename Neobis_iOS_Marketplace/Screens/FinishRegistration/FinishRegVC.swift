@@ -57,8 +57,81 @@ class FinishRegViewController: UIViewController {
     }
     
     
+//    func getUserData() {
+//        
+//        getUserProtocol.fetchUserData() { [weak self] result in
+//            switch result {
+//            case .success(let userData):
+//                self?.parseUserData(userData)
+//            case .failure(let error):
+//                print("Failed to fetch user data:", error)
+//            }
+//        }
+//    }
+//
+//    func parseUserData(_ userData: [String: Any]) {
+//        
+//        if let photoURLString = userData["avatar"] as? String,
+//           let photoURL = URL(string: "https://aibek-backender.org.kg/" + photoURLString) {
+//            DispatchQueue.global().async {
+//                if let imageData = try? Data(contentsOf: photoURL),
+//                   let image = UIImage(data: imageData) {
+//                    DispatchQueue.main.async {
+//                        self.mainView.profilePic.image = image
+//                    }
+//                } else {
+//                    print("Failed to load image from URL:", photoURL)
+//                }
+//            }
+//
+//        }
+//        
+//        if let firstName = userData["first_name"] as? String {
+//            self.firstName = firstName
+//            DispatchQueue.main.async {
+//                self.mainView.nameField.text = firstName
+//            }
+//        }
+//        
+//        if let username = userData["username"] as? String {
+//            self.nickName = username
+//            DispatchQueue.main.async {
+//                self.mainView.nickNameField.text = username
+//            }
+//        }
+//        
+//        if let email = userData["email"] as? String {
+//            self.email = email
+//            DispatchQueue.main.async {
+//                self.mainView.emailField.text = email
+//            }
+//        }
+//        
+//        if let lastName = userData["last_name"] as? String {
+//            self.lastName = lastName
+//            DispatchQueue.main.async {
+//                self.mainView.lastNameField.text = lastName
+//            }
+//        }
+//        
+//        if let birthday = userData["birthday"] as? String {
+//            self.birthday = birthday
+//            DispatchQueue.main.async {
+//                self.mainView.birthdayField.text = birthday
+//            }
+//        }
+//        
+//        if let phoneNumber = userData["phone_number"] as? String {
+//            self.phoneNumber = phoneNumber
+//            DispatchQueue.main.async {
+//                self.mainView.numberLabel.text = phoneNumber
+//                self.mainView.numberLabel.textColor = .black
+//                self.mainView.numberButton.setTitle("Update number", for: .normal)
+//            }
+//        }
+//    }
+    
     func getUserData() {
-        
         getUserProtocol.fetchUserData() { [weak self] result in
             switch result {
             case .success(let userData):
@@ -69,59 +142,58 @@ class FinishRegViewController: UIViewController {
         }
     }
 
-    func parseUserData(_ userData: [String: Any]) {
-        
-        if let photoURLString = userData["avatar"] as? String,
-           let photoURL = URL(string: "https://aibek-backender.org.kg/" + photoURLString) {
+    func parseUserData(_ userData: UserResponse) {
+        if let avatarURLString = userData.avatar,
+           let avatarURL = URL(string: "https://aibek-backender.org.kg/" + avatarURLString) {
             DispatchQueue.global().async {
-                if let imageData = try? Data(contentsOf: photoURL),
+                if let imageData = try? Data(contentsOf: avatarURL),
                    let image = UIImage(data: imageData) {
                     DispatchQueue.main.async {
                         self.mainView.profilePic.image = image
                     }
                 } else {
-                    print("Failed to load image from URL:", photoURL)
+                    print("Failed to load image from URL:", avatarURL)
                 }
             }
-
         }
         
-        if let firstName = userData["first_name"] as? String {
+        if let firstName = userData.first_name {
             self.firstName = firstName
             DispatchQueue.main.async {
                 self.mainView.nameField.text = firstName
             }
         }
         
-        if let username = userData["username"] as? String {
+        if let username = userData.username {
             self.nickName = username
             DispatchQueue.main.async {
                 self.mainView.nickNameField.text = username
             }
         }
         
-        if let email = userData["email"] as? String {
+        if let email = userData.email {
             self.email = email
             DispatchQueue.main.async {
                 self.mainView.emailField.text = email
             }
         }
         
-        if let lastName = userData["last_name"] as? String {
+        if let lastName = userData.last_name {
             self.lastName = lastName
             DispatchQueue.main.async {
                 self.mainView.lastNameField.text = lastName
             }
         }
         
-        if let birthday = userData["birthday"] as? String {
+        // Note: The key 'birthday' does not exist in UserResponse, it should be 'date_of_birth'
+        if let birthday = userData.date_of_birth {
             self.birthday = birthday
             DispatchQueue.main.async {
                 self.mainView.birthdayField.text = birthday
             }
         }
         
-        if let phoneNumber = userData["phone_number"] as? String {
+        if let phoneNumber = userData.phone_number {
             self.phoneNumber = phoneNumber
             DispatchQueue.main.async {
                 self.mainView.numberLabel.text = phoneNumber

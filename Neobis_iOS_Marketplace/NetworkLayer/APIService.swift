@@ -22,7 +22,7 @@ class APIService {
         responseType: T.Type,
         completion: @escaping (Result<T, Error>) -> Void) {
             
-            let url = baseURL + APIEndpoint.login.rawValue
+            let url = baseURL + endpoint
             
             let headers: HTTPHeaders = [
                 "Content-Type": "application/json"

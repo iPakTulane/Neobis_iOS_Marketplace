@@ -198,12 +198,12 @@
 		BAEEA7FD2B49663300DCD042 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				BAEEA8142B4C4B4F00DCD042 /* OTPResponse.swift */,
 				BAEEA7FB2B48741B00DCD042 /* RegisterResponse.swift */,
 				BAEEA7ED2B48261B00DCD042 /* LoginResponse.swift */,
 				BAEEA7EB2B4825B000DCD042 /* GetUserResponse.swift */,
 				BAEEA7F72B4851EC00DCD042 /* ProductResponse.swift */,
 				BAEEA8102B4C3DAC00DCD042 /* UpdateUserResponse.swift */,
+				BAEEA8142B4C4B4F00DCD042 /* OTPResponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";

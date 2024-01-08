@@ -64,39 +64,20 @@ class ProfileViewController: UIViewController {
         }
     }
 
-//    func parseUserData(_ userData: [String: Any]) {
-//        if let username = userData["username"] as? String {
-//            self.nickName = username
-//            DispatchQueue.main.async {
-//                self.mainView.nickLabel.text = username
-//            }
-//        }
-//        
-//        if let photoURLString = userData["photo"] as? String,
-//           let photoURL = URL(string: "https://aibek-backender.org.kg/" + photoURLString) {
-//            DispatchQueue.global().async {
-//                if let imageData = try? Data(contentsOf: photoURL),
-//                   let image = UIImage(data: imageData) {
-//                    DispatchQueue.main.async {
-//                        self.mainView.profilePic.image = image
-//                    }
-//                } else {
-//                    print("Failed to load image from URL:", photoURL)
-//                }
-//            }
-//        }
-//    }
     
-    func parseUserData(_ userData: UserResponse) {
+    func parseUserData(_ userData: GetUserResponse) {
         if let username = userData.username {
             self.nickName = username
             DispatchQueue.main.async {
                 self.mainView.nickLabel.text = username
             }
         }
+                
+        let apiService = APIService()
         
+        // Use the global base URL from APIService
         if let avatarURLString = userData.avatar,
-           let avatarURL = URL(string: "https://aibek-backender.org.kg/" + avatarURLString) {
+           let avatarURL = URL(string: apiService.baseURL + avatarURLString) {
             DispatchQueue.global().async {
                 if let imageData = try? Data(contentsOf: avatarURL),
                    let image = UIImage(data: imageData) {
@@ -108,6 +89,7 @@ class ProfileViewController: UIViewController {
                 }
             }
         }
+        
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -115,30 +97,6 @@ class ProfileViewController: UIViewController {
         navigationItem.setHidesBackButton(true, animated: false)
     }
     
-//    func checkFullRegister() {
-//        guard let accessToken = TokenManager.shared.accessToken else {
-//            return
-//        }
-//        
-//        print(accessToken)
-//        
-//        mainViewModel.fetchUserData() { [weak self] result in
-//            switch result {
-//                
-//            case .success(let userData):
-//                
-//                if let phoneNumber = userData["phone_number"] as? String {
-//                    print("Phone number:", phoneNumber)
-//                    
-//                    DispatchQueue.main.async {
-//                        self?.mainView.finishRegButton.isHidden = true
-//                    }
-//                }
-//            case .failure(let error):
-//                print("Failed to fetch user data:", error)
-//            }
-//        }
-//    }
     
     func checkFullRegister() {
         guard let accessToken = TokenManager.shared.accessToken else {

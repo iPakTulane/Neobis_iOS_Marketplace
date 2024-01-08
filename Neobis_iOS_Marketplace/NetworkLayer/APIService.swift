@@ -65,7 +65,7 @@ class APIService {
             //                            multipartFormData.append(data, withName: key)
             //                        }
             //                    }
-            //                    
+            //
             //                    if let photoData = parameters["photo"] as? Data {
             //                        multipartFormData.append(photoData, withName: "photo", fileName: "photo.jpg", mimeType: "image/jpeg")
             //                    }
@@ -90,7 +90,7 @@ class APIService {
             //                            multipartFormData.append(data, withName: key)
             //                        }
             //                    }
-            //                    
+            //
             //                    if let photoData = parameters["photo"] as? Data {
             //                        multipartFormData.append(photoData, withName: "photo", fileName: "photo.jpg", mimeType: "image/jpeg")
             //                    }
@@ -276,7 +276,9 @@ class APIService {
                 headers: HTTPHeaders,
                 completion: @escaping (Result<[ProductResponse], Error>) -> Void) {
                     
-                    AF.request("https://aibek-backender.org.kg/products/create-update-list/", headers: headers).responseDecodable(of: [ProductResponse].self) { response in
+                    let url = baseURL + APIEndpoint.getProduct.rawValue
+                    
+                    AF.request(url, headers: headers).responseDecodable(of: [ProductResponse].self) { response in
                         switch response.result {
                         case .success(let productArray):
                             completion(.success(productArray))

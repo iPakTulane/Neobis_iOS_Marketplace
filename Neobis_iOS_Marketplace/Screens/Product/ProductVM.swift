@@ -27,67 +27,7 @@ class ProductViewModel: ProductProtocol {
     init() {
         self.apiService = APIService()
     }
-    
-//    func fetchProductData(completion: @escaping (Result<[[String: Any]], Error>) -> Void) {
-//        guard let accessToken = TokenManager.shared.accessToken else {
-//            let error = NSError(domain: "AuthorizationError", code: 0, userInfo: [NSLocalizedDescriptionKey: "Access token is missing"])
-//            completion(.failure(error))
-//            return
-//        }
-//        
-//        let headers: HTTPHeaders = [
-//            "Authorization": "Bearer \(accessToken)"
-//        ]
-//        
-//        apiService.getProductData(headers: headers) { result in
-//            switch result {
-//            case .success(let dataArray):
-//                do {
-//                    let jsonData = try JSONSerialization.data(withJSONObject: dataArray, options: .prettyPrinted)
-//                    let jsonString = String(data: jsonData, encoding: .utf8)
-//                    print(jsonString ?? "")
-//                    completion(.success(dataArray))
-//                } catch {
-//                    completion(.failure(error))
-//                }
-//            case .failure(let error):
-//                completion(.failure(error))
-//            }
-//        }
-//    }
-    
-//    func fetchProductData(completion: @escaping (Result<[[String: Any]], Error>) -> Void) {
-//        guard let accessToken = TokenManager.shared.accessToken else {
-//            let error = NSError(domain: "AuthorizationError", code: 0, userInfo: [NSLocalizedDescriptionKey: "Access token is missing"])
-//            completion(.failure(error))
-//            return
-//        }
-//        
-//        let headers: HTTPHeaders = [
-//            "Authorization": "Bearer \(accessToken)"
-//        ]
-//        
-//        apiService.getProductData(headers: headers) { result in
-//            switch result {
-//            case .success(let productArray):
-//                let dataArray = productArray.map { product in
-//                    return [
-//                        "id": product.id ?? 0,
-//                        "name": product.name ?? "",
-//                        "description": product.description ?? "",
-//                        "available": product.available ?? false,
-//                        "photo": product.photo ?? "",
-//                        "short_description": product.short_description ?? "",
-//                        "price": product.price ?? ""
-//                    ]
-//                }
-//                completion(.success(dataArray))
-//                
-//            case .failure(let error):
-//                completion(.failure(error))
-//            }
-//        }
-//    }
+
     
     func fetchProductData(completion: @escaping (Result<[[String: Any]], Error>) -> Void) {
         guard let accessToken = TokenManager.shared.accessToken else {

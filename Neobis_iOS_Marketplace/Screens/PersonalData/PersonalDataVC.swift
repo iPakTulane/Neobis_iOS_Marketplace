@@ -83,9 +83,12 @@ class PersonalDataViewController: UIViewController {
     }
 
     func parseUserData(_ userData: [String: Any]) {
+        // TODO: 
+        
+        let apiService = APIService()
         
         if let photoURLString = userData["photo"] as? String,
-           let photoURL = URL(string: "https://aibek-backender.org.kg/" + photoURLString) {
+           let photoURL = URL(string: apiService.baseURL + photoURLString) {
             DispatchQueue.global().async {
                 if let imageData = try? Data(contentsOf: photoURL),
                    let image = UIImage(data: imageData) {

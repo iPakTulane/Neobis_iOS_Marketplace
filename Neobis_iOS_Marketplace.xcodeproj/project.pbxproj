@@ -23,6 +23,10 @@
 		BAEEA8112B4C3DAC00DCD042 /* UpdateUserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAEEA8102B4C3DAC00DCD042 /* UpdateUserResponse.swift */; };
 		BAEEA8152B4C4B4F00DCD042 /* OTPResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAEEA8142B4C4B4F00DCD042 /* OTPResponse.swift */; };
 		BAEEA8172B4C4BCE00DCD042 /* OTPVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAEEA8162B4C4BCE00DCD042 /* OTPVM.swift */; };
+		BAEEA8192B4C527D00DCD042 /* HomeVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAEEA8182B4C527D00DCD042 /* HomeVM.swift */; };
+		BAEEA81B2B4C52DC00DCD042 /* PersonalDataVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAEEA81A2B4C52DC00DCD042 /* PersonalDataVM.swift */; };
+		BAEEA81D2B4C53A800DCD042 /* FinishRegVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAEEA81C2B4C53A800DCD042 /* FinishRegVM.swift */; };
+		BAEEA81F2B4C542300DCD042 /* ProfileVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAEEA81E2B4C542300DCD042 /* ProfileVM.swift */; };
 		BAF86FAC2B32A62000E0F939 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF86FAB2B32A62000E0F939 /* AppDelegate.swift */; };
 		BAF86FAE2B32A62000E0F939 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF86FAD2B32A62000E0F939 /* SceneDelegate.swift */; };
 		BAF86FB32B32A62000E0F939 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BAF86FB12B32A62000E0F939 /* Main.storyboard */; };
@@ -88,6 +92,10 @@
 		BAEEA8102B4C3DAC00DCD042 /* UpdateUserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserResponse.swift; sourceTree = "<group>"; };
 		BAEEA8142B4C4B4F00DCD042 /* OTPResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OTPResponse.swift; sourceTree = "<group>"; };
 		BAEEA8162B4C4BCE00DCD042 /* OTPVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPVM.swift; sourceTree = "<group>"; };
+		BAEEA8182B4C527D00DCD042 /* HomeVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVM.swift; sourceTree = "<group>"; };
+		BAEEA81A2B4C52DC00DCD042 /* PersonalDataVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalDataVM.swift; sourceTree = "<group>"; };
+		BAEEA81C2B4C53A800DCD042 /* FinishRegVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishRegVM.swift; sourceTree = "<group>"; };
+		BAEEA81E2B4C542300DCD042 /* ProfileVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVM.swift; sourceTree = "<group>"; };
 		BAF86FA82B32A62000E0F939 /* Neobis_iOS_Marketplace.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Neobis_iOS_Marketplace.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAF86FAB2B32A62000E0F939 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BAF86FAD2B32A62000E0F939 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -401,6 +409,7 @@
 			children = (
 				BAF8700F2B387E1C00E0F939 /* PersonalDataView.swift */,
 				BAF870112B387E3400E0F939 /* PersonalDataVC.swift */,
+				BAEEA81A2B4C52DC00DCD042 /* PersonalDataVM.swift */,
 			);
 			path = PersonalData;
 			sourceTree = "<group>";
@@ -410,6 +419,7 @@
 			children = (
 				BAF8700B2B387DE400E0F939 /* ProfileView.swift */,
 				BAF8700D2B387DFA00E0F939 /* ProfileVC.swift */,
+				BAEEA81E2B4C542300DCD042 /* ProfileVM.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -448,6 +458,7 @@
 			children = (
 				BAF86FF52B387CBB00E0F939 /* HomeView.swift */,
 				BAF86FF72B387CCA00E0F939 /* HomeVC.swift */,
+				BAEEA8182B4C527D00DCD042 /* HomeVM.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -479,6 +490,7 @@
 			children = (
 				BAF870A92B3DD87000E0F939 /* FinishRegView.swift */,
 				BAF870A72B3DD86400E0F939 /* FinishRegVC.swift */,
+				BAEEA81C2B4C53A800DCD042 /* FinishRegVM.swift */,
 			);
 			path = FinishRegistration;
 			sourceTree = "<group>";
@@ -588,6 +600,7 @@
 				BAF86FD52B36011200E0F939 /* NumberTextField.swift in Sources */,
 				BAF86FD92B36017C00E0F939 /* CustomTabBar.swift in Sources */,
 				BAF870042B387D7A00E0F939 /* RegVC.swift in Sources */,
+				BAEEA81F2B4C542300DCD042 /* ProfileVM.swift in Sources */,
 				BAF86FE12B36022800E0F939 /* GetUserData.swift in Sources */,
 				BAF8701A2B387EFF00E0F939 /* OTPView.swift in Sources */,
 				BAF870282B387FEE00E0F939 /* ProductVC.swift in Sources */,
@@ -600,6 +613,7 @@
 				BAEEA7EE2B48261B00DCD042 /* LoginResponse.swift in Sources */,
 				BAEEA80D2B4C2A5800DCD042 /* APIEndpoint.swift in Sources */,
 				BAF86FAC2B32A62000E0F939 /* AppDelegate.swift in Sources */,
+				BAEEA81B2B4C52DC00DCD042 /* PersonalDataVM.swift in Sources */,
 				BAEEA6002B4584E000DCD042 /* NumberVC.swift in Sources */,
 				BAEEA8172B4C4BCE00DCD042 /* OTPVM.swift in Sources */,
 				BAF8700E2B387DFA00E0F939 /* ProfileVC.swift in Sources */,
@@ -611,12 +625,14 @@
 				BAF870242B387FA900E0F939 /* ProductCell.swift in Sources */,
 				BAEEA7EC2B4825B000DCD042 /* GetUserResponse.swift in Sources */,
 				BAEEA5F82B456BEA00DCD042 /* PasswordVC.swift in Sources */,
+				BAEEA81D2B4C53A800DCD042 /* FinishRegVM.swift in Sources */,
 				BAF870AA2B3DD87000E0F939 /* FinishRegView.swift in Sources */,
 				BAF86FAE2B32A62000E0F939 /* SceneDelegate.swift in Sources */,
 				BAF870022B387D6600E0F939 /* RegView.swift in Sources */,
 				BAF870062B387D9700E0F939 /* PasswordView.swift in Sources */,
 				BAF870342B3880C000E0F939 /* ChangeProductView.swift in Sources */,
 				BAF86FD12B3600D300E0F939 /* AnimatedTextField.swift in Sources */,
+				BAEEA8192B4C527D00DCD042 /* HomeVM.swift in Sources */,
 				BAEEA7FA2B48661600DCD042 /* Ext+UIImage.swift in Sources */,
 				BAF870382B3880E500E0F939 /* ChangeProductVM.swift in Sources */,
 				BAF86FFC2B387D1900E0F939 /* LoginView.swift in Sources */,

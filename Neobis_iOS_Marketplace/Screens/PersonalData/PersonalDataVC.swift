@@ -17,7 +17,7 @@ class PersonalDataViewController: UIViewController {
     var nickName: String = ""
     var email: String = ""
     var lastName: String = ""
-    var birthday: String = ""
+    var date_of_birth: String = ""
     var phoneNumber: String = ""
     var getUserProtocol: GetUserProtocol!
     
@@ -87,7 +87,7 @@ class PersonalDataViewController: UIViewController {
         
         let apiService = APIService()
         
-        if let photoURLString = userData["photo"] as? String,
+        if let photoURLString = userData["avatar"] as? String,
            let photoURL = URL(string: apiService.baseURL + photoURLString) {
             DispatchQueue.global().async {
                 if let imageData = try? Data(contentsOf: photoURL),
@@ -96,7 +96,7 @@ class PersonalDataViewController: UIViewController {
                         self.mainView.profilePic.image = image
                     }
                 } else {
-                    print("Failed to load image from URL:", photoURL)
+                    print("Failed to load PersonalData image from URL:", photoURL)
                 }
             }
 
@@ -130,10 +130,10 @@ class PersonalDataViewController: UIViewController {
             }
         }
         
-        if let birthday = userData["birthday"] as? String {
-            self.birthday = birthday
+        if let date_of_birth = userData["date_of_birth"] as? String {
+            self.date_of_birth = date_of_birth
             DispatchQueue.main.async {
-                self.mainView.birthdayField.text = birthday
+                self.mainView.birthdayField.text = date_of_birth
             }
         }
         
@@ -152,16 +152,16 @@ class PersonalDataViewController: UIViewController {
     @objc func numberPressed() {
         guard let first_name = mainView.nameField.text else { return }
         guard let last_name = mainView.lastNameField.text else { return }
-        guard let birthday = mainView.birthdayField.text else { return }
+        guard let date_of_birth = mainView.birthdayField.text else { return }
         guard let image = mainView.profilePic.image else { return }
         
-        guard let imageData = image.jpegData(compressionQuality: 0.8) else { return }
+        guard let imageData = image.jpegData(compressionQuality: 0.1) else { return }
         
         let vc = NumberViewController(numberProtocol: NumberViewModel(
             first_name: first_name,
             last_name: last_name,
-            birthday: birthday,
-            photo: imageData
+            date_of_birth: date_of_birth,
+            avatar: imageData
         ))
         navigationController?.pushViewController(vc, animated: true)
     }

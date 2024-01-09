@@ -12,13 +12,13 @@ import SnapKit
 class ProductViewController: UIViewController {
     
     let mainView = ProductView()
-    let animationDuration = 0.3
-    let popupAnimationDuration = 0.5
 
     var ProductViewModelType: ProductProtocol!
     var getUserProtocol: GetUserProtocol!
     var user: String = ""
-    var products: [[String: Any]] = []
+//    var products: [[String: Any]] = []
+    var products: [[ProductResponse]] = []
+
     var blurEffectView: UIVisualEffectView?
     var sendId: Int = 0
 
@@ -106,42 +106,42 @@ class ProductViewController: UIViewController {
     func getProductData() {
         ProductViewModelType.fetchProductData() { [weak self] result in
             switch result {
-            case .success(let productData):
-                //                print(productData)
-                self?.parseProductData(productData: productData)
+            case .success(let data):
+                print(data)
+//                self?.parseProductData(productData: data)
             case .failure(let error):
                 print("Failed to fetch product data:", error)
             }
         }
     }
     
-    func parseProductData(productData: [[String: Any]]) {
-        for data in productData {
-            if data["user"] as? String == user {
-                
-                if let id = data["id"] as? Int,
-                   let name = data["name"] as? String,
-                   let description = data["description"] as? String,
-                   let available = data["available"] as? Bool,
-                   let photo = data["photo"] as? String,
-                   let short_description = data["short_description"] as? String,
-                   let price = data["price"] as? String {
-                    
-                    let product: [String: Any] = [
-                        "id": id,
-                        "name": name,
-                        "description": description,
-                        "available": available,
-                        "photo": photo,
-                        "short_description": short_description,
-                        "price": price
-                    ]
-                    products.append(product)
-                }
-            }
-        }
-        mainView.updateView(with: self.products)
-    }
+//    func parseProductData(productData: [[String: Any]]) {
+//        for data in productData {
+//            if data["user"] as? String == user {
+//                
+//                if let id = data["id"] as? Int,
+//                   let name = data["name"] as? String,
+//                   let description = data["description"] as? String,
+//                   let available = data["available"] as? Bool,
+//                   let photo = data["photo"] as? String,
+//                   let short_description = data["short_description"] as? String,
+//                   let price = data["price"] as? String {
+//                    
+//                    let product: [String: Any] = [
+//                        "id": id,
+//                        "name": name,
+//                        "description": description,
+//                        "available": available,
+//                        "photo": photo,
+//                        "short_description": short_description,
+//                        "price": price
+//                    ]
+//                    products.append(product)
+//                }
+//            }
+//        }
+//        mainView.updateView(with: self.products)
+//    }
     
     
     func setupPopUpView() {
@@ -257,6 +257,28 @@ extension ProductViewController: UICollectionViewDataSource, UICollectionViewDel
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print(indexPath)
+    }
+    
+}
+
+
+// MARK: - HOME DELEGATE
+extension ProductViewController: ProductDelegate {
+    
+    func productDidSucceed(withData data: ProductResponse) {
+        mainView.boxImage.isHidden = true
+        mainView.emptyLabel.isHidden = true
+        print("Product sussess with data: \(data)")
+    }
+    
+    func productDidFail(withError error: Error) {
+        mainView.boxImage.isHidden = false
+        mainView.emptyLabel.isHidden = false
+        print("Product failed with error: \(error)")
+    }
+    
+    func productDidDelete() {
+        print("Product was deleted")
     }
     
 }

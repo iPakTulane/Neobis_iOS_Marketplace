@@ -26,7 +26,8 @@ class CustomTabBarController: UITabBarController {
         customTabBar.backgroundColor = .white
         self.setValue(customTabBar, forKey: "tabBar")
 
-        let homeVC = UINavigationController(rootViewController: HomeViewController(getProduct: ProductViewModel()))
+//        let homeVC = UINavigationController(rootViewController: HomeViewController(getProduct: ProductViewModel()))
+        let homeVC = UINavigationController(rootViewController: HomeViewController(viewModel: HomeViewModel()))
         homeVC.tabBarItem = UITabBarItem(title: "Home", image: UIImage(named: "home"), selectedImage: nil)
 
         let categoriesVC = UIViewController()

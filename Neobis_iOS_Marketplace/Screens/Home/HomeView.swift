@@ -38,7 +38,7 @@ class HomeView: UIView {
         label.text = "Oops, it's empty!"
         label.font = UIFont(name: "GothamPro-Bold", size: 18)
         label.textAlignment = .center
-        label.isHidden = true
+        label.isHidden = false
         return label
     }()
     

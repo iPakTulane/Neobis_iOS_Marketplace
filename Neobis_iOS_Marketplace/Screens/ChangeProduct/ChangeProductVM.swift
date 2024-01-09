@@ -32,7 +32,7 @@ class ChangeProductViewModel: ChangeProductViewModelProtocol {
     }
     
     func changeProduct(images: [UIImage], title: String, price: String, short_description: String?, description: String?) {
-        let imageDatas = images.compactMap { $0.jpegData(compressionQuality: 1.0) }
+        let imageDatas = images.compactMap { $0.jpegData(compressionQuality: 0.1) }
         
         let endpoint = "product/\(id)/"
         

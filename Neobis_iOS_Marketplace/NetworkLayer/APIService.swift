@@ -22,7 +22,8 @@ class APIService {
         responseType: T.Type,
         completion: @escaping (Result<T, Error>) -> Void) {
             
-            let url = baseURL + endpoint
+//            let url = baseURL + endpoint
+            guard let url = URL(string: baseURL + endpoint) else { return }
             
             let headers: HTTPHeaders = [
                 "Content-Type": "application/json"
@@ -42,7 +43,7 @@ class APIService {
                 }
         }
     
-    // MARK: - POST with token (FULL REGISTER) - NUMBER VM
+    // MARK: - POST IMAGE + TOKEN @ NUMBER VM
     func postWithBearerToken(
         endpoint: String,
         parameters: [String: Any],
@@ -55,72 +56,17 @@ class APIService {
                 "Authorization": "Bearer \(bearerToken)"
             ]
             
-            
-            
-            /////////////////////
-            //            AF.upload(
-            //                multipartFormData: { multipartFormData in
-            //                    for (key, value) in parameters {
-            //                        if let data = (value as? String)?.data(using: .utf8) {
-            //                            multipartFormData.append(data, withName: key)
-            //                        }
-            //                    }
-            //
-            //                    if let photoData = parameters["photo"] as? Data {
-            //                        multipartFormData.append(photoData, withName: "photo", fileName: "photo.jpg", mimeType: "image/jpeg")
-            //                    }
-            //                },
-            //                to: url,
-            //                method: .post,
-            //                headers: headers
-            //            ).responseData { response in
-            //                switch response.result {
-            //                case .success(let data):
-            //                    completion(.success(data))
-            //                case .failure(let error):
-            //                    completion(.failure(error))
-            //                }
-            //            }
-            ////////////////////
-            
-            //            AF.upload(
-            //                multipartFormData: { multipartFormData in
-            //                    for (key, value) in parameters {
-            //                        if key != "photo", let data = (value as? String)?.data(using: .utf8) {
-            //                            multipartFormData.append(data, withName: key)
-            //                        }
-            //                    }
-            //
-            //                    if let photoData = parameters["photo"] as? Data {
-            //                        multipartFormData.append(photoData, withName: "photo", fileName: "photo.jpg", mimeType: "image/jpeg")
-            //                    }
-            //                },
-            //                to: url,
-            //                method: .post,
-            //                headers: headers
-            //            ).responseData { response in
-            //                switch response.result {
-            //                case .success(let data):
-            //                    completion(.success(data))
-            //                case .failure(let error):
-            //                    completion(.failure(error))
-            //                }
-            //            }
-            
-            ////////////////
-            
-            AF.upload(
-                multipartFormData: { multipartFormData in
+            AF.upload(multipartFormData: { multipartFormData in
                     for (key, value) in parameters {
-                        if key != "photo", let data = (value as? String)?.data(using: .utf8) {
+                        if key != "avatar", let data = (value as? String)?.data(using: .utf8) {
                             multipartFormData.append(data, withName: key)
                         }
                     }
                     
-                    if let photoData = parameters["photo"] as? Data {
+                    if let photoData = parameters["avatar"] as? Data {
                         let photoString = photoData.base64EncodedString()
                         if let photoStringData = photoString.data(using: .utf8) {
-                            multipartFormData.append(photoStringData, withName: "photo")
+                            multipartFormData.append(photoStringData, withName: "avatar")
                         }
                     }
                 },
@@ -135,12 +81,10 @@ class APIService {
                     completion(.failure(error))
                 }
             }
-            
-            
         }
     
-    // MARK: - POST images with token
     
+    // MARK: - POST IMAGE + TOKEN @ ADD PRODUCT VM
     func postImagesWithBearerToken(
         endpoint: String,
         parameters: [String: Any],
@@ -148,7 +92,8 @@ class APIService {
         bearerToken: String,
         completion: @escaping (Result<ProductResponse, Error>) -> Void) {
             
-            let url = baseURL + endpoint
+//            let url = baseURL + endpoint
+            guard let url = URL(string: baseURL + endpoint) else { return }
             let boundary = "Boundary-\(UUID().uuidString)"
             let mimeType = "image/*"
             
@@ -157,8 +102,7 @@ class APIService {
                 "Content-Type": "multipart/form-data; boundary=\(boundary)"
             ]
             
-            AF.upload(
-                multipartFormData: { multipartFormData in
+            AF.upload(multipartFormData: { multipartFormData in
                     for (key, value) in parameters {
                         if let stringValue = "\(value)".data(using: .utf8) {
                             multipartFormData.append(stringValue, withName: key)
@@ -199,11 +143,8 @@ class APIService {
         }
     
     
-    
-    
-    
-    
-    // MARK: - PUT images with token
+
+    // MARK: - PUT IMAGE + TOKEN
     
     func putImagesWithBearerToken(
         endpoint: String,
@@ -213,7 +154,8 @@ class APIService {
         //        completion: @escaping (Result<Data, Error>) -> Void) {
         completion: @escaping (Result<ProductResponse, Error>) -> Void) {
             
-            let url = baseURL + endpoint
+//            let url = baseURL + endpoint
+            guard let url = URL(string: baseURL + endpoint) else { return }
             let boundary = "Boundary-\(UUID().uuidString)"
             let mimeType = "image/*"
             
@@ -222,8 +164,7 @@ class APIService {
                 "Content-Type": "multipart/form-data; boundary=\(boundary)"
             ]
             
-            AF.upload(
-                multipartFormData: { multipartFormData in
+            AF.upload(multipartFormData: { multipartFormData in
                     for (key, value) in parameters {
                         if let stringValue = "\(value)".data(using: .utf8) {
                             multipartFormData.append(stringValue, withName: key)
@@ -241,8 +182,6 @@ class APIService {
                 method: .put,
                 headers: headers
             )
-
-            
             .response { response in
                 switch response.result {
                 case .success(let data):
@@ -266,31 +205,53 @@ class APIService {
             
         }
     
-    // MARK: - GET product (Product VM)
+    // MARK: - GET ITEMS DATA @ HOME & PRODUCT VM
     
-    func getProductData(
+    func getProductData<T: Decodable>(
         headers: HTTPHeaders,
-        completion: @escaping (Result<[ProductResponse], Error>) -> Void) {
+        responseType: T.Type,
+        completion: @escaping (Result<T, Error>) -> Void) {
             
-            func getProductData(
-                headers: HTTPHeaders,
-                completion: @escaping (Result<[ProductResponse], Error>) -> Void) {
-                    
-                    let url = baseURL + APIEndpoint.product.rawValue
-                    
-                    AF.request(url, headers: headers).responseDecodable(of: [ProductResponse].self) { response in
-                        switch response.result {
-                        case .success(let productArray):
-                            completion(.success(productArray))
-                        case .failure(let error):
-                            completion(.failure(error))
-                        }
-                    }
+            guard let url = URL(string: baseURL + APIEndpoint.product.rawValue) else { return }
+            
+            AF.request(url, headers: headers).responseDecodable(of: T.self) { response in
+                switch response.result {
+                case .success(let data):
+                    completion(.success(data))
+                case .failure(let error):
+                    completion(.failure(error))
                 }
+            }
         }
     
+//    func getProductData(completion: @escaping (Result<ProductResponse, Error>) -> Void) {
+//        
+//        guard let accessToken = TokenManager.shared.accessToken else {
+//            return
+//        }
+//        
+//        let url = baseURL + APIEndpoint.product.rawValue
+//        
+//        let headers: HTTPHeaders = [
+//            "Authorization": "Bearer \(accessToken)"
+//        ]
+//        
+//        AF.request(url, headers: headers).responseDecodable(of: ProductResponse.self) { response in
+//            switch response.result {
+//                
+//            case .success(let homeData):
+//                completion(.success(homeData))
+//                
+//            case .failure(let error):
+//                completion(.failure(error))
+//                
+//            }
+//        }
+//    }
     
-    // MARK: - DELETE (ProductVM)
+    
+    
+    // MARK: - DELETE ITEM @ PRODUCT VM
     func deleteData(
         id: Int,
         bearerToken: String,

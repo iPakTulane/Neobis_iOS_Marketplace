@@ -85,7 +85,7 @@ class ProfileViewController: UIViewController {
                         self.mainView.profilePic.image = image
                     }
                 } else {
-                    print("Failed to load image from URL:", avatarURL)
+                    print("Failed to load Profile image from URL:", avatarURL)
                 }
             }
         }

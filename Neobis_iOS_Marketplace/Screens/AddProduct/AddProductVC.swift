@@ -51,36 +51,37 @@ class AddProductViewController: UIViewController {
     
     @objc func finishPressed() {
         guard !mainView.images.isEmpty else { return }
-        guard let title =  mainView.nameField.text else { return }
+        guard let name =  mainView.nameField.text else { return }
         guard let price = mainView.priceField.text else { return }
         guard let short_description = mainView.descriptionOne.text else { return }
         guard let description = mainView.descriptionTwo.text else { return }
         
 //        var imageDatas: [Data] = []
 //        for image in mainView.images {
-//            if let imageData = image.jpegData(compressionQuality: 1.0) {
+//            if let imageData = image.jpegData(compressionQuality: 0.1) {
 //                imageDatas.append(imageData)
 //            }
 //        }
         
-//        // Your existing code with modifications for resizing and compression
-//        var imageDatas: [Data] = []
-//        for image in mainView.images {
-//            // Resize the image to 50% of its original size
-//            if let resizedImage = image.resizedImage(withPercentage: 0.5) {
-//                // Compress the resized image to medium quality
-//                if let imageData = resizedImage.compressedImage(withQuality: .lowest) {
-//                    imageDatas.append(imageData)
-//                }
-//            }
-//        }
+        // Your existing code with modifications for resizing and compression
+        var imageDatas: [Data] = []
+        for image in mainView.images {
+            // Resize the image to 50% of its original size
+            if let resizedImage = image.resizedImage(withPercentage: 0.5) {
+                // Compress the resized image to medium quality
+                if let imageData = resizedImage.compressedImage(withQuality: .lowest) {
+                    imageDatas.append(imageData)
+                }
+            }
+        }
         
         addProductProtocol.addProduct(
-            images: mainView.images,
-            title: title,
+            name: name,
+            available: true,
             price: price,
             short_description: short_description,
-            description: description)
+            description: description,
+            images: mainView.images)
         dismiss(animated: true, completion: nil)
     }
     

@@ -13,7 +13,13 @@ protocol AddProductViewModelProtocol: AnyObject {
     var isAdded: Bool { get }
     var addResult: ((Result<ProductResponse, Error>) -> Void)? { get set }
     
-    func addProduct(images: [UIImage], title: String, price: String, short_description: String?, description: String?)
+    func addProduct(
+        name: String,
+        available: Bool,
+        price: String,
+        short_description: String?,
+        description: String?,
+        images: [UIImage])
 }
 
 // MARK: - VIEW MODEL
@@ -30,26 +36,28 @@ class AddProductViewModel: AddProductViewModelProtocol {
     }
 
     func addProduct(
-        images: [UIImage],
-        title: String,
+        name: String,
+        available: Bool,
         price: String,
         short_description: String?,
-        description: String?) {
+        description: String?,
+        images: [UIImage]) {
             
-            let imageDatas = images.compactMap { $0.jpegData(compressionQuality: 1.0) }
+            let imageDatas = images.compactMap { $0.jpegData(compressionQuality: 0.1) }
             
             let endpoint = APIEndpoint.product.rawValue
             
             let parameters: [String: Any] = [
-                "title": title,
+                "name": name,
+                "available" : true,
                 "price": price,
-                "short_description": short_description ?? "",
-                "description": description ?? ""
+                "short_description" : short_description,
+                "description" : description
             ]
 
             apiService.postImagesWithBearerToken(
                 endpoint: endpoint,
-                parameters: parameters,
+                parameters: parameters, 
                 imageDatas: imageDatas,
                 bearerToken: TokenManager.shared.accessToken ?? "") { [weak self] result in
                 

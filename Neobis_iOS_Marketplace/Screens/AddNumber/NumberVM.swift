@@ -35,15 +35,15 @@ class NumberViewModel: NumberProtocol {
     
     private let first_name: String
     private let last_name: String
-    private let birthday: String
-    private let photo: Data
+    private let date_of_birth: String
+    private let avatar: Data
     
-    init(first_name: String, last_name: String, birthday: String, photo: Data) {
+    init(first_name: String, last_name: String, date_of_birth: String, avatar: Data) {
         self.apiService = APIService()
         self.first_name = first_name
         self.last_name = last_name
-        self.birthday = birthday
-        self.photo = photo
+        self.date_of_birth = date_of_birth
+        self.avatar = avatar
     }
     
     func fullRegister(phone_number: String) {
@@ -51,9 +51,9 @@ class NumberViewModel: NumberProtocol {
         let parameters: [String: Any] = [
             "first_name": first_name,
             "last_name": last_name,
-            "birthday": birthday,
+            "date_of_birth": date_of_birth,
             "phone_number": phone_number,
-            "photo": photo
+            "avatar": avatar
         ]
         
         apiService.postWithBearerToken(

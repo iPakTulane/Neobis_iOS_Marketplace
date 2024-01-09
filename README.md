@@ -32,7 +32,7 @@ The Neobis_iOS_Marketplace project is a comprehensive solution that combines bot
 
 <img width="800" height="400" align="center" alt="12" src="https://github.com/iPakTulane/Neobis_iOS_Marketplace/assets/117035210/0fde9bc2-106a-4c5a-846a-abb5b7ec8049"/>
 
-<img width="400" height="400" align="center" alt="13" src="https://github.com/iPakTulane/Neobis_iOS_Marketplace/assets/117035210/16821f57-9bed-4fd7-91ef-418c134f3ce3"/>
+<img width="400" height="400" align="center" alt="13" src="https://github.com/iPakTulane/Neobis_iOS_Marketplace/assets/117035210/304f7c49-c407-4805-a0dd-0ce326d7090c)"/>
 
 ## Architectural Pattern
 

@@ -9,8 +9,8 @@
 //
 //// MARK: - DELEGATE PROTOCOL
 //protocol HomeDelegate: AnyObject {
-//    func homeDidSucceed(withData data: ProductResponse)
-//    func homeDidFail(withError error: Error)
+//    func didSucceed(withData data: ProductResponse)
+//    func didFail(withError error: Error)
 //}
 //
 //// MARK: - PROTOCOL
@@ -64,12 +64,12 @@
 //                case .success(let data):
 //                    print(data)
 //                    self.isVerified = true
-//                    self.delegate?.otpDidSucceed(withData: data)
-//                    
+//                    self.delegate?.didSucceed(withData: data)
+//
 //                case .failure(let error):
 //                    print("OTP fail: \(error)")
 //                    self.isVerified = false
-//                    self.delegate?.otpDidFail(withError: error)
+//                    self.delegate?.didFail(withError: error)
 //                }
 //            }
 //        }
@@ -80,40 +80,26 @@ import Alamofire
 
 // MARK: - DELEGATE PROTOCOL
 protocol HomeDelegate: AnyObject {
-    func homeDidSucceed(withData data: ProductResponse)
-    func homeDidFail(withError error: Error)
+    func didSucceed(withData data: [ProductResponse])
+    func didFail(withError error: Error)
 }
 
 // MARK: - PROTOCOL
 protocol HomeProtocol {
     var isEmpty: Bool { get }
+    var products: [ProductResponse]? {get set}
     var delegate: HomeDelegate? { get set }
-
-    func fetchProductData(completion: @escaping (Result<ProductResponse, Error>) -> Void)
-
-    // TODO: 
-    //    func addProduct()
+    
+    func fetchProductData(completion: @escaping (Result<[ProductResponse], Error>) -> Void)
+    
+    func getData()
 }
 
 // MARK: - VIEW MODEL
 class HomeViewModel: HomeProtocol {
     
-    var isEmpty: Bool = true
-    var delegate: HomeDelegate?
-        
-    let apiService: APIService
-    
-    init() {
-        self.apiService = APIService()
-    }
-    
-    func fetchProductData(completion: @escaping (Result<ProductResponse, Error>) -> Void) {
-
-        guard let accessToken = TokenManager.shared.accessToken else {
-//            let error = NSError(domain: "AuthorizationError", code: 0, userInfo: [NSLocalizedDescriptionKey: "Access token is missing"])
-//            completion(.failure(error))
-            return
-        }
+    func fetchProductData(completion: @escaping (Result<[ProductResponse], Error>) -> Void) {
+        guard let accessToken = TokenManager.shared.accessToken else { return }
         
         let headers: HTTPHeaders = [
             "Authorization": "Bearer \(accessToken)"
@@ -121,37 +107,87 @@ class HomeViewModel: HomeProtocol {
         
         apiService.getProductData(
             headers: headers,
-            responseType: ProductResponse.self) { result in
-            switch result {
+            responseType: [ProductResponse].self) { result in
+                switch result {
+                    
+                case .success(let data):
+                    print("Home success: \(data)")
+                    self.isEmpty = false
+                    self.delegate?.didSucceed(withData: data)
                 
-            case .success(let data):
-                print("Home success")
-                self.isEmpty = false
-                self.delegate?.homeDidSucceed(withData: data)
-                
-//                do {
-//                    // Convert response array to [[String: Any]]
-//                    let dataArray = try data.map { try JSONSerialization.jsonObject(with: JSONEncoder().encode($0), options: .allowFragments) as? [String: Any] ?? [:] }
-//                    let jsonData = try JSONSerialization.data(withJSONObject: dataArray, options: .prettyPrinted)
-//                    let jsonString = String(data: jsonData, encoding: .utf8)
-//                    print(jsonString ?? "")
-//                    completion(.success(dataArray))
-//                } catch {
-//                    completion(.failure(error))
-//                }
-                
-            case .failure(let error):
-//                completion(.failure(error))
-                print("Home fail: \(error)")
-                self.isEmpty = true
-                self.delegate?.homeDidFail(withError: error)
+                case .failure(let error):
+                    print("Home fail: \(error)")
+                    self.isEmpty = true
+                    self.delegate?.didFail(withError: error)
+                }
             }
-        }
     }
     
-    // TODO:
-//    func addProduct() {
-//        // TODO: To go to AddProduct screen
-//    }
     
+    var isEmpty: Bool = true
+    
+    var products: [ProductResponse]?
+    weak var delegate: HomeDelegate?
+    
+    let apiService: APIService
+    
+    init() {
+        self.apiService = APIService()
+    }
+    
+    func getData() {
+        
+        guard let accessToken = TokenManager.shared.accessToken else { return }
+        
+        let headers: HTTPHeaders = [
+            "Authorization": "Bearer \(accessToken)"
+        ]
+        
+        if accessToken != "" {
+            
+            apiService.getProductData(
+                headers: headers,
+                responseType: [ProductResponse].self) { result in
+                    switch result {
+                        
+                    case .success(let data):
+                        print("Home success: \(data)")
+                        self.isEmpty = false
+                        self.delegate?.didSucceed(withData: data)
+                        
+                    case .failure(let error):
+                        print("Home fail: \(error)")
+                        self.isEmpty = true
+                        self.delegate?.didFail(withError: error)
+                    }
+                }
+        }
+        
+        
+//        func fetchProductData(completion: @escaping (Result<[ProductResponse], Error>) -> Void) {
+//            
+//            guard let accessToken = TokenManager.shared.accessToken else { return }
+//            
+//            let headers: HTTPHeaders = [
+//                "Authorization": "Bearer \(accessToken)"
+//            ]
+//            
+//            apiService.getProductData(
+//                headers: headers,
+//                responseType: [ProductResponse].self) { result in
+//                    switch result {
+//                        
+//                    case .success(let data):
+//                        print("Home success: \(data)")
+//                        self.isEmpty = false
+//                        self.delegate?.didSucceed(withData: data)
+//                    
+//                    case .failure(let error):
+//                        print("Home fail: \(error)")
+//                        self.isEmpty = true
+//                        self.delegate?.didFail(withError: error)
+//                    }
+//                }
+//        }
+    }
 }

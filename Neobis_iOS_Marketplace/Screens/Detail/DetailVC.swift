@@ -12,16 +12,22 @@ class DetailViewController: UIViewController {
     let mainView = DetailView()
     var viewModel: DetailViewModelProtocol?
     var productImage: UIImage?
-    var peronalProduct: Bool?
+//    var peronalProduct: Bool?
     var id: Int?
     
-    init(viewModel: DetailViewModelProtocol? = nil, productImage: UIImage? = nil,isFavorite: Bool = false ,peronalProduct: Bool? = false, id: Int? = nil) {
+    init(
+        viewModel: DetailViewModelProtocol? = nil,
+        productImage: UIImage? = nil,
+//        isFavorite: Bool = false,
+//        peronalProduct: Bool? = false, 
+        id: Int? = nil) {
+
         super.init(nibName: nil, bundle: nil)
         self.viewModel = viewModel
         self.productImage = productImage
-        self.peronalProduct = peronalProduct
+//        self.peronalProduct = peronalProduct
         self.id = id
-        mainView.heartButton.tintColor = isFavorite ? .systemRed : .gray
+//        mainView.heartButton.tintColor = isFavorite ? .systemRed : .gray
     }
     
     required init?(coder: NSCoder) {
@@ -30,9 +36,11 @@ class DetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let personalProduct = peronalProduct, personalProduct {
+        
+//        if let personalProduct = peronalProduct, personalProduct {
             navigationItem.rightBarButtonItem = UIBarButtonItem(customView: mainView.changeButton)
-        }
+//        }
+        
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: mainView.backButton)
         viewModel?.delegate = self
         tabBarController?.tabBar.isHidden = true
@@ -76,13 +84,27 @@ class DetailViewController: UIViewController {
 }
 
 extension DetailViewController: DetailDelegate {
-    func detailDidSucceed(response: DetailResponse) {
+    func didSucceed(response: DetailResponse) {
+        
+        guard let price = response.price,
+              let name = response.name,
+              let short_description = response.short_description,
+              let description = response.description else {
+            
+            // Show an alert to notify the user about missing data
+            DispatchQueue.main.async {
+                let alert = UIAlertController(title: "Error", message: "Some data is missing.", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+            }
+            return
+        }
+        
         DispatchQueue.main.async {
-            self.mainView.cost.text = String(Int(response.price)) + " $"
-//            self.mainView.likeAmount.text = String(response.likes)
-            self.mainView.title.text = response.name
-            self.mainView.shortDescription.text = response.shortDescription
-            self.mainView.longDescription.text = response.fullDescription
+            self.mainView.cost.text = price + " $"
+            self.mainView.title.text = name
+            self.mainView.shortDescription.text = short_description
+            self.mainView.longDescription.text = description
         }
     }
 }

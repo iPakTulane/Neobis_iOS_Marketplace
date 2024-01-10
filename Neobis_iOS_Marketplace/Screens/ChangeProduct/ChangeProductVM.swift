@@ -12,7 +12,7 @@ import UIKit
 // MARK: - PROTOCOL
 protocol ChangeProductViewModelProtocol: AnyObject {
     var isChanged: Bool { get }
-    var changeResult: ((Result<ProductResponse, Error>) -> Void)? { get set }
+    var changeResult: ((Result<[ProductResponse], Error>) -> Void)? { get set }
     
     func changeProduct(images: [UIImage], title: String, price: String, short_description: String?, description: String?)
 }
@@ -21,7 +21,7 @@ protocol ChangeProductViewModelProtocol: AnyObject {
 class ChangeProductViewModel: ChangeProductViewModelProtocol {
     
     var isChanged: Bool = false
-    var changeResult: ((Result<ProductResponse, Error>) -> Void)?
+    var changeResult: ((Result<[ProductResponse], Error>) -> Void)?
     
     let apiService: APIService
     private let id: Int
@@ -46,11 +46,11 @@ class ChangeProductViewModel: ChangeProductViewModelProtocol {
         apiService.putImagesWithBearerToken(endpoint: endpoint, parameters: parameters, imageDatas: imageDatas, bearerToken: TokenManager.shared.accessToken ?? "") { [weak self] result in
             DispatchQueue.main.async {
                 switch result {
-                case .success(let productResponse):
+                case .success(let data):
                     // Handle the ProductResponse object
-                    print("Product changed with ID: \(productResponse.id ?? 0)")
+                    print("Product changed with ID: \(data[0].id ?? 0)")
                     self?.isChanged = true
-                    self?.changeResult?(.success(productResponse))
+                    self?.changeResult?(.success(data))
                 case .failure(let error):
                     let errorMessage = "Failed to change product: \(error.localizedDescription)"
                     print(errorMessage)

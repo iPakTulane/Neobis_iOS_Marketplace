@@ -60,13 +60,13 @@ extension OTPViewController: UITextFieldDelegate {
 // MARK: - LOGIN DELEGATE
 extension OTPViewController: OTPDelegate {
 
-    func otpDidSucceed(withData data: OTPResponse) {
+    func didSucceed(withData data: OTPResponse) {
         let vc = CustomTabBarController()
         vc.modalPresentationStyle = .fullScreen
         present(vc, animated: true, completion: nil)
     }
     
-    func otpDidFail(withError error: Error) {
+    func didFail(withError error: Error) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
             self.mainView.errorLabel.isHidden = true
         }

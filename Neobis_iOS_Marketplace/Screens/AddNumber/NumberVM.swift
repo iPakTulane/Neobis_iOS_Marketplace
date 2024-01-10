@@ -12,8 +12,8 @@ import Alamofire
 
 // MARK: - DELEGATE PROTOCOL
 protocol NumberDelegate: AnyObject {
-    func registrationDidSucceed(withData data: Data)
-    func registrationDidFail(withError error: Error)
+    func didSucceed(withData data: Data)
+    func didFail(withError error: Error)
 }
 
 // MARK: - PROTOCOL
@@ -65,10 +65,10 @@ class NumberViewModel: NumberProtocol {
                     switch result {
                     case .success(let data):
                         self?.isFullyRegistered = true
-                        self?.delegate?.registrationDidSucceed(withData: data)
+                        self?.delegate?.didSucceed(withData: data)
                     case .failure(let error):
                         self?.isFullyRegistered = false
-                        self?.delegate?.registrationDidFail(withError: error)
+                        self?.delegate?.didFail(withError: error)
                     }
                 }
             }

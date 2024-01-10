@@ -19,14 +19,14 @@ class FinishRegViewController: UIViewController {
     var lastName: String = ""
     var date_of_birth: String = ""
     var phoneNumber: String = ""
-    var getUserProtocol: GetUserProtocol!
+    var getUserProtocol: UserProtocol!
     
     // MARK: - INIT
     override func loadView() {
         view = mainView
     }
     
-    init(getUserProtocol: GetUserProtocol!) {
+    init(getUserProtocol: UserProtocol!) {
         self.getUserProtocol = getUserProtocol
         super.init(nibName: nil, bundle: nil)
     }

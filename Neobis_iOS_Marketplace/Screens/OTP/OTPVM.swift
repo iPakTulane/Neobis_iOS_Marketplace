@@ -9,8 +9,8 @@ import Foundation
 
 // MARK: - DELEGATE PROTOCOL
 protocol OTPDelegate: AnyObject {
-    func otpDidSucceed(withData data: OTPResponse)
-    func otpDidFail(withError error: Error)
+    func didSucceed(withData data: OTPResponse)
+    func didFail(withError error: Error)
 }
 
 // MARK: - PROTOCOL
@@ -49,12 +49,12 @@ class OTPViewModel: OTPProtocol {
                 case .success(let data):
                     print(data)
                     self.isVerified = true
-                    self.delegate?.otpDidSucceed(withData: data)
+                    self.delegate?.didSucceed(withData: data)
 
                 case .failure(let error):
                     print("OTP fail: \(error)")
                     self.isVerified = false
-                    self.delegate?.otpDidFail(withError: error)
+                    self.delegate?.didFail(withError: error)
                 }
             }
         }

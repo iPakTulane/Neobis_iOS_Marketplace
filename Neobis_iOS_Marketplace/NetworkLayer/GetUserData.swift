@@ -10,12 +10,12 @@ import Foundation
 import Alamofire
 
 // MARK: - PROTOCOL
-protocol GetUserProtocol {
+protocol UserProtocol {
     func fetchUserData(completion: @escaping (Result<GetUserResponse, Error>) -> Void)
 }
 
 // MARK: - VIEW MODEL
-class GetUserViewModel: GetUserProtocol {
+class GetUserViewModel: UserProtocol {
     
     let apiService: APIService
     
@@ -39,8 +39,8 @@ class GetUserViewModel: GetUserProtocol {
         AF.request(url, headers: headers).responseDecodable(of: GetUserResponse.self) { response in
             switch response.result {
                 
-            case .success(let userResponse):
-                completion(.success(userResponse))
+            case .success(let data):
+                completion(.success(data))
                 
             case .failure(let error):
                 completion(.failure(error))

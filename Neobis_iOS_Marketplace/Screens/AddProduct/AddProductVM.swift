@@ -11,7 +11,7 @@ import UIKit
 // MARK: - PROTOCOL
 protocol AddProductViewModelProtocol: AnyObject {
     var isAdded: Bool { get }
-    var addResult: ((Result<ProductResponse, Error>) -> Void)? { get set }
+    var addResult: ((Result<[ProductResponse], Error>) -> Void)? { get set }
     
     func addProduct(
         name: String,
@@ -26,7 +26,7 @@ protocol AddProductViewModelProtocol: AnyObject {
 class AddProductViewModel: AddProductViewModelProtocol {
     
     var isAdded: Bool = false
-    var addResult: ((Result<ProductResponse, Error>) -> Void)?
+    var addResult: ((Result<[ProductResponse], Error>) -> Void)?
     
     let apiService: APIService
     
@@ -69,7 +69,7 @@ class AddProductViewModel: AddProductViewModelProtocol {
                         self?.addResult?(.success(productResponse))
                         
                         // Additional handling specific to ProductResponse if needed
-                        print("Product added with ID: \(productResponse.id ?? 0)")
+                        print("Product added with ID: \(productResponse[0].id ?? 0)")
                         self?.isAdded = true
                         
                     case .failure(let error):

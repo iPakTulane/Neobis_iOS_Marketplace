@@ -90,11 +90,11 @@ class NumberViewController: UIViewController {
 // MARK: - EXTENSION
 extension NumberViewController: NumberDelegate {
     // MARK: - NUMBER DELEGATE METHODS
-    func registrationDidSucceed(withData data: Data) {
+    func didSucceed(withData data: Data) {
         handleFullRegistrationSuccess(data)
     }
     
-    func registrationDidFail(withError error: Error) {
+    func didFail(withError error: Error) {
         handleFullRegistrationFailure(error)
     }
 }

@@ -9,7 +9,7 @@ import UIKit
 
 protocol DetailDelegate {
     
-    func detailDidSucceed(response: DetailResponse)
+    func didSucceed(response: DetailResponse)
     
 }
 
@@ -43,7 +43,7 @@ class DetailViewModel: DetailViewModelProtocol {
         //            switch result {
         //            case .success(let data):
         //                self.detailResponse = data
-        //                self.delegate?.detailDidSucceed(response: data)
+        //                self.delegate?.didSucceed(response: data)
         //            case .failure(let error):
         //                print("Detail fail: \(error)")
         

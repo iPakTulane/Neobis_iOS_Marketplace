@@ -113,13 +113,13 @@ extension LoginViewController: UITextFieldDelegate {
 // MARK: - LOGIN DELEGATE
 extension LoginViewController: LoginDelegate {
     
-    func loginDidSucceed(withData data: LoginResponse) {
+    func didSucceed(withData data: LoginResponse) {
         let vc = CustomTabBarController()
         vc.modalPresentationStyle = .fullScreen
         present(vc, animated: true, completion: nil)
     }
     
-    func loginDidFail(withError error: Error) {
+    func didFail(withError error: Error) {
         mainView.statusLabel.isHidden = false
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {

@@ -10,9 +10,9 @@ import Alamofire
 
 // MARK: - DELEGATE PROTOCOL
 protocol ProductDelegate: AnyObject {
-    func productDidSucceed(withData data: ProductResponse)
-    func productDidFail(withError error: Error)
-    func productDidDelete()
+    func didSucceed(withData data: [ProductResponse])
+    func didFail(withError error: Error)
+    func didDelete()
 }
 
 // MARK: - PROTOCOL
@@ -20,7 +20,7 @@ protocol ProductProtocol {
     
     var delegate: ProductDelegate? { get set }
     
-    func fetchProductData(completion: @escaping (Result<ProductResponse, Error>) -> Void)
+    func fetchProductData(completion: @escaping (Result<[ProductResponse], Error>) -> Void)
     
     var isDeleted: Bool { get }
 //    var deleteResult: ((Result<Data, Error>) -> Void)? { get set }
@@ -39,7 +39,7 @@ class ProductViewModel: ProductProtocol {
         self.apiService = APIService()
     }
 
-    func fetchProductData(completion: @escaping (Result<ProductResponse, Error>) -> Void) {
+    func fetchProductData(completion: @escaping (Result<[ProductResponse], Error>) -> Void) {
 
         guard let accessToken = TokenManager.shared.accessToken else {
 //            let error = NSError(domain: "AuthorizationError", code: 0, userInfo: [NSLocalizedDescriptionKey: "Access token is missing"])
@@ -53,12 +53,12 @@ class ProductViewModel: ProductProtocol {
         
         apiService.getProductData(
             headers: headers,
-            responseType: ProductResponse.self) { result in
+            responseType: [ProductResponse].self) { result in
             switch result {
             case .success(let data):
                 print("Product success")
                 self.isDeleted = false
-                self.delegate?.productDidSucceed(withData: data)
+                self.delegate?.didSucceed(withData: data)
                 
                 
 //                do {
@@ -75,7 +75,7 @@ class ProductViewModel: ProductProtocol {
 //                completion(.failure(error))
                 print("Product fail: \(error)")
                 self.isDeleted = false
-                self.delegate?.productDidFail(withError: error)
+                self.delegate?.didFail(withError: error)
             }
         }
     }
@@ -93,7 +93,7 @@ class ProductViewModel: ProductProtocol {
 //                    let dataString = String(data: data, encoding: .utf8)
 //                    print("Data received: \(dataString ?? "nil")")
                     self?.isDeleted = true
-                    self?.delegate?.productDidDelete()
+                    self?.delegate?.didDelete()
                     
 //                    deleteResult?(.success(data))
                 
@@ -102,7 +102,7 @@ class ProductViewModel: ProductProtocol {
 //                    let errorMessage = "Failed to delete product: \(error.localizedDescription)"
 //                    print(errorMessage)
                     self?.isDeleted = false
-                    self?.delegate?.productDidFail(withError: error)
+                    self?.delegate?.didFail(withError: error)
 //                    self?.delete Result?(.failure(error))
                 }
             }

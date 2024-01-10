@@ -8,8 +8,27 @@
 
 import UIKit
 import SnapKit
+import AlamofireImage
+
+protocol HomeCellDelegate: AnyObject {
+    func goToDetail(id: Int, image: UIImage)
+}
 
 class HomeCellView: UICollectionViewCell {
+    
+    static let identifier = "HomeCell"
+    
+    var id = 0
+    weak var delegate: HomeCellDelegate?
+    
+    lazy var container: UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+        view.layer.cornerRadius = 12
+        view.layer.shadowColor = UIColor.black.cgColor
+        view.layer.shadowOffset = CGSize(width: 0, height: 2)
+        return view
+    }()
     
     let productImageView: UIImageView = {
         let imageView = UIImageView()
@@ -30,7 +49,7 @@ class HomeCellView: UICollectionViewCell {
         let label = UILabel()
         label.font = UIFont(name: "GothamPro-Medium", size: 14)
         label.textColor = UIColor.colorBlue
-        label.text = "12 000"
+        label.text = "12 000 $"
         return label
     }()
     
@@ -50,77 +69,134 @@ class HomeCellView: UICollectionViewCell {
         return label
     }()
     
-    let infoButton: UIButton  = { // show pop up
-        let button = UIButton()
-        button.setImage(UIImage(named: "info"), for: .normal)
-        
-//        button.addTarget(self, action: #selector(<#T##@objc method#>), for: .touchUpInside)
-        
-        return button
+    lazy var tapGesture: UITapGestureRecognizer = {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(productTapped))
+        tap.numberOfTapsRequired = 1
+        tap.numberOfTouchesRequired = 1
+        return tap
     }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .white
-        // TODO:
-        layer.cornerRadius = 12 //* 1
+//        backgroundColor = .white
+//        layer.cornerRadius = 12 //* 1
+        
+        backgroundColor = .clear
         setupViews()
         setupConstraints()
     }
-
+    
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
     func setupViews() {
-        addSubview(productImageView)
-        addSubview(productNameLabel)
-        addSubview(priceLabel)
-        addSubview(likeImage)
-        addSubview(likeLabel)
-        addSubview(infoButton)
+        contentView.addSubview(container)
+        container.addSubview(productImageView)
+        container.addSubview(productNameLabel)
+        container.addSubview(priceLabel)
+        container.addSubview(likeImage)
+        container.addSubview(likeLabel)
     }
+//        addSubview(productImageView)
+//        addSubview(productNameLabel)
+//        addSubview(priceLabel)
+//        addSubview(likeImage)
+//        addSubview(likeLabel)
+//    }
     
     func setupConstraints() {
         
+        container.snp.makeConstraints { make in
+            make.leading.trailing.top.bottom.equalToSuperview()
+        }
+        
+//        productImageView.snp.makeConstraints { make in
+//            make.top.equalToSuperview().inset(6)
+//            make.leading.equalToSuperview().inset(6)
+//            make.trailing.equalToSuperview().inset(6)
+//            make.bottom.equalToSuperview().inset(93)
+//        }
+//        
+//        productNameLabel.snp.makeConstraints { make in
+//            make.top.equalToSuperview().inset(95)
+//            make.leading.equalToSuperview().inset(6)
+//            make.trailing.equalToSuperview().inset(6)
+//            make.bottom.equalToSuperview().inset(55)
+//        }
+//        
+//        priceLabel.snp.makeConstraints { make in
+//            make.top.equalToSuperview().inset(133)
+//            make.leading.equalToSuperview().inset(6)
+//            make.trailing.equalToSuperview().inset(13)
+//            make.bottom.equalToSuperview().inset(34)
+//        }
+//        
+//        likeImage.snp.makeConstraints{ make in
+//            make.top.equalToSuperview().inset(157.41)
+//            make.leading.equalToSuperview().inset(8)
+//            make.width.equalTo(20)
+//            make.height.equalTo(20)
+//        }
+//        
+//        likeLabel.snp.makeConstraints{ make in
+//            make.centerY.equalTo(likeImage)
+//            make.leading.equalTo(likeImage.snp.trailing).offset(7)
+//        }
+        
         productImageView.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(6)
-            make.leading.equalToSuperview().inset(6)
-            make.trailing.equalToSuperview().inset(6)
-            make.bottom.equalToSuperview().inset(93)
+            make.leading.trailing.equalToSuperview().inset(6)
+            make.top.equalToSuperview().offset(6)
+            make.height.equalTo(85)
         }
         
         productNameLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(95)
-            make.leading.equalToSuperview().inset(6)
-            make.trailing.equalToSuperview().inset(6)
-            make.bottom.equalToSuperview().inset(55)
+            make.top.equalTo(productImageView.snp.bottom).offset(7)
+            make.leading.trailing.equalToSuperview().inset(6)
         }
         
         priceLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(133)
-            make.leading.equalToSuperview().inset(6)
-            make.trailing.equalToSuperview().inset(13)
-            make.bottom.equalToSuperview().inset(34)
+            make.bottom.equalTo(likeImage.snp.top).offset(-9)
+            make.leading.trailing.equalToSuperview().inset(6)
         }
         
-        likeImage.snp.makeConstraints{ make in
-            make.top.equalToSuperview().inset(157.41)
-            make.leading.equalToSuperview().inset(8)
+        likeImage.snp.makeConstraints { make in
+            make.bottom.equalToSuperview().offset(-12)
+            make.height.equalTo(17)
             make.width.equalTo(20)
-            make.height.equalTo(20)
+            make.leading.equalToSuperview().offset(8)
         }
         
-        likeLabel.snp.makeConstraints{ make in
-            make.centerY.equalTo(likeImage)
-            make.leading.equalTo(likeImage.snp.trailing).offset(7)
+        likeLabel.snp.makeConstraints { make in
+            make.centerY.equalTo(likeImage.snp.centerY)
+            make.leading.equalTo(likeImage.snp.trailing).offset(5)
         }
         
-        infoButton.snp.makeConstraints{ make in
-            make.centerY.equalTo(likeImage)
-            make.trailing.equalToSuperview().inset(6)
+        container.addGestureRecognizer(tapGesture)
+    
+    }
+    
+    
+    @objc func productTapped() {
+        delegate?.goToDetail(id: id, image: productImageView.image ?? UIImage())
+    }
+    
+    func configureCell(with data: ProductResponse) {
+        
+        if let photoUrl = data.photo, let imageUrl = URL(string: "https" + photoUrl.dropFirst(4)) {
+            self.productImageView.af.setImage(withURL: imageUrl)
+        }
+        
+        if let id = data.id {
+            self.id = id
+        }
+        
+        self.productNameLabel.text = data.name
+        
+        if let price = data.price, let priceValue = Int(price) {
+            self.priceLabel.text = "\(priceValue) $"
         }
     }
-
+    
 }

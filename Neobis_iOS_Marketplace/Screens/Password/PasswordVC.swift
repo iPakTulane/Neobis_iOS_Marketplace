@@ -125,13 +125,13 @@ extension PasswordViewController: UITextFieldDelegate {
 
 // MARK: - PASSWORD DELEGATE
 extension PasswordViewController: PasswordDelegate {
-    func registrationDidSucceed(withData data: RegisterResponse) {
+    func didSucceed(withData data: RegisterResponse) {
         print("Registration successful")
         let vc = LoginViewController(loginProtocol: LoginViewModel())
         navigationController?.pushViewController(vc, animated: true)
     }
     
-    func registrationDidFail(withError error: Error) {
+    func didFail(withError error: Error) {
         mainView.passwordError.isHidden = false
         mainView.passwordField.textColor = UIColor.сolorRed
         mainView.passwordConfirmField.textColor = UIColor.сolorRed

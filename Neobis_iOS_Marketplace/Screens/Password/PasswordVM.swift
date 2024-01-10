@@ -10,8 +10,8 @@ import UIKit
 
 // MARK: - DELEGATE
 protocol PasswordDelegate: AnyObject {
-    func registrationDidSucceed(withData data: RegisterResponse)
-    func registrationDidFail(withError error: Error)
+    func didSucceed(withData data: RegisterResponse)
+    func didFail(withError error: Error)
 }
 
 // MARK: - PROTOCOL
@@ -62,14 +62,14 @@ class PasswordViewModel: PasswordProtocol {
                         print("Data received: \(data)")
                         
                         self?.isRegistered = true
-                        self?.delegate?.registrationDidSucceed(withData: data)
+                        self?.delegate?.didSucceed(withData: data)
                         
                     case .failure(let error):
                         let errorMessage = "Failed register number: \(error.localizedDescription)"
                         print(errorMessage)
                         
                         self?.isRegistered = false
-                        self?.delegate?.registrationDidFail(withError: error)
+                        self?.delegate?.didFail(withError: error)
                     }
                 }
             }

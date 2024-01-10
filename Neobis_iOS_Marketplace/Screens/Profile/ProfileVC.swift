@@ -16,14 +16,14 @@ class ProfileViewController: UIViewController {
     let mainView = ProfileView()
     var nickName: String = ""
     var image: UIImage?
-    var mainViewModel: GetUserProtocol!
+    var mainViewModel: UserProtocol!
     
     // MARK: - INIT
     override func loadView() {
         view = mainView
     }
     
-    init(getUserProtocol: GetUserProtocol!) {
+    init(getUserProtocol: UserProtocol!) {
         self.mainViewModel = getUserProtocol
         super.init(nibName: nil, bundle: nil)
     }
@@ -78,6 +78,7 @@ class ProfileViewController: UIViewController {
         // Use the global base URL from APIService
         if let avatarURLString = userData.avatar,
            let avatarURL = URL(string: apiService.baseURL + avatarURLString) {
+            
             DispatchQueue.global().async {
                 if let imageData = try? Data(contentsOf: avatarURL),
                    let image = UIImage(data: imageData) {
@@ -88,6 +89,7 @@ class ProfileViewController: UIViewController {
                     print("Failed to load Profile image from URL:", avatarURL)
                 }
             }
+            
         }
         
     }
@@ -127,7 +129,7 @@ class ProfileViewController: UIViewController {
     // MARK: - ACTION BUTTONS
     @objc func productButtonPressed() {
         
-        let vc = ProductViewController(product: ProductViewModel(), productProtocol: GetUserViewModel())
+        let vc = ProductViewController(product: ProductViewModel(), user: GetUserViewModel())
         
 //        navigationController?.pushViewController(vc, animated: true)
         

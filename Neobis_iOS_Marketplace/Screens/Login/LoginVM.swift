@@ -9,8 +9,8 @@ import Foundation
 
 // MARK: - DELEGATE PROTOCOL
 protocol LoginDelegate: AnyObject {
-    func loginDidSucceed(withData data: LoginResponse)
-    func loginDidFail(withError error: Error)
+    func didSucceed(withData data: LoginResponse)
+    func didFail(withError error: Error)
 }
 
 // MARK: - PROTOCOL
@@ -58,12 +58,12 @@ class LoginViewModel: LoginProtocol {
                     }
                     
                     self.isLoggedIn = true
-                    self.delegate?.loginDidSucceed(withData: data)
+                    self.delegate?.didSucceed(withData: data)
 
                 case .failure(let error):
                     print("Login fail: \(error)")
                     self.isLoggedIn = false
-                    self.delegate?.loginDidFail(withError: error)
+                    self.delegate?.didFail(withError: error)
                 }
             }
         }

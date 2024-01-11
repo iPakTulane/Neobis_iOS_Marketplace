@@ -30,13 +30,13 @@ class HomeCellView: UICollectionViewCell {
         return view
     }()
     
-    let productImageView: UIImageView = {
+    lazy var productImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
         return imageView
     }()
     
-    let productNameLabel: UILabel = {
+    lazy var productNameLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont(name: "GothamPro-Medium", size: 14)
         label.textColor = .black
@@ -45,7 +45,7 @@ class HomeCellView: UICollectionViewCell {
         return label
     }()
     
-    let priceLabel: UILabel = {
+    lazy var priceLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont(name: "GothamPro-Medium", size: 14)
         label.textColor = UIColor.colorBlue
@@ -53,14 +53,14 @@ class HomeCellView: UICollectionViewCell {
         return label
     }()
     
-    let likeImage: UIImageView = {
+    lazy var likeImage: UIImageView = {
         let image = UIImageView()
-        image.image = UIImage(named: "heart")
-        
+        image.image = UIImage(named: "Heart")
+        image.isHidden = false
         return image
     }()
     
-    let likeLabel: UILabel = {
+    lazy var likeLabel: UILabel = {
         let label = UILabel()
         label.text = "100"
         label.font = UIFont(name: "GothamPro", size: 12)
@@ -78,38 +78,30 @@ class HomeCellView: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-//        backgroundColor = .white
-//        layer.cornerRadius = 12 //* 1
-        
-        backgroundColor = .clear
         setupViews()
         setupConstraints()
     }
-    
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
     func setupViews() {
+        backgroundColor = .clear
         contentView.addSubview(container)
         container.addSubview(productImageView)
         container.addSubview(productNameLabel)
         container.addSubview(priceLabel)
         container.addSubview(likeImage)
         container.addSubview(likeLabel)
+        container.addGestureRecognizer(tapGesture)
     }
-//        addSubview(productImageView)
-//        addSubview(productNameLabel)
-//        addSubview(priceLabel)
-//        addSubview(likeImage)
-//        addSubview(likeLabel)
-//    }
     
     func setupConstraints() {
         
         container.snp.makeConstraints { make in
-            make.leading.trailing.top.bottom.equalToSuperview()
+//            make.leading.trailing.top.bottom.equalToSuperview()
+            make.edges.equalToSuperview()
         }
         
 //        productImageView.snp.makeConstraints { make in
@@ -173,7 +165,7 @@ class HomeCellView: UICollectionViewCell {
             make.leading.equalTo(likeImage.snp.trailing).offset(5)
         }
         
-        container.addGestureRecognizer(tapGesture)
+//        container.addGestureRecognizer(tapGesture)
     
     }
     
@@ -183,20 +175,23 @@ class HomeCellView: UICollectionViewCell {
     }
     
     func configureCell(with data: ProductResponse) {
-        
-        if let photoUrl = data.photo, let imageUrl = URL(string: "https" + photoUrl.dropFirst(4)) {
+
+        // Check if the photo URL is valid
+        if let photoUrlString = data.photo, let imageUrl = URL(string: photoUrlString) {
+            // Use AlamofireImage to asynchronously load and set the image
             self.productImageView.af.setImage(withURL: imageUrl)
         }
-        
+
         if let id = data.id {
             self.id = id
         }
-        
+
         self.productNameLabel.text = data.name
-        
+
         if let price = data.price, let priceValue = Int(price) {
             self.priceLabel.text = "\(priceValue) $"
         }
     }
+    
     
 }

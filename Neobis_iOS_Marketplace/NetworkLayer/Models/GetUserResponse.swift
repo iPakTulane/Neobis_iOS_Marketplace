@@ -10,6 +10,8 @@ import Foundation
 
 // GetAuthProfileView
 
+// FOR PERSONAL DATA SCREEN
+
 struct GetUserResponse : Codable {
     let avatar : String?
     let username : String?

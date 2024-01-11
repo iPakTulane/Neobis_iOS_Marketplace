@@ -41,7 +41,7 @@ class ProfileView: UIView {
         return view
     }()
     
-    let likeButton: UIButton = {
+    let favoritesButton: UIButton = {
         let button = UIButton()
         
         let containerView = UIView()
@@ -231,7 +231,7 @@ class ProfileView: UIView {
         addSubview(nickLabel)
         addSubview(firstSectionView)
         addSubview(secondSectionView)
-        addSubview(likeButton)
+        addSubview(favoritesButton)
         addSubview(productButton)
         addSubview(logoutButton)
         addSubview(finishRegButton)
@@ -273,7 +273,7 @@ class ProfileView: UIView {
             make.height.equalTo(70)
         }
 
-        likeButton.snp.makeConstraints { make in
+        favoritesButton.snp.makeConstraints { make in
             make.top.equalTo(firstSectionView).inset(20)
             make.leading.equalTo(firstSectionView).inset(16)
             make.trailing.equalTo(firstSectionView).inset(16)

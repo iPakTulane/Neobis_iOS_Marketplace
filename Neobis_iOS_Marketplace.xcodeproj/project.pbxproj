@@ -212,8 +212,8 @@
 				BAEEA7F72B4851EC00DCD042 /* ProductResponse.swift */,
 				BAEEA7FB2B48741B00DCD042 /* RegisterResponse.swift */,
 				BAEEA7ED2B48261B00DCD042 /* LoginResponse.swift */,
-				BAEEA7EB2B4825B000DCD042 /* GetUserResponse.swift */,
 				BAEEA8102B4C3DAC00DCD042 /* UpdateUserResponse.swift */,
+				BAEEA7EB2B4825B000DCD042 /* GetUserResponse.swift */,
 				BAEEA8142B4C4B4F00DCD042 /* OTPResponse.swift */,
 			);
 			path = Models;
@@ -223,8 +223,8 @@
 			isa = PBXGroup;
 			children = (
 				BAEEA8452B4D93FE00DCD042 /* DetailView.swift */,
-				BAEEA8472B4D93FE00DCD042 /* DetailVM.swift */,
 				BAEEA8482B4D93FE00DCD042 /* DetailVC.swift */,
+				BAEEA8472B4D93FE00DCD042 /* DetailVM.swift */,
 			);
 			path = Detail;
 			sourceTree = "<group>";

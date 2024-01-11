@@ -11,8 +11,7 @@ class DetailView: UIView {
     
     lazy var backButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(named: "back"), for: .normal)
-        button.backgroundColor = UIColor.colorBackground
+        button.setImage(UIImage(named: "backButton"), for: .normal)
         button.tintColor = .black
         button.frame = CGRect(x: 0, y: 0, width: 44, height: 28)
         button.layer.cornerRadius = 14
@@ -21,7 +20,7 @@ class DetailView: UIView {
     
     lazy var changeButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Edit", for: .normal)
+        button.setImage(UIImage(named: "editButton"), for: .normal)
         button.titleLabel?.font = UIFont(name: "GothamPro-Medium", size: 16)
         button.setTitleColor(.black, for: .normal)
         button.backgroundColor = UIColor.colorBackground
@@ -45,7 +44,7 @@ class DetailView: UIView {
     
     lazy var heartButton: UIButton = {
         let button = UIButton()
-        button.setImage( UIImage(named: "heart"), for: .normal)
+        button.setImage( UIImage(named: "Heart"), for: .normal)
         button.tintColor = .gray
         return button
     }()

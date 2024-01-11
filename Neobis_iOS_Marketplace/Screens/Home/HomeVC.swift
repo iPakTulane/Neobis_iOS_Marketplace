@@ -46,6 +46,7 @@ class HomeViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         mainViewModel?.getData()
         mainView.collectionView.reloadData()
+        tabBarController?.tabBar.isHidden = false
     }
 
     func addDelegates() {
@@ -106,10 +107,18 @@ extension HomeViewController: HomeDelegate {
         print("Home succeeded with data: \(data)")
         
         DispatchQueue.main.async {
-            self.mainView.emptyLabel.isHidden = true
-            self.mainView.boxImage.isHidden = true
-            self.mainView.collectionView.isHidden = false
-            self.mainView.collectionView.reloadData()
+            if !data.isEmpty  {
+                print("Not Empty")
+                self.mainView.emptyLabel.isHidden = true
+                self.mainView.boxImage.isHidden = true
+                self.mainView.collectionView.isHidden = false
+                self.mainView.collectionView.reloadData()
+            } else {
+                print("Empty")
+                self.mainView.emptyLabel.isHidden = false
+                self.mainView.boxImage.isHidden = false
+                self.mainView.collectionView.isHidden = true
+            }
         }
     }
         

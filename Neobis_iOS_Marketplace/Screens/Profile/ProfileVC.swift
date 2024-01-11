@@ -160,4 +160,40 @@ class ProfileViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
+    
+//    func configure(with data: GetUserResponse) {
+//
+//        // Check if the photo URL is valid
+//        if let photoUrlString = data.avatar, let imageUrl = URL(string: photoUrlString) {
+//            // Use AlamofireImage to asynchronously load and set the image
+//            self.mainView.profilePic.af.setImage(withURL: imageUrl)
+//        }
+//
+////        if let id = data.id {
+////            self.id = id
+////        }
+////
+////        self.productNameLabel.text = data.name
+////
+////        if let price = data.price, let priceValue = Int(price) {
+////            self.priceLabel.text = "\(priceValue) $"
+////        }
+//    }
+    
+}
+
+extension ProfileViewController: ProfileDelegate {
+    
+    func didSucceed(withData data: UpdateUserResponse) {
+        // Check if the photo URL is valid
+        if let photoUrlString = data.avatar, 
+            let imageUrl = URL(string: photoUrlString) {
+            // Use AlamofireImage to asynchronously load and set the image
+            self.mainView.profilePic.af.setImage(withURL: imageUrl)
+        }
+    }
+    
+    func didFail(withError error: Error) {
+        print(error)
+    }
 }

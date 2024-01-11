@@ -10,6 +10,8 @@ import Foundation
 
 // Update User profile
 
+// FOR PROFILE SCREEN
+
 struct UpdateUserResponse : Codable {
     let avatar : String?
     let username : String?

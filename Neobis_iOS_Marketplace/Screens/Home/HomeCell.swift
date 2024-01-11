@@ -100,42 +100,8 @@ class HomeCellView: UICollectionViewCell {
     func setupConstraints() {
         
         container.snp.makeConstraints { make in
-//            make.leading.trailing.top.bottom.equalToSuperview()
             make.edges.equalToSuperview()
         }
-        
-//        productImageView.snp.makeConstraints { make in
-//            make.top.equalToSuperview().inset(6)
-//            make.leading.equalToSuperview().inset(6)
-//            make.trailing.equalToSuperview().inset(6)
-//            make.bottom.equalToSuperview().inset(93)
-//        }
-//        
-//        productNameLabel.snp.makeConstraints { make in
-//            make.top.equalToSuperview().inset(95)
-//            make.leading.equalToSuperview().inset(6)
-//            make.trailing.equalToSuperview().inset(6)
-//            make.bottom.equalToSuperview().inset(55)
-//        }
-//        
-//        priceLabel.snp.makeConstraints { make in
-//            make.top.equalToSuperview().inset(133)
-//            make.leading.equalToSuperview().inset(6)
-//            make.trailing.equalToSuperview().inset(13)
-//            make.bottom.equalToSuperview().inset(34)
-//        }
-//        
-//        likeImage.snp.makeConstraints{ make in
-//            make.top.equalToSuperview().inset(157.41)
-//            make.leading.equalToSuperview().inset(8)
-//            make.width.equalTo(20)
-//            make.height.equalTo(20)
-//        }
-//        
-//        likeLabel.snp.makeConstraints{ make in
-//            make.centerY.equalTo(likeImage)
-//            make.leading.equalTo(likeImage.snp.trailing).offset(7)
-//        }
         
         productImageView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(6)
@@ -164,9 +130,6 @@ class HomeCellView: UICollectionViewCell {
             make.centerY.equalTo(likeImage.snp.centerY)
             make.leading.equalTo(likeImage.snp.trailing).offset(5)
         }
-        
-//        container.addGestureRecognizer(tapGesture)
-    
     }
     
     

@@ -32,6 +32,7 @@ class HomeCellView: UICollectionViewCell {
     
     lazy var productImageView: UIImageView = {
         let imageView = UIImageView()
+        imageView.image = UIImage(named: "bmw")
         imageView.contentMode = .scaleAspectFit
         return imageView
     }()
@@ -137,24 +138,30 @@ class HomeCellView: UICollectionViewCell {
         delegate?.goToDetail(id: id, image: productImageView.image ?? UIImage())
     }
     
+    
     func configureCell(with data: ProductResponse) {
-
-        // Check if the photo URL is valid
-        if let photoUrlString = data.photo, let imageUrl = URL(string: photoUrlString) {
-            // Use AlamofireImage to asynchronously load and set the image
+        
+        // Configure product image view
+        if let firstPhoto = data.photos?.first, 
+            let photoUrlString = firstPhoto.photo,
+            let imageUrl = URL(string: photoUrlString) {
             self.productImageView.af.setImage(withURL: imageUrl)
+        } else {
+            self.productImageView.image = UIImage(named: "defaultImage")
         }
 
+        // Configure product ID
         if let id = data.id {
             self.id = id
         }
 
+        // Configure product name
         self.productNameLabel.text = data.name
 
-        if let price = data.price, let priceValue = Int(price) {
+        // Configure product price
+        if let price = data.price, 
+            let priceValue = Int(price) {
             self.priceLabel.text = "\(priceValue) $"
         }
     }
-    
-    
 }

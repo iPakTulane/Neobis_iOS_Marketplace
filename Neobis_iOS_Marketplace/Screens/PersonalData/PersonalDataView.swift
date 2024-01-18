@@ -14,7 +14,7 @@ class PersonalDataView: UIView, UITextFieldDelegate {
     var nickName: String = ""
     
     // MARK: - UI COMPONENTS
-    let profilePic: UIImageView = {
+    lazy var profilePic: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(named: "defaultPic")
         // TODO:
@@ -26,7 +26,7 @@ class PersonalDataView: UIView, UITextFieldDelegate {
     }()
 
     
-    let setPicButton: UIButton = {
+    lazy var setPicButton: UIButton = {
         let button = UIButton()
         button.setTitle("Choose a photo", for: .normal)
         button.setTitleColor(UIColor.colorBlue, for: .normal)
@@ -35,7 +35,7 @@ class PersonalDataView: UIView, UITextFieldDelegate {
         return button
     }()
     
-    let firstSectionView: UIView = {
+    lazy var firstSectionView: UIView = {
         let view = UIView()
         view.backgroundColor = .white
         view.layer.cornerRadius = 12
@@ -44,21 +44,21 @@ class PersonalDataView: UIView, UITextFieldDelegate {
     }()
 
     
-    let nameField: BorderedTextField = {
+    lazy var nameField: BorderedTextField = {
         let field = BorderedTextField()
         field.placeholder = "First name"
         
         return field
     }()
     
-    let lastNameField: BorderedTextField = {
+    lazy var lastNameField: BorderedTextField = {
         let field = BorderedTextField()
         field.placeholder = "Last name"
         
         return field
     }()
     
-    let nickNameField: BorderedTextField = {
+    lazy var nickNameField: BorderedTextField = {
         let field = BorderedTextField()
         field.placeholder = "Username"
 //        field.text =
@@ -66,7 +66,7 @@ class PersonalDataView: UIView, UITextFieldDelegate {
         return field
     }()
     
-    let birthdayField: UITextField = {
+    lazy var birthdayField: UITextField = {
         let field = UITextField()
         field.placeholder = "Date of birth"
         field.font = UIFont(name: "GothamPro-Medium", size: 16)
@@ -74,7 +74,7 @@ class PersonalDataView: UIView, UITextFieldDelegate {
         return field
     }()
 
-    let secondSectionView: UIView = {
+    lazy var secondSectionView: UIView = {
         let view = UIView()
         view.backgroundColor = .white
         view.layer.cornerRadius = 12
@@ -94,7 +94,7 @@ class PersonalDataView: UIView, UITextFieldDelegate {
     }()
 
     
-    let numberButton: UIButton = {
+    lazy var numberButton: UIButton = {
         let button = UIButton()
         button.setTitle("Add number", for: .normal)
         button.setTitleColor(UIColor.colorBlue, for: .normal)
@@ -103,7 +103,7 @@ class PersonalDataView: UIView, UITextFieldDelegate {
         return button
     }()
     
-    let numberLabel: UILabel = {
+    lazy var numberLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont(name: "GothamPro-Medium", size: 16)
         label.text = "0(000) 000 000"
@@ -112,7 +112,7 @@ class PersonalDataView: UIView, UITextFieldDelegate {
         return label
     }()
     
-    let emailField: UITextField = {
+    lazy var emailField: UITextField = {
         let field = UITextField()
         field.font = UIFont(name: "GothamPro-Medium", size: 16)
         

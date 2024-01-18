@@ -43,7 +43,7 @@ class LoginView: UIView {
         return view
     }()
     
-    let passwordField: AnimatedTextField = {
+    lazy var passwordField: AnimatedTextField = {
         let field = AnimatedTextField()
         field.placeholder = "Password"
         field.isSecureTextEntry = true

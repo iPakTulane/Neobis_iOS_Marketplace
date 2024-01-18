@@ -12,7 +12,7 @@ import SnapKit
 class OTPView: UIView {
     
     // MARK: - UI COMPONENTS
-    let userView: UIView = {
+    lazy var userView: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor.colorBlue
         view.layer.cornerRadius = 20
@@ -25,16 +25,14 @@ class OTPView: UIView {
         return view
     }()
 
-    
-    
-    let userImage: UIImageView = {
+    lazy var userImage: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(named: "user 1")
         
         return image
     }()
     
-    let mainLabel: UILabel = {
+    lazy var mainLabel: UILabel = {
         let label = UILabel()
         label.text = "Enter the SMS code"
         label.font = UIFont(name: "GothamPro-Medium", size: 20)
@@ -44,7 +42,7 @@ class OTPView: UIView {
         return label
     }()
     
-    let descriptionLabel: UILabel = {
+    lazy var descriptionLabel: UILabel = {
         let label = UILabel()
         label.text = "We'll be throwing \na confirmation code via SMS"
         label.font = UIFont(name: "GothamPro", size: 16)
@@ -55,7 +53,7 @@ class OTPView: UIView {
         return label
     }()
     
-    let codeField: UITextField = {
+    lazy var codeField: UITextField = {
         let field = UITextField()
         field.font = UIFont(name: "GothamPro-Bold", size: 28)
         field.placeholder = "0 0 0 0"
@@ -65,7 +63,7 @@ class OTPView: UIView {
         return field
     }()
     
-    let errorLabel: UILabel = {
+    lazy var errorLabel: UILabel = {
         let label = UILabel()
         label.text = "This number was already registered"
         label.textColor = UIColor.сolorRed
@@ -77,7 +75,7 @@ class OTPView: UIView {
     }()
     
     // MARK: - ACTION BUTTONS
-    let newCodeButton: UIButton = {
+    lazy var newCodeButton: UIButton = {
         let button = UIButton()
         //        button.backgroundColor = UIColor.colorBlue
         button.backgroundColor = UIColor.colorGrey

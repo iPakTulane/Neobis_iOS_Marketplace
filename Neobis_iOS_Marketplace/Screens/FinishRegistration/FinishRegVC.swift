@@ -12,22 +12,24 @@ import Alamofire
 
 class FinishRegViewController: UIViewController {
     
-    let mainView = FinishRegView()
+    lazy var mainView = FinishRegView()
+    var mainViewModel: FinishRegProtocol!
+    
     var firstName: String = ""
     var nickName: String = ""
     var email: String = ""
     var lastName: String = ""
     var date_of_birth: String = ""
     var phoneNumber: String = ""
-    var getUserProtocol: UserProtocol!
+
     
     // MARK: - INIT
     override func loadView() {
         view = mainView
     }
     
-    init(getUserProtocol: UserProtocol!) {
-        self.getUserProtocol = getUserProtocol
+    init(viewModel: FinishRegProtocol!) {
+        self.mainViewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -42,6 +44,12 @@ class FinishRegViewController: UIViewController {
         getUserData()
     }
 
+//    override func viewWillAppear(_ animated: Bool) {
+//        if mainViewModel.isFullyRegistered == true {
+//            mainView. .finishRegButton.isHidden = true
+//        }
+//    }
+    
     
     func setupNavigationView() {
         let cancelButton = UIBarButtonItem(image: UIImage(named: "cancel")?.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(cancelPressed))
@@ -58,7 +66,7 @@ class FinishRegViewController: UIViewController {
     
     
     func getUserData() {
-        getUserProtocol.fetchUserData() { [weak self] result in
+        mainViewModel.updateUserData() { [weak self] result in
             switch result {
             case .success(let userData):
                 self?.parseUserData(userData)
@@ -70,7 +78,7 @@ class FinishRegViewController: UIViewController {
 
     let apiService = APIService()
     // TODO:
-    func parseUserData(_ userData: GetUserResponse) {
+    func parseUserData(_ userData: UpdateUserResponse) {
         if let avatarURLString = userData.avatar,
            let avatarURL = URL(string: apiService.baseURL + avatarURLString) {
             DispatchQueue.global().async {
@@ -139,7 +147,7 @@ class FinishRegViewController: UIViewController {
         
         guard let imageData = image.jpegData(compressionQuality: 0.1) else { return }
         
-        let vc = NumberViewController(numberProtocol: NumberViewModel(
+        let vc = NumberViewController(viewModel: NumberViewModel(
             first_name: first_name,
             last_name: last_name,
             date_of_birth: date_of_birth,

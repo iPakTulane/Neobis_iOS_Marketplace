@@ -18,8 +18,8 @@ class LoginViewController: UIViewController {
         view = mainView
     }
     
-    init(loginProtocol: LoginProtocol) {
-        self.mainViewModel = loginProtocol
+    init(viewModel: LoginProtocol) {
+        self.mainViewModel = viewModel
         super.init(nibName: nil, bundle: nil)
         self.mainViewModel.delegate = self
     }
@@ -130,7 +130,7 @@ extension LoginViewController: LoginDelegate {
         mainView.passwordField.textColor = UIColor.сolorRed
         mainView.nameLine.backgroundColor = UIColor.сolorRed
         mainView.passwordLine.backgroundColor = UIColor.сolorRed
-        print("Login failed with error: \(error)")
+        print("Login failed with error: \(error.localizedDescription)")
     }
     
 }

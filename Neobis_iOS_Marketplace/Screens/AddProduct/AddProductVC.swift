@@ -11,8 +11,8 @@ import SnapKit
 
 class AddProductViewController: UIViewController {
         
-    let mainView = AddProductView()
-    var addProductProtocol: AddProductViewModelProtocol!
+    lazy var mainView = AddProductView()
+    var mainViewModel: AddProductViewModelProtocol!
     
     // MARK: - MAIN VIEW SETUP
     override func loadView() {
@@ -20,8 +20,8 @@ class AddProductViewController: UIViewController {
     }
 
     // MARK: - INIT
-    init(addProductProtocol: AddProductViewModelProtocol!) {
-        self.addProductProtocol = addProductProtocol
+    init(viewModel: AddProductViewModelProtocol!) {
+        self.mainViewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -75,7 +75,7 @@ class AddProductViewController: UIViewController {
             }
         }
         
-        addProductProtocol.addProduct(
+        mainViewModel.addProduct(
             name: name,
             available: true,
             price: price,

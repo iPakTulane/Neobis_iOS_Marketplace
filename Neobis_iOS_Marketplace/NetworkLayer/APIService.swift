@@ -12,6 +12,9 @@ import AlamofireImage
 
 class APIService {
     
+//    static let shared = APIService()
+//    private init() {}
+    
     // MARK: - BASE URL
     let baseURL = "https://aibek-backender.org.kg/"
         
@@ -29,7 +32,11 @@ class APIService {
                 "Content-Type": "application/json"
             ]
             
-            AF.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers)
+            AF.request(url, 
+                       method: .post,
+                       parameters: parameters,
+                       encoding: JSONEncoding.default,
+                       headers: headers)
                 .validate()
                 .responseDecodable(of: T.self) { response in
                     
@@ -130,14 +137,14 @@ class APIService {
 //                            completion(.success(productResponse))
 //                        } catch {
 //                            // Handle decoding error
-//                            completion(.failure(error))
+//                            completion(.failure(error.localizedDescription))
 //                        }
 //                    } else {
 //                        let error = NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: "Empty response data"])
-//                        completion(.failure(error))
+//                        completion(.failure(error.localizedDescription))
 //                    }
 //                case .failure(let error):
-//                    completion(.failure(error))
+//                    completion(.failure(error.localizedDescription))
 //                }
 //            }
 //        }
@@ -187,14 +194,14 @@ class APIService {
 //                        completion(.success(productResponse))
 //                    } catch {
 //                        // Handle decoding error
-//                        completion(.failure(error))
+//                        completion(.failure(error.localizedDescription))
 //                    }
 //                } else {
 //                    let error = NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: "Empty response data"])
-//                    completion(.failure(error))
+//                    completion(.failure(error.localizedDescription))
 //                }
 //            case .failure(let error):
-//                completion(.failure(error))
+//                completion(.failure(error.localizedDescription))
 //            }
 //        }
 //    }
@@ -301,14 +308,14 @@ class APIService {
 //                            completion(.success(productResponse))
 //                        } catch {
 //                            // Handle decoding error
-//                            completion(.failure(error))
+//                            completion(.failure(error.localizedDescription))
 //                        }
 //                    } else {
 //                        let error = NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: "Empty response data"])
-//                        completion(.failure(error))
+//                        completion(.failure(error.localizedDescription))
 //                    }
 //                case .failure(let error):
-//                    completion(.failure(error))
+//                    completion(.failure(error.localizedDescription))
 //                }
 //            }
 //            
@@ -352,14 +359,14 @@ class APIService {
 //                            completion(.success(productResponses))
 //                        } catch {
 //                            // Handle decoding error
-//                            completion(.failure(error))
+//                            completion(.failure(error.localizedDescription))
 //                        }
 //                    } else {
 //                        let error = NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: "Empty response data"])
-//                        completion(.failure(error))
+//                        completion(.failure(error.localizedDescription))
 //                    }
 //                case .failure(let error):
-//                    completion(.failure(error))
+//                    completion(.failure(error.localizedDescription))
 //                }
 //            }
 //            // ... (remaining code)
@@ -409,54 +416,6 @@ class APIService {
         }
     }
 
-
-    
-    // MARK: - GET ITEMS DATA @ HOME & PRODUCT VM
-    
-    func getProductData<T: Decodable>(
-        headers: HTTPHeaders,
-        responseType: T.Type,
-        completion: @escaping (Result<T, Error>) -> Void) {
-            
-            guard let url = URL(string: baseURL + APIEndpoint.product.rawValue) else { return }
-            
-            AF.request(url, headers: headers).responseDecodable(of: T.self) { response in
-                switch response.result {
-                case .success(let data):
-                    completion(.success(data))
-                case .failure(let error):
-                    completion(.failure(error))
-                }
-            }
-        }
-    
-//    func getProductData(completion: @escaping (Result<ProductResponse, Error>) -> Void) {
-//        
-//        guard let accessToken = TokenManager.shared.accessToken else {
-//            return
-//        }
-//        
-//        let url = baseURL + APIEndpoint.product.rawValue
-//        
-//        let headers: HTTPHeaders = [
-//            "Authorization": "Bearer \(accessToken)"
-//        ]
-//        
-//        AF.request(url, headers: headers).responseDecodable(of: ProductResponse.self) { response in
-//            switch response.result {
-//                
-//            case .success(let homeData):
-//                completion(.success(homeData))
-//                
-//            case .failure(let error):
-//                completion(.failure(error))
-//                
-//            }
-//        }
-//    }
-    
-    
-    
     // MARK: - DELETE ITEM @ PRODUCT VM
     func deleteData(
         id: Int,
@@ -486,6 +445,64 @@ class APIService {
                     }
                 }
         }
+    
+    
+    // MARK: - GET ITEMS DATA @ HOME & PRODUCT VM
+    
+    func getProductData<T: Decodable>(
+        url: URL,
+        method: HTTPMethod,
+        parameters: [String: Any]?,
+        headers: HTTPHeaders,
+        responseType: T.Type,
+        completion: @escaping (Result<T, Error>) -> Void) {
+            
+            let method = HTTPMethod(rawValue: method.rawValue)
+            
+            AF.request(url,
+                       method: method,
+                       parameters: parameters,
+                       headers: headers).responseDecodable(of: T.self) { response in
+                switch response.result {
+                case .success(let data):
+                    completion(.success(data))
+                case .failure(let error):
+                    completion(.failure(error))
+                }
+            }
+        }
+
+    
+    // MARK: - PROFILE + ...
+    
+    // TODO: to rename for getUserData
+    func getUserData<T: Decodable>(
+        url: String,
+        headers: HTTPHeaders,
+        responseType: T.Type,
+        completion: @escaping (Result<T, Error>) -> Void) {
+        
+        guard let accessToken = TokenManager.shared.accessToken else {
+            return
+        }
+        
+        let headers: HTTPHeaders = [
+            "Authorization": "Bearer \(accessToken)"
+        ]
+        
+        AF.request(url, headers: headers).responseDecodable(of: T.self) { response in
+            switch response.result {
+                
+            case .success(let data):
+                completion(.success(data))
+                
+            case .failure(let error):
+                completion(.failure(error))
+                
+            }
+        }
+    }
+    
 }
 
 

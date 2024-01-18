@@ -38,7 +38,7 @@ class CustomTabBarController: UITabBarController {
         cartVC.view.backgroundColor = .white
         cartVC.tabBarItem = UITabBarItem(title: "Chat", image: UIImage(named: "chat"), selectedImage: nil)
 
-        let profileVC = UINavigationController(rootViewController: ProfileViewController(getUserProtocol: GetUserViewModel()))
+        let profileVC = UINavigationController(rootViewController: ProfileViewController(viewModel: ProfileViewModel()))
         profileVC.view.backgroundColor = .white
         profileVC.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(named: "user"), selectedImage: nil)
 
@@ -48,7 +48,7 @@ class CustomTabBarController: UITabBarController {
     }
 
     @objc func bigButtonPressed() {
-        let vc = AddProductViewController(addProductProtocol: AddProductViewModel())
+        let vc = AddProductViewController(viewModel: AddProductViewModel())
         let navigationController = UINavigationController(rootViewController: vc)
         navigationController.modalPresentationStyle = .fullScreen
         present(navigationController, animated: true)

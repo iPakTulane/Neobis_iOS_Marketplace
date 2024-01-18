@@ -9,16 +9,35 @@ import Foundation
 import UIKit
 import SnapKit
 
+// MARK: - DELEGATE
+protocol ProductPopupDelegate: AnyObject {
+    func goToChangeProductWith(id: Int, image: UIImage)
+    func deleteProductWith(id: Int)
+}
+
+// MARK: - POPUP VIEW
 class PopUpView: UIView {
     
+    weak var delegate: ProductPopupDelegate?
+    
+    var productId: Int = 0
+    var productImage = UIImage()
+    
+    lazy var container: UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+        view.layer.cornerRadius = 30
+        return view
+    }()
+    
     // MARK: - UI COMPONENTS
-    let changeButton: UIButton = {
+    lazy var changeButton: UIButton = {
         let button = UIButton()
-//        button.backgroundColor = .black
+        button.addTarget(self, action: #selector(changeButtonPressed), for: .touchUpInside)
         return button
     }()
     
-    let changeLabel: UILabel = {
+    lazy var changeLabel: UILabel = {
         let label = UILabel()
         label.text = "Edit"
         label.font = UIFont(name: "GothamPro-Medium", size: 16)
@@ -27,25 +46,21 @@ class PopUpView: UIView {
         return label
     }()
     
-    let changeImage: UIImageView = {
+    lazy var changeImage: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(named: "edit")
         image.backgroundColor = UIColor.colorBlue
-        // TODO:
-        image.layer.cornerRadius = 6 //*1 - Assuming 1 is the original height value
-        
+        image.layer.cornerRadius = 6
         return image
     }()
 
-
-    
-    let trashButton: UIButton = {
+    lazy var trashButton: UIButton = {
         let button = UIButton()
-
+        button.addTarget(self, action: #selector(deleteButtonPressed), for: .touchUpInside)
         return button
     }()
     
-    let trashLabel: UILabel = {
+    lazy var trashLabel: UILabel = {
         let label = UILabel()
         label.text = "Delete"
         label.font = UIFont(name: "GothamPro-Medium", size: 16)
@@ -54,18 +69,14 @@ class PopUpView: UIView {
         return label
     }()
     
-    let trashImage: UIImageView = {
+    lazy var trashImage: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(named: "trash")
         image.backgroundColor = UIColor.colorBlue
-        // TODO:
-        image.layer.cornerRadius = 6 //*1 - Assuming 1 is the original height value
-        
+        image.layer.cornerRadius = 6
         return image
     }()
 
-
-    
     // MARK: - INIT
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -76,15 +87,12 @@ class PopUpView: UIView {
     }
     
     override func layoutSubviews() {
-        backgroundColor = .white
-        // TODO:
-        layer.cornerRadius = 30 // *1 - Assuming 1 is the original height value
         setupViews()
         setupConstraints()
     }
 
-    
     func setupViews() {
+        addSubview(container)
         addSubview(changeButton)
         addSubview(changeLabel)
         addSubview(changeImage)
@@ -94,6 +102,12 @@ class PopUpView: UIView {
     }
     
     func setupConstraints() {
+        
+        container.snp.makeConstraints { make in
+            make.leading.trailing.bottom.equalToSuperview()
+            make.height.equalTo(168)
+        }
+        
         changeButton.snp.makeConstraints { make  in
             make.top.equalToSuperview().inset(36)
             make.bottom.equalToSuperview().inset(94)
@@ -134,5 +148,17 @@ class PopUpView: UIView {
             make.leading.equalToSuperview().inset(23)
         }
     }
-
+    
+    // MARK: - DELEGATE METHODS
+    @objc func changeButtonPressed() {
+        delegate?.goToChangeProductWith(id: productId, image: productImage)
+    }
+    
+    @objc func deleteButtonPressed() {
+        delegate?.deleteProductWith(id: productId)
+    }
+    
 }
+
+
+

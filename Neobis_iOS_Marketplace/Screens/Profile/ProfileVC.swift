@@ -13,18 +13,19 @@ import AlamofireImage
 
 class ProfileViewController: UIViewController {
         
-    let mainView = ProfileView()
     var nickName: String = ""
     var image: UIImage?
-    var mainViewModel: UserProtocol!
+    
+    lazy var mainView = ProfileView()
+    var mainViewModel: ProfileProtocol!
     
     // MARK: - INIT
     override func loadView() {
         view = mainView
     }
     
-    init(getUserProtocol: UserProtocol!) {
-        self.mainViewModel = getUserProtocol
+    init(viewModel: ProfileProtocol!) {
+        self.mainViewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -32,12 +33,18 @@ class ProfileViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationItem.setHidesBackButton(true, animated: false)
+        checkFullRegistration()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigationView()
         addTargets()
-        getUserData()
-        checkFullRegister()
+        setupProfileData()
+        checkFullRegistration()
     }
 
     func setupNavigationView() {
@@ -53,11 +60,16 @@ class ProfileViewController: UIViewController {
         mainView.productButton.addTarget(self, action: #selector(productButtonPressed), for: .touchUpInside)
     }
     
-    func getUserData() {
-        mainViewModel.fetchUserData() { [weak self] result in
+    func setupProfileData() {
+        
+        guard TokenManager.shared.accessToken != nil else {
+            return
+        }
+        
+        mainViewModel.getUserData() { [weak self] result in
             switch result {
-            case .success(let userData):
-                self?.parseUserData(userData)
+            case .success(let data):
+                self?.parseUserData(data)
             case .failure(let error):
                 print("Failed to fetch user data:", error)
             }
@@ -66,6 +78,7 @@ class ProfileViewController: UIViewController {
 
     
     func parseUserData(_ userData: GetUserResponse) {
+        
         if let username = userData.username {
             self.nickName = username
             DispatchQueue.main.async {
@@ -73,46 +86,49 @@ class ProfileViewController: UIViewController {
             }
         }
                 
-        let apiService = APIService()
+        if let photoUrlString = userData.avatar,
+            let imageUrl = URL(string: photoUrlString) {
+            DispatchQueue.main.async {
+                self.mainView.profilePic.af.setImage(withURL: imageUrl)
+            }
+        } else {
+            print("Failed to load Profile image from URL:")
+        }
+        
+        
         
         // Use the global base URL from APIService
-        if let avatarURLString = userData.avatar,
-           let avatarURL = URL(string: apiService.baseURL + avatarURLString) {
-            
-            DispatchQueue.global().async {
-                if let imageData = try? Data(contentsOf: avatarURL),
-                   let image = UIImage(data: imageData) {
-                    DispatchQueue.main.async {
-                        self.mainView.profilePic.image = image
-                    }
-                } else {
-                    print("Failed to load Profile image from URL:", avatarURL)
-                }
-            }
-            
-        }
+//        let apiService = APIService()
+//        if let avatarURLString = userData.avatar,
+//           let avatarURL = URL(string: apiService.baseURL + avatarURLString) {
+//            
+//            DispatchQueue.global().async {
+//                if let imageData = try? Data(contentsOf: avatarURL),
+//                   let image = UIImage(data: imageData) {
+//                    DispatchQueue.main.async {
+//                        self.mainView.profilePic.image = image
+//                    }
+//                } else {
+//                    print("Failed to load Profile image from URL:", avatarURL)
+//                }
+//            }
+//            
+//        }
         
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationItem.setHidesBackButton(true, animated: false)
-    }
-    
-    
-    func checkFullRegister() {
-        guard let accessToken = TokenManager.shared.accessToken else {
+    func checkFullRegistration() {
+        
+        guard TokenManager.shared.accessToken != nil else {
             return
         }
         
-        print(accessToken)
-        
-        mainViewModel.fetchUserData() { [weak self] result in
+        mainViewModel.updateUserData() { [weak self] result in
             switch result {
                 
-            case .success(let userData):
+            case .success(let data):
                 
-                if let phoneNumber = userData.phone_number {
+                if let phoneNumber = data.phone_number {
                     print("Phone number:", phoneNumber)
                     
                     DispatchQueue.main.async {
@@ -120,7 +136,7 @@ class ProfileViewController: UIViewController {
                     }
                 }
             case .failure(let error):
-                print("Failed to fetch user data:", error)
+                print("Failed to get profile user data:", error)
             }
         }
     }
@@ -129,7 +145,7 @@ class ProfileViewController: UIViewController {
     // MARK: - ACTION BUTTONS
     @objc func productButtonPressed() {
         
-        let vc = ProductViewController(product: ProductViewModel(), user: GetUserViewModel())
+        let vc = ProductViewController(viewModel: ProductViewModel())
         
 //        navigationController?.pushViewController(vc, animated: true)
         
@@ -139,17 +155,16 @@ class ProfileViewController: UIViewController {
     }
     
     @objc func finishRegButtonPressed() {
-        let vc = PersonalDataViewController(getUserProtocol: GetUserViewModel())
+        let vc = PersonalDataViewController(viewModel: PersonalDataViewModel())
         navigationController?.pushViewController(vc, animated: true)
     }
     
     @objc func changeButtonPressed() {
-        let vc = PersonalDataViewController(getUserProtocol: GetUserViewModel())
+        let vc = PersonalDataViewController(viewModel: PersonalDataViewModel())
         navigationController?.pushViewController(vc, animated: true)
     }
     
     @objc func logoutButtonPressed() {
-//        let vc = CustomTabBarController()
         
         // Clear the refresh token upon user's logout
         TokenManager.shared.refreshToken = nil
@@ -160,40 +175,21 @@ class ProfileViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
+}
+
+// MARK: - EXTENSION
+extension ProfileViewController: ProfileDelegate {    
     
-//    func configure(with data: GetUserResponse) {
-//
+    func didSucceed(withData data: GetUserResponse) {
 //        // Check if the photo URL is valid
-//        if let photoUrlString = data.avatar, let imageUrl = URL(string: photoUrlString) {
+//        if let photoUrlString = data.first?.avatar,
+//            let imageUrl = URL(string: photoUrlString) {
 //            // Use AlamofireImage to asynchronously load and set the image
 //            self.mainView.profilePic.af.setImage(withURL: imageUrl)
 //        }
-//
-////        if let id = data.id {
-////            self.id = id
-////        }
-////
-////        self.productNameLabel.text = data.name
-////
-////        if let price = data.price, let priceValue = Int(price) {
-////            self.priceLabel.text = "\(priceValue) $"
-////        }
-//    }
-    
-}
-
-extension ProfileViewController: ProfileDelegate {
-    
-    func didSucceed(withData data: UpdateUserResponse) {
-        // Check if the photo URL is valid
-        if let photoUrlString = data.avatar, 
-            let imageUrl = URL(string: photoUrlString) {
-            // Use AlamofireImage to asynchronously load and set the image
-            self.mainView.profilePic.af.setImage(withURL: imageUrl)
-        }
     }
     
     func didFail(withError error: Error) {
-        print(error)
+        print(error.localizedDescription)
     }
 }

@@ -11,8 +11,9 @@ import SnapKit
 
 class ChangeProductViewController: UIViewController {
         
-    let mainView = ChangeProductView()
-    var changeProductProtocol: ChangeProductViewModelProtocol!
+    lazy var mainView = ChangeProductView()
+    var mainViewModel: ChangeProductViewModelProtocol!
+    
     var id: Int = 0
     
     // MARK: - MAIN VIEW SETUP
@@ -21,8 +22,8 @@ class ChangeProductViewController: UIViewController {
     }
 
     // MARK: - INIT
-    init(changeProductProtocol: ChangeProductViewModelProtocol!) {
-        self.changeProductProtocol = changeProductProtocol
+    init(viewModel: ChangeProductViewModelProtocol!) {
+        self.mainViewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -57,7 +58,7 @@ class ChangeProductViewController: UIViewController {
         guard let short_description = mainView.descriptionOne.text else { return }
         guard let description = mainView.descriptionTwo.text else { return }
         
-        changeProductProtocol.changeProduct(images: mainView.images, title: title, price: price, short_description: short_description, description: description)
+        mainViewModel.changeProduct(images: mainView.images, title: title, price: price, short_description: short_description, description: description)
         navigationController?.popViewController(animated: true)
     }
     

@@ -13,7 +13,7 @@ class RegistrationViewController: UIViewController {
     var username = ""
     var email = ""
     
-    let mainView = RegistrationView()
+    lazy var mainView = RegistrationView()
     
     // MARK: - UI SETUP
     override func loadView() {
@@ -49,7 +49,7 @@ class RegistrationViewController: UIViewController {
             guard let userName = mainView.nameField.text else { return }
             guard let email = mainView.mailField.text else { return }
             
-            let vc = PasswordViewController(registerProtocol: PasswordViewModel(userName: userName, email: email))
+            let vc = PasswordViewController(viewModel: PasswordViewModel(userName: userName, email: email))
             vc.username = mainView.nameField.text ?? ""
             vc.email = mainView.mailField.text ?? ""
             navigationController?.pushViewController(vc, animated: true)

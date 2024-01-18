@@ -21,7 +21,7 @@ class AddProductView: UIView {
     }
     
     // MARK: - UI COMPONENTS
-    let addButton: UIButton = {
+    lazy var addButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = .white
         // TODO:
@@ -31,14 +31,14 @@ class AddProductView: UIView {
     }()
 
     
-    let addImage: UIImageView = {
+    lazy var addImage: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(named: "addProduct")
         
         return image
     }()
     
-    let collectionView: UICollectionView = {
+    lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         layout.minimumInteritemSpacing = 6
@@ -53,14 +53,14 @@ class AddProductView: UIView {
         return collectionView
     }()
     
-    let image: UIImageView = {
+    lazy var image: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(named: "screenshot")
         
         return image
     }()
     
-    let addLabel: UILabel = {
+    lazy var addLabel: UILabel = {
         let label = UILabel()
         label.text = "Add \npicture"
         label.textColor = UIColor.colorBlue
@@ -72,7 +72,7 @@ class AddProductView: UIView {
         return label
     }()
     
-    let priceField: UITextField = {
+    lazy var priceField: UITextField = {
         let field = UITextField()
         field.backgroundColor = .white
         // TODO:
@@ -87,7 +87,7 @@ class AddProductView: UIView {
     }()
 
     
-    let nameField: UITextField = {
+    lazy var nameField: UITextField = {
         let field = UITextField()
         field.backgroundColor = .white
         // TODO:
@@ -102,7 +102,7 @@ class AddProductView: UIView {
     }()
 
     
-    let descriptionOne: UITextView = {
+    lazy var descriptionOne: UITextView = {
         let textView = UITextView()
         textView.backgroundColor = .white
         // TODO:
@@ -116,7 +116,7 @@ class AddProductView: UIView {
         return textView
     }()
     
-    let descriptionTwo: UITextView = {
+    lazy var descriptionTwo: UITextView = {
         let textView = UITextView()
         textView.backgroundColor = .white
         // TODO:

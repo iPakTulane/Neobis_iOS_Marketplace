@@ -9,25 +9,20 @@ import UIKit
 
 class DetailViewController: UIViewController {
 
-    let mainView = DetailView()
-    var viewModel: DetailViewModelProtocol?
-    var productImage: UIImage?
+    lazy var mainView = DetailView()
+    var mainViewModel: DetailViewModelProtocol?
+    var mainImage: UIImage?
+    var mainID: Int?
     
     override func loadView() {
         self.view = mainView
     }
     
-    var id: Int?
-    
-    init(
-        viewModel: DetailViewModelProtocol? = nil,
-        productImage: UIImage? = nil,
-        id: Int? = nil) {
-
+    init(viewModel: DetailViewModelProtocol?, image: UIImage?, id: Int? = nil) {
         super.init(nibName: nil, bundle: nil)
-        self.viewModel = viewModel
-        self.productImage = productImage
-        self.id = id
+        self.mainViewModel = viewModel
+        self.mainImage = image
+        self.mainID = id
     }
     
     required init?(coder: NSCoder) {
@@ -40,9 +35,9 @@ class DetailViewController: UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: mainView.changeButton)
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: mainView.backButton)
-        viewModel?.delegate = self
+        mainViewModel?.delegate = self
         tabBarController?.tabBar.isHidden = true
-        mainView.image.image = productImage
+        mainView.image.image = mainImage
         addTargets()
     }
     
@@ -55,7 +50,7 @@ class DetailViewController: UIViewController {
     }
     
     @objc func changeProduct() {
-        let vc = ChangeProductViewController(changeProductProtocol: ChangeProductViewModel(id: id ?? 0))
+        let vc = ChangeProductViewController(viewModel: ChangeProductViewModel(id: mainID ?? 0))
         navigationController?.pushViewController(vc, animated: true)
     }
     

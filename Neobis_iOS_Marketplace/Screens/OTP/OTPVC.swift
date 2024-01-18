@@ -71,7 +71,7 @@ extension OTPViewController: OTPDelegate {
             self.mainView.errorLabel.isHidden = true
         }
         mainView.errorLabel.textColor = UIColor.сolorRed
-        print("OTP failed with error: \(error)")
+        print("OTP failed with error: \(error.localizedDescription)")
     }
     
 }

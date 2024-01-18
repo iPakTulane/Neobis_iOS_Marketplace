@@ -61,7 +61,7 @@ class LoginViewModel: LoginProtocol {
                     self.delegate?.didSucceed(withData: data)
 
                 case .failure(let error):
-                    print("Login fail: \(error)")
+                    print("Login fail: \(error.localizedDescription)")
                     self.isLoggedIn = false
                     self.delegate?.didFail(withError: error)
                 }

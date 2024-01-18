@@ -11,36 +11,33 @@ import SnapKit
 
 class HomeView: UIView {
     
-    var products: [ProductResponse] = []
-    
-    let cartImage: UIImageView = {
+    // MARK: - UI COMPONENTS
+    lazy var cartImage: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(named: "shopping-cart 1-2")
         return image
     }()
     
-    let marketLabel: UILabel = {
+    lazy var marketLabel: UILabel = {
         let label = UILabel()
         label.text = "MOBI MARKET"
         label.font = .boldSystemFont(ofSize: 20)
         return label
     }()
     
-    let boxImage: UIImageView = {
+    lazy var boxImage: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(named: "Artwork")
         image.isHidden = false
-//        image.isHidden = true
         return image
     }()
     
-    let emptyLabel: UILabel = {
+    lazy var emptyLabel: UILabel = {
         let label = UILabel()
         label.text = "Oops, it's empty!"
         label.font = UIFont(name: "GothamPro-Bold", size: 18)
         label.textAlignment = .center
         label.isHidden = false
-//        label.isHidden = true
         return label
     }()
     
@@ -48,14 +45,13 @@ class HomeView: UIView {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        view.backgroundColor = .clear //.red
-//        view.register(HomeCellView.self, forCellWithReuseIdentifier: "HomeCell")
+        view.backgroundColor = .clear
         view.register(HomeCellView.self, forCellWithReuseIdentifier: HomeCellView.identifier)
         view.alwaysBounceVertical = true
         return view
     }()
     
-    
+    // MARK: - INIT
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
@@ -109,7 +105,6 @@ class HomeView: UIView {
             make.leading.equalTo(cartImage.snp.trailing).offset(10)
         }
     }
-    
 }
 
 

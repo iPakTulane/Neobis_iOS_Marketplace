@@ -12,7 +12,7 @@ import SnapKit
 class ProfileView: UIView {
     
     // MARK: - UI COMPONENTS
-    let profilePic: UIImageView = {
+    lazy var profilePic: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(named: "defaultPic")
         image.layer.cornerRadius = 40
@@ -21,27 +21,27 @@ class ProfileView: UIView {
         return image
     }()
     
-    let nickLabel: UILabel = {
+    lazy var nickLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont(name: "gothamPro-Medium", size: 18)
         return label
     }()
     
-    let firstSectionView: UIView = {
+    lazy var firstSectionView: UIView = {
         let view = UIView()
         view.backgroundColor = .white
         view.layer.cornerRadius = 16
         return view
     }()
     
-    let secondSectionView: UIView = {
+    lazy var secondSectionView: UIView = {
         let view = UIView()
         view.backgroundColor = .white
         view.layer.cornerRadius = 16
         return view
     }()
     
-    let favoritesButton: UIButton = {
+    lazy var favoritesButton: UIButton = {
         let button = UIButton()
         
         let containerView = UIView()
@@ -92,7 +92,7 @@ class ProfileView: UIView {
     }()
     
     
-    let productButton: UIButton = {
+    lazy var productButton: UIButton = {
         let button = UIButton()
         let containerView = UIView()
         let image = UIImage(named: "product")
@@ -138,7 +138,7 @@ class ProfileView: UIView {
         return button
     }()
     
-    let logoutButton: UIButton = {
+    lazy var logoutButton: UIButton = {
         let button = UIButton()
         
         let containerView = UIView()
@@ -187,7 +187,7 @@ class ProfileView: UIView {
         return button
     }()
     
-    let finishRegButton: UIButton = {
+    lazy var finishRegButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = UIColor.colorBlue
         button.setTitle("Finish registration", for: .normal)

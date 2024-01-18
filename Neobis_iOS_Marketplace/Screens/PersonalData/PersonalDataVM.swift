@@ -6,56 +6,64 @@
 //
 
 import Foundation
+import Alamofire
 
 
 // MARK: - DELEGATE PROTOCOL
 protocol PersonalDataDelegate: AnyObject {
-    func didSucceed(withData data: UpdateUserResponse)
+    func didSucceed(withData data: [UpdateUserResponse])
     func didFail(withError error: Error)
 }
 
 // MARK: - PROTOCOL
 protocol PersonalDataProtocol {
-    var isUpdated: Bool { get }
+    var isActive: Bool { get }
     var delegate: PersonalDataDelegate? { get set }
-
-//    func update(code: String)
+    
+    func updateUserData(completion: @escaping (Result<UpdateUserResponse, Error>) -> Void)
 }
 
 // MARK: - VIEW MODEL
 class PersonalDataViewModel: PersonalDataProtocol {
     
-    var isUpdated: Bool = false
-    weak var delegate: PersonalDataDelegate?
+    var delegate: PersonalDataDelegate?
+    
+    func updateUserData(completion: @escaping (Result<UpdateUserResponse, Error>) -> Void) {
+        
+        guard let accessToken = TokenManager.shared.accessToken else { return }
+        
+        let headers: HTTPHeaders = [
+            "Authorization": "Bearer \(accessToken)"
+        ]
+        
+        let url = apiService.baseURL + APIEndpoint.updateUserData.rawValue
+        
+        apiService.getUserData(
+            url: url,
+            headers: headers,
+            responseType: [UpdateUserResponse].self) { result in
+                switch result {
+                    
+                case .success(let data):
+                    print("Personal Data success: \(data)")
+                    self.isActive = false
+                    self.delegate?.didSucceed(withData: data)
+                
+                case .failure(let error):
+                    print("Personal Data fail: \(error.localizedDescription)")
+                    self.isActive = true
+                    self.delegate?.didFail(withError: error)
+                }
+            }
+    }
+
+    var isActive: Bool = false
     
     let apiService: APIService
     
     init() {
         self.apiService = APIService()
     }
-
-//    func update(code: String) {
-//
-//        let parameters: [String: Any] = [
-//            "code": code
-//        ]
-//
-//        apiService.post(endpoint: APIEndpoint.otp.rawValue, parameters: parameters, responseType: OTPResponse.self) { result in
-//
-//            DispatchQueue.main.async {
-//                switch result {
-//
-//                case .success(let data):
-//                    print(data)
-//                    self.isVerified = true
-//                    self.delegate?.didSucceed(withData: data)
-//
-//                case .failure(let error):
-//                    print("OTP fail: \(error)")
-//                    self.isVerified = false
-//                    self.delegate?.didFail(withError: error)
-//                }
-//            }
-//        }
-//    }
+    
 }
+

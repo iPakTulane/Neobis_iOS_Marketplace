@@ -13,7 +13,7 @@ import SnapKit
 // MARK: - VIEW CONTROLLER
 class NumberViewController: UIViewController {
     
-    let mainView = NumberView()
+    lazy var mainView = NumberView()
     var mainViewModel: NumberProtocol!
     
     // MARK: - INIT
@@ -21,8 +21,8 @@ class NumberViewController: UIViewController {
         view = mainView
     }
     
-    init(numberProtocol: NumberProtocol) {
-        self.mainViewModel = numberProtocol
+    init(viewModel: NumberProtocol) {
+        self.mainViewModel = viewModel
         super.init(nibName: nil, bundle: nil)
         self.mainViewModel.delegate = self
     }
@@ -83,7 +83,7 @@ class NumberViewController: UIViewController {
     
     func handleFullRegistrationFailure(_ error: Error) {
         mainView.errorLabel.isHidden = false
-        print("Full registration failed with error: \(error)")
+        print("Full registration failed with error: \(error.localizedDescription)")
     }
 }
 

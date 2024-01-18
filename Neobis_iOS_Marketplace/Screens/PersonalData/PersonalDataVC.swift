@@ -12,22 +12,24 @@ import Alamofire
 
 class PersonalDataViewController: UIViewController {
         
-    let mainView = PersonalDataView()
+    lazy var mainView = PersonalDataView()
+    var mainViewModel: PersonalDataProtocol!
+    
     var firstName: String = ""
     var nickName: String = ""
     var email: String = ""
     var lastName: String = ""
     var date_of_birth: String = ""
     var phoneNumber: String = ""
-    var getUserProtocol: UserProtocol!
+
     
     // MARK: - INIT
     override func loadView() {
         view = mainView
     }
     
-    init(getUserProtocol: UserProtocol!) {
-        self.getUserProtocol = getUserProtocol
+    init(viewModel: PersonalDataProtocol!) {
+        self.mainViewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -51,7 +53,7 @@ class PersonalDataViewController: UIViewController {
     }
     
 //    func getUserData() {
-//        getUserProtocol.fetchUserData() { [weak self] result in
+//        getUserProtocol.getUserData() { [weak self] result in
 //            switch result {
 //            case .success(let userData):
 //                self?.parseUserData(userData)
@@ -62,24 +64,30 @@ class PersonalDataViewController: UIViewController {
 //    }
     
     func getUserData() {
-        getUserProtocol.fetchUserData() { [weak self] result in
-            switch result {
-            case .success(let userResponse):
-                // Convert UserResponse to [String: Any]
-                let userData = [
-                    "avatar": userResponse.avatar,
-                    "username": userResponse.username,
-                    "email": userResponse.email,
-                    "first_name": userResponse.first_name,
-                    "last_name": userResponse.last_name,
-                    "date_of_birth": userResponse.date_of_birth,
-                    "phone_number": userResponse.phone_number
-                ].compactMapValues { $0 }
-                self?.parseUserData(userData)
-            case .failure(let error):
-                print("Failed to fetch user data:", error)
-            }
-        }
+        
+        
+        // TODO:
+//        mainViewModel.updateUserData
+
+        // DELETE:
+//        getUserProtocol.getUserData() { [weak self] result in
+//            switch result {
+//            case .success(let userResponse):
+//                // Convert UserResponse to [String: Any]
+//                let userData = [
+//                    "avatar": userResponse.avatar,
+//                    "username": userResponse.username,
+//                    "email": userResponse.email,
+//                    "first_name": userResponse.first_name,
+//                    "last_name": userResponse.last_name,
+//                    "date_of_birth": userResponse.date_of_birth,
+//                    "phone_number": userResponse.phone_number
+//                ].compactMapValues { $0 }
+//                self?.parseUserData(userData)
+//            case .failure(let error):
+//                print("Failed to fetch user data:", error)
+//            }
+//        }
     }
 
     func parseUserData(_ userData: [String: Any]) {
@@ -157,7 +165,7 @@ class PersonalDataViewController: UIViewController {
         
         guard let imageData = image.jpegData(compressionQuality: 0.1) else { return }
         
-        let vc = NumberViewController(numberProtocol: NumberViewModel(
+        let vc = NumberViewController(viewModel: NumberViewModel(
             first_name: first_name,
             last_name: last_name,
             date_of_birth: date_of_birth,
@@ -200,4 +208,18 @@ extension PersonalDataViewController: UIImagePickerControllerDelegate, UINavigat
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true)
     }
+}
+
+
+extension PersonalDataViewController: PersonalDataDelegate {
+    
+    func didSucceed(withData data: [UpdateUserResponse]) {
+        // TODO:
+    }
+    
+    func didFail(withError error: Error) {
+        // TODO: 
+    }
+    
+    
 }

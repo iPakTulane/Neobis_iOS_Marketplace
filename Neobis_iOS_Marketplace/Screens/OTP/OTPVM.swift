@@ -52,7 +52,7 @@ class OTPViewModel: OTPProtocol {
                     self.delegate?.didSucceed(withData: data)
 
                 case .failure(let error):
-                    print("OTP fail: \(error)")
+                    print("OTP fail: \(error.localizedDescription)")
                     self.isVerified = false
                     self.delegate?.didFail(withError: error)
                 }

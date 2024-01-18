@@ -14,15 +14,15 @@ class PasswordViewController: UIViewController {
     var username = ""
     var email = ""
     
-    let mainView = PasswordView()
+    lazy var mainView = PasswordView()
     var mainViewModel: PasswordProtocol!
     
     override func loadView() {
         view = mainView
     }
     
-    init(registerProtocol: PasswordProtocol) {
-        self.mainViewModel = registerProtocol
+    init(viewModel: PasswordProtocol) {
+        self.mainViewModel = viewModel
         super.init(nibName: nil, bundle: nil)
         self.mainViewModel.delegate = self
     }
@@ -127,7 +127,7 @@ extension PasswordViewController: UITextFieldDelegate {
 extension PasswordViewController: PasswordDelegate {
     func didSucceed(withData data: RegisterResponse) {
         print("Registration successful")
-        let vc = LoginViewController(loginProtocol: LoginViewModel())
+        let vc = LoginViewController(viewModel: LoginViewModel())
         navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -135,6 +135,6 @@ extension PasswordViewController: PasswordDelegate {
         mainView.passwordError.isHidden = false
         mainView.passwordField.textColor = UIColor.сolorRed
         mainView.passwordConfirmField.textColor = UIColor.сolorRed
-        print("Registration failed with error: \(error)")
+        print("Registration failed with error: \(error.localizedDescription)")
     }
 }

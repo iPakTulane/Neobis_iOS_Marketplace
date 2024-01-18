@@ -12,7 +12,7 @@ import SnapKit
 class NumberView: UIView {
     
     // MARK: - UI COMPONENTS
-    let phoneView: UIView = {
+    lazy var phoneView: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor.colorBlue
         view.layer.cornerRadius = 20
@@ -27,14 +27,14 @@ class NumberView: UIView {
     }()
 
 
-    let phoneImage: UIImageView = {
+    lazy var phoneImage: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(named: "call")
         
         return image
     }()
     
-    let mainLabel: UILabel = {
+    lazy var mainLabel: UILabel = {
         let label = UILabel()
         label.text = "Enter your phone number"
         label.font = UIFont(name: "GothamPro-Medium", size: 20)
@@ -44,7 +44,7 @@ class NumberView: UIView {
         return label
     }()
     
-    let descriptionLabel: UILabel = {
+    lazy var descriptionLabel: UILabel = {
         let label = UILabel()
         label.text = "We'll be throwing \na confirmation code via SMS"
         label.font = UIFont(name: "GothamPro", size: 16)
@@ -55,7 +55,7 @@ class NumberView: UIView {
         return label
     }()
     
-    let numberField: UITextField = {
+    lazy var numberField: UITextField = {
         let field = UITextField()
         field.font = UIFont(name: "GothamPro-Bold", size: 28)
         field.placeholder = "0(000) 000 000"
@@ -64,7 +64,7 @@ class NumberView: UIView {
         return field
     }()
     
-    let errorLabel: UILabel = {
+    lazy var errorLabel: UILabel = {
         let label = UILabel()
         label.text = "This number was already registered"
         label.textColor = UIColor.сolorRed
@@ -75,7 +75,7 @@ class NumberView: UIView {
         return label
     }()
     
-    let enterButton: UIButton = {
+    lazy var enterButton: UIButton = {
         let button = UIButton()
     //    button.backgroundColor = UIColor.colorBlue
         button.backgroundColor = UIColor.colorGrey

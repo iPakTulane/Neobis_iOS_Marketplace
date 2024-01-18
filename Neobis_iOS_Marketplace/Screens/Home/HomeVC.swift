@@ -11,10 +11,8 @@ import SnapKit
 
 class HomeViewController: UIViewController {
     
-    let mainView = HomeView()
+    lazy var mainView = HomeView()
     var mainViewModel: HomeProtocol!
-    
-//    var products: [ProductResponse] = []
     
     // MARK: - INIT
     override func loadView() {
@@ -37,18 +35,29 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         mainView.collectionView.delegate = self
         mainView.collectionView.dataSource = self
-        mainViewModel?.getData()
         mainView.collectionView.reloadData()
+
+        fetchData()
+
         addDelegates()
         setupCollectionView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        mainViewModel?.getData()
+        fetchData()
         mainView.collectionView.reloadData()
         tabBarController?.tabBar.isHidden = false
     }
-
+    
+    // To start network request
+    override func viewDidAppear(_ animated: Bool) {
+        fetchData()
+    }
+    
+    func fetchData() {
+        mainViewModel?.fetchData()
+    }
+    
     func addDelegates() {
         mainViewModel?.delegate = self
         mainView.collectionView.delegate = self
@@ -66,10 +75,6 @@ class HomeViewController: UIViewController {
 extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        if let viewModel = mainViewModel {
-//            return viewModel.products?.count ?? 0
-//        }
-//        return 0
         if let viewModel = mainViewModel {
             let count = viewModel.products?.count ?? 0
             print("Number of items: \(count)")
@@ -80,8 +85,9 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeCellView.identifier, for: indexPath) as! HomeCellView
+
         if let products = mainViewModel?.products {
-            cell.configureCell(with: products[indexPath.row])
+            cell.configureCell(with: products[indexPath.item])
             cell.delegate = self
         }
         return cell
@@ -92,15 +98,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
 }
 
-extension HomeViewController: HomeCellDelegate {
-    
-    func goToDetail(id: Int, image: UIImage) {
-        let vc = DetailViewController()
-        navigationController?.pushViewController(vc, animated: true)
-    }
-    
-}
-
+// MARK: - EXTENSION
 extension HomeViewController: HomeDelegate {
     
     func didSucceed(withData data: [ProductResponse]) {
@@ -123,12 +121,21 @@ extension HomeViewController: HomeDelegate {
     }
         
     func didFail(withError error: Error) {
-        print("Home failed with error: \(error)")
-        mainView.boxImage.isHidden = false
-        mainView.emptyLabel.isHidden = false
-        mainView.collectionView.isHidden = true
+        print("Home failed with error: \(error.localizedDescription)")
+        
+        DispatchQueue.main.async {
+            self.mainView.boxImage.isHidden = false
+            self.mainView.emptyLabel.isHidden = false
+            self.mainView.collectionView.isHidden = true
+        }
     }
     
 }
 
-
+// MARK: - EXTENSION
+extension HomeViewController: HomeCellDelegate {
+    func goToDetail(id: Int, image: UIImage) {
+        let vc = DetailViewController(viewModel: DetailViewModel(id: id), image: image)
+        navigationController?.pushViewController(vc, animated: true)
+    }
+}

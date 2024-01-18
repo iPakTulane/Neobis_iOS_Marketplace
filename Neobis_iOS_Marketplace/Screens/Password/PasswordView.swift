@@ -12,13 +12,13 @@ import SnapKit
 class PasswordView: UIView {
     
     // MARK: - UI COMPONENTS
-    let lockImage: UIImageView = {
+    lazy var lockImage: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(named: "lock")
         return image
     }()
     
-    let passwordLabel: UILabel = {
+    lazy var passwordLabel: UILabel = {
         let label = UILabel()
         label.text = "Enter password"
         label.font = UIFont(name: "GothamPro-Medium", size: 25)
@@ -26,7 +26,7 @@ class PasswordView: UIView {
         return label
     }()
     
-    let passwordReq: UILabel = {
+    lazy var passwordReq: UILabel = {
         let label = UILabel()
         label.text = "At least - 8 symbols.\n To ensure security, a password \nneeds to have both letters and digits."
         label.font = UIFont(name: "GothamPro", size: 16)
@@ -36,7 +36,7 @@ class PasswordView: UIView {
         return label
     }()
     
-    let passwordField: UITextField = {
+    lazy var passwordField: UITextField = {
         let field = UITextField()
         field.font = UIFont.boldSystemFont(ofSize: 30)
         field.isSecureTextEntry = true
@@ -48,7 +48,7 @@ class PasswordView: UIView {
         return field
     }()
     
-    let passwordConfirmField: UITextField = {
+    lazy var passwordConfirmField: UITextField = {
         let field = UITextField()
         field.font = UIFont.boldSystemFont(ofSize: 30)
         field.isSecureTextEntry = true
@@ -60,7 +60,7 @@ class PasswordView: UIView {
         return field
     }()
     
-    let nextButton: UIButton = {
+    lazy var nextButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = UIColor.colorGrey
         button.layer.cornerRadius = 23
@@ -69,7 +69,7 @@ class PasswordView: UIView {
         return button
     }()
     
-    let finishButton: UIButton = {
+    lazy var finishButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = UIColor.colorGrey
         button.layer.cornerRadius = 23
@@ -80,7 +80,7 @@ class PasswordView: UIView {
     }()
 
     
-    let passwordError: UILabel = {
+    lazy var passwordError: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 15)
         label.text = "Passwords don't match"

@@ -45,7 +45,7 @@ class DetailViewModel: DetailViewModelProtocol {
         //                self.detailResponse = data
         //                self.delegate?.didSucceed(response: data)
         //            case .failure(let error):
-        //                print("Detail fail: \(error)")
+        //                print("Detail fail: \(error.localizedDescription)")
         
     }
 }

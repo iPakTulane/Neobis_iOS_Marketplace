@@ -35,8 +35,10 @@ class DetailViewController: UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: mainView.changeButton)
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: mainView.backButton)
+        
         mainViewModel?.delegate = self
         tabBarController?.tabBar.isHidden = true
+        
         mainView.image.image = mainImage
         addTargets()
     }

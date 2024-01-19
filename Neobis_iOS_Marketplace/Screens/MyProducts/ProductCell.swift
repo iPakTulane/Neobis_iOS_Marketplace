@@ -71,7 +71,6 @@ class ProductCellView: UICollectionViewCell {
         label.text = "100"
         label.font = UIFont(name: "GothamPro", size: 12)
         label.textColor = .gray
-        
         return label
     }()
     
@@ -170,7 +169,7 @@ class ProductCellView: UICollectionViewCell {
 
         // Configure product ID
         if let id = data.id {
-            self.id = id
+            self.productId = id
         }
 
         // Configure product name
@@ -185,12 +184,12 @@ class ProductCellView: UICollectionViewCell {
     
     // MARK: - DELEGATE METHODS
     
-    @objc func productTapped(sender: UIButton) {
-        delegate?.goToDetail(id: id, image: productImageView.image ?? UIImage())
+    @objc func productTapped() {
+        delegate?.goToDetail(id: productId, image: productImageView.image ?? UIImage())
     }
-    
-    @objc func infoButtonPressed(sender: UIButton) {
-        delegate?.popupDidAppear(id: id)
+
+    @objc func infoButtonPressed() {
+        delegate?.popupDidAppear(id: productId)
     }
     
 }
